@@ -1,0 +1,10 @@
+// vos classes perso
+.blue-background {
+  background-color: blue !important;
+}
+
+.btn-special {
+  @extend .btn;
+  background-color: darkcyan;
+  color: #fff;
+}

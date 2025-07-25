@@ -1,0 +1,5 @@
+.btn-test {
+  @extend .btn;              // hérite des styles de base de Bootstrap
+  background-color: rgb(255, 0, 0);
+  color: #fff;
+}
