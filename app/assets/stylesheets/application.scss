@@ -1,17 +1,16 @@
 @import "bootstrap";
-@import "custom";   // <-- votre partial
 @import "components/index";
+@import "clash-display";
+// @import "custom";
 
 
-// éventuellement d’autres imports :
-// @import "buttons";
-// @import "utilities";
+body {
+  font-family: 'ClashDisplay-Regular', sans-serif;
+}
 
-// votre classe perso
 .blue-background {
   background-color: blue !important;
 }
-
 
 .container {
   background-color: aquamarine;

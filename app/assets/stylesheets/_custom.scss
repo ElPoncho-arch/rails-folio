@@ -3,8 +3,9 @@
   background-color: blue !important;
 }
 
-.btn-special {
-  @extend .btn;
-  background-color: darkcyan;
-  color: #fff;
-}
+// Exemple d'extension optionnelle
+// .btn-custom {
+//   @extend .btn !optional;
+//   background-color: darkcyan;
+//   color: #fff;
+// }

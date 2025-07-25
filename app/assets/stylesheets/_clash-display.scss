@@ -1,0 +1,77 @@
+/**
+* @license
+*
+* Font Family: Clash Display
+* Designed by: Indian Type Foundry
+* URL: https://www.fontshare.com/fonts/clash-display
+* © 2025 Indian Type Foundry
+*
+* Clash Display Extralight
+* Clash Display Light
+* Clash Display Regular
+* Clash Display Medium
+* Clash Display Semibold
+* Clash Display Bold
+* Clash Display Variable (Variable font)
+
+*
+*/
+@font-face {
+  font-family: 'ClashDisplay-Extralight';
+  src: url(asset-path('ClashDisplay-Extralight.woff2')) format('woff2');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashDisplay-Light';
+  src: url(asset-path('ClashDisplay-Light.woff2')) format('woff2');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashDisplay-Regular';
+  src: url(asset-path('ClashDisplay-Regular.woff2')) format('woff2'),
+       url(asset-path('ClashDisplay-Regular.woff'))  format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashDisplay-Medium';
+  src: url(asset-path('ClashDisplay-Medium.woff2')) format('woff2');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashDisplay-Semibold';
+  src: url(asset-path('ClashDisplay-Semibold.woff2')) format('woff2');
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashDisplay-Bold';
+  src: url(asset-path('ClashDisplay-Bold.woff2')) format('woff2');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashDisplay-Variable';
+  src: url(asset-path('ClashDisplay-Variable.woff2')) format('woff2');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Clash Display', sans-serif;
+}
