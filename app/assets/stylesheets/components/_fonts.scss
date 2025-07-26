@@ -4,3 +4,24 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.clash-font {
+  font-family: 'ClashDisplay-Regular', sans-serif;
+}
+
+.blue-font {
+  color: #0009B8;
+  font-size: 2rem;
+
+  @include respond-to(md) {
+    font-size: 5rem;
+  }
+  @include respond-to(lg) {
+    font-size: 8rem;
+  }
+}
+
+// Réduire l'interligne sur tes titres h1
+h1.clash-font {
+  line-height: 0.8;  // ex : 1 = hauteur de ligne égale à la taille de la fonte
+}
