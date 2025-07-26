@@ -1,0 +1,52 @@
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.2rem;       // espacement uniforme entre tes cards
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.8rem;       // espace légèrement plus grand sur md et +
+  }
+  @include respond-to(lg) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.2rem;       // espace légèrement plus grand sur md et +
+  }
+}
+
+.project-card {
+  aspect-ratio: 1 / 1;          /* rend la carte carrée */
+  width: 100%;                  /* occupe toute la colonne */
+  background-color: #ffffff;      /* fond blanc (ou autre couleur) */
+  border-radius: 2rem;          /* arrondir les angles */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* légère ombre */
+  overflow: hidden;               /* pour que le radius s’applique */
+  /* tu peux supprimer margin-bottom si tu utilises déjà gap dans .cards */
+}
+
+.project-card .card-content {
+  padding: 1rem;                  /* un peu de respiration à l’intérieur */
+  /* pour centrer verticalement/horizontalement le contenu, si besoin : */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-card {
+  position: relative;
+  overflow: hidden;
+
+  .video-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 1;
+    /* garde ton padding existant */
+  }
+}

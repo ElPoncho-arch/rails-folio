@@ -1,26 +1,34 @@
-<div class="container">
+<div class="container-fluid px-4 px-md-5 my-4">
+  <h1 class="text-start my-4 clash-font blue-font">Creative<br>Developer</h1>
+  <h1 class="text-end my-5 clash-font blue-font">Fabien<br>Hoarau</h1>
 
-  <h1 class="text-center my-4">Bienvenue sur RailsFolio</h1>
+  <div class="cards">
 
-  <div class="alert alert-primary" role="alert">
-    Bootstrap fonctionne correctement !
+    <div class="project-card video-card">
+      <%= video_tag "slides_logo_anim.mp4",
+          autoplay: true,
+          muted: true,
+          loop: true,
+          class: "video-bg" %>
+      <a href="/projects/1" class="d-block text-decoration-none h-100">
+        <div class="card-content">
+          <h3 class="mb-2"></h3>
+        </div>
+      </a>
+    </div>
+
+    <div class="project-card video-card">
+      <%= video_tag "macval-logo-anim.mp4",
+          autoplay: true,
+          muted: true,
+          loop: true,
+          class: "video-bg" %>
+      <a href="/projects/1" class="d-block text-decoration-none h-100">
+        <div class="card-content">
+          <h3 class="mb-2"></h3>
+        </div>
+      </a>
+    </div>
+
   </div>
-
-  <div class="text-center mt-3">
-    <button type="button" class="btn btn-success">
-      Tester Bootstrap
-    </button>
-  </div>
-
-  <!-- nouveau bloc avec fond bleu -->
-  <div class="blue-background text-white p-4 mt-4">
-    Ceci est un bloc avec un fond bleu !
-  </div>
-
-  <div class="text-center mt-3">
-    <button type="button" class="btn-test">
-      Bouton de test SCSS
-    </button>
-  </div>
-
-</container>
+</div>

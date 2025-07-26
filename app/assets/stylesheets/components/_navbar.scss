@@ -1,0 +1,14 @@
+/* taille de la marque “Fabien Hoarau” */
+.navbar-brand.clash-font {
+  font-size: 1rem; /* ex : passer de 2rem à 1.5rem */
+}
+
+/* taille des liens Bio / Contact */
+.navbar-nav .nav-link {
+  font-size: 1rem; /* ex : passer de 1.25rem à 1rem */
+}
+
+/* on hérite du background du body */
+.navbar {
+  background: inherit !important;
+}
