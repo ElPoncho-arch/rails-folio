@@ -1,0 +1,23 @@
+<div class="container-fluid px-4 px-md-5 my-4">
+  <strong class="d-block text-start my-5 clash-font blue-font-title">/Expé</strong>
+
+  <div class="row">
+    <div class="col-12 col-md-8 mb-5">
+      <p class="blue-txt-courant">
+        expérimentation personnelle
+      </p>
+    </div>
+  </div>
+
+  <div class="cards">
+    <%= link_to '/projects/la_colline',
+          class: 'project-card d-block text-decoration-none h-100',
+          style: "background-image: url(#{asset_path 'la_colline_couv2.jpg'}); background-size: cover; background-position: center;" do %>
+    <% end %>
+
+    <%= link_to '/projects/la_colline',
+          class: 'project-card d-block text-decoration-none h-100',
+          style: "background-image: url(#{asset_path 'la_colline_couv2.jpg'}); background-size: cover; background-position: center;" do %>
+    <% end %>
+  </div>
+</div>

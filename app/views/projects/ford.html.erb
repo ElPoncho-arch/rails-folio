@@ -1,0 +1,27 @@
+<div class="container-fluid px-4 px-md-5 my-4">
+  <strong class="d-block text-start my-4 clash-font blue-font-title">/Ford</strong>
+
+  <div class="row">
+    <div class="col-12 col-md-8 mb-5">
+      <p class="blue-txt-courant">
+        Brochure retraçant l’histoire de
+        la marque Ford de ses débuts en
+        1891 en passant par le fordisme,
+        la création du modèle T, la
+        célèbre Mustang, ses courses
+        du 24 heures du Mans, jusqu’à
+        nos jours.
+      </p>
+    </div>
+  </div>
+
+  <div class="cards my-5">
+    <div class="project-card d-block text-decoration-none h-100"
+         style="background-image: url(<%= asset_path 'ford/MU_Couv_Ford.jpg' %>); background-size: cover; background-position: center;">
+    </div>
+
+    <div class="project-card d-block text-decoration-none h-100 video-card">
+      <%= image_tag 'ford/Mockup_Ford.jpeg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,35 @@
-<div class="container my-5">
-  <h1 class="text-start clash-font blue-font">Bio</h1>
-  <p>Ta biographie ici…</p>
+<div class="container-fluid px-4 px-md-5 bio-page pt-5">
+  <div class="row gy-4 flex-grow-1 align-items-end">
+
+    <!-- Colonne de gauche -->
+    <div class="col-md-4 text-start blue-txt-title">
+      <h2 class="clash-font blue-txt-title mb-3">
+        Design par<br>
+        <strong>Fabien Hoarau</strong>,<br>
+        designer UI/UX<br>
+        et développeur<br>
+        front-end<br>
+        basé à Bordeaux.
+      </h2>
+    </div>
+
+    <!-- Colonne centrale -->
+    <div class="col-md-4 d-flex justify-content-center">
+      <div class="bio-image-card">
+        <%= image_tag "bio_image.png",
+              class: "img-fluid rounded",
+              alt: "bio_image" %>
+      </div>
+    </div>
+
+    <!-- Colonne de droite -->
+    <div class="col-md-4 blue-txt-courant">
+      <p>
+        Je suis graphiste et designer UI/UX avec plus de 5 ans d’expérience.
+        Mon travail allie créativité et fonctionnalité pour offrir des expériences…
+        Avec un riche portfolio et une passion pour l’innovation, je contribue…
+      </p>
+    </div>
+
+  </div>
 </div>

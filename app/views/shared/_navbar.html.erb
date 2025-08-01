@@ -1,13 +1,18 @@
 <nav class="navbar navbar-light">
   <div class="container-fluid px-4 px-md-5">
-    <%= link_to 'fabien hoarau', root_path, class: 'navbar-brand clash-font blue-font' %>
+    <%= link_to 'fabien hoarau', root_path,
+          class: "navbar-brand clash-font blue-txt-courant #{'fw-bold' if current_page?(root_path)}" %>
 
     <ul class="navbar-nav ms-auto d-flex flex-row">
-      <li class="nav-item me-3">
-        <%= link_to 'bio', bio_path, class: 'nav-link clash-font blue-font' %>
+      <!-- bio -->
+      <li class="nav-item me-3 me-md-5">
+        <%= link_to 'bio', bio_path,
+              class: "nav-link clash-font blue-txt-courant #{'fw-bold' if current_page?(bio_path)}" %>
       </li>
-      <li class="nav-item">
-        <%= link_to 'contact', contact_path, class: 'nav-link clash-font blue-font' %>
+      <!-- contact -->
+      <li class="nav-item ms-3 ms-md-5">
+        <%= link_to 'contact', contact_path,
+              class: "nav-link clash-font blue-txt-courant #{'fw-bold' if current_page?(contact_path)}" %>
       </li>
     </ul>
   </div>

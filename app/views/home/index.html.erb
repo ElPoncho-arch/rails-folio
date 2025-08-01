@@ -1,34 +1,84 @@
 <div class="container-fluid px-4 px-md-5 my-4">
-  <h1 class="text-start my-4 clash-font blue-font">Creative<br>Developer</h1>
-  <h1 class="text-end my-5 clash-font blue-font">Fabien<br>Hoarau</h1>
+  <div style="height: 95vh; display: flex; flex-direction: column; justify-content: center; gap: 5.5rem;">
+    <!-- Titre principal : on passe mb-4 → mb-5 pour plus d’espace sous le titre -->
+    <h1 class="text-start clash-font blue-font-title mt-5">
+      Creative<br>Developer
+    </h1>
+
+    <!-- Phrase d’accroche : idem -->
+    <h5 class="text-start clash-font blue-font-sous-titre mb-0">
+      Je suis une super phrase
+      <span class="d-block">d’accroche qui fait kiffer les RH</span>
+    </h5>
+
+    <!-- Signature : on ajoute un peu d’espace au-dessus -->
+    <h1 class="text-end clash-font blue-font-title mt-0">
+      Fabien<br>Hoarau
+    </h1>
+  </div>
 
   <div class="cards">
-
-    <div class="project-card video-card">
+    <%= link_to '/projects/slides',
+          class: 'project-card video-card d-block text-decoration-none h-100' do %>
       <%= video_tag "slides_logo_anim.mp4",
           autoplay: true,
           muted: true,
           loop: true,
           class: "video-bg" %>
-      <a href="/projects/1" class="d-block text-decoration-none h-100">
-        <div class="card-content">
-          <h3 class="mb-2"></h3>
-        </div>
-      </a>
-    </div>
+    <% end %>
 
-    <div class="project-card video-card">
+    <%= link_to '/projects/macval',
+          class: 'project-card video-card d-block text-decoration-none h-100' do %>
       <%= video_tag "macval-logo-anim.mp4",
           autoplay: true,
           muted: true,
           loop: true,
           class: "video-bg" %>
-      <a href="/projects/1" class="d-block text-decoration-none h-100">
-        <div class="card-content">
-          <h3 class="mb-2"></h3>
-        </div>
-      </a>
-    </div>
-
+    <% end %>
   </div>
+
+  <div class="full-width-card my-5">
+    <div class="card-content">
+      <h3>TF1</h3>
+    </div>
+  </div>
+
+  <div class="cards my-5">
+    <%= link_to '/projects/ford',
+          class: 'project-card d-block text-decoration-none h-100',
+          style: "background-image: url(#{asset_path 'ford_couv.jpg'}); background-size: cover; background-position: center;" do %>
+    <% end %>
+
+    <%= link_to '/projects/abskate',
+          class: 'project-card d-block text-decoration-none h-100',
+          style: "background-image: url(#{asset_path 'abskate_couv.jpg'}); background-size: cover; background-position: center;" do %>
+    <% end %>
+  </div>
+
+  <div class="cards">
+    <%= link_to '/projects/mango',
+          class: 'project-card video-card d-block text-decoration-none h-100' do %>
+      <%= video_tag "mango-anim-logo.mp4",
+          autoplay: true,
+          muted: true,
+          loop: true,
+          class: "video-bg" %>
+    <% end %>
+
+    <%= link_to '/projects/la_colline',
+          class: 'project-card d-block text-decoration-none h-100',
+          style: "background-image: url(#{asset_path 'la_colline_couv2.jpg'}); background-size: cover; background-position: center;" do %>
+    <% end %>
+  </div>
+
+  <div class="full-width-card my-5">
+    <%= link_to '/projects/experimentation', class: 'd-block text-decoration-none h-100' do %>
+      <div class="card-content">
+        <%= image_tag 'lacolline/banniere.jpg',
+              alt: 'Urban Poster Mockup',
+              class: 'img-fluid' %>
+      </div>
+    <% end %>
+  </div>
+
 </div>

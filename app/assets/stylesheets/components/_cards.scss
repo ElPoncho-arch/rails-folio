@@ -50,3 +50,15 @@
     /* garde ton padding existant */
   }
 }
+
+.full-width-card {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+  overflow: hidden;
+
+  /* pour que la hauteur de cette carte full-width soit identique à celle des deux cartes carrées */
+  aspect-ratio: 2 / 1;
+}

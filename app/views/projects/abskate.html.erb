@@ -1,0 +1,48 @@
+<div class="container-fluid px-4 px-md-5 my-4">
+  <strong class="d-block text-start my-5 clash-font blue-font-title">/Abécédaire</strong>
+
+  <div class="row">
+    <div class="col-12 col-md-8 mb-5">
+      <p class="blue-txt-courant">
+        L’abécédaire est un livre d’apprentissage de l’alphabet. Ici nous prenons
+        le thème du monde du skate.
+        Chaque lettre à travers un mélange
+        de photographie et typographie
+        raconte cette histoire en mettant
+        en avant les pionniers qui ont fait
+        vivre ce sport jusqu’aux tricks,
+        lieux mythiques et événements
+        géants d’aujourd’hui.
+      </p>
+    </div>
+  </div>
+
+  <div class="cards my-5">
+    <div class="project-card d-block text-decoration-none h-100"
+         style="background-image: url(<%= asset_path 'abc/livre.jpg' %>); background-size: cover; background-position: center;">
+    </div>
+
+    <div class="project-card d-block text-decoration-none h-100 video-card">
+      <%= image_tag 'abc/mu-double2.jpeg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
+    </div>
+  </div>
+
+  <div class="cards my-5">
+     <div class="project-card d-block text-decoration-none h-100 video-card">
+      <%= image_tag 'abc/mu-double.jpeg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
+    </div>
+    <div class="project-card d-block text-decoration-none h-100"
+         style="background-image: url(<%= asset_path 'abc/abc.jpg' %>); background-size: cover; background-position: center;">
+    </div>
+  </div>
+
+
+  <div class="full-width-card my-5">
+    <div class="card-content">
+      <%= image_tag 'abc/mu-page.jpg',
+            alt: 'Urban Poster Mockup',
+            class: 'img-fluid' %>
+    </div>
+  </div>
+
+</div>

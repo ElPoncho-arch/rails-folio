@@ -7,3 +7,9 @@ body {
   font-family: 'ClashDisplay-Medium', sans-serif;
   background-color: #FFF4E9;        // couleur unie
 }
+
+.bio-page {
+  min-height: 90vh;            // la page fait toute la hauteur
+  display: flex;                // mode flex en colonne
+  flex-direction: column;
+}

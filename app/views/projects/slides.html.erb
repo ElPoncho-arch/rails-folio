@@ -1,0 +1,59 @@
+<div class="container-fluid px-4 px-md-5 my-4">
+  <strong class="d-block text-start my-5 clash-font blue-font-title">/Slides</strong>
+
+  <div class="row">
+    <div class="col-12 col-md-8 mb-5">
+      <p class="blue-txt-courant">
+        Slides est une exposition dédiée aux adeptes et aux curieux qui souhaitent découvrir ou redécouvrir l’histoire du skateboard. Cette pratique qui a émergé au début des années 60 en Californie. Cette exposition reflète la diversité et la richesse de ce mode de vie : par le biais d’œuvres modernes, vidéos, tirages numériques, installations interactives, art sonore, design, marques emblématiques. Le logo destiné à l’exposition Slides a été inspiré par les codes de la culture skate des années 80. Il intègre à la fois un aspect underground de par sa typographie, qui rassemble des influences punk, street et brut. Et par la couleur qui symbolise le dynamisme et la curiosité. L’encadrement autour de chaque caractère rappelle des lettres découpées qui évoquent le « do it yourself » largement inscrit dans cette culture.
+      </p>
+    </div>
+  </div>
+
+  <div class="full-width-card my-5">
+    <div class="card-content">
+      <%= image_tag 'slides/slide_branding_31.jpg',
+            alt: 'Slide Branding 31',
+            class: 'img-fluid' %>
+    </div>
+  </div>
+
+  <div class="cards my-5">
+    <div class="project-card d-block text-decoration-none h-100"
+         style="background-image: url(<%= asset_path 'slides/slide_branding_1.jpg' %>); background-size: cover; background-position: center;">
+    </div>
+    <div class="project-card d-block text-decoration-none h-100"
+         style="background-image: url(<%= asset_path 'slides/slide_branding_2.jpg' %>); background-size: cover; background-position: center;">
+    </div>
+  </div>
+
+  <!-- nouvelle rangée de cards avec GIFs -->
+  <div class="cards my-5">
+    <div class="project-card d-block text-decoration-none h-100"
+         style="background-image: url(<%= asset_path 'slides/billet-evenement_134533-5.jpg' %>); background-size: cover; background-position: center;">
+    </div>
+
+    <div class="project-card d-block text-decoration-none h-100 video-card">
+      <%= image_tag 'slides/catalogue.gif', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
+    </div>
+  </div>
+
+  <div class="full-width-card my-5">
+    <div class="card-content">
+      <%= image_tag 'slides/urban_poster_mockup.jpg',
+            alt: 'Urban Poster Mockup',
+            class: 'img-fluid' %>
+    </div>
+  </div>
+
+  <div class="cards my-5">
+
+<div class="project-card d-block text-decoration-none h-100 video-card">
+      <%= image_tag 'slides/sceno.gif', alt: 'Scéno animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
+    </div>
+    <div class="project-card d-block text-decoration-none h-100"
+         style="background-image: url(<%= asset_path 'slides/totebag2.jpg' %>); background-size: cover; background-position: center;">
+    </div>
+  </div>
+
+
+</div>

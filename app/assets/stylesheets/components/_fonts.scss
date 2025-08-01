@@ -9,7 +9,7 @@
   font-family: 'ClashDisplay-Regular', sans-serif;
 }
 
-.blue-font {
+.blue-font-title {
   color: #0009B8;
   font-size: 2rem;
 
@@ -20,8 +20,39 @@
     font-size: 8rem;
   }
 }
+.blue-font-sous-titre {
+  color: #0009B8;
+  font-size: 1rem;
+
+  @include respond-to(md) {
+    font-size: 3rem;
+  }
+  @include respond-to(lg) {
+    font-size: 5rem;
+  }
+}
+
+.blue-txt-title h2 {
+  color: #0009B8;
+}
+
+.blue-txt-courant {
+  color: #0009B8;
+}
 
 // Réduire l'interligne sur tes titres h1
 h1.clash-font {
   line-height: 0.8;  // ex : 1 = hauteur de ligne égale à la taille de la fonte
+}
+
+.bio-left-col h2.clash-font {
+  font-size: 2rem;
+
+  @include respond-to(md) {
+    font-size: 3rem;
+  }
+
+  @include respond-to(lg) {
+    font-size: 4rem;
+  }
 }
