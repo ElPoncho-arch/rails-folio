@@ -37,7 +37,6 @@ $breakpoints: (
     max-width: 720px !important;
   }
   @include respond-to(lg) {
-    max-width: 900px !important; // adapte à tes besoins
+    max-width: 900px !important;
   }
 }
-

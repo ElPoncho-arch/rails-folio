@@ -34,7 +34,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -87,4 +87,9 @@ Rails.application.configure do
     authentication:       "plain",
     enable_starttls_auto: true
   }
+
+  # autorise ton tunnel ngrok
+  config.hosts << "0e2a55f27ad0.ngrok-free.app"
+  # (ou pour tous les .ngrok-free.app)
+  config.hosts << /[a-z0-9]+\.ngrok-free\.app/
 end
