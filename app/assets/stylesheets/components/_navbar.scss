@@ -12,3 +12,25 @@
 .navbar {
   background: inherit !important;
 }
+
+// nouvelle classe pour color + sizing indépendants
+.blue-txt-navbar {
+  color: #0009B8 !important;
+}
+
+// taille différente sur mobile / tablette / laptop
+.navbar-brand.blue-txt-navbar,
+.nav-link.blue-txt-navbar {
+  // mobile <576px
+  font-size: 9rem !important;
+
+  @include respond-to(sm) {
+    // tablette ≥576px
+    font-size: 7rem !important;
+  }
+
+  @include respond-to(md) {
+    // laptop ≥768px
+    font-size: 1.5rem !important;
+  }
+}

@@ -11,19 +11,31 @@
 
 .blue-font-title {
   color: #0009B8;
-  font-size: 2rem;
+  // taille par défaut (mobile)
+  font-size: 4.4rem;
 
+  @include respond-to(sm) {
+    // >576px (petite tablette)
+    font-size: 3rem;
+  }
   @include respond-to(md) {
+    // >768px (grand tablette / petit laptop)
     font-size: 5rem;
   }
   @include respond-to(lg) {
+    // >992px (laptop et plus)
     font-size: 8rem;
   }
 }
+
 .blue-font-sous-titre {
   color: #0009B8;
-  font-size: 1rem;
+  // taille par défaut (mobile)
+  font-size: 1.5rem;
 
+  @include respond-to(sm) {
+    font-size: 2rem;
+  }
   @include respond-to(md) {
     font-size: 3rem;
   }

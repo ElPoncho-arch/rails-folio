@@ -13,3 +13,13 @@ body {
   display: flex;                // mode flex en colonne
   flex-direction: column;
 }
+
+// // ------ override mobile navbar ------
+// @media (max-width: 576px) {
+//   nav.navbar.navbar-light .navbar-brand.clash-font {
+//     font-size: 4rem !important;  // augmente très fort
+//   }
+//   nav.navbar.navbar-light .navbar-nav .nav-link {
+//     font-size: 2.5rem !important;
+//   }
+// }

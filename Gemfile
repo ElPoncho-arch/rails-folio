@@ -64,3 +64,5 @@ end
 group :development do
   gem 'letter_opener'
 end
+
+gem 'dotenv-rails', groups: [:development, :test]
