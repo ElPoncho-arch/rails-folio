@@ -13,5 +13,7 @@ Rails.application.config.assets.version = "1.0"
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "fonts")
 Rails.application.config.assets.precompile += %w( *.woff *.woff2 )
 
+# Add video assets to the asset pipeline
 Rails.application.config.assets.paths << Rails.root.join("app", "assets", "videos")
-Rails.application.config.assets.precompile += %w( *.mp4 )
+# Precompile mp4 (and any other video formats you use)
+Rails.application.config.assets.precompile += %w( *.mp4 *.webm *.ogv )
