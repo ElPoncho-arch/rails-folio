@@ -62,3 +62,22 @@
   /* pour que la hauteur de cette carte full-width soit identique à celle des deux cartes carrées */
   aspect-ratio: 2 / 1;
 }
+
+// override pour la carte TF1 : ratio 16/9
+.full-width-card--tf1 {
+  aspect-ratio: 16 / 9;
+}
+
+.tf1-video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16/9 */
+  height: 0;
+  overflow: hidden;
+
+  video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

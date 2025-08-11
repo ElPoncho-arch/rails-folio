@@ -1,10 +1,24 @@
 <div class="container-fluid px-4 px-md-5 my-4">
-  <strong class="d-block text-start my-5 clash-font blue-font-title">/Expé</strong>
+  <style>
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .project-card {
+      aspect-ratio: 210 / 297; /* portrait A4/A5 */
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+
+  <strong class="d-block text-start my-5 clash-font blue-font-title">/H [ors cadr] e</strong>
 
   <div class="row">
     <div class="col-12 col-md-8 mb-5">
       <p class="blue-txt-courant">
-        expérimentation personnelle
+        Cette section rassemble des projets plus libres et spontanés : créations one-shot, expérimentations visuelles, travaux photographiques ou recherches graphiques hors cadre client.
       </p>
     </div>
   </div>
@@ -12,12 +26,12 @@
   <div class="cards">
     <%= link_to '/projects/la_colline',
           class: 'project-card d-block text-decoration-none h-100',
-          style: "background-image: url(#{asset_path 'la_colline_couv2.jpg'}); background-size: cover; background-position: center;" do %>
+          style: "background-image: url(#{asset_path 'la_colline_couv2.jpg'});" do %>
     <% end %>
 
     <%= link_to '/projects/la_colline',
           class: 'project-card d-block text-decoration-none h-100',
-          style: "background-image: url(#{asset_path 'la_colline_couv2.jpg'}); background-size: cover; background-position: center;" do %>
+          style: "background-image: url(#{asset_path 'la_colline_couv2.jpg'});" do %>
     <% end %>
   </div>
 </div>

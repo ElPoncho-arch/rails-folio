@@ -38,9 +38,17 @@
   </div>
 
   <div class="full-width-card my-5">
-    <div class="card-content">
-      <h3>TF1</h3>
-    </div>
+    <%= link_to '/projects/tf1',
+          class: 'd-block text-decoration-none h-100' do %>
+      <div class="card-content">
+        <%= video_tag 'teaser.mp4',
+            autoplay: true,
+            muted:   true,
+            loop:    true,
+            class:   'img-fluid',
+            alt:     'Teaser TF1' %>
+      </div>
+    <% end %>
   </div>
 
   <div class="cards my-5">
@@ -72,12 +80,10 @@
   </div>
 
   <div class="full-width-card my-5">
-    <%= link_to '/projects/experimentation', class: 'd-block text-decoration-none h-100' do %>
-      <div class="card-content">
-        <%= image_tag 'lacolline/banniere.jpg',
-              alt: 'Urban Poster Mockup',
-              class: 'img-fluid' %>
-      </div>
+    <%= link_to '/projects/experimentation',
+          class: 'd-block text-decoration-none h-100 d-flex justify-content-center align-items-center text-center',
+          style: 'background-color: #0009B8; color: #fff;' do %>
+      <span class="h1 mb-0">H [ors cadr] e</span>
     <% end %>
   </div>
 
