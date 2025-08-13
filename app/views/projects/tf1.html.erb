@@ -1,2 +1,47 @@
-<h1>Projects#tf1</h1>
-<p>Find me in app/views/projects/tf1.html.erb</p>
+<div class="container-fluid px-4 px-md-5 my-4">
+  <h5 class="d-block text-start my-5 clash-font blue-font-title">/TF1 – E-learning</h5>
+
+  <div class="row">
+    <div class="col-12 col-md-8 mb-5">
+      <p class="blue-txt-courant">
+      Transition environnementale dans l’audiovisuel <br>
+      Conçu pour le Groupe TF1 et ses partenaires, ce module e-learning vise à sensibiliser l’ensemble des professionnels de l’audiovisuel aux enjeux de la transition environnementale. Pensé comme un outil pédagogique accessible et impactant pour encourager des pratiques plus responsables sur l’ensemble de la chaîne de production.<br><br>
+      Ce projet a été réalisé au sein de l’agence Tremplin Numérique, en collaboration avec une équipe d’illustrateurs et de motion designers talentueux. Une belle aventure collective, au service d’une
+      </p>
+    </div>
+  </div>
+
+   <div class="full-width-card full-width-card--tf1 my-5">
+     <div class="tf1-video-wrapper">
+       <%= video_tag 'teaser.mp4',
+           autoplay: true,
+           muted: true,
+           loop: true,
+           controls: true,
+           class: '',
+           alt: 'Teaser TF1' %>
+     </div>
+   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const video  = document.getElementById('tf1-video');
+      const source = document.getElementById('tf1-source');
+      const sources = [
+        '<%= asset_path "tf1/JEU_ECHEC.mp4" %>',
+        '<%= asset_path "tf1/PERSO_BALLON.mp4" %>',
+        '<%= asset_path "tf1/JEU_MOTS_CROISEES.mp4" %>'
+      ];
+      let current = 0;
+
+      video.addEventListener('ended', function() {
+        current = current + 1;
+        if (current >= sources.length) return;  // arrêt après le dernier
+        source.src = sources[current];
+        video.load();
+        video.play();
+      });
+    });
+  </script>
+
+</div>
