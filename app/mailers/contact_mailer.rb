@@ -1,4 +1,7 @@
 class ContactMailer < ApplicationMailer
+
+  private!
+
   default to: "hoarauf4@gmail.com"
 
   def contact_email(name, email, message)
