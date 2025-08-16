@@ -175,6 +175,10 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.9-x86_64-linux-musl)
       racc (~> 1.4)
+    phony (2.22.4)
+    phony_rails (0.15.0)
+      activesupport (>= 3.0)
+      phony (>= 2.18.12)
     popper_js (2.11.8)
     pp (0.6.2)
       prettyprint
@@ -295,6 +299,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener
+  phony_rails
   puma (>= 5.0)
   rails (~> 7.1.5, >= 7.1.5.1)
   sassc-rails

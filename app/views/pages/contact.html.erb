@@ -1,8 +1,8 @@
 <div class="contact-page-full">
   <div class="contact-form-container">
     <h1>Stay in touch</h1>
-    <p>We’d love to hear from you! Drop us a message, and we’ll connect with you soon.</p>
-    <%= form_with url: contacts_path, method: :post, local: true, html: { class: 'contact-form' } do |f| %>
+    <p>I’d love to hear from you! Drop me a message, and I’ll connect with you soon.</p>
+    <%= form_with model: @contact, url: contacts_path, local: true, html: { class: 'contact-form' } do |f| %>
       <div class="form-group">
         <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
       </div>
@@ -11,14 +11,18 @@
         <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
       </div>
 
-      <div class="form-row">
-        <div class="form-group code-group">
+      <div class="d-flex align-items-start gap-2">
+        <div class="form-group code-group" style="width:25%">
           <%= f.select :country_code,
-                options_for_select([['+1', '+1'], ['+44', '+44'], ['+33', '+33']]),
-                {}, class: 'form-control' %>
+                [], { prompt: 'Select country code' },
+                class: 'form-control', id: 'contact_country_code' %>
         </div>
-        <div class="form-group phone-group">
-          <%= f.telephone_field :phone, placeholder: 'Phone', class: 'form-control' %>
+
+        <div class="form-group phone-group flex-grow-1">
+          <%= f.telephone_field :phone,
+                id: 'contact_phone',
+                placeholder: 'Phone number',
+                class: 'form-control' %>
         </div>
       </div>
 
