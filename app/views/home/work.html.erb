@@ -21,29 +21,31 @@
     <% end %>
   </div>
 
-  <div class="full-width-card my-5">
-    <%= link_to '/projects/tf1',
-          class: 'd-block text-decoration-none h-100' do %>
-      <div class="card-content">
-        <%= video_tag 'teaser.mp4',
-            autoplay: true,
-            muted:   true,
-            loop:    true,
-            class:   'img-fluid',
-            alt:     'Teaser TF1' %>
-      </div>
-    <% end %>
-  </div>
+
 
   <div class="cards my-5">
-    <%= link_to '/projects/ford',
+    <%= link_to '/projects/tf1',
           class: 'project-card d-block text-decoration-none h-100',
-          style: "background-image: url(#{asset_path 'ford_couv.jpg'}); background-size: cover; background-position: center;" do %>
+          style: "background-image: url(#{asset_path('tf1/lou.png')}); background-size: cover; background-position: center;" do %>
     <% end %>
 
     <%= link_to '/projects/abskate',
           class: 'project-card d-block text-decoration-none h-100',
           style: "background-image: url(#{asset_path 'abskate_couv.jpg'}); background-size: cover; background-position: center;" do %>
+    <% end %>
+  </div>
+
+
+
+  <div class="cards my-5">
+    <%= link_to '/projects/ford',
+          class: 'project-card d-block text-decoration-none h-100',
+          style: "background-image: url(#{asset_path('ford_couv.jpg')}); background-size: cover; background-position: center;" do %>
+    <% end %>
+
+    <%= link_to '/projects/abskate',
+          class: 'project-card d-block text-decoration-none h-100',
+          style: "background-image: url(#{asset_path('abskate_couv.jpg')}); background-size: cover; background-position: center;" do %>
     <% end %>
   </div>
 
