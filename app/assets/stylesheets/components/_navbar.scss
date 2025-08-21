@@ -9,19 +9,22 @@
 
   // mobile (<576px)
   font-size: 3rem !important;
-
   @include respond-to(sm) {
-    // ≥576px && <768px
     font-size: 3rem !important;
   }
-
   @include respond-to(md) {
-    // ≥768px
     font-size: 3rem !important;
   }
-
   @include respond-to(lg) {
-    // ≥992px
     font-size: 1.4rem !important;
   }
+
+  /* ajout du hover animé */
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.navbar a:hover {
+  color: #00ff3c !important;               /* texte vert */
 }

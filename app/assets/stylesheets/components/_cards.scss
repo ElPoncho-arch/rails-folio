@@ -148,6 +148,9 @@
       cursor: pointer;
     }
 
+  } // ← fermeture de .contact-form-container
+} // ← fermeture de .contact-page-full
+
 // override pour la carte TF1 : ratio 16/9
 .full-width-card--tf1 {
   aspect-ratio: 16 / 9;
@@ -164,6 +167,5 @@
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-
   }
 }

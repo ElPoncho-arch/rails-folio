@@ -5,7 +5,7 @@
 
 body {
   font-family: 'ClashDisplay-Medium', sans-serif;
-  background-color: #fff9f3;        // couleur unie
+  background-color: #000000;        // couleur unie
   // background-color: #e8e8e8;        // couleur unie
 }
 
@@ -24,3 +24,12 @@ body {
 //     font-size: 2.5rem !important;
 //   }
 // }
+
+// masque le flag sur l’input intl-tel-input
+.iti .iti__flag-container,
+.iti .iti__selected-flag {
+  display: none !important;
+}
+.iti {
+  padding-left: 0 !important;
+}

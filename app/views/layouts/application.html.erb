@@ -4,12 +4,25 @@
     <title>RailsFolio</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+
+    <!-- CSS de la lib -->
+    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/css/intlTelInput.css",
+          media: 'all', 'data-turbo-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+
+    <!-- JS de la lib (global window.intlTelInput) -->
+    <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.8/build/js/intlTelInput.min.js",
+          defer: true, 'data-turbo-track': 'reload' %>
+
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
+    <% unless controller_name == 'home' && action_name == 'index' %>
+      <%= render 'shared/navbar' %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   get "/contact", to: "pages#contact"
-  post "/contacts", to: "contacts#create", as: :contacts
+  post "/contact", to: "pages#create_contact", as: :contacts
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'bio', to: 'pages#bio'
   get 'contact', to: 'pages#contact'
+  get 'work', to: 'home#work', as: 'work'
 end

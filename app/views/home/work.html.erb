@@ -1,0 +1,73 @@
+<div class="container-fluid px-4 px-md-5 my-4">
+  <h5 class="clash-font blue-font-sous-titre mt-5 mb-5"> > work </h5>
+
+  <div class="cards">
+    <%= link_to '/projects/slides',
+          class: 'project-card video-card d-block text-decoration-none h-100' do %>
+      <%= video_tag "slides_logo_anim.mp4",
+          autoplay: true,
+          muted: true,
+          loop: true,
+          class: "video-bg" %>
+    <% end %>
+
+    <%= link_to '/projects/macval',
+          class: 'project-card video-card d-block text-decoration-none h-100' do %>
+      <%= video_tag "macval-logo-anim.mp4",
+          autoplay: true,
+          muted: true,
+          loop: true,
+          class: "video-bg" %>
+    <% end %>
+  </div>
+
+  <div class="full-width-card my-5">
+    <%= link_to '/projects/tf1',
+          class: 'd-block text-decoration-none h-100' do %>
+      <div class="card-content">
+        <%= video_tag 'teaser.mp4',
+            autoplay: true,
+            muted:   true,
+            loop:    true,
+            class:   'img-fluid',
+            alt:     'Teaser TF1' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="cards my-5">
+    <%= link_to '/projects/ford',
+          class: 'project-card d-block text-decoration-none h-100',
+          style: "background-image: url(#{asset_path 'ford_couv.jpg'}); background-size: cover; background-position: center;" do %>
+    <% end %>
+
+    <%= link_to '/projects/abskate',
+          class: 'project-card d-block text-decoration-none h-100',
+          style: "background-image: url(#{asset_path 'abskate_couv.jpg'}); background-size: cover; background-position: center;" do %>
+    <% end %>
+  </div>
+
+  <div class="cards">
+    <%= link_to '/projects/mango',
+          class: 'project-card video-card d-block text-decoration-none h-100' do %>
+      <%= video_tag "mango-anim-logo.mp4",
+          autoplay: true,
+          muted: true,
+          loop: true,
+          class: "video-bg" %>
+    <% end %>
+
+    <%= link_to '/projects/la_colline',
+          class: 'project-card d-block text-decoration-none h-100',
+          style: "background-image: url(#{asset_path 'la_colline_couv2.jpg'}); background-size: cover; background-position: center;" do %>
+    <% end %>
+  </div>
+
+  <div class="full-width-card my-5">
+    <%= link_to '/projects/experimentation',
+          class: 'd-block text-decoration-none h-100 d-flex justify-content-center align-items-center text-center',
+          style: 'background-color: #0009B8; color: #fff;' do %>
+      <span class="h1 mb-0">H [ors cadr] e</span>
+    <% end %>
+  </div>
+</div>
