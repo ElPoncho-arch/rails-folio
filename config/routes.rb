@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'bio', to: 'pages#bio'
   get 'contact', to: 'pages#contact'
+  get 'work', to: 'home#work', as: 'work'
 end

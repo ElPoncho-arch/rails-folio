@@ -55,18 +55,3 @@ $breakpoints: (
     max-width: 900px !important;
   }
 }
-
-.home-section {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  // remplacez les 4 valeurs ci-dessous selon vos besoins
-  @include gap-responsive(
-    2rem,    // mobile ‹576px
-    4rem,    // sm ≥576px
-    6rem,    // md ≥768px
-    8rem     // lg ≥992px
-  );
-}

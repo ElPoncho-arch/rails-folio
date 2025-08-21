@@ -4,6 +4,13 @@
       class: "blue-txt-courant #{'fw-bold' if current_page?(root_path)}" %>
 
     <ul class="ms-auto d-flex flex-row">
+
+
+      <li class="nav-item me-3 me-md-5">
+        <%= link_to 'work', work_path,
+          class: "blue-txt-courant #{'fw-bold' if current_page?(work_path)}" %>
+      </li>
+
       <li class="nav-item me-3 me-md-5">
         <%= link_to 'bio', bio_path,
           class: "blue-txt-courant #{'fw-bold' if current_page?(bio_path)}" %>
