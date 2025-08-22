@@ -1,0 +1,24 @@
+// Couleurs Bootstrap par défaut
+
+$primary:   #ffff00 !default;
+$secondary: #6c757d !default;
+$success:   #198754 !default;
+$info:      #0dcaf0 !default;
+$warning:   #ffc107 !default;
+$danger:    #dc3545 !default;
+$light:     #f8f9fa !default;
+$dark:      #212529 !default;
+
+$white:     #fff    !default;
+$gray-100:  #f8f9fa !default;
+$gray-200:  #e9ecef !default;
+$gray-300:  #dee2e6 !default;
+$gray-400:  #ced4da !default;
+$gray-500:  #adb5bd !default;
+$gray-600:  #6c757d !default;
+$gray-700:  #495057 !default;
+$gray-800:  #343a40 !default;
+$gray-900:  #212529 !default;
+
+// override du SVG du navbar-toggler pour utiliser $primary
+$navbar-light-toggler-icon-bg: url("data:image/svg+xml;charset=UTF-8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23#{str-slice('#{$primary}', 2)}' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");

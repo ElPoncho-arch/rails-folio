@@ -24,16 +24,34 @@
    </div>
 
 
-<div class="cards my-5">
-     <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'lacolline/mobile2.jpeg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
+  <div class="cards my-5">
+    <div class="project-card video-card d-block text-decoration-none h-100">
+      <%= video_tag 'tf1/JEU_ECHEC.mp4',
+            autoplay: true,
+            muted: true,
+            loop: true,
+            class: 'video-bg' %>
     </div>
-     <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'lacolline/Glass_Oil_Bottle_2.jpeg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
+
+    <div class="project-card video-card d-block text-decoration-none h-100">
+      <%= video_tag 'tf1/JEU_MOTS_CROISEES.mp4',
+            autoplay: true,
+            muted: true,
+            loop: true,
+            class: 'video-bg' %>
+    </div>
+  <!-- … autres cards éventuelles … -->
+  </div>
+
+
+  <div class="full-width-card my-5">
+    <div class="card-content" style="padding:0;">
+      <%= image_tag 'tf1/tf1mu.gif',
+            alt: 'Slide Branding 31',
+            style: 'width: 100%; height: 100%; object-fit: cover;' %>
     </div>
   </div>
 
-  
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const video  = document.getElementById('tf1-video');

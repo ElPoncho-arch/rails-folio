@@ -1,6 +1,16 @@
+// 1) d’abord vos overrides
+@import "bootstrap_colors";
+
+// @import "@hotwired/turbo-rails";  // ← supprimez ou commentez cette ligne
+
+// 2) ensuite Bootstrap
 @import "bootstrap";
+
+// 3) puis le reste de vos styles
 @import "components/index";
 @import "clash-display";
+
+
 // @import "custom";
 
 body {

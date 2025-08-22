@@ -9,15 +9,19 @@
   font-family: 'ClashDisplay-Regular', sans-serif;
   color: #ffff00;
 }
+.clash-font-bold {
+  font-family: 'ClashDisplay-Bold', sans-serif;
+  color: #ffff00;
+}
 
-.blue-font-title {
+.font-title {
   color: #ffff00;
   // taille par défaut (mobile)
   font-size: 4.4rem;
 
   @include respond-to(sm) {
     // >576px (petite tablette)
-    font-size: 3rem;
+    font-size: 4rem;
   }
   @include respond-to(md) {
     // >768px (grand tablette / petit laptop)
@@ -25,7 +29,26 @@
   }
   @include respond-to(lg) {
     // >992px (laptop et plus)
-    font-size: 8rem;
+    font-size: 9rem;
+  }
+}
+
+.font-link {
+  color: #ffff00;
+  // taille par défaut (mobile)
+  font-size: 4.4rem;
+
+  @include respond-to(sm) {
+    // >576px (petite tablette)
+    font-size: 1.8rem;
+  }
+  @include respond-to(md) {
+    // >768px (grand tablette / petit laptop)
+    font-size: 3rem;
+  }
+  @include respond-to(lg) {
+    // >992px (laptop et plus)
+    font-size: 5rem;
   }
 }
 

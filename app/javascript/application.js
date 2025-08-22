@@ -1,6 +1,8 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "bootstrap"              // charge Bootstrap JS
+import "@popperjs/core"         // ou inclus automatiquement par bootstrap
 
 const emojiFlag = iso2 =>
   iso2
