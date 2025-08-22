@@ -1,2 +1,45 @@
-<h1>Projects#shelfie</h1>
-<p>Find me in app/views/projects/shelfie.html.erb</p>
+<div class="container-fluid px-4 px-md-5 my-4">
+  <h5 class="d-block text-start my-5 clash-font blue-font-title">/ Shelfie</h5>
+
+  <div class="row mb-5">
+    <div class="col-12 col-md-8">
+      <p class="blue-txt-courant">
+        Shelfie est une application de partage de photos et de favoris de livres.
+        Créez votre bibliothèque virtuelle, suivez vos amis et découvrez de nouvelles recommandations littéraires.
+        Simple, rapide et pensé pour les amoureux du papier comme du numérique.
+      </p>
+    </div>
+  </div>
+
+  <div class="figma-maquette my-4">
+    <p class="text-start">
+      <a href="https://www.figma.com/design/TsCQS4Pwen03Ldy2eqr5A0/Shelfie?node-id=178-207&t=TMUlXVNkX58Mv9hm-1"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn btn-outline-primary">
+        > maquette figma
+      </a>
+    </p>
+  </div>
+
+
+  <div class="cards my-5">
+    <div class="project-card d-block text-decoration-none h-100"
+         style="background-image: url(<%= asset_path 'shelfie/logoshelfie.jpg' %>); background-size: cover; background-position: center;">
+    </div>
+    <div class="project-card d-block text-decoration-none h-100"
+         style="background-image: url(<%= asset_path 'shelfie/3840154-2.jpg' %>); background-size: cover; background-position: center;">
+    </div>
+  </div>
+
+  <div class="full-width-card my-5">
+    <div class="card-content">
+      <%= image_tag 'shelfie/3981779.jpg',
+            alt: 'Slide Branding 31',
+            class: 'img-fluid' %>
+    </div>
+  </div>
+
+
+
+</div>

@@ -1,5 +1,5 @@
 .home-section {
-  height: 100vh;
+  // height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,26 +15,19 @@
 
 .home-links a {
   position: relative;
+  padding: 0.25rem 1.8rem;            // espace intérieur augmenté
+  margin: 0 0.5rem;                   // marge horizontale entre les liens
+  border-radius: 5rem;          // ajouté
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease,
+              background-color 0.3s ease;
 }
 
-// // anime line-bottom
-// .home-links a::after {
-//   content: "";
-//   position: absolute;
-//   left: 0;
-//   bottom: -4px;    /* espace entre le texte et la ligne */
-//   width: 0;
-//   height: 2px;     /* épaisseur de la ligne */
-//   background-color: currentColor;
-//   transition: width 0.3s ease;
-// }
-
 .home-links a:hover {
-  color: #00ff3c;             /* vert au survol */
+  background-color: $primary;        // fond jaune (votre primary)
+  color: $dark !important;           // texte noir
 }
 
 .home-links a:hover::after {
-  width: 100%;
+  width: 120%;
 }

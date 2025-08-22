@@ -1,24 +1,25 @@
-<div class="container-fluid px-4 px-md-5 my-4">
+<div class="container-fluid px-4 px-md-5 min-vh-100"
+     style="background: url(<%= asset_path 'home-back.jpg' %>) no-repeat center/cover;">
+
   <div class="home-section">
-    <!-- Titre principal : on passe mb-4 → mb-5 pour plus d’espace sous le titre -->
-    <h1 class="text-start clash-font blue-font-title mt-5">
-      Creative<br>Developer
-    </h1>
 
-    <!-- Phrase d’accroche : idem -->
-    <h5 class="text-start clash-font blue-font-sous-titre mb-0">
-      Je suis une super phrase
-      <span class="d-block">d’accroche qui fait kiffer les RH</span>
-    </h5>
 
-    <!-- Signature : on ajoute un peu d’espace au-dessus -->
-    <h1 class="text-end clash-font blue-font-title mt-0">
-      Fabien<br>Hoarau
-    </h1>
-
-    <div class="home-links text-start my-3">
-      <%= link_to '> work', work_path, class: 'clash-font blue-font-sous-titre text-decoration-none mx-3' %>
-      <%= link_to '> bio',  bio_path,  class: 'clash-font blue-font-sous-titre text-decoration-none mx-3' %>
+    <div class="d-flex justify-content-between align-items-start">
+      <h1 class="clash-font-bold font-title m-0">Fabien</h1>
+      <h1 class="clash-font-bold font-title m-0">Hoarau</h1>
     </div>
+
+
+    <div class="d-flex flex-wrap align-items-center justify-content-start">
+      <h5 class="text-start text-primary fs-3 mb-0 me-4">
+        Creative front end developer <br> Graphic designer <br> UI/UX designer
+      </h5>
+
+      <div class="home-links text-end ms-auto">
+        <%= link_to '> work', work_path,
+              class: 'font-link text-decoration-none mx-5 px-3' %>
+        <%= link_to '> bio', bio_path,
+              class: 'font-link text-decoration-none ml-5' %>
+      </div>
   </div>
 </div>
