@@ -29,26 +29,26 @@
   }
   @include respond-to(lg) {
     // >992px (laptop et plus)
-    font-size: 9rem;
+    font-size: 8rem;
   }
 }
 
 .font-link {
   color: #ffff00;
   // taille par défaut (mobile)
-  font-size: 4.4rem;
+  font-size: 3.4rem;
 
   @include respond-to(sm) {
     // >576px (petite tablette)
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
   @include respond-to(md) {
     // >768px (grand tablette / petit laptop)
-    font-size: 3rem;
+    font-size: 2.6rem;
   }
   @include respond-to(lg) {
     // >992px (laptop et plus)
-    font-size: 5rem;
+    font-size: 3.6rem;
   }
 }
 
