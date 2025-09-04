@@ -55,3 +55,17 @@ $breakpoints: (
 //     max-width: 900px !important;
 //   }
 // }
+
+// Responsive pour les liens home ('.font-link')
+.font-link {
+  font-size: 1rem;             // mobile <576px
+  @include respond-to(sm) {
+    font-size: 1.1rem;         // ≥576px
+  }
+  @include respond-to(md) {
+    font-size: 1.2rem;         // ≥768px
+  }
+  @include respond-to(lg) {
+    font-size: 1.3rem;         // ≥992px
+  }
+}

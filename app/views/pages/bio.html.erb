@@ -1,22 +1,17 @@
-<div class="container-fluid px-4 px-md-5 my-4 bg-primary text-dark">
-  <h5 class="text-end clash-font blue-font-sous-titre mt-5 mb-5 text-dark"> > bio </h5>
+<div class="container-fluid px-4 px-md-5 my-4  text-primary">
+  <%# <h1 class="text-start mt-5 mb-5 text-primary"> > bio </h1> %>
 
-  <div class="row gy-4 flex-grow-1 align-items-end">
+  <!-- Utilise row-cols pour empiler en mobile et passer à 3 colonnes dès md -->
+  <div class="row row-cols-1 row-cols-md-3 g-4 align-items-center align-items-md-end">
 
     <!-- Colonne de gauche -->
-    <div class="col-md-4 text-start text-dark">
-      <h2 class="clash-font mb-3 text-dark">
-        Design par<br>
-        <strong>Fabien Hoarau</strong>,<br>
-        designer UI/UX<br>
-        et développeur<br>
-        front-end<br>
-        basé à Bordeaux.
-      </h2>
+    <div class="col text-start text-primary">
+      <h1 class="mb-3 text-primary"><strong>Fabien Hoarau</strong></h1>
+      <h5>Creative front end developer<br>Graphic designer<br>UI/UX designer</h5>
     </div>
 
     <!-- Colonne centrale -->
-    <div class="col-md-4 d-flex justify-content-center text-dark">
+    <div class="col d-flex justify-content-center text-primary">
       <div class="bio-image-card">
         <%= image_tag "bio_image.png",
               class: "img-fluid rounded",
@@ -25,13 +20,60 @@
     </div>
 
     <!-- Colonne de droite -->
-    <div class="col-md-4">
+    <div class="col">
       <p>
-        Je suis graphiste et designer UI/UX avec plus de 5 ans d’expérience.
-        Mon travail allie créativité et fonctionnalité pour offrir des expériences…
-        Avec un riche portfolio et une passion pour l’innovation, je contribue…
+        Je crée, j’anime et je code. <br>
+        Parcours graphisme et motion design, avec un vrai pied en UI et en front, je couvre toute la chaîne de prod : de la créa avec direction artistique, identités et visuels, au print avec brochures, catalogues et supports grand format, en passant par l’UI avec maquettes et micro-interactions et le motion design avec animations et vidéos, jusqu’au code et à l’intégration. Je transforme des maquettes Figma en interfaces responsives et propres en HTML, CSS et JS, souvent avec Bootstrap. Passé par le bootcamp Le Wagon pour muscler ma partie dev avec Ruby, SQL, Rails et Bootstrap, j’aime prototyper vite et livrer des expériences propres et fluides. Outils de prédilection : Figma et la suite Adobe, du logo au motion en passant par l’intégration.
       </p>
     </div>
 
+  </div>
+</div>  <!-- fermeture du container principal -->
+
+
+
+
+
+
+<div class="container-fluid px-4 px-md-5 my-4 py-5" style="background-color: #ffff00;">
+  <div class="row justify-content-start">
+    <div class="col-lg-8 text-start px-4">
+      <h2 class="mb-4 text-dark"> > bootcamp le wagon</h2>
+      <p class="text-dark lead">
+J’ai suivi le bootcamp Le Wagon, où j’ai appris à coder avec Ruby, SQL et Rails, à collaborer efficacement en équipe, à organiser un projet et à déployer rapidement. J’y ai aussi découvert l’apport de l’IA dans le code et dans le design, que j’explore aujourd’hui pour enrichir mes projets. Ce mélange de créativité et de technique me permet de prototyper vite et de livrer des expériences soignées.      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid px-4 px-md-5 my-4 py-5" style="background-color: #171717;">
+  <div class="row justify-content-start">
+    <div class="col-lg-8 text-start px-4">
+      <h2 class=" mb-4 text-primary"> >  skills</h2>
+      <p class="text-primary lead">
+Côté outils, je travaille au quotidien avec la suite Adobe et Figma : Illustrator pour le vectoriel et les logos, Photoshop pour la retouche et le compositing, InDesign pour la mise en page et le print, After Effects pour le motion design, Premiere Pro pour le montage et le sous-titrage, et Figma pour le maquettage, le prototypage et le design system.
+Mon truc : précision, sens du détail et fluidité du brief à la mise en ligne. <p>
+  </div>
+  </div>
+</div>
+
+<div class="container-fluid px-0 px-md-0 my-0 py-0"
+     style="background-color: #171717; min-height: 100px;">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 text-center px-5">
+      <div class="d-flex justify-content-center align-items-center gap-5">
+        <%= link_to "https://www.linkedin.com/in/fabien-hoarau", target: "_blank" do %>
+          <%= image_tag "logo-link-y.png",
+                class: "rounded",
+                style: "width:60px; height:auto;",
+                alt: "LinkedIn" %>
+        <% end %>
+        <%= link_to "https://github.com/fabien-hoarau", target: "_blank" do %>
+          <%= image_tag "logo-git-y.png",
+                class: "rounded",
+                style: "width:60px; height:auto;",
+                alt: "GitHub" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

@@ -29,32 +29,25 @@
   &:hover {
     color: $dark !important;
   }
-
-  &:hover::after {
+  &:hover::after,
+  &.fw-bold::after {
     width: 120%;
     left: -10%;
   }
-
-  // maintenir l’effet “hover” sur le lien actif
   &.fw-bold {
     color: $dark !important;
-
-    &::after {
-      width: 120%;
-      left: -10%;
-    }
   }
 
-  // mobile (<576px)
-  font-size: 3rem !important;
+  // TAILLE DE POLICE RÉACTIVE
+  font-size: 1rem !important;        // <576px
   @include respond-to(sm) {
-    font-size: 3rem !important;
+    font-size: 1.1rem !important;    // ≥576px
   }
   @include respond-to(md) {
-    font-size: 3rem !important;
+    font-size: 1.2rem !important;    // ≥768px
   }
   @include respond-to(lg) {
-    font-size: 1.4rem !important;
+    font-size: 1.4rem !important;    // ≥992px
   }
 }
 
@@ -119,5 +112,13 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+  }
+}
+
+// si besoin, ajuster aussi la marque
+.navbar .navbar-brand {
+  font-size: 1.2rem;                // <576px
+  @include respond-to(md) {
+    font-size: 1.5rem;              // ≥768px
   }
 }
