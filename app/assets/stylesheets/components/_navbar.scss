@@ -1,124 +1,93 @@
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar a {
-  position: relative;
-  padding: 0.25rem 1.8rem !important;   // espace intérieur
-  margin: 0 0.5rem;                     // marge horizontale
-  border-radius: 5rem;                  // arrondi
-  text-decoration: none !important;
-  overflow: hidden;
-  transition: color 0.3s ease, background-color 0.3s ease;
-
-  // fond animée derrière le lien
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 0;
-    height: 100%;
-    background-color: $primary;
-    z-index: -1;
-    transition: width 0.3s ease, left 0.3s ease;
+.navbar {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  &:hover {
-    color: $dark !important;
-  }
-  &:hover::after,
-  &.fw-bold::after {
-    width: 120%;
-    left: -10%;
-  }
-  &.fw-bold {
-    color: $dark !important;
-  }
+  a {
+    position: relative;
+    padding: 0.25rem 1.8rem !important;
+    margin: 0 0.5rem;
+    border-radius: 5rem;
+    text-decoration: none !important;
+    overflow: hidden;
+    transition: color .3s ease, background-color .3s ease;
 
-  // TAILLE DE POLICE RÉACTIVE
-  font-size: 1rem !important;        // <576px
-  @include respond-to(sm) {
-    font-size: 1.1rem !important;    // ≥576px
-  }
-  @include respond-to(md) {
-    font-size: 1.2rem !important;    // ≥768px
-  }
-  @include respond-to(lg) {
-    font-size: 1.4rem !important;    // ≥992px
-  }
-}
-
-// version “burger” par défaut (tu as déjà overridé $navbar-light-toggler-icon-bg ailleurs)
-
-// Quand le toggler est ouvert, Bootstrap retire la classe .collapsed
-.navbar-light .navbar-toggler {
-  position: relative;
-
-  // pas de ::after par défaut
-  &::after {
-    display: none;
-  }
-
-  // quand le menu est ouvert…
-  &[aria-expanded="true"] {
-    // 1) on cache le burger
-    .navbar-toggler-icon {
-      opacity: 0;
-    }
-
-    // 2) on affiche la croix
     &::after {
-      display: block;
-      content: "\2715";
-      color: $primary;
-      font-size: 1.5rem;
+      content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 0; left: 50%;
+      width: 0; height: 100%;
+      background-color: $primary;
+      z-index: -1;
+      transition: width .3s ease, left .3s ease;
+    }
+    &:hover {
+      color: $dark !important;
+    }
+    &:hover::after,
+    &.fw-bold::after {
+      width: 120%; left: -10%;
+    }
+    &.fw-bold {
+      color: $dark !important;
+    }
+
+    font-size: 1rem !important;
+    @include respond-to(sm) { font-size: 1.1rem !important; }
+    @include respond-to(md) { font-size: 1.2rem !important; }
+    @include respond-to(lg) { font-size: 1.4rem !important; }
+  }
+
+  // toggler / mobile
+  &-light {
+    & .navbar-toggler {
+      position: relative;
+
+      .navbar-toggler-icon {
+        display: block !important;
+      }
+
+      &::after {
+        display: none !important;
+      }
+
+      &[aria-expanded="true"] {
+        .navbar-toggler-icon {
+          display: none !important;
+        }
+        &::after {
+          display: block !important;
+          content: "\2715";
+          color: $primary;
+          font-size: 1.5rem;
+          position: absolute;
+          top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
     }
   }
-}
 
-.navbar-toggler {
-  position: relative;
-
-  // 1) par défaut on affiche le burger et on cache la croix
-  .navbar-toggler-icon {
-    display: block !important;
-  }
-  &::after {
-    content: "";
-    display: none !important;
+  &-brand {
+    font-size: 1.2rem;
+    @include respond-to(md) { font-size: 1.5rem; }
   }
 
-  // 2) dès que le menu est ouvert (aria-expanded="true")
-  &[aria-expanded="true"] {
-    // on masque le burger
-    .navbar-toggler-icon {
-      display: none !important;
+  .nav-link {
+    color: #ffff00;
+    transition: background-color .3s, color .3s;
+
+    // hover : fond jaune, texte noir
+    &:hover {
+      background-color: #ffff00;
+      color: #171717 !important;
     }
-    // on affiche la croix
-    &::after {
-      content: "\2715";        // ×
-      display: block !important;
-      color: $primary;
-      font-size: 1.5rem;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-}
 
-// si besoin, ajuster aussi la marque
-.navbar .navbar-brand {
-  font-size: 1.2rem;                // <576px
-  @include respond-to(md) {
-    font-size: 1.5rem;              // ≥768px
+    &.active {
+      background-color: #ffff00;
+      color: #171717 !important;
+    }
   }
 }

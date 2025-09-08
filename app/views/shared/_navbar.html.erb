@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid px-4 px-md-5">
     <%= link_to 'fabien hoarau', root_path,
-      class: "blue-txt-courant #{'fw-bold' if current_page?(root_path)}" %>
+      class: ["nav-link","rounded-pill", ("active" if current_page?(root_path))].compact.join(" ") %>
 
     <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse"
@@ -16,16 +16,13 @@
       <ul class="ms-auto d-flex flex-column flex-lg-row">
         <li class="nav-item me-lg-5 mb-2 mb-lg-0">
           <%= link_to 'projet', work_path,
-                class: "nav-link blue-txt-courant rounded-pill #{'fw-bold' if current_page?(work_path)}" %>
+                class: ["nav-link","rounded-pill", ("active" if current_page?(work_path))].compact.join(" ") %>
         </li>
         <li class="nav-item me-lg-5 mb-2 mb-lg-0">
           <%= link_to 'bio', bio_path,
-                class: "nav-link blue-txt-courant rounded-pill #{'fw-bold' if current_page?(bio_path)}" %>
+                class: ["nav-link","rounded-pill", ("active" if current_page?(bio_path))].compact.join(" ") %>
         </li>
-        <li class="nav-item">
-          <%= link_to 'contact', contact_path,
-                class: "nav-link blue-txt-courant rounded-pill #{'fw-bold' if current_page?(contact_path)}" %>
-        </li>
+        
       </ul>
     </div>
   </div>

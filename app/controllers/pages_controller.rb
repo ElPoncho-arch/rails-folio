@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def contact
-    @contact = Contact.new
+    @contact = OpenStruct.new   # ou ton modèle Contact si tu l’as créé
   end
 
   def create_contact

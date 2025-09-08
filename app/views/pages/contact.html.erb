@@ -2,7 +2,10 @@
   <div class="contact-form-container">
     <h1>Stay in touch</h1>
     <p>I’d love to hear from you! Drop me a message, and I’ll connect with you soon.</p>
-    <%= form_with model: @contact, url: contacts_path, local: true, html: { class: 'contact-form' } do |f| %>
+    <%= form_with url: contacts_path,
+                  scope: :contact,
+                  local: true,
+                  html: { class: 'contact-form' } do |f| %>
       <div class="form-group">
         <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
       </div>

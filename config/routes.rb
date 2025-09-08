@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: 'home#index'
   get 'bio', to: 'pages#bio'
-  get 'contact', to: 'pages#contact'
+  get 'contact', to: 'pages#contact', as: :contact_page
   get 'work', to: 'home#work', as: 'work'
+
+  resources :contacts, only: [:create]
 end
