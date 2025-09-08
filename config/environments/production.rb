@@ -92,3 +92,9 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
+
+# --- V1 deploy quick fix: avoid 500 on missing assets ---
+Rails.application.configure do
+  config.assets.unknown_asset_fallback = true
+end
+# --------------------------------------------------------
