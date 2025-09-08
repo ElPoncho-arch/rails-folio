@@ -315,7 +315,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap (~> 5.3.0)
-  cloudinary
+  cloudinary (~> 2.0)
   debug
   dotenv-rails
   importmap-rails
