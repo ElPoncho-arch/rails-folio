@@ -13,23 +13,37 @@
   // );
 }
 
-.home-links a {
-  position: relative;
-  padding: 0.25rem 1.8rem;            // espace intérieur augmenté
-  margin: 0 0.5rem;                   // marge horizontale entre les liens
-  border-radius: 5rem;          // ajouté
-  text-decoration: none;
-  transition: color 0.3s ease,
-              background-color 0.3s ease;
-}
+.home-links {
+  // On cible directement la classe `font-link` pour réutiliser l’animation
+  .font-link {
+    position: relative;
+    display: inline-block !important;   // override Bootstrap block
+    padding: 0.25rem 1.8rem !important;  // même padding que navbar
+    margin: 0 0.5rem;
+    border-radius: 5rem;
+    text-decoration: none !important;
+    overflow: hidden;
+    transition: color .3s ease, background-color .3s ease;  // ajouté background-color pour l’effet complet
 
-.home-links a:hover {
-  background-color: $primary;        // fond jaune (votre primary)
-  color: $dark !important;           // texte noir
-}
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;                              // calqué sur navbar
+      width: 0; height: 100%;
+      background-color: #ffff00;
+      z-index: -1;                // toujours derrière le texte
+      transition: width .3s ease, left .3s ease;      // ajout de la transition sur left
+    }
 
-.home-links a:hover::after {
-  width: 120%;
+    &:hover {
+      background-color: #ffff00 !important;
+      color: #171717 !important;
+    }
+
+    &:hover::after {
+      width: 120%; left: -10%;                        // mêmes valeurs que navbar
+    }
+  }
 }
 
 .home-bg {

@@ -1,10 +1,9 @@
 class ContactsController < ApplicationController
   def create
-    ContactMailer.contact_email(
-      params[:name],
-      params[:email],
-      params[:message]
-    ).deliver_now
+    cp = params.require(:contact).permit(:name, :email, :country_code, :phone, :message)
+    ContactMailer
+      .contact_email(cp[:name], cp[:email], cp[:message])
+      .deliver_now
 
     redirect_to contact_path, notice: "Merci pour votre message !"
   end
