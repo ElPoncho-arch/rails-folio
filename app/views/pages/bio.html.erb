@@ -67,26 +67,42 @@
   </div>
 </div>
 
-<div class="container-fluid px-0 px-md-0 my-0 py-0" style="background-color: #171717;">
-  <div class="row justify-content-center py-4">
-    <div class="col-lg-8 text-center px-5">
-      <div class="d-flex justify-content-center align-items-center gap-5">
-        <%= link_to "https://www.linkedin.com/in/fabien-hoarau-7b896a172/", target: "_blank" do %>
-          <%= image_tag "logo-link-y.png", class: "rounded", style: "width:60px; height:auto;", alt: "LinkedIn" %>
-        <% end %>
-        <%= link_to "https://github.com/ElPoncho-arch/rails-folio", target: "_blank" do %>
-          <%= image_tag "logo-git-y.png", class: "rounded", style: "width:60px; height:auto;", alt: "GitHub" %>
-        <% end %>
-          <%= link_to "/FabienHoarauCV.jpg",
-                  target: "_blank",
-                  download: "FabienHoarauCV.jpg",
-                  class: "btn btn-outline-primary" do %>
-        Télécharger mon CV
-      <% end %>
+<div class="container-fluid px-0 my-0 py-0" style="background-color: #171717;">
+  <div class="row justify-content-start px-4 py-4">
+    <div class="col-lg-8 px-5">
+      <div class="row align-items-center">
+        <!-- CV button à gauche -->
+        <div class="col-12 col-md-4 d-flex justify-content-start">
+          <%= link_to asset_path('FabienHoarauCV.jpg'),
+                     download: 'FabienHoarauCV.jpg',
+                     class: 'btn btn-outline-primary' do %>
+            Télécharger mon CV
+          <% end %>
+        </div>
+
+        <!-- colonne centrale vide pour équilibrer -->
+        <div class="col-12 col-md-4"></div>
+
+        <!-- Liens LinkedIn & GitHub à droite -->
+        <div class="col-12 col-md-4 d-flex justify-content-start gap-4">
+          <%= link_to "https://www.linkedin.com/in/fabien-hoarau-7b896a172/",
+                      target: "_blank", rel: "noopener noreferrer" do %>
+            <%= image_tag "logo-link-y.png",
+                          class: "rounded",
+                          style: "width:60px; height:auto;",
+                          alt: "LinkedIn" %>
+          <% end %>
+          <%= link_to "https://github.com/ElPoncho-arch/rails-folio",
+                      target: "_blank", rel: "noopener noreferrer" do %>
+            <%= image_tag "logo-git-y.png",
+                          class: "rounded",
+                          style: "width:60px; height:auto;",
+                          alt: "GitHub" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
 
 <div data-controller="scroll-animate" …>

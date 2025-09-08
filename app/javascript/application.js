@@ -53,3 +53,44 @@ document.addEventListener("turbo:load", () => {
     }
   }
 })
+
+// on récupère notre overlay
+const loader = document.getElementById("page-loader")
+if (!loader) console.warn("🚨 #page-loader introuvable !")
+
+// helper
+const show = () => loader && (loader.style.display = "flex")
+const hide = () => loader && (loader.style.display = "none")
+
+// debug
+console.log("🚀 application.js chargé, #page-loader =", loader)
+console.log("✅ application.js chargé");
+
+// 1) sur le premier chargement
+window.addEventListener("DOMContentLoaded", () => {
+  console.log("🔹 DOMContentLoaded – on masque le loader")
+  hide()
+})
+
+// 2) quand Turbo envoie la requête XHR
+document.addEventListener("turbo:before-fetch-request", () => {
+  console.log("🔸 turbo:before-fetch-request – on affiche le loader")
+  show()
+})
+
+// 3) quand la page vient d’être rendue par Turbo
+document.addEventListener("turbo:load", () => {
+  console.log("🔹 turbo:load – on masque le loader")
+  hide()
+})
+
+// 4) fallback / liens non-Turbo (optionnel)
+document.addEventListener("click", e => {
+  const a = e.target.closest("a[href]")
+  if (!a || a.target === "_blank" || a.href.startsWith("http")) return
+  console.log("🔸 clic lien interne – on affiche le loader")
+  show()
+})
+
+// 5) fallback navigateur (reload, back/forward)
+window.addEventListener("beforeunload", () => show())
