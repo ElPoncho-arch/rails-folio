@@ -1,0 +1,19 @@
+# --- Medias lourds (vidéos, PDF) ---
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.pdf
+
+# --- Dossiers d'images de projets (temporaire pour V1) ---
+app/assets/images/abc/**
+app/assets/images/ford/**
+app/assets/images/lacolline/**
+app/assets/images/macval/**
+app/assets/images/mango/**
+app/assets/images/slides/**
+app/assets/images/tf1/**
+
+# --- Vidéos dans assets ---
+app/assets/videos/**
+app/assets/**/*.{mp4,mov,avi,mkv}
