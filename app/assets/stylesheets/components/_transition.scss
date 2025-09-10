@@ -1,0 +1,49 @@
+:root {
+  --page-duration: 520ms;
+  --page-ease: cubic-bezier(.2,.8,.2,1);
+}
+
+/* Conteneur animé */
+.transition-fade {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--page-duration) var(--page-ease),
+    transform var(--page-duration) var(--page-ease);
+  will-change: opacity, transform;
+}
+
+/* État d'entrée (au premier paint, puis retiré par le contrôleur) */
+.transition-fade.is-entering {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+/* État de sortie (au clic d'un lien Turbo) */
+.transition-fade.is-leaving {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* Overlay très léger pendant la sortie (optionnel) */
+#page-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--page-duration) var(--page-ease);
+}
+
+/* Active l’overlay pendant le leave */
+.is-leaving #page-overlay {
+  opacity: .12; /* ajuste l’intensité si tu veux */
+}
+
+/* Accessibilité : réduit/annule les anims si l'utilisateur préfère peu de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .transition-fade,
+  #page-overlay {
+    transition: none !important;
+  }
+}

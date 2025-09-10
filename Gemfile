@@ -29,6 +29,7 @@ gem "jbuilder"
 gem 'sassc-rails'          # compilation SCSS
 gem 'bootstrap', '~> 5.3.0'
 
+gem "cloudinary", "~> 2.0" # helpers cl_image_tag / cl_video_tag
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"

@@ -15,14 +15,14 @@
     <div class="collapse navbar-collapse text-end text-lg-start" id="mainNavbar">
       <ul class="ms-auto d-flex flex-column flex-lg-row">
         <li class="nav-item me-lg-5 mb-2 mb-lg-0">
-          <%= link_to 'projet', work_path,
+          <%= link_to 'projets', work_path,
                 class: ["nav-link","rounded-pill", ("active" if current_page?(work_path))].compact.join(" ") %>
         </li>
         <li class="nav-item me-lg-5 mb-2 mb-lg-0">
           <%= link_to 'bio', bio_path,
                 class: ["nav-link","rounded-pill", ("active" if current_page?(bio_path))].compact.join(" ") %>
         </li>
-        
+
       </ul>
     </div>
   </div>

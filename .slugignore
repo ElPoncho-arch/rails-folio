@@ -1,0 +1,8 @@
+# --- GROS FICHIERS VIDÉO UNIQUEMENT ---
+*.mp4
+*.mov
+*.mkv
+*.avi
+
+app/assets/videos/**
+app/assets/**/*.{mp4,mov,avi,mkv}

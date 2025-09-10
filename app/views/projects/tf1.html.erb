@@ -11,66 +11,68 @@
     </div>
   </div>
 
-   <div class="full-width-card full-width-card--tf1 my-5">
-     <div class="tf1-video-wrapper">
-       <%= video_tag 'teaser.mp4',
-           autoplay: true,
-           muted: true,
-           loop: true,
-           controls: true,
-           class: '',
-           alt: 'Teaser TF1' %>
-     </div>
-   </div>
-
+  <div class="full-width-card full-width-card--tf1 my-5">
+    <div class="tf1-video-wrapper">
+      <%= cl_video_tag "teaser_nfmktr",
+          autoplay: true,
+          muted: true,
+          loop: true,
+          controls: true,
+          playsinline: true,
+          alt: "Teaser TF1",
+          transform: { fetch_format: :auto, quality: :auto } %>
+    </div>
+  </div>
 
   <div class="cards my-5">
     <div class="project-card video-card d-block text-decoration-none h-100">
-      <%= video_tag 'tf1/JEU_ECHEC.mp4',
-            autoplay: true,
-            muted: true,
-            loop: true,
-            class: 'video-bg' %>
+      <%= cl_video_tag "JEU_ECHEC_myvor0",
+          autoplay: true,
+          muted: true,
+          loop: true,
+          playsinline: true,
+          class: "video-bg",
+          transform: { fetch_format: :auto, quality: :auto } %>
     </div>
 
     <div class="project-card video-card d-block text-decoration-none h-100">
-      <%= video_tag 'tf1/JEU_MOTS_CROISEES.mp4',
-            autoplay: true,
-            muted: true,
-            loop: true,
-            class: 'video-bg' %>
+      <%= cl_video_tag "JEU_MOTS_CROISEES_f5me6a",
+          autoplay: true,
+          muted: true,
+          loop: true,
+          playsinline: true,
+          class: "video-bg",
+          transform: { fetch_format: :auto, quality: :auto } %>
     </div>
-  <!-- … autres cards éventuelles … -->
   </div>
-
 
   <div class="full-width-card my-5">
     <div class="card-content" style="padding:0;">
-      <%= image_tag 'tf1/tf1mu.gif',
-            alt: 'Slide Branding 31',
-            style: 'width: 100%; height: 100%; object-fit: cover;' %>
+      <%= cl_image_tag "tf1mu_rgu01t",
+          alt: "Slide Branding 31",
+          style: "width: 100%; height: 100%; object-fit: cover;",
+          transform: { fetch_format: :auto, quality: :auto } %>
     </div>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const video  = document.getElementById('tf1-video');
-      const source = document.getElementById('tf1-source');
-      const sources = [
-        '<%= asset_path "tf1/JEU_ECHEC.mp4" %>',
-        '<%= asset_path "tf1/PERSO_BALLON.mp4" %>',
-        '<%= asset_path "tf1/JEU_MOTS_CROISEES.mp4" %>'
-      ];
-      let current = 0;
-
-      video.addEventListener('ended', function() {
-        current = current + 1;
-        if (current >= sources.length) return;  // arrêt après le dernier
-        source.src = sources[current];
-        video.load();
-        video.play();
-      });
+  document.addEventListener("DOMContentLoaded", function() {
+    const video  = document.getElementById("tf1-video");
+    const source = document.getElementById("tf1-source");
+    const sources = [
+      '<%= cl_video_path("JEU_ECHEC_myvor0",         secure: true, fetch_format: :auto, quality: :auto) %>',
+      '<%= cl_video_path("PERSO_BALLON_y1jedw",      secure: true, fetch_format: :auto, quality: :auto) %>',
+      '<%= cl_video_path("JEU_MOTS_CROISEES_f5me6a", secure: true, fetch_format: :auto, quality: :auto) %>'
+    ];
+    let current = 0;
+    video.addEventListener("ended", function() {
+      current += 1;
+      if (current >= sources.length) return;
+      source.src = sources[current];
+      video.load();
+      video.play();
     });
+  });
   </script>
 
 </div>

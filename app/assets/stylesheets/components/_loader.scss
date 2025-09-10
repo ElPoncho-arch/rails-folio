@@ -1,0 +1,32 @@
+#app-loader {
+  position: fixed;
+  inset: 0;
+  background: #0b0b0c; /* ajuste à ta DA */
+  opacity: 0;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  transition: opacity 240ms ease;
+  z-index: 9999;
+}
+
+#app-loader.is-visible {
+  opacity: .86;
+  pointer-events: auto;
+}
+
+.loader-spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,.25);
+  border-top-color: #fff;
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .loader-spinner { animation: none; }
+}
