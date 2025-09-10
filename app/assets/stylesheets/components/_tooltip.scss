@@ -1,0 +1,15 @@
+.custom-tooltip {
+  position: absolute;
+  display: none;
+  z-index: 3000;
+  pointer-events: none;
+  white-space: nowrap;
+
+  background: #ffff00; // Couleur de fond modifiée
+  color: #171717; // Couleur de la police modifiée
+  font-size: .95rem;
+  padding: .35rem .55rem;
+  border-radius: .9rem;
+  line-height: 1;
+  backdrop-filter: blur(2px);
+}
