@@ -1,28 +1,19 @@
 Rails.application.routes.draw do
-  get 'contacts/create'
-  get 'projects/slides'
-  get 'projects/macval'
-  get 'projects/tf1'
-  get 'projects/shelfie'
-  get 'projects/ford'
-  get 'projects/abskate'
-  get 'projects/mango'
-  get 'projects/la_colline'
-  get 'projects/experimentation'
-  get 'home/index'
+  get 'projects/slides', to: 'projects#slides'
+  get 'projects/macval', to: 'projects#macval'
+  get 'projects/tf1', to: 'projects#tf1'
+  get 'projects/shelfie', to: 'projects#shelfie'
+  get 'projects/ford', to: 'projects#ford'
+  get 'projects/abskate', to: 'projects#abskate'
+  get 'projects/mango', to: 'projects#mango'
+  get 'projects/la_colline', to: 'projects#la_colline'
+  get 'projects/experimentation', to: 'projects#experimentation'
 
-  get "/contact", to: "pages#contact"
-  post "/contact", to: "pages#create_contact", as: :contacts
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
   root to: 'home#index'
   get 'bio', to: 'pages#bio'
-  get 'contact', to: 'pages#contact', as: :contact_page
+  get 'contact', to: 'pages#contact', as: :contact
   get 'work', to: 'home#work', as: 'work'
 
   resources :contacts, only: [:create]
