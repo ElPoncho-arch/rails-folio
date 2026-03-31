@@ -1,0 +1,83 @@
+.bio-section-number {
+  font-family: 'ClashDisplay-Extralight', sans-serif;
+  font-size: 7rem;
+  color: rgba(255, 255, 0, 0.12);
+  line-height: 1;
+  display: block;
+  margin-bottom: -2rem;
+}
+
+.bio-subtitle {
+  font-family: 'ClashDisplay-Light', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  opacity: 0.7;
+}
+
+.bio-portrait-col {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.bio-portrait {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.bio-yellow { background-color: #ffff00; }
+.bio-dark   { background-color: #171717; }
+
+.bio-label {
+  font-family: 'ClashDisplay-Medium', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  opacity: 0.6;
+  display: block;
+}
+
+.bio-name {
+  font-family: 'ClashDisplay-Bold', sans-serif;
+  font-size: 10rem;
+  line-height: 0.9;
+  color: #171717;
+}
+
+.bio-accroche {
+  font-family: 'ClashDisplay-Bold', sans-serif;
+  font-size: 3rem;
+  line-height: 0.9;
+  color: #171717;
+}
+
+.bio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.bio-tag {
+  font-family: 'ClashDisplay-Medium', sans-serif;
+  font-size: 0.9rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid #ffff00;
+  border-radius: 999px;
+  color: #ffff00;
+  cursor: default;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover {
+    background-color: #ffff00;
+    color: #171717;
+  }
+}
+
+.bio-cta-title {
+  font-family: 'ClashDisplay-Bold', sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.85;
+}

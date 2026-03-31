@@ -1,133 +1,79 @@
-<div class="container-fluid px-4 px-md-5 my-4  text-primary">
-  <%# <h1 class="text-start mt-5 mb-5 text-primary"> > bio </h1> %>
-
-  <!-- Utilise row-cols pour empiler en mobile et passer à 3 colonnes dès md -->
-  <div class="row row-cols-1 row-cols-md-2 g-4 align-items-center align-items-md-end">
-
-    <!-- Colonne de gauche -->
-    <div class="col text-start text-primary">
-      <h1 class="mb-3 text-primary clash-font-bold font-link">Fabien Hoarau</h1>
-      <h2 class="fs-3">Creative front end developer<br>Graphic designer<br>UI/UX designer</h2>
-      <p class="text-primary lead">
-        Je crée, j’anime et je code. <br>
-        Je suis un graphiste et motion designer, avec une vraie
-        spécialisation en UI et en front.
+<%# Hero section %>
+<section class="bio-hero container-fluid px-4 px-md-5 pt-5 pb-3">
+  <div class="row align-items-end">
+    <div class="col-12 col-md-8">
+      <h1 class="bio-name text-primary mb-2">Fabien<br>Hoarau</h1>
+      <p class="bio-subtitle text-primary">
+        Creative front-end developer — Graphic designer — UI/UX designer
+      </p>
+      <p class="text-primary lead mt-3">
+        Je crée, j'anime et je code.<br>
+        Graphiste et motion designer avec une vraie spécialisation UI et front.
       </p>
     </div>
-
-    <!-- Colonne centrale -->
-    <div class="col d-flex justify-content-center text-primary">
-      <div class="bio-image-card">
-        <%= image_tag "bio_image.png",
-              class: "img-fluid rounded",
-              alt: "bio_image" %>
-      </div>
+    <div class="col-12 col-md-4 bio-portrait-col">
+      <%= image_tag "bio_image.png", class: "bio-portrait", alt: "Fabien Hoarau" %>
     </div>
-
-
   </div>
-</div>  <!-- fermeture du container principal -->
+</section>
 
-
-
-
-
-
-<div class="container-fluid px-4 px-md-5 my-4 py-5" style="background-color: #ffff00;">
-  <div class="row justify-content-start">
-    <div class="col-lg-8 text-start px-4">
-      <h2 class="mb-4 text-dark"> > soft skills</h2>
+<%# Profil section %>
+<section class="container-fluid px-4 px-md-5 py-5 bio-yellow">
+  <div class="row align-items-start">
+    <div class="col-12 col-md-4">
+      <span class="bio-label">> profil</span>
+      <p class="bio-accroche text-dark mt-3">Créer.<br>Animer.<br>Coder.</p>
+    </div>
+    <div class="col-12 col-md-8 pt-4 pt-md-0">
       <p class="text-dark lead">
-        Certifié par le bootcamp Le Wagon pour renforcer ma capacité dev avec Ruby
-        on Rails, SQL et Bootstrap, j’aime travailler en équipe, organiser un projet
-        sur GitHub et déployer efficacement. <br><br>
-
-        J’ai aussi appris à tirer avantage de l’IA
-        dans le code et dans le design. Tout ceci a été mis en application à travers
-        les clients des boîtes de com où j’ai pu réaliser des projets dans des domaines
-        tels que la restauration, la culture, le spectacle ou encore le transport aérien.<br><br>
-
+        Certifié par le bootcamp Le Wagon, je maîtrise Ruby on Rails, SQL et Bootstrap.
+        J'aime travailler en équipe, organiser un projet sur GitHub et déployer efficacement.
+      </p>
+      <p class="text-dark lead">
+        J'ai appris à tirer avantage de l'IA dans le code et dans le design.
+        Mes projets couvrent la restauration, la culture, le spectacle et le transport aérien.
+      </p>
+      <p class="text-dark lead">
         Ce mélange de créativité et de technique me permet de prototyper vite et de livrer
         des expériences soignées, avec des interfaces propres et responsives.
       </p>
     </div>
   </div>
-</div>
+</section>
 
-<div class="container-fluid px-4 px-md-5 my-4 py-5" style="background-color: #171717;">
-  <div class="row justify-content-start">
-    <div class="col-lg-8 text-start px-4">
-      <h2 class=" mb-4 text-primary"> >  hard skills</h2>
-      <p class="text-primary lead">
-        Côté outils, je travaille au quotidien avec la suite Adobe et Figma :</p>
-        <ul class="text-primary lead">
-          <li>Adobe Illustrator</li>
-          <li>Adobe Photoshop</li>
-          <li>Adobe InDesign</li>
-          <li>Adobe After Effects</li>
-          <li>Adobe Premiere Pro</li>
-          <li>Figma</li>
-        </ul>
-        <br>
-         <p class="text-primary lead">Côté dev, je code en HTML,
-        CSS, JavaScript, Ruby on Rails et SQL, Bootstrap.
-        </p>
-  </div>
-  </div>
-</div>
-
-<div class="container-fluid px-0 my-0 py-0" style="background-color: #171717;">
-  <div class="row justify-content-start px-4 py-4">
-    <div class="col-lg-8 px-5">
-      <div class="row align-items-center">
-        <!-- CV button à gauche -->
-        <div class="col-12 col-md-4 d-flex justify-content-start">
-          <%= link_to asset_path('FabienHoarauCV2.pdf'),
-                     download: 'FabienHoarauCV2.pdf',
-                     class: 'btn btn-outline-primary' do %>
-            Télécharger mon CV
-          <% end %>
-        </div>
-
-        <!-- colonne centrale vide pour équilibrer -->
-        <div class="col-12 col-md-4"></div>
-
-        <!-- Liens LinkedIn & GitHub à droite -->
-        <div class="col-12 col-md-4 d-flex justify-content-start gap-4">
-          <%= link_to "https://www.linkedin.com/in/fabien-hoarau-7b896a172/",
-                      target: "_blank", rel: "noopener noreferrer" do %>
-            <%= image_tag "logo-link-y.png",
-                          class: "rounded",
-                          style: "width:60px; height:auto;",
-                          alt: "LinkedIn" %>
-          <% end %>
-          <%= link_to "https://github.com/ElPoncho-arch/rails-folio",
-                      target: "_blank", rel: "noopener noreferrer" do %>
-            <%= image_tag "logo-git-y.png",
-                          class: "rounded",
-                          style: "width:60px; height:auto;",
-                          alt: "GitHub" %>
-          <% end %>
-        </div>
+<%# Skills section %>
+<section class="container-fluid px-4 px-md-5 py-5 bio-dark">
+  <div class="row">
+    <div class="col-12 col-md-6 mb-5 mb-md-0">
+      <span class="bio-label text-primary">> design tools</span>
+      <div class="bio-tags mt-4">
+        <% ["Illustrator", "Photoshop", "InDesign", "After Effects", "Premiere Pro", "Figma"].each do |tool| %>
+          <span class="bio-tag"><%= tool %></span>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <span class="bio-label text-primary">> dev tools</span>
+      <div class="bio-tags mt-4">
+        <% ["HTML/CSS", "JavaScript", "Ruby on Rails", "SQL", "Bootstrap"].each do |tool| %>
+          <span class="bio-tag"><%= tool %></span>
+        <% end %>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-
-<%# Certifié par le bootcamp Le Wagon pour renforcer ma capacité dev avec Ruby
-        on Rails, SQL et Bootstrap, j’aime travailler en équipe, organiser un projet
-        sur GitHub et déployer efficacement. J’ai aussi appris à tirer avantage de l’IA
-        dans le code et dans le design. Tout ceci a été mis en application à travers
-        les clients des boîtes de com où j’ai pu réaliser des projets dans des domaines
-        tels que la restauration, la culture, le spectacle ou encore le transport aérien.
-        Ce mélange de créativité et de technique me permet de prototyper vite et de livrer
-        des expériences soignées, avec des interfaces propres et responsives.
-
-
-Côté outils, je travaille au quotidien avec la suite Adobe et Figma :
-        Illustrator pour le vectoriel et les logos, Photoshop pour la retouche
-        et le compositing, InDesign pour la mise en page et le print, After Effects
-        pour le motion design, Premiere Pro pour le montage et le sous-titrage, et Figma
-        pour le maquettage, le prototypage et le design system.Côté dev, je code en HTML,
-        CSS, JavaScript, Ruby on Rails et SQL, Bootstrap. %>
+<%# CTA section %>
+<section class="container-fluid px-4 px-md-5 py-5 bio-dark bio-cta">
+  <div class="d-flex flex-wrap justify-content-center align-items-center gap-4">
+    <%= link_to asset_path('FabienHoarau_Graphiste.pdf'), target: "_blank", rel: "noopener noreferrer",class: '' do %>
+      <%= image_tag "logo-CV.png", class: "rounded", style: "width:60px; height:auto;", alt: "CV" %>
+    <% end %>
+    <%= link_to "https://www.linkedin.com/in/fabien-hoarau-7b896a172/", target: "_blank", rel: "noopener noreferrer" do %>
+      <%= image_tag "logo-link-y.png", class: "rounded", style: "width:60px; height:auto;", alt: "LinkedIn" %>
+    <% end %>
+    <%= link_to "https://github.com/ElPoncho-arch/rails-folio", target: "_blank", rel: "noopener noreferrer" do %>
+      <%= image_tag "logo-git-y.png", class: "rounded", style: "width:60px; height:auto;", alt: "GitHub" %>
+    <% end %>
+  </div>
+</section>
