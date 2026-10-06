@@ -12,8 +12,7 @@ Une étape = un commit.
 - [x] 7. Migration des images locales vers Cloudinary
   - à vérifier : public_id `PERSO_BALLON_y1jedw`, cité seulement dans l'ancien script de la page TF1 (supprimé à l'étape 6)
 - [x] 8. About + Contact (extraire les styles du formulaire dans _contact.scss)
-- [ ] 9. Mentions légales
-  - à compléter : SIRET et adresse (ou domiciliation) dans app/views/pages/mentions_legales.html.erb
+- [x] 9. Mentions légales
 - [ ] 10. Animations (controllers Stimulus)
 - [ ] 11. Recette mobile + accessibilité
   - revue complète du front avec Fabien, mobile first en priorité (375 px, puis tablette, puis desktop), avant tout déploiement

@@ -1,7 +1,4 @@
-<%# Mentions légales — version minimale. SIRET et adresse : à renseigner (affichés « à compléter » tant qu'ils sont vides). %>
-<% siret   = nil %>
-<% adresse = nil %>
-<% a_completer = tag.span("à compléter", class: "legal__manquant") %>
+<%# Mentions légales %>
 
 <article class="legal">
   <header class="legal__entete">
@@ -10,13 +7,10 @@
   </header>
 
   <section class="legal__section" aria-labelledby="legal-editeur">
-    <h2 id="legal-editeur" class="legal__sous-titre">Éditeur du site</h2>
+    <h2 id="legal-editeur" class="legal__sous-titre">Éditeur et directeur de la publication</h2>
     <dl class="legal__infos">
-      <dt>Nom</dt>                         <dd>Fabien Hoarau, micro-entrepreneur</dd>
-      <dt>SIRET</dt>                       <dd><%= siret || a_completer %></dd>
-      <dt>Adresse</dt>                     <dd><%= adresse || a_completer %></dd>
-      <dt>E-mail</dt>                      <dd><a href="mailto:hoarauf4@gmail.com">hoarauf4@gmail.com</a></dd>
-      <dt>Directeur de la publication</dt> <dd>Fabien Hoarau</dd>
+      <dt>Nom</dt>    <dd>Fabien Hoarau, designer graphique, motion et UI indépendant</dd>
+      <dt>E-mail</dt> <dd><a href="mailto:hoarauf4@gmail.com">hoarauf4@gmail.com</a></dd>
     </dl>
   </section>
 
@@ -28,6 +22,16 @@
       San Francisco, CA 94105). Téléphone (standard Salesforce) : +1 800 664 9073.
     </p>
     <p>Les images et vidéos du site sont hébergées et diffusées par Cloudinary.</p>
+  </section>
+
+  <section class="legal__section" aria-labelledby="legal-propriete">
+    <h2 id="legal-propriete" class="legal__sous-titre">Propriété intellectuelle</h2>
+    <p>
+      Les visuels, vidéos, animations et textes présentés sur ce site sont protégés par le droit
+      d'auteur. Les projets réalisés pour des clients ou en agence restent la propriété de leurs
+      commanditaires et sont montrés ici comme références. Toute reproduction, même partielle,
+      est interdite sans accord écrit préalable.
+    </p>
   </section>
 
   <section class="legal__section" aria-labelledby="legal-donnees">
