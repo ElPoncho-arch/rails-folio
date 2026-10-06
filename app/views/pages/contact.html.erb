@@ -4,7 +4,8 @@
 <% champs = [
      { nom: :name,    etiquette: "Nom",     type: :text_field,  attrs: { autocomplete: "name", required: true } },
      { nom: :email,   etiquette: "E-mail",  type: :email_field, attrs: { autocomplete: "email", required: true } },
-     { nom: :message, etiquette: "Message", type: :text_area,   attrs: { rows: 6, required: true, minlength: 10 } }
+     { nom: :message, etiquette: "Message", type: :text_area,   attrs: { rows: 6, required: true, minlength: 10 },
+       aide: "10 caractères minimum" }
    ] %>
 
 <section class="contact">
@@ -20,19 +21,27 @@
     <p class="contact__ou" aria-hidden="true">ou</p>
   </div>
 
+  <h2 id="formulaire-titre" class="visually-hidden">Écrire un message</h2>
   <%= form_with model: @contact, scope: :contact, url: contacts_path,
-                class: "formulaire", data: { controller: "formulaire",
+                class: "formulaire", html: { "aria-labelledby": "formulaire-titre" },
+                data: { controller: "formulaire",
                                              action: "submit->formulaire#envoyer turbo:submit-end->formulaire#fin" } do |f| %>
+    <p class="formulaire__consigne">Tous les champs sont obligatoires.</p>
+
     <% champs.each do |champ| %>
       <% erreur = @contact.errors[champ[:nom]].first %>
       <% id_erreur = "erreur-#{champ[:nom]}" %>
+      <% id_aide = "aide-#{champ[:nom]}" if champ[:aide] %>
       <div class="formulaire__champ">
         <%= f.label champ[:nom], champ[:etiquette], class: "formulaire__etiquette" %>
         <%= f.public_send champ[:type], champ[:nom],
               class: "formulaire__saisie",
-              aria: { describedby: id_erreur, invalid: (erreur ? "true" : nil) },
+              aria: { describedby: [id_aide, id_erreur].compact.join(" "), invalid: (erreur ? "true" : nil) },
               data: { formulaire_target: "champ", action: "blur->formulaire#verifier input->formulaire#corriger" },
               **champ[:attrs] %>
+        <% if champ[:aide] %>
+          <p class="formulaire__aide" id="<%= id_aide %>"><%= champ[:aide] %></p>
+        <% end %>
         <p class="formulaire__erreur" id="<%= id_erreur %>"<%= " hidden" unless erreur %>><%= erreur %></p>
       </div>
     <% end %>
@@ -41,8 +50,10 @@
       Envoyer <span aria-hidden="true">→</span>
     </button>
 
-    <% statut = flash[:notice] || flash[:alert] %>
-    <p class="formulaire__statut <%= 'formulaire__statut--erreur' if flash[:alert] %>"
+    <%# Message présent au chargement (redirection après envoi, ou 422) : le focus y est posé par formulaire_controller %>
+    <% erreurs = @contact.errors.any? %>
+    <% statut = flash[:notice] || flash[:alert] || ("Vérifiez les champs signalés." if erreurs) %>
+    <p class="formulaire__statut <%= 'formulaire__statut--erreur' if flash[:alert] || erreurs %>"
        role="status" data-formulaire-target="statut"<%= " hidden" unless statut %>><%= statut %></p>
   <% end %>
 </section>

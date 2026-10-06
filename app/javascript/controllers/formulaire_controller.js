@@ -17,6 +17,13 @@ export default class extends Controller {
   connect() {
     this.element.noValidate = true // messages personnalisés à la place des bulles du navigateur
     this.libelle = this.boutonTarget.innerHTML
+
+    // Message déjà affiché au chargement (succès après redirection, erreurs serveur) :
+    // le focus y est posé pour qu'il soit lu, la page défile jusqu'à lui
+    if (!this.statutTarget.hidden && this.statutTarget.textContent.trim()) {
+      this.statutTarget.tabIndex = -1
+      this.statutTarget.focus()
+    }
   }
 
   // blur : vérifie le champ quitté
@@ -61,7 +68,7 @@ export default class extends Controller {
     if (champ.value.trim() === "" && champ.value !== "") champ.value = ""
     const etat = champ.validity
     const cle = ["valueMissing", "typeMismatch", "tooShort"].find((k) => etat[k])
-    const erreur = document.getElementById(champ.getAttribute("aria-describedby"))
+    const erreur = document.getElementById(`erreur-${nom}`)
 
     if (cle) {
       champ.setAttribute("aria-invalid", "true")
