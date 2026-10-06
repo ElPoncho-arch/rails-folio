@@ -129,7 +129,7 @@
   height: 0.6rem;
   border-radius: 50%;
   background-color: $color-accent;
-  animation: nav-dot-pulse 2.4s $ease-soft 3; // 3 pulsations (7,2 s) puis arrêt
+  animation: nav-dot-pulse 2.4s $ease-soft 2; // 2 pulsations (4,8 s, sous le seuil de 5 s de WCAG 2.2.2) puis arrêt
 }
 
 @keyframes nav-dot-pulse {
