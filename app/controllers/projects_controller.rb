@@ -22,7 +22,4 @@ class ProjectsController < ApplicationController
 
   def la_colline
   end
-
-  def experimentation
-  end
 end

@@ -1,68 +1,3 @@
-.cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.2rem;       // espacement uniforme entre tes cards
-
-  @include respond-to(md) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.8rem;       // espace légèrement plus grand sur md et +
-  }
-  @include respond-to(lg) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3.2rem;       // espace légèrement plus grand sur md et +
-  }
-}
-
-.project-card {
-  aspect-ratio: 1 / 1;          /* rend la carte carrée */
-  width: 100%;                  /* occupe toute la colonne */
-  background-color: $color-bg;
-  border-radius: 2rem;          /* arrondir les angles */
-  border: 1px solid rgba($color-text, 0.12);
-  overflow: hidden;               /* pour que le radius s’applique */
-  /* tu peux supprimer margin-bottom si tu utilises déjà gap dans .cards */
-}
-
-.project-card .card-content {
-  padding: 1rem;                  /* un peu de respiration à l’intérieur */
-  /* pour centrer verticalement/horizontalement le contenu, si besoin : */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.video-card {
-  position: relative;
-  overflow: hidden;
-
-  .video-bg {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  .card-content {
-    position: relative;
-    z-index: 1;
-    /* garde ton padding existant */
-  }
-}
-
-.full-width-card {
-  width: 100%;
-  background-color: $color-bg;
-  border-radius: 2rem;
-  border: 1px solid rgba($color-text, 0.12);
-  margin-top: 2rem;
-  overflow: hidden;
-
-  /* pour que la hauteur de cette carte full-width soit identique à celle des deux cartes carrées */
-  aspect-ratio: 2 / 1;
-}
-
 .contact-page-full {
   background-color: $color-bg;
 
@@ -104,17 +39,6 @@
       }
     }
 
-    .form-row {
-      display: flex;
-      gap: 0.5rem;
-
-      .code-group {
-        flex: 0 0 30%;
-      }
-      .phone-group {
-        flex: 1;
-      }
-    }
 
     .btn-submit {
       width: 100%;
@@ -130,21 +54,3 @@
   } // ← fermeture de .contact-form-container
 } // ← fermeture de .contact-page-full
 
-// override pour la carte TF1 : ratio 16/9
-.full-width-card--tf1 {
-  aspect-ratio: 16 / 9;
-}
-
-.tf1-video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16/9 */
-  height: 0;
-  overflow: hidden;
-
-  video {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-  }
-}
