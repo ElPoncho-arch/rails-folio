@@ -1,0 +1,78 @@
+<%# À propos — mobile : petit portrait + titre, texte visible dès le premier écran ;
+    desktop (lg) : portrait collant à gauche, contenu à droite. Textes à retravailler en fin de projet. %>
+<% outils = {
+     "outils design" => ["Illustrator", "Photoshop", "InDesign", "After Effects", "Premiere Pro", "Figma"],
+     "outils dev"    => ["HTML/CSS", "JavaScript", "Ruby on Rails", "SQL", "Bootstrap"]
+   } %>
+
+<article class="apropos">
+  <div class="apropos__portrait">
+    <%= media_image_tag "bio_image.png", alt: "Portrait de Fabien Hoarau en collage",
+                        sizes: "(min-width: 992px) 30vw, 5.5rem", class: "apropos__portrait-img",
+                        loading: "eager", fetchpriority: "high" %>
+  </div>
+
+  <header class="apropos__entete">
+    <h1 class="apropos__titre">À propos</h1>
+    <p class="apropos__dispo">
+      <span class="nav-pill__dot" aria-hidden="true"></span> disponible pour de nouveaux projets
+    </p>
+    <p class="apropos__roles">Creative front-end developer — Graphic designer — UI/UX designer</p>
+  </header>
+
+  <div class="apropos__corps">
+    <p class="apropos__accroche">Créer. Animer. Coder.</p>
+
+    <div class="apropos__texte">
+      <p>
+        Je crée, j'anime et je code.<br>
+        Graphiste et motion designer avec une vraie spécialisation UI et front.
+      </p>
+      <p>
+        Certifié par le bootcamp Le Wagon, je maîtrise Ruby on Rails, SQL et Bootstrap.
+        J'aime travailler en équipe, organiser un projet sur GitHub et déployer efficacement.
+      </p>
+      <p>
+        J'ai appris à tirer avantage de l'IA dans le code et dans le design.
+        Mes projets couvrent la restauration, la culture, le spectacle et le transport aérien.
+      </p>
+      <p>
+        Ce mélange de créativité et de technique me permet de prototyper vite et de livrer
+        des expériences soignées, avec des interfaces propres et responsives.
+      </p>
+    </div>
+
+    <dl class="apropos__outils">
+      <% outils.each do |titre, liste| %>
+        <div class="apropos__outils-ligne">
+          <dt><%= titre %></dt>
+          <dd>
+            <ul class="apropos__pilules">
+              <% liste.each do |outil| %>
+                <li class="tag-pill"><%= outil %></li>
+              <% end %>
+            </ul>
+          </dd>
+        </div>
+      <% end %>
+    </dl>
+
+    <ul class="apropos__liens" aria-label="Liens">
+      <li>
+        <%= link_to asset_path("FabienHoarau_UIDesigner.pdf"), class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
+          CV (pdf) <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "https://www.linkedin.com/in/fabien-hoarau-7b896a172/", class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
+          LinkedIn <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "https://github.com/ElPoncho-arch", class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
+          GitHub <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</article>
