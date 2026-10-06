@@ -1,58 +1,47 @@
-<div class="container-fluid px-4 px-md-5 my-4">
-  <h1 class="d-block text-start my-5 clash-font-bold font-title">/ Macval</h1>
+<% projet = projet_courant %>
 
-  <div class="row">
-    <div class="col-12 col-md-8 mb-5">
-      <p class="blue-txt-courant lead">
-        Le logo du MAC VAL s’appuie sur ses fondamentaux. Être le seul musée exclusivement consacré à la scène artistique en France. Depuis les années 1950, il réussit à mettre son imagination au service du public en proposant des actions innovantes. La typographie manuscrite de par sa réalisation fait main rappelle les bases de la création d’une œuvre. <br> Le rectangle a pour but de représenter une porte d’entrée sur le monde de l’art.
-      </p>
-    </div>
-  </div>
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    Le logo du MAC VAL s’appuie sur ses fondamentaux&nbsp;: être le seul musée
+    exclusivement consacré à la scène artistique en France. Depuis les années 1950,
+    il réussit à mettre son imagination au service du public en proposant des actions
+    innovantes. La typographie manuscrite, de par sa réalisation fait main, rappelle
+    les bases de la création d’une œuvre.
+  </p>
+  <p>
+    Le rectangle a pour but de représenter une porte d’entrée sur le monde de l’art.
+  </p>
+<% end %>
 
+<div class="projet-medias">
+  <%= render "projects/media_pleine",
+        media: { image: "macval/bandeau web noir.jpg", width: 4000, height: 1999,
+                 alt: "Bandeau web MAC VAL : logo manuscrit noir sur un rectangle bleu, lignes bleues sur fond blanc" } %>
 
-  <div class="full-width-card my-5">
-    <div class="card-content">
-      <%= image_tag 'macval/bandeau web noir.jpg',
-            alt: 'Urban Poster Mockup',
-            class: 'img-fluid' %>
-    </div>
-  </div>
+  <%= render "projects/media_paire", medias: [
+        { image: "macval/logo.gif",
+          alt: "Logo MAC VAL animé : lettres manuscrites noires sur un rectangle bleu" },
+        { image: "macval/expo-affiche-2.jpg",
+          alt: "Affiche d’exposition MAC VAL bleu nuit, suspendue" }
+      ] %>
 
-  <div class="cards my-5">
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'macval/logo.gif' %>); background-size: cover; background-position: center;">
-    </div>
+  <%= render "projects/media_pleine",
+        media: { image: "macval/Branding_Mockup_2.jpg", width: 4000, height: 1999,
+                 alt: "Papeterie MAC VAL : cartes de visite, enveloppes et papier à en-tête" } %>
 
-    <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'macval/expo-affiche-2.jpg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-  </div>
+  <%= render "projects/media_paire", medias: [
+        { image: "macval/expo-affiche-1.jpg",
+          alt: "Affiche d’exposition MAC VAL consacrée à Nil Yalter, photographies en noir et bleu" },
+        { image: "macval/magnet.jpg",
+          alt: "Badges ronds MAC VAL, blancs, noirs et vert" }
+      ] %>
 
-  <div class="full-width-card my-5">
-    <div class="card-content">
-      <%= image_tag 'macval/Branding_Mockup_2.jpg',
-            alt: 'Urban Poster Mockup',
-            class: 'img-fluid' %>
-    </div>
-  </div>
-
-  <div class="cards my-5">
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'macval/expo-affiche-1.jpg' %>); background-size: cover; background-position: center;">
-    </div>
-
-    <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'macval/magnet.jpg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-  </div>
-
-  <div class="cards my-5">
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'macval/MU-a-entree-2.jpg' %>); background-size: cover; background-position: center;">
-    </div>
-
-    <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'macval/MU-CENTRE-DE-DOC-2.jpg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-  </div>
+  <%= render "projects/media_paire", medias: [
+        { image: "macval/MU-a-entree-2.jpg",
+          alt: "Panneau de signalétique MAC VAL à l’entrée : directions vers les expositions et le vestiaire" },
+        { image: "macval/MU-CENTRE-DE-DOC-2.jpg",
+          alt: "Signalétique « Centre de documentation » sur un mur blanc, vitrines au premier plan" }
+      ] %>
 </div>
+
+<%= render "projects/navigation", projet: projet %>
