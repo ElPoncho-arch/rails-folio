@@ -2,7 +2,7 @@
 <footer class="site-footer">
   <div class="footer-band" aria-hidden="true"
        data-controller="marquee"
-       data-action="mouseenter->marquee#slow mouseleave->marquee#resume">
+       data-action="mouseenter->marquee#pause mouseleave->marquee#resume">
     <p class="footer-band__text" data-marquee-target="track">
       <%# Deux groupes identiques pour une boucle sans raccord visible %>
       <% 2.times do %>
