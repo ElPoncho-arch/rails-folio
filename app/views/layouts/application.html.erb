@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" data-controller="smooth-scroll">
   <head>
     <title>Fabien Hoarau – Graphiste & Designer Web | Portfolio</title>
     <meta name="description" content="Fabien Hoarau, graphiste et designer web. Branding, print, web et créations personnelles">
@@ -15,15 +15,14 @@
     <!-- Importmap (charge application.js + pins) -->
     <%= javascript_importmap_tags %>
 
-    <div id="app-loader" aria-hidden="true" data-transition-target="overlay">
-      <div class="loader-spinner"></div>
-    </div>
-
-
   </head>
 
   <!-- Attache le contrôleur de transition au body -->
   <body data-controller="transition">
+    <div id="app-loader" aria-hidden="true">
+      <div class="loader-spinner"></div>
+    </div>
+
     <%= render 'shared/navbar' %>
 
     <!-- Conteneur animé (fade/slide entre pages) -->

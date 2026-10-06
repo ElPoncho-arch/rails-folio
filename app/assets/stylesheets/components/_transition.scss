@@ -1,6 +1,6 @@
 :root {
   --page-duration: 520ms;
-  --page-ease: cubic-bezier(.2,.8,.2,1);
+  --page-ease: #{$ease-soft};
 }
 
 /* Conteneur animé */
@@ -40,9 +40,13 @@
   opacity: .12; /* ajuste l’intensité si tu veux */
 }
 
-/* Accessibilité : réduit/annule les anims si l'utilisateur préfère peu de mouvement */
+/* Accessibilité : simple fondu court, sans déplacement */
 @media (prefers-reduced-motion: reduce) {
-  .transition-fade,
+  .transition-fade {
+    transition: opacity 150ms linear !important;
+    transform: none !important;
+  }
+
   #page-overlay {
     transition: none !important;
   }
