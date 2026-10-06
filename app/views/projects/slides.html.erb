@@ -19,6 +19,10 @@
 <% end %>
 
 <div class="projet-medias">
+  <%= render "projects/media_pleine", ratio: "2 / 1",
+        media: { video: "slides_logo_anim_meykfx", largeur: 1080, attente: 1,
+                 alt: "Logo Slides animé : lettres découpées noires sur fond jaune" } %>
+
   <%= render "projects/media_pleine",
         media: { image: "slides/slide_branding_31.jpg", width: 3500, height: 2380,
                  alt: "Affiche Slides jaune et noire déroulée, avec billets et cartes" } %>
