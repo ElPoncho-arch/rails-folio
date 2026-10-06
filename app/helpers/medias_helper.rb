@@ -58,14 +58,15 @@ module MediasHelper
   #   boucle muette (par défaut) : autoplay, muted, loop, ac_none, preload metadata,
   #                                pilotée par video_boucle_controller.js (bouton, pause hors écran)
   #   lecteur (lecteur: true)    : controls, preload none, ne se charge qu'au clic
+  #                                (muet: true si la vidéo n'a pas de piste son)
   # L'image d'attente est tirée de la vidéo à la seconde « attente ».
-  def media_video_tag(public_id, alt:, largeur:, lecteur: false, attente: 1, **html)
+  def media_video_tag(public_id, alt:, largeur:, lecteur: false, muet: false, attente: 1, **html)
     cadre = { width: largeur, crop: :limit }
     son = lecteur ? [] : [{ audio_codec: "none" }]
     video = cloudinary_url public_id, secure: true, resource_type: :video,
                            transformation: [cadre, { fetch_format: "auto:video" }, { quality: :auto }, *son]
     lecture = if lecteur
-                { controls: true, preload: "none" }
+                { controls: true, preload: "none", muted: muet }
               else
                 { autoplay: true, muted: true, loop: true, preload: "metadata", data: { controller: "video-boucle" } }
               end

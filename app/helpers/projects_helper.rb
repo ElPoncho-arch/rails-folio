@@ -68,7 +68,7 @@ module ProjectsHelper
   #   { cl_image: "public_id", alt: "…" }          image Cloudinary
   #   { cl_gif: "public_id", width:, height: }     GIF animé Cloudinary, servi en vidéo
   #   { video: "public_id", alt: "…" }             vidéo Cloudinary en boucle muette (voir media_video_tag)
-  #   { video: "public_id", lecteur: true }        … avec lecteur, chargée au clic (largeur:, attente: en option)
+  #   { video: "public_id", lecteur: true }        … avec lecteur, chargée au clic (largeur:, attente:, muet: en option)
   # sizes : largeur affichée, pour le srcset des images Cloudinary (MediasHelper)
   def projet_media(media, sizes: "100vw")
     if media[:image]&.end_with?(".gif")
@@ -84,7 +84,7 @@ module ProjectsHelper
                    fetch_format: :auto, quality: :auto
     elsif media[:video]
       media_video_tag media[:video], alt: media[:alt], largeur: media.fetch(:largeur, 1200),
-                      lecteur: media[:lecteur], attente: media.fetch(:attente, 1),
+                      lecteur: media[:lecteur], muet: media[:muet], attente: media.fetch(:attente, 1),
                       class: "projet-media__el"
     end
   end
