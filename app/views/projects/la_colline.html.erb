@@ -1,44 +1,29 @@
-<div class="container-fluid px-4 px-md-5 my-4">
-  <h1 class="d-block text-start my-5 clash-font-bold font-title">/ La Colline</h1>
+<% projet = projet_courant %>
 
-  <div class="row">
-    <div class="col-12 col-md-8 mb-5">
-      <p class="blue-txt-courant lead">
-        Les formes modernes et épurées
-        présentes sur l’étiquette évoquent
-        la manière de produire l’huile
-        d’olive via des illustrations
-        simples et linéaires. Le cheval
-        quant à lui symbolise la fertilité
-        et la prospérité.
-        Le code couleur fait référence
-        aux inspirations méditerranéennes.
-      </p>
-    </div>
-  </div>
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    Les formes modernes et épurées présentes sur l’étiquette évoquent la manière
+    de produire l’huile d’olive via des illustrations simples et linéaires.
+    Le cheval, quant à lui, symbolise la fertilité et la prospérité.
+    Le code couleur fait référence aux inspirations méditerranéennes.
+  </p>
+<% end %>
 
-  <div class="full-width-card my-5">
-    <div class="card-content">
-      <%= image_tag 'lacolline/banniere.jpg',
-            alt: 'Urban Poster Mockup',
-            class: 'img-fluid' %>
-    </div>
-  </div>
+<div class="projet-medias">
+  <%= render "projects/media_pleine",
+        media: { image: "lacolline/banniere.jpg", width: 11339, height: 5669,
+                 alt: "Bannière La Colline Olive Oil : illustrations linéaires dorées sur fond vert sombre" } %>
 
-  <div class="cards my-5">
-     <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'lacolline/mobile2.jpg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-     <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'lacolline/Glass_Oil_Bottle_2.jpg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-  </div>
+  <%= render "projects/media_paire", medias: [
+        { image: "lacolline/mobile2.jpg",
+          alt: "Déclinaisons imprimées et écran mobile aux couleurs de La Colline" },
+        { image: "lacolline/Glass_Oil_Bottle_2.jpg",
+          alt: "Trois bouteilles d’huile d’olive La Colline et leurs étiquettes illustrées, sur fond noir" }
+      ] %>
 
-  <div class="full-width-card my-5"
-       style="aspect-ratio: 16/9; overflow:hidden;">
-    <%= image_tag 'lacolline/laptop1.jpg',
-          alt: 'Urban Poster Mockup',
-          style: 'width:100%; height:100%; object-fit:cover;' %>
-  </div>
-
+  <%= render "projects/media_pleine", ratio: "16 / 9",
+        media: { image: "lacolline/laptop1.jpg",
+                 alt: "Site de La Colline affiché sur un ordinateur portable et des écrans" } %>
 </div>
+
+<%= render "projects/navigation", projet: projet %>
