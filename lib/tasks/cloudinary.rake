@@ -8,57 +8,57 @@
 # Aucune ressource existante n'est écrasée (overwrite: false).
 
 module CloudinaryMigration
-  RACINE = "rails-folio"
+  RACINE = "portfolio"
 
   # chemin dans app/assets/images => public_id cible
   PLAN = {
-    "tf1/lou.png"                          => "projets/tf1/lou",
+    "tf1/lou.png"                          => "tf1/lou",
 
-    "shelfie/logoshelfie.jpg"              => "projets/shelfie/logo",
-    "shelfie/3840154.jpg"                  => "projets/shelfie/charte",
-    "shelfie/3840154-2.jpg"                => "projets/shelfie/charte-2",
-    "shelfie/3981779.jpg"                  => "projets/shelfie/ecrans",
+    "shelfie/logoshelfie.jpg"              => "shelfie/logo",
+    "shelfie/3840154.jpg"                  => "shelfie/charte",
+    "shelfie/3840154-2.jpg"                => "shelfie/charte-2",
+    "shelfie/3981779.jpg"                  => "shelfie/ecrans",
 
-    "macval/bandeau web noir.jpg"          => "projets/macval/bandeau-web-noir",
-    "macval/logo.gif"                      => "projets/macval/logo-anime",
-    "macval/expo-affiche-1.jpg"            => "projets/macval/affiche-1",
-    "macval/expo-affiche-2.jpg"            => "projets/macval/affiche-2",
-    "macval/Branding_Mockup_2.jpg"         => "projets/macval/papeterie",
-    "macval/magnet.jpg"                    => "projets/macval/badges",
-    "macval/MU-a-entree-2.jpg"             => "projets/macval/signaletique-entree",
-    "macval/MU-CENTRE-DE-DOC-2.jpg"        => "projets/macval/signaletique-centre-doc",
+    "macval/bandeau web noir.jpg"          => "macval/bandeau-web-noir",
+    "macval/logo.gif"                      => "macval/logo-anime",
+    "macval/expo-affiche-1.jpg"            => "macval/affiche-1",
+    "macval/expo-affiche-2.jpg"            => "macval/affiche-2",
+    "macval/Branding_Mockup_2.jpg"         => "macval/papeterie",
+    "macval/magnet.jpg"                    => "macval/badges",
+    "macval/MU-a-entree-2.jpg"             => "macval/signaletique-entree",
+    "macval/MU-CENTRE-DE-DOC-2.jpg"        => "macval/signaletique-centre-doc",
 
-    "slides/slide_branding_31.jpg"         => "projets/slides/affiche-deroulee",
-    "slides/slide_branding_1.jpg"          => "projets/slides/serie-affiches",
-    "slides/slide_branding_2.jpg"          => "projets/slides/papeterie",
-    "slides/billet-evenement_134533-5.jpg" => "projets/slides/billets",
-    "slides/catalogue.gif"                 => "projets/slides/catalogue-anime",
-    "slides/urban_poster_mockup.jpg"       => "projets/slides/affiches-rue",
-    "slides/sceno.gif"                     => "projets/slides/scenographie-animee",
-    "slides/totebag2.jpg"                  => "projets/slides/totebag",
-    "slides/MU 1.jpg"                      => "projets/slides/totebag-noir",
+    "slides/slide_branding_31.jpg"         => "slides/affiche-deroulee",
+    "slides/slide_branding_1.jpg"          => "slides/serie-affiches",
+    "slides/slide_branding_2.jpg"          => "slides/papeterie",
+    "slides/billet-evenement_134533-5.jpg" => "slides/billets",
+    "slides/catalogue.gif"                 => "slides/catalogue-anime",
+    "slides/urban_poster_mockup.jpg"       => "slides/affiches-rue",
+    "slides/sceno.gif"                     => "slides/scenographie-animee",
+    "slides/totebag2.jpg"                  => "slides/totebag",
+    "slides/MU 1.jpg"                      => "slides/totebag-noir",
 
-    "mango/logomango2.gif"                 => "projets/mango/logo-anime",
-    "mango/carte.jpg"                      => "projets/mango/cartes",
-    "mango/livre-1.jpg"                    => "projets/mango/livre",
-    "mango/livre-2.jpg"                    => "projets/mango/livres-cuisine",
-    "mango/tote.jpg"                       => "projets/mango/totebag",
+    "mango/logomango2.gif"                 => "mango/logo-anime",
+    "mango/carte.jpg"                      => "mango/cartes",
+    "mango/livre-1.jpg"                    => "mango/livre",
+    "mango/livre-2.jpg"                    => "mango/livres-cuisine",
+    "mango/tote.jpg"                       => "mango/totebag",
 
-    "lacolline/banniere.jpg"               => "projets/la-colline/banniere",
-    "lacolline/Glass_Oil_Bottle_2.jpg"     => "projets/la-colline/bouteilles",
-    "lacolline/mobile2.jpg"                => "projets/la-colline/declinaisons",
-    "lacolline/laptop1.jpg"                => "projets/la-colline/site",
+    "lacolline/banniere.jpg"               => "la-colline/banniere",
+    "lacolline/Glass_Oil_Bottle_2.jpg"     => "la-colline/bouteilles",
+    "lacolline/mobile2.jpg"                => "la-colline/declinaisons",
+    "lacolline/laptop1.jpg"                => "la-colline/site",
 
-    "ford/MU_Couv_Ford.jpg"                => "projets/ford/couverture",
-    "ford/Mockup_Ford.jpg"                 => "projets/ford/doubles-pages",
-    "ford_couv.jpg"                        => "projets/ford/couverture-typo",
+    "ford/MU_Couv_Ford.jpg"                => "ford/couverture",
+    "ford/Mockup_Ford.jpg"                 => "ford/doubles-pages",
+    "ford_couv.jpg"                        => "ford/couverture-typo",
 
-    "abc/livre.jpg"                        => "projets/abecedaire/couverture",
-    "abskate_couv.jpg"                     => "projets/abecedaire/couverture-typo",
-    "abc/mu-double2.jpg"                   => "projets/abecedaire/double-page-p",
-    "abc/mu-double.jpg"                    => "projets/abecedaire/double-page-m",
-    "abc/abc.jpg"                          => "projets/abecedaire/lettres",
-    "abc/mu-page.jpg"                      => "projets/abecedaire/pages",
+    "abc/livre.jpg"                        => "abecedaire/couverture",
+    "abskate_couv.jpg"                     => "abecedaire/couverture-typo",
+    "abc/mu-double2.jpg"                   => "abecedaire/double-page-p",
+    "abc/mu-double.jpg"                    => "abecedaire/double-page-m",
+    "abc/abc.jpg"                          => "abecedaire/lettres",
+    "abc/mu-page.jpg"                      => "abecedaire/pages",
 
     "bio_image.png"                        => "site/portrait-bio"
   }.transform_values { |id| "#{RACINE}/#{id}" }.freeze

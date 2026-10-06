@@ -1,2 +1,207 @@
 # Généré par bin/rails cloudinary:upload — chemin local => ressource Cloudinary.
 # Lu par MediasHelper : un chemin absent est servi en local.
+abc/abc.jpg:
+  public_id: portfolio/abecedaire/lettres
+  format: jpg
+  width: 2000
+  height: 2000
+abc/livre.jpg:
+  public_id: portfolio/abecedaire/couverture
+  format: jpg
+  width: 3513
+  height: 2490
+abc/mu-double.jpg:
+  public_id: portfolio/abecedaire/double-page-m
+  format: jpg
+  width: 1577
+  height: 2181
+abc/mu-double2.jpg:
+  public_id: portfolio/abecedaire/double-page-p
+  format: jpg
+  width: 1457
+  height: 2020
+abc/mu-page.jpg:
+  public_id: portfolio/abecedaire/pages
+  format: jpg
+  width: 3208
+  height: 2190
+abskate_couv.jpg:
+  public_id: portfolio/abecedaire/couverture-typo
+  format: jpg
+  width: 3386
+  height: 3946
+bio_image.png:
+  public_id: portfolio/site/portrait-bio
+  format: png
+  width: 485
+  height: 670
+ford/MU_Couv_Ford.jpg:
+  public_id: portfolio/ford/couverture
+  format: jpg
+  width: 6200
+  height: 5000
+ford/Mockup_Ford.jpg:
+  public_id: portfolio/ford/doubles-pages
+  format: jpg
+  width: 5000
+  height: 3750
+ford_couv.jpg:
+  public_id: portfolio/ford/couverture-typo
+  format: jpg
+  width: 6200
+  height: 5000
+lacolline/Glass_Oil_Bottle_2.jpg:
+  public_id: portfolio/la-colline/bouteilles
+  format: jpg
+  width: 3840
+  height: 2160
+lacolline/banniere.jpg:
+  public_id: portfolio/la-colline/banniere
+  format: jpg
+  width: 11339
+  height: 5669
+lacolline/laptop1.jpg:
+  public_id: portfolio/la-colline/site
+  format: jpg
+  width: 1920
+  height: 960
+lacolline/mobile2.jpg:
+  public_id: portfolio/la-colline/declinaisons
+  format: jpg
+  width: 960
+  height: 960
+macval/Branding_Mockup_2.jpg:
+  public_id: portfolio/macval/papeterie
+  format: jpg
+  width: 4000
+  height: 1999
+macval/MU-CENTRE-DE-DOC-2.jpg:
+  public_id: portfolio/macval/signaletique-centre-doc
+  format: jpg
+  width: 2000
+  height: 2000
+macval/MU-a-entree-2.jpg:
+  public_id: portfolio/macval/signaletique-entree
+  format: jpg
+  width: 2000
+  height: 2000
+macval/bandeau web noir.jpg:
+  public_id: portfolio/macval/bandeau-web-noir
+  format: jpg
+  width: 4000
+  height: 1999
+macval/expo-affiche-1.jpg:
+  public_id: portfolio/macval/affiche-1
+  format: jpg
+  width: 2000
+  height: 2000
+macval/expo-affiche-2.jpg:
+  public_id: portfolio/macval/affiche-2
+  format: jpg
+  width: 2000
+  height: 2000
+macval/logo.gif:
+  public_id: portfolio/macval/logo-anime
+  format: gif
+  width: 548
+  height: 749
+macval/magnet.jpg:
+  public_id: portfolio/macval/badges
+  format: jpg
+  width: 4000
+  height: 4000
+mango/carte.jpg:
+  public_id: portfolio/mango/cartes
+  format: jpg
+  width: 1012
+  height: 1138
+mango/livre-1.jpg:
+  public_id: portfolio/mango/livre
+  format: jpg
+  width: 716
+  height: 716
+mango/livre-2.jpg:
+  public_id: portfolio/mango/livres-cuisine
+  format: jpg
+  width: 1564
+  height: 1564
+mango/logomango2.gif:
+  public_id: portfolio/mango/logo-anime
+  format: gif
+  width: 776
+  height: 404
+mango/tote.jpg:
+  public_id: portfolio/mango/totebag
+  format: jpg
+  width: 903
+  height: 1500
+shelfie/3840154-2.jpg:
+  public_id: portfolio/shelfie/charte-2
+  format: jpg
+  width: 2083
+  height: 2083
+shelfie/3840154.jpg:
+  public_id: portfolio/shelfie/charte
+  format: jpg
+  width: 2083
+  height: 2083
+shelfie/3981779.jpg:
+  public_id: portfolio/shelfie/ecrans
+  format: jpg
+  width: 8000
+  height: 4000
+shelfie/logoshelfie.jpg:
+  public_id: portfolio/shelfie/logo
+  format: jpg
+  width: 2000
+  height: 2000
+slides/MU 1.jpg:
+  public_id: portfolio/slides/totebag-noir
+  format: jpg
+  width: 2709
+  height: 2709
+slides/billet-evenement_134533-5.jpg:
+  public_id: portfolio/slides/billets
+  format: jpg
+  width: 1956
+  height: 1956
+slides/catalogue.gif:
+  public_id: portfolio/slides/catalogue-anime
+  format: gif
+  width: 1080
+  height: 1080
+slides/sceno.gif:
+  public_id: portfolio/slides/scenographie-animee
+  format: gif
+  width: 1080
+  height: 1080
+slides/slide_branding_1.jpg:
+  public_id: portfolio/slides/serie-affiches
+  format: jpg
+  width: 1540
+  height: 1580
+slides/slide_branding_2.jpg:
+  public_id: portfolio/slides/papeterie
+  format: jpg
+  width: 7091
+  height: 7091
+slides/slide_branding_31.jpg:
+  public_id: portfolio/slides/affiche-deroulee
+  format: jpg
+  width: 3500
+  height: 2380
+slides/totebag2.jpg:
+  public_id: portfolio/slides/totebag
+  format: jpg
+  width: 3333
+  height: 3287
+slides/urban_poster_mockup.jpg:
+  public_id: portfolio/slides/affiches-rue
+  format: jpg
+  width: 2500
+  height: 1667
+tf1/lou.png:
+  public_id: portfolio/tf1/lou
+  format: png
+  width: 1543
+  height: 1076
