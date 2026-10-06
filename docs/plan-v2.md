@@ -9,8 +9,8 @@ Une étape = un commit.
 - [x] 4. Layout (nav pilule, footer, Lenis, transitions)
 - [ ] 5. Home (la liste des projets y passe en #projets ; /work → 301 vers /#projets)
 - [ ] 6. Page projet (partial commun)
-- [ ] 7. About
-- [ ] 8. Mentions légales
-- [ ] 9. Animations (controllers Stimulus)
-- [ ] 10. Recette mobile + accessibilité
-- [ ] 11. Migration des images locales vers Cloudinary
+- [ ] 7. Migration des images locales vers Cloudinary
+- [ ] 8. About
+- [ ] 9. Mentions légales
+- [ ] 10. Animations (controllers Stimulus)
+- [ ] 11. Recette mobile + accessibilité
