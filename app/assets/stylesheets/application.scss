@@ -22,3 +22,11 @@ body {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+// Images et vidéos : pas d'appui long (menu « Enregistrer l'image ») ni de glisser sur mobile
+img,
+video {
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
