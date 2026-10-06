@@ -2,13 +2,11 @@ import { Controller } from "@hotwired/stimulus"
 import { gsap } from "gsap"
 
 // Aperçu au survol de la liste des projets :
-// une carte avec 1 ou 2 images suit le curseur (léger retard),
-// les 2 images alternent en fondu. Images chargées au premier survol de la ligne.
-// Ligne avec data-video (TF1) : un extrait vidéo muet en boucle remplace l'alternance,
-// chargé au premier survol seulement (preload none), en fondu dès qu'il joue.
-// Inactif sur les écrans sans survol ; fixe, sans rotation ni vidéo si mouvement réduit.
+// une carte avec une image par projet suit le curseur (léger retard).
+// Image chargée au premier survol de la ligne.
+// Inactif sur les écrans sans survol ; fixe et sans rotation si mouvement réduit.
 export default class extends Controller {
-  static targets = ["card", "img", "video"]
+  static targets = ["card", "img"]
 
   connect() {
     this.canHover = window.matchMedia("(hover: hover) and (pointer: fine)")
@@ -16,34 +14,21 @@ export default class extends Controller {
     this.visible = false
 
     gsap.set(this.cardTarget, { autoAlpha: 0 })
-    if (this.hasVideoTarget) gsap.set(this.videoTarget, { autoAlpha: 0 })
     this.xTo = gsap.quickTo(this.cardTarget, "x", { duration: 0.6, ease: "power3" })
     this.yTo = gsap.quickTo(this.cardTarget, "y", { duration: 0.6, ease: "power3" })
   }
 
   disconnect() {
-    this.stopAlternate()
-    this.stopVideo()
-    gsap.killTweensOf([this.cardTarget, ...this.imgTargets])
+    gsap.killTweensOf(this.cardTarget)
   }
 
   // mouseenter sur une ligne
   select(event) {
     if (!this.canHover.matches) return
-    const urls = JSON.parse(event.currentTarget.dataset.images || "[]")
-    if (urls.length === 0) return
+    const url = event.currentTarget.dataset.image
+    if (!url) return
 
-    const clip = this.reduced.matches ? null : event.currentTarget.dataset.video
-    const [first, second] = this.imgTargets
-    first.src = urls[0]
-    second.src = urls[1] && !clip && !this.reduced.matches ? urls[1] : ""
-    gsap.set(second, { autoAlpha: 0 })
-
-    this.stopAlternate()
-    this.stopVideo()
-    if (clip) this.startVideo(clip)
-    else if (second.getAttribute("src")) this.startAlternate(second)
-
+    this.imgTarget.src = url
     this.show(event)
   }
 
@@ -58,8 +43,6 @@ export default class extends Controller {
   hide() {
     if (!this.visible) return
     this.visible = false
-    this.stopAlternate()
-    this.stopVideo()
     gsap.to(this.cardTarget, { autoAlpha: 0, duration: 0.3, ease: "power1.out", overwrite: "auto" })
   }
 
@@ -80,37 +63,5 @@ export default class extends Controller {
     gsap.fromTo(this.cardTarget,
       { autoAlpha: 0, scale: 0.85, rotation: -6 },
       { autoAlpha: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.7)", overwrite: "auto" })
-  }
-
-  startAlternate(img) {
-    let shown = false
-    this.timer = setInterval(() => {
-      shown = !shown
-      gsap.to(img, { autoAlpha: shown ? 1 : 0, duration: 0.8, ease: "power1.inOut" })
-    }, 1600)
-  }
-
-  // src posé au premier survol seulement ; ensuite la vidéo déjà chargée est reprise
-  startVideo(url) {
-    if (!this.hasVideoTarget) return
-    const video = this.videoTarget
-    if (video.getAttribute("src") !== url) video.src = url
-    this.onPlaying = () => gsap.to(video, { autoAlpha: 1, duration: 0.4, ease: "power1.out" })
-    video.addEventListener("playing", this.onPlaying, { once: true })
-    video.play().catch(() => {}) // lecture refusée : l'image reste affichée
-  }
-
-  stopVideo() {
-    if (!this.hasVideoTarget) return
-    const video = this.videoTarget
-    video.removeEventListener("playing", this.onPlaying)
-    video.pause()
-    gsap.killTweensOf(video)
-    gsap.set(video, { autoAlpha: 0 })
-  }
-
-  stopAlternate() {
-    clearInterval(this.timer)
-    this.timer = null
   }
 }

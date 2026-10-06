@@ -43,13 +43,10 @@
       data-action="mousemove->project-preview#move mouseleave->project-preview#hide">
     <%# reveal sur les <li> seulement : jamais sur un ancêtre de la carte d'aperçu (fixed) %>
     <% projets.each_with_index do |projet, i| %>
-      <%# Image tirée d'une vidéo (TF1) : l'aperçu joue un extrait de 4 s à partir de la même seconde %>
-      <% source = projet[:images].find { |img| img.is_a?(Hash) && img[:video] } %>
-      <% extrait = source && media_video_extrait_url(source[:video], debut: source[:seconde], duree: 4, largeur: 640) %>
       <li data-reveal-target="item">
+        <%# Aperçu : la première image du projet seulement %>
         <%= link_to projet_path_for(projet), class: "project-row",
-              data: { images: projet[:images].map { |img| media_image_url(img, largeur: 800) }.to_json,
-                      video: extrait,
+              data: { image: media_image_url(projet[:images].first, largeur: 800),
                       action: "mouseenter->project-preview#select" } do %>
           <span class="project-row__num"><%= format("%02d", i + 1) %></span>
           <span class="project-row__nom"><%= projet[:nom] %></span>
@@ -67,8 +64,5 @@
   <%# Carte d'aperçu (partagée par toutes les lignes) %>
   <div class="project-preview" data-project-preview-target="card" aria-hidden="true">
     <img class="project-preview__img" alt="" decoding="async" data-project-preview-target="img">
-    <img class="project-preview__img" alt="" decoding="async" data-project-preview-target="img">
-    <video class="project-preview__img" muted loop playsinline preload="none"
-           data-project-preview-target="video"></video>
   </div>
 </section>

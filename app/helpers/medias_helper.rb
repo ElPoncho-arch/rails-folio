@@ -72,13 +72,6 @@ module MediasHelper
               playsinline: true, "aria-label": alt, **lecture, **html
   end
 
-  # Extrait court et muet d'une vidéo Cloudinary (aperçu au survol de la home)
-  def media_video_extrait_url(public_id, debut:, duree:, largeur:)
-    cloudinary_url public_id, secure: true, resource_type: :video,
-                   transformation: [{ start_offset: debut, duration: duree }, { width: largeur, crop: :limit },
-                                    { fetch_format: "auto:video" }, { quality: :auto }, { audio_codec: "none" }]
-  end
-
   def media_video_image_url(public_id, seconde:, largeur:)
     cloudinary_url public_id, secure: true, resource_type: :video, format: "jpg",
                    transformation: [{ start_offset: seconde }, { width: largeur, crop: :limit },
