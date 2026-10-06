@@ -11,8 +11,9 @@ Une étape = un commit.
 - [x] 6. Page projet (partial commun)
 - [x] 7. Migration des images locales vers Cloudinary
   - à vérifier : public_id `PERSO_BALLON_y1jedw`, cité seulement dans l'ancien script de la page TF1 (supprimé à l'étape 6)
-- [ ] 8. About + Contact (extraire les styles du formulaire dans _contact.scss)
+- [x] 8. About + Contact (extraire les styles du formulaire dans _contact.scss)
 - [ ] 9. Mentions légales
 - [ ] 10. Animations (controllers Stimulus)
 - [ ] 11. Recette mobile + accessibilité
   - revue complète du front avec Fabien, mobile first en priorité (375 px, puis tablette, puis desktop), avant tout déploiement
+  - configurer l'envoi de mail en production sur Heroku (SMTP, variables d'environnement)
