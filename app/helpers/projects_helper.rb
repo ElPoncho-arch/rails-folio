@@ -66,19 +66,22 @@ module ProjectsHelper
   # Un média de page projet :
   #   { image: "ford/x.jpg", alt: "…" }            image locale
   #   { cl_image: "public_id", alt: "…" }          image Cloudinary
-  #   { video: "public_id", controls: true }       vidéo Cloudinary (boucle muette sinon)
+  #   { video: "public_id", alt: "…" }             vidéo Cloudinary en boucle muette
+  #   { video: "public_id", controls: true }       … avec lecteur (autoplay: true pour la lancer aussi)
   def projet_media(media)
     if media[:image]
       image_tag media[:image], alt: media[:alt], loading: "lazy", decoding: "async",
                 width: media[:width], height: media[:height], class: "projet-media__el"
     elsif media[:cl_image]
       cl_image_tag media[:cl_image], alt: media[:alt], loading: "lazy", class: "projet-media__el",
-                   transform: { fetch_format: :auto, quality: :auto }
+                   fetch_format: :auto, quality: :auto
     elsif media[:video]
-      lecture = media[:controls] ? { controls: true } : { autoplay: true, loop: true }
+      # Seuls les attributs actifs sont posés (controls="false" afficherait quand même le lecteur)
+      autoplay = media.fetch(:autoplay, !media[:controls])
+      lecture = { controls: media[:controls], autoplay: autoplay, loop: autoplay }.select { |_, v| v }
       cl_video_tag media[:video], muted: true, playsinline: true, preload: "metadata",
                    class: "projet-media__el", "aria-label": media[:alt],
-                   transform: { fetch_format: :auto, quality: :auto }, **lecture
+                   quality: :auto, **lecture
     end
   end
 end
