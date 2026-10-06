@@ -1,0 +1,8 @@
+// Masques créés par split_title_controller.js (le temps de l'animation).
+// Les titres ont un interlignage serré : on agrandit le masque pour ne pas rogner
+// les accents ni le haut des capitales, sans changer la mise en page.
+.split-char-mask,
+.split-word-mask {
+  padding-block: 0.15em;
+  margin-block: -0.15em;
+}

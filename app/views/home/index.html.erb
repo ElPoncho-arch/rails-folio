@@ -1,11 +1,12 @@
-<%# Home V2 — aperçu au survol : project_preview_controller.js ; apparitions : reveal_controller.js %>
+<%# Home V2 — aperçu au survol : project_preview_controller.js ; apparitions : reveal_controller.js ;
+    nom du hero : split_title_controller.js %>
 <%
   disciplines = %w[graphisme motion UI front]
 %>
 
 <%# Hero %>
 <section class="home-hero">
-  <h1 class="home-hero__name">
+  <h1 class="home-hero__name" data-controller="split-title" data-split-title-type-value="chars">
     <span class="home-hero__line">Fabien</span>
     <span class="home-hero__line home-hero__line--end">Hoarau</span>
   </h1>

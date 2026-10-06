@@ -5,7 +5,7 @@
     <span class="projet-entete__numero"><%= projet_numero(projet) %> / <%= format("%02d", projets.size) %></span>
   </div>
 
-  <h1 class="projet-entete__titre"><%= nom_insecable(projet[:nom]) %></h1>
+  <h1 class="projet-entete__titre" data-controller="split-title" data-split-title-type-value="words"><%= nom_insecable(projet[:nom]) %></h1>
 
   <ul class="projet-entete__tags" aria-label="Disciplines" data-reveal-target="item">
     <% projet[:tags].each do |tag| %>
