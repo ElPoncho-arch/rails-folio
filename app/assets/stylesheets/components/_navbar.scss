@@ -23,6 +23,7 @@
   position: relative;
   z-index: 2; // au-dessus du panneau
   display: flex;
+  flex-wrap: wrap; // texte agrandi (200 %) : le bouton menu passe à la ligne au lieu de sortir de l'écran
   align-items: center;
   gap: 0.25rem;
   width: 100%;
@@ -245,6 +246,7 @@
   top: 1rem;
   left: 1rem;
   z-index: 1100; // au-dessus de la nav
+  max-width: calc(100vw - 2rem); // texte agrandi : ne dépasse pas à droite, même caché
   padding: 0.5rem 1rem;
   border: 1px solid $color-text;
   border-radius: $radius-pill;

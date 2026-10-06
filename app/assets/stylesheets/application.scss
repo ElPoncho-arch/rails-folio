@@ -21,6 +21,7 @@ html, body {
 
 body {
   background-color: $color-bg;
+  overflow-wrap: break-word; // texte agrandi : un mot trop long passe à la ligne au lieu de déborder
 }
 
 @keyframes spin {

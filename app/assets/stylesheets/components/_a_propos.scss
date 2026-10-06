@@ -4,7 +4,7 @@
 
 .apropos {
   display: grid;
-  grid-template-columns: 5.5rem 1fr;
+  grid-template-columns: unquote("min(5.5rem, 30vw)") minmax(0, 1fr); // texte agrandi : le portrait ne grandit pas au-delà de 30vw
   grid-template-areas:
     "portrait entete"
     "corps    corps";

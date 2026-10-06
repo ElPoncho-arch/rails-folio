@@ -211,6 +211,8 @@
 
 .project-row__nom {
   grid-area: nom;
+  min-width: 0; // texte agrandi : le nom passe à la ligne au lieu d'élargir la grille
+  overflow-wrap: anywhere;
   font-family: $font-display;
   font-weight: 500;
   font-size: clamp(1.75rem, 6vw, 4rem);

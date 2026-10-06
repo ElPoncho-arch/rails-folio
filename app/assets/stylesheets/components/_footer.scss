@@ -97,6 +97,10 @@
     margin-top: 6rem;
   }
 
+  > * {
+    min-width: 0; // texte agrandi : les colonnes rétrécissent, les liens passent à la ligne
+  }
+
   li + li {
     margin-top: 0.4rem;
   }
