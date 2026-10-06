@@ -1,7 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
+// Fondu entre les pages (Turbo) + loader pendant le chargement
 export default class extends Controller {
-  static targets = ["container", "overlay"]
+  static targets = ["container"]
 
   connect() {
     this._leave = this.leave.bind(this)
@@ -25,10 +26,7 @@ export default class extends Controller {
   leave() {
     document.documentElement.classList.add("is-leaving")
     if (this.hasContainerTarget) this.containerTarget.classList.add("is-leaving")
-
-    // NEW: affiche le loader
-    const loader = document.getElementById("app-loader")
-    if (loader) loader.classList.add("is-visible")
+    this.loader?.classList.add("is-visible")
   }
 
   enter() {
@@ -37,18 +35,7 @@ export default class extends Controller {
       this.containerTarget.classList.add("is-entering")
       requestAnimationFrame(() => this.containerTarget.classList.remove("is-entering"))
     }
-
-    // NEW: on attend que les images lazy critiques confirment "ready" (voir contrôleur lazy-image)
-    const loader = document.getElementById("app-loader")
-    if (!loader) return
-
-    // Si rien n'est en attente, on cache tout de suite
-    if (!window.__lazyAwaitingCount || window.__lazyAwaitingCount === 0) {
-      loader.classList.remove("is-visible")
-    } else {
-      // sécurité : timeout max au cas où
-      setTimeout(() => loader.classList.remove("is-visible"), 3000)
-    }
+    this.loader?.classList.remove("is-visible")
   }
 
   reset() {
@@ -56,9 +43,10 @@ export default class extends Controller {
       this.containerTarget.classList.remove("is-entering", "is-leaving")
     }
     document.documentElement.classList.remove("is-leaving")
+    this.loader?.classList.remove("is-visible")
+  }
 
-    // NEW: reset loader au cache
-    const loader = document.getElementById("app-loader")
-    if (loader) loader.classList.remove("is-visible")
+  get loader() {
+    return document.getElementById("app-loader")
   }
 }
