@@ -43,10 +43,10 @@ export default class extends Controller {
     // Polices : tant qu'elles ne sont pas chargées, les titres n'ont pas leur hauteur finale
     document.fonts.ready.then(() => this.queueRefresh())
 
-    // Fondu d'entrée de page : #page est décalé de 14 px le temps de la transition,
+    // Fondu d'entrée de page : #contenu est décalé de 14 px le temps de la transition,
     // les déclencheurs et l'ancre placés pendant ce temps sont faux
     this.onPageTransitionEnd = (event) => {
-      if (event.target.id !== "page" || event.propertyName !== "transform") return
+      if (event.target.id !== "contenu" || event.propertyName !== "transform") return
       this.alignAnchor()
       this.queueRefresh()
     }
@@ -93,6 +93,17 @@ export default class extends Controller {
   queueRefresh() {
     clearTimeout(this.refreshTimer)
     this.refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150)
+  }
+
+  // Lien d'évitement : le focus passe sur <main>, la page saute au contenu
+  // (Lenis intercepte les ancres et ne déplace pas le focus)
+  evitement(event) {
+    const cible = document.getElementById("contenu")
+    if (!cible) return
+    event.preventDefault()
+    cible.focus({ preventScroll: true })
+    if (this.lenis) this.lenis.scrollTo(cible, { immediate: true, force: true })
+    else cible.scrollIntoView()
   }
 
   // Ancre à réaligner après le fondu d'entrée, sauf au retour arrière (Turbo ou navigateur) :

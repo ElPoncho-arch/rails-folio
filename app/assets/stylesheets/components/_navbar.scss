@@ -225,14 +225,42 @@
   font-family: $font-mono;
 }
 
+// Lien d'évitement « Aller au contenu » : hors écran, pilule encre sur crème au focus
+.lien-evitement {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1100; // au-dessus de la nav
+  padding: 0.5rem 1rem;
+  border: 1px solid $color-text;
+  border-radius: $radius-pill;
+  background-color: $color-bg;
+  color: $color-text;
+  font-family: $font-mono;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transform: translateY(-200%);
+
+  &:focus-visible {
+    transform: none;
+    outline: 2px solid $color-text;
+    outline-offset: 2px;
+  }
+}
+
 // Défilement bloqué quand le panneau est ouvert
 html.nav-is-open {
   overflow: hidden;
 }
 
 // Le contenu démarre sous la pilule
-#page {
+#contenu {
   padding-top: 5rem;
+
+  // Cible du lien d'évitement : le focus y est posé par programme, sans contour
+  &:focus {
+    outline: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

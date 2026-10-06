@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Apparition au scroll : chaque élément marqué monte de 24 px en fondu, une seule fois.
 // Les éléments qui entrent ensemble sont légèrement décalés.
-// Posé sur #page ; les éléments s'inscrivent avec data-reveal-target="item".
+// Posé sur <main id="contenu"> ; les éléments s'inscrivent avec data-reveal-target="item".
 // - jamais sur un titre animé par split-title (ni sur un bloc qui en contient un) ;
 // - jamais sur un ancêtre d'un élément fixed (ex. carte d'aperçu des projets) :
 //   un transform le décalerait. Les transforms sont retirés après l'apparition.

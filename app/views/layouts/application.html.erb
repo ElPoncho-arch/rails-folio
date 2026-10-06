@@ -19,16 +19,18 @@
 
   <!-- Attache le contrôleur de transition au body -->
   <body data-controller="transition">
+    <a class="lien-evitement" href="#contenu" data-action="smooth-scroll#evitement">Aller au contenu</a>
+
     <div id="app-loader" aria-hidden="true">
       <div class="loader-spinner"></div>
     </div>
 
     <%= render 'shared/navbar' %>
 
-    <!-- Conteneur animé (fade/slide entre pages) -->
-    <div id="page" class="transition-fade is-entering" data-transition-target="container" data-controller="reveal">
+    <!-- Contenu principal, conteneur animé (fade/slide entre pages) ; cible du lien d'évitement -->
+    <main id="contenu" class="transition-fade is-entering" tabindex="-1" data-transition-target="container" data-controller="reveal">
       <%= yield %>
-    </div>
+    </main>
 
 
     <%= render "shared/footer" %>
