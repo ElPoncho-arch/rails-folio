@@ -1,5 +1,7 @@
 <%# À propos — mobile : petit portrait + titre, texte visible dès le premier écran ;
-    desktop (lg) : portrait collant à gauche, contenu à droite. Textes à retravailler en fin de projet. %>
+    tablette et desktop (md) : portrait collant à gauche, contenu à droite. Textes à retravailler en fin de projet.
+    Portrait : source de 485 × 670 sur Cloudinary ; sizes suit la largeur de la colonne (voir _a_propos.scss),
+    paliers du srcset choisis pour 88 px (mobile), ~210 px (tablette) et ~375 px (desktop), en ×1 et ×2. %>
 <% content_for :titre, "À propos" %>
 <% outils = {
      "outils design" => ["Illustrator", "Photoshop", "InDesign", "After Effects", "Premiere Pro", "Figma"],
@@ -9,7 +11,9 @@
 <article class="apropos">
   <div class="apropos__portrait">
     <%= media_image_tag "bio_image.png", alt: "Portrait de Fabien Hoarau en collage",
-                        sizes: "(min-width: 992px) 30vw, 5.5rem", class: "apropos__portrait-img",
+                        sizes: "(min-width: 992px) min(485px, calc((100vw - 10rem) / 3)), " \
+                               "(min-width: 768px) calc((100vw - 8.5rem) / 3), min(30vw, 5.5rem)",
+                        largeurs: [180, 240, 360, 485], class: "apropos__portrait-img",
                         loading: "eager", fetchpriority: "high" %>
   </div>
 

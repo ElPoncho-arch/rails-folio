@@ -16,14 +16,15 @@ module MediasHelper
                    transformation: [{ width: largeur, crop: :limit }, { fetch_format: :auto }, { quality: :auto }]
   end
 
-  # <img> avec srcset si l'image est sur Cloudinary ; sizes décrit la largeur affichée
-  def media_image_tag(chemin, alt:, sizes:, **html)
+  # <img> avec srcset si l'image est sur Cloudinary ; sizes décrit la largeur affichée.
+  # largeurs : paliers du srcset (par défaut LARGEURS), toujours plafonnés à la largeur de la source
+  def media_image_tag(chemin, alt:, sizes:, largeurs: LARGEURS, **html)
     media = media_cloudinary(chemin)
     options = { alt: alt, loading: "lazy", decoding: "async" }.merge(html)
     return image_tag(chemin, **options) unless media
 
     largeur = media["width"]
-    largeurs = (LARGEURS.select { |l| l < largeur } + [[largeur, LARGEURS.last].min]).uniq
+    largeurs = (largeurs.select { |l| l < largeur } + [[largeur, largeurs.last].min]).uniq
     tag.img src: media_image_url(chemin, largeur: [1024, largeur].min),
             srcset: largeurs.map { |l| "#{media_image_url(chemin, largeur: l)} #{l}w" }.join(", "),
             sizes: sizes, width: largeur, height: media["height"], **options.except(:width, :height)
