@@ -1,0 +1,32 @@
+<% projet = projet_courant %>
+<%# Images : tmp/import/beach-bikes/ → bin/rails cloudinary:import_projets (une image absente du manifeste n'est pas affichée) %>
+
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    Mission freelance en collaboration directe avec le client et en lien avec des développeurs back-end, dans un contexte métier complexe (stocks, multi-sites, saisonnalité). Conception d’une interface B2B de gestion pour piloter une flotte de plus de 500 vélos en temps réel. Structuration UI orientée usage métier, mise en place d’un design system et itérations continues pour aligner besoins opérationnels, contraintes techniques et intégration.
+  </p>
+<% end %>
+
+<%= render "projects/blocs", blocs: projet[:blocs] %>
+
+<div class="projet-medias">
+  <%= projet_bloc_medias(
+        { image: "beach-bikes/reservations.png",
+          alt: "Interface Beach Bikes : écran de gestion des réservations" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "beach-bikes/calendrier.png",
+          alt: "Interface Beach Bikes : calendrier des réservations" },
+        { image: "beach-bikes/mobile.png",
+          alt: "Interface Beach Bikes sur mobile" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "beach-bikes/wireframe.png",
+          alt: "Wireframe de l’interface de gestion Beach Bikes" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "beach-bikes/design-system.png",
+          alt: "Design system de l’interface Beach Bikes : couleurs, typographies et composants" }) %>
+</div>
+
+<%= render "projects/navigation", projet: projet %>

@@ -25,4 +25,7 @@ class ProjectsController < ApplicationController
 
   def metropole_grand_paris
   end
+
+  def beach_bikes
+  end
 end

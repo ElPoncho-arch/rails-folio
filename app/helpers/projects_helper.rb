@@ -66,6 +66,38 @@ module ProjectsHelper
           "Supervision des livrables de chaque pôle",
           "Garant de la cohérence DA sur l’ensemble des productions"
         ] }
+      ] },
+    { slug: "beach-bikes", nom: "Beach Bikes Arcachon", tags: %w[UI dev],
+      etiquettes: ["Freelance", "Interface B2B", "Mission en cours", "Équipe de 6 personnes"],
+      images: %w[beach-bikes/reservations.png],
+      role: "UI designer · Développeur front & back",
+      duree: "Production en cours",
+      outils: "Figma · Ruby on Rails · Stimulus · SQL",
+      blocs: [
+        { titre: "Contexte", items: [
+          "Process métier initialement géré sur tableur",
+          "Forte volumétrie (500+ assets)",
+          "Besoin de centralisation multi-canaux",
+          "Environnement évolutif avec contraintes opérationnelles"
+        ] },
+        { titre: "UI / Design system", items: [
+          "Conception de wireframes et maquettes haute fidélité orientées usage métier",
+          "Création d’un design system adapté aux interfaces riches en données",
+          "Itérations continues avec le client, en logique agile",
+          "Collaboration avec le développement pour une intégration cohérente"
+        ] },
+        { titre: "Fonctionnalités clés", items: [
+          "Gestion en temps réel des stocks",
+          "Synchronisation des réservations multi-sources",
+          "Système d’alertes (maintenance, disponibilité)",
+          "Interface de gestion multi-points"
+        ] },
+        { titre: "Livrables", items: [
+          "Design system exploitable et documenté",
+          "Interfaces UI prêtes à intégrer",
+          "Code de production aligné avec les maquettes",
+          "Passation complète avec spécifications et suivi client"
+        ] }
       ] }
   ].freeze
 
