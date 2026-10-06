@@ -7,11 +7,13 @@ class ContactsController < ApplicationController
       return
     end
 
-    ContactMailer.contact_email(@contact.name, @contact.email, @contact.message).deliver_later
+    # Envoi immédiat (pas de file d'attente sur Heroku) : une erreur SMTP est connue tout de suite
+    ContactMailer.contact_email(@contact.name, @contact.email, @contact.message).deliver_now
     redirect_to contact_path, status: :see_other,
                 notice: "Merci, votre message est bien parti ! Je vous réponds rapidement."
   rescue StandardError => e
-    Rails.logger.error "ContactMailer failed: #{e.message}"
+    # Classe de l'erreur seulement : le message SMTP peut contenir des adresses
+    Rails.logger.error "Envoi du formulaire de contact échoué : #{e.class.name}"
     redirect_to contact_path, status: :see_other,
                 alert: "L’envoi a échoué. Réessayez, ou écrivez-moi directement à hoarauf4@gmail.com."
   end
