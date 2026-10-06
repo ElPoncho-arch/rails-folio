@@ -76,18 +76,18 @@
   }
 
   .nav-link {
-    color: #ffff00;
+    color: $color-text;
     transition: background-color .3s, color .3s;
 
     // hover : fond jaune, texte noir
     &:hover {
-      background-color: #ffff00;
-      color: #171717 !important;
+      background-color: $color-accent;
+      color: $color-text !important;
     }
 
     &.active {
-      background-color: #ffff00;
-      color: #171717 !important;
+      background-color: $color-accent;
+      color: $color-text !important;
     }
   }
 }

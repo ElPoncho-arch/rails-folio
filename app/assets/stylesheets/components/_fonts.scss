@@ -1,16 +1,16 @@
 .clash-font {
   font-family: $font-display;
   font-weight: 400;
-  color: #ffff00;
+  color: $color-text;
 }
 .clash-font-bold {
   font-family: $font-display;
   font-weight: 700;
-  color: #ffff00;
+  color: $color-text;
 }
 
 .font-title {
-  color: #ffff00;
+  color: $color-text;
   // taille par défaut (mobile)
   font-size: 4.4rem;
 
@@ -29,7 +29,7 @@
 }
 
 .font-link {
-  color: #ffff00;
+  color: $color-text;
   // taille par défaut (mobile)
   font-size: 3.4rem;
 
@@ -48,7 +48,7 @@
 }
 
 .blue-font-sous-titre {
-  color: #ffff00;
+  color: $color-text;
   // taille par défaut (mobile)
   font-size: 1.5rem;
 
@@ -64,11 +64,11 @@
 }
 
 .blue-txt-title h2 {
-  color: #ffff00;
+  color: $color-text;
 }
 
 .blue-txt-courant {
-  color: #ffff00;
+  color: $color-text;
 }
 
 // Réduire l'interligne sur tes titres h1
@@ -88,5 +88,5 @@ h1.clash-font {
   }
 }
 .text-footer {
-  color: $primary !important;
+  color: $color-text !important;
 }

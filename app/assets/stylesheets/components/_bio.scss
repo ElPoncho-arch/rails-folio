@@ -1,7 +1,7 @@
 .bio-section-number {
   font-family: $font-mono;
   font-size: 7rem;
-  color: rgba(255, 255, 0, 0.12);
+  color: rgba($color-accent, 0.12);
   line-height: 1;
   display: block;
   margin-bottom: -2rem;
@@ -28,8 +28,8 @@
   border-radius: 4px;
 }
 
-.bio-yellow { background-color: #ffff00; }
-.bio-dark   { background-color: #171717; }
+.bio-secondary { background-color: $color-secondary; }
+.bio-base      { background-color: $color-bg; }
 
 .bio-label {
   font-family: $font-mono;
@@ -45,7 +45,7 @@
   font-weight: 700;
   font-size: 10rem;
   line-height: 0.9;
-  color: #171717;
+  color: $color-text;
 }
 
 .bio-accroche {
@@ -53,7 +53,7 @@
   font-weight: 700;
   font-size: 3rem;
   line-height: 0.9;
-  color: #171717;
+  color: $color-text;
 }
 
 .bio-tags {
@@ -66,15 +66,15 @@
   font-family: $font-mono;
   font-size: 0.9rem;
   padding: 0.4rem 1rem;
-  border: 1px solid #ffff00;
-  border-radius: 999px;
-  color: #ffff00;
+  border: 1px solid $color-text;
+  border-radius: $radius-pill;
+  color: $color-text;
   cursor: default;
   transition: background-color 0.2s, color 0.2s;
 
   &:hover {
-    background-color: #ffff00;
-    color: #171717;
+    background-color: $color-accent;
+    color: $color-text;
   }
 }
 

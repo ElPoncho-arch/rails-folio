@@ -2,11 +2,11 @@
 <section class="bio-hero container-fluid px-4 px-md-5 pt-5 pb-3">
   <div class="row align-items-end">
     <div class="col-12 col-md-8">
-      <h1 class="bio-name text-primary mb-2">Fabien<br>Hoarau</h1>
-      <p class="bio-subtitle text-primary">
+      <h1 class="bio-name text-dark mb-2">Fabien<br>Hoarau</h1>
+      <p class="bio-subtitle text-dark">
         Creative front-end developer — Graphic designer — UI/UX designer
       </p>
-      <p class="text-primary lead mt-3">
+      <p class="text-dark lead mt-3">
         Je crée, j'anime et je code.<br>
         Graphiste et motion designer avec une vraie spécialisation UI et front.
       </p>
@@ -18,7 +18,7 @@
 </section>
 
 <%# Profil section %>
-<section class="container-fluid px-4 px-md-5 py-5 bio-yellow">
+<section class="container-fluid px-4 px-md-5 py-5 bio-secondary">
   <div class="row align-items-start">
     <div class="col-12 col-md-4">
       <span class="bio-label">> profil</span>
@@ -42,10 +42,10 @@
 </section>
 
 <%# Skills section %>
-<section class="container-fluid px-4 px-md-5 py-5 bio-dark">
+<section class="container-fluid px-4 px-md-5 py-5 bio-base">
   <div class="row">
     <div class="col-12 col-md-6 mb-5 mb-md-0">
-      <span class="bio-label text-primary">> design tools</span>
+      <span class="bio-label text-dark">> design tools</span>
       <div class="bio-tags mt-4">
         <% ["Illustrator", "Photoshop", "InDesign", "After Effects", "Premiere Pro", "Figma"].each do |tool| %>
           <span class="bio-tag"><%= tool %></span>
@@ -53,7 +53,7 @@
       </div>
     </div>
     <div class="col-12 col-md-6">
-      <span class="bio-label text-primary">> dev tools</span>
+      <span class="bio-label text-dark">> dev tools</span>
       <div class="bio-tags mt-4">
         <% ["HTML/CSS", "JavaScript", "Ruby on Rails", "SQL", "Bootstrap"].each do |tool| %>
           <span class="bio-tag"><%= tool %></span>
@@ -64,7 +64,7 @@
 </section>
 
 <%# CTA section %>
-<section class="container-fluid px-4 px-md-5 py-5 bio-dark bio-cta">
+<section class="container-fluid px-4 px-md-5 py-5 bio-base bio-cta">
   <div class="d-flex flex-wrap justify-content-center align-items-center gap-4">
     <%= link_to asset_path('FabienHoarau_Graphiste.pdf'), target: "_blank", rel: "noopener noreferrer",class: '' do %>
       <%= image_tag "logo-CV.png", class: "rounded", style: "width:60px; height:auto;", alt: "CV" %>

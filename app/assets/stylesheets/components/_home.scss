@@ -30,14 +30,14 @@
       position: absolute;
       top: 0; left: 50%;                              // calqué sur navbar
       width: 0; height: 100%;
-      background-color: #ffff00;
+      background-color: $color-accent;
       z-index: -1;                // toujours derrière le texte
       transition: width .3s ease, left .3s ease;      // ajout de la transition sur left
     }
 
     &:hover {
-      background-color: #ffff00 !important;
-      color: #171717 !important;
+      background-color: $color-accent !important;
+      color: $color-text !important;
     }
 
     &:hover::after {

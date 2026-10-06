@@ -29,7 +29,7 @@
 #page-overlay {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: $color-text;
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--page-duration) var(--page-ease);
