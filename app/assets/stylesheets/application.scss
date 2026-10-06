@@ -2,6 +2,10 @@
 @import "tokens";
 @import "bootstrap_colors";
 
+// Pas de scroll-behavior: smooth de Bootstrap : le défilement doux passe par Lenis,
+// et les sauts programmés (Turbo, ScrollTrigger) doivent rester instantanés
+$enable-smooth-scroll: false;
+
 // 2) ensuite Bootstrap
 @import "bootstrap";
 
