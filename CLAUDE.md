@@ -10,7 +10,7 @@ V2 en cours sur la branche `v2-front` (V1 taguée `v1.0`) : on refait le FRONT, 
 - Pas de base de données (site statique)
 - Médias sur Cloudinary (f_auto, q_auto)
 - Déploiement Heroku : `git push heroku master` (pas main)
-- Preview locale : `bin/dev`
+- Preview locale : `bin/rails server`
 
 ## Direction artistique V2
 Ton : clair, chaleureux, accueillant. Les interactions et animations sont le cœur du site.
