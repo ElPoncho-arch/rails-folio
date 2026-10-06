@@ -20,7 +20,7 @@ export default class extends Controller {
     const isArrow = (el) => el.classList.contains("home-disciplines__arrow")
     const startedAt = performance.now()
 
-    gsap.set(this.itemTargets, { autoAlpha: 0 })
+    gsap.set(this.itemTargets, { opacity: 0 }) // jamais visibility : la liste reste lue par les lecteurs d'écran
     this.trigger = ScrollTrigger.create({
       trigger: this.element,
       start: "top 90%",
@@ -29,14 +29,14 @@ export default class extends Controller {
         this.tween = gsap.fromTo(this.itemTargets,
           { x: (i, el) => (isArrow(el) ? -8 : 0), y: (i, el) => (isArrow(el) ? 0 : 8) },
           {
-            autoAlpha: 1,
+            opacity: 1,
             x: 0,
             y: 0,
             duration: 0.45,
             ease: "back.out(1.2)",
             stagger: 0.06,
             delay: performance.now() - startedAt < 100 ? 1.3 : 0, // après le nom du hero (split_title)
-            clearProps: "transform,opacity,visibility"
+            clearProps: "transform,opacity"
           })
       }
     })
@@ -53,6 +53,6 @@ export default class extends Controller {
     this.trigger = null
     this.tween?.kill()
     this.tween = null
-    gsap.set(this.itemTargets, { clearProps: "transform,opacity,visibility" })
+    gsap.set(this.itemTargets, { clearProps: "transform,opacity" })
   }
 }
