@@ -37,3 +37,6 @@
 
 .DS_Store
 .claude/
+
+# Plus de dépendance npm (importmap) : node_modules ne doit pas revenir dans le dépôt
+/node_modules
