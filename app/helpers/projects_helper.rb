@@ -66,6 +66,7 @@ module ProjectsHelper
   # Un média de page projet :
   #   { image: "ford/x.jpg", alt: "…" }            image locale
   #   { cl_image: "public_id", alt: "…" }          image Cloudinary
+  #   { cl_gif: "public_id", width:, height: }     GIF animé Cloudinary, servi en vidéo
   #   { video: "public_id", alt: "…" }             vidéo Cloudinary en boucle muette (voir media_video_tag)
   #   { video: "public_id", lecteur: true }        … avec lecteur, chargée au clic (largeur:, attente: en option)
   # sizes : largeur affichée, pour le srcset des images Cloudinary (MediasHelper)
@@ -75,6 +76,9 @@ module ProjectsHelper
     elsif media[:image]
       media_image_tag media[:image], alt: media[:alt], sizes: sizes,
                       width: media[:width], height: media[:height], class: "projet-media__el"
+    elsif media[:cl_gif]
+      media_gif_video_tag media[:cl_gif], alt: media[:alt], largeur: media[:width],
+                          width: media[:width], height: media[:height], class: "projet-media__el"
     elsif media[:cl_image]
       cl_image_tag media[:cl_image], alt: media[:alt], loading: "lazy", class: "projet-media__el",
                    fetch_format: :auto, quality: :auto
