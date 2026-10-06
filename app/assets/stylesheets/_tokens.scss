@@ -1,0 +1,22 @@
+// Tokens V2 — source unique des couleurs, typos, rayons et courbes.
+// Importé avant Bootstrap : ne doit produire aucun CSS.
+
+// Couleurs
+$color-bg:        #F6F1E7; // fond crème
+$color-text:      #1C1A17; // texte
+$color-accent:    #FF5A36; // tomate : bandes, badges, survols, formes — jamais pour du texte courant
+$color-secondary: #FFD8C2; // pêche
+
+// Typos (familles déclarées à l'étape 2)
+$font-display: 'ClashDisplay', sans-serif;  // titres
+$font-mono:    'Fragment Mono', monospace;  // texte, nav, tags, numéros
+
+// Rayons
+$radius-card: 1.5rem;
+$radius-pill: 999px;
+
+// Animations (équivalent CSS de back.out GSAP)
+$ease-soft:     cubic-bezier(0.25, 1, 0.5, 1);
+$ease-back-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+$duration-fast: 0.3s;
+$duration-base: 0.6s;
