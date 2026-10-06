@@ -1,14 +1,17 @@
-<%# Navigation projet précédent / suivant (en boucle) — locals : projet %>
+<%# Navigation projet précédent / suivant (en boucle) — locals : projet.
+    magnetic : seul le texte bouge, le fond du lien reste en place. %>
 <% precedent = projet_voisin(projet, -1) %>
 <% suivant   = projet_voisin(projet, 1) %>
 
 <nav class="projet-nav" aria-label="Autres projets" data-reveal-target="item">
-  <%= link_to projet_path_for(precedent), class: "projet-nav__lien", rel: "prev" do %>
-    <span class="projet-nav__sens">← précédent</span>
-    <span class="projet-nav__nom"><%= nom_insecable(precedent[:nom]) %></span>
+  <%= link_to projet_path_for(precedent), class: "projet-nav__lien", rel: "prev",
+        data: { controller: "magnetic", magnetic_strength_value: 0.12 } do %>
+    <span class="projet-nav__sens" data-magnetic-target="item">← précédent</span>
+    <span class="projet-nav__nom" data-magnetic-target="item"><%= nom_insecable(precedent[:nom]) %></span>
   <% end %>
-  <%= link_to projet_path_for(suivant), class: "projet-nav__lien projet-nav__lien--suivant", rel: "next" do %>
-    <span class="projet-nav__sens">suivant →</span>
-    <span class="projet-nav__nom"><%= nom_insecable(suivant[:nom]) %></span>
+  <%= link_to projet_path_for(suivant), class: "projet-nav__lien projet-nav__lien--suivant", rel: "next",
+        data: { controller: "magnetic", magnetic_strength_value: 0.12 } do %>
+    <span class="projet-nav__sens" data-magnetic-target="item">suivant →</span>
+    <span class="projet-nav__nom" data-magnetic-target="item"><%= nom_insecable(suivant[:nom]) %></span>
   <% end %>
 </nav>
