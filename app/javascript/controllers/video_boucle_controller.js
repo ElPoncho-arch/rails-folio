@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Vidéo muette en boucle (helpers media_video_tag / media_gif_video_tag).
+// Vidéo muette en boucle (helper media_video_tag ; les GIF servis en vidéo n'en ont pas).
 // - bouton lecture / pause toujours présent (WCAG 2.2.2), ajouté dans le cadre de la vidéo ;
 // - pause hors de l'écran, reprise en revenant ;
 // - mouvement réduit : en pause sur l'image d'attente, lecture seulement au clic.
