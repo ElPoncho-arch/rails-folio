@@ -1,48 +1,33 @@
-<div class="container-fluid px-4 px-md-5 my-4">
-  <h1 class="d-block text-start my-5 clash-font-bold font-title">/ Abécédaire</h1>
+<% projet = projet_courant %>
 
-  <div class="row">
-    <div class="col-12 col-md-8 mb-5">
-      <p class="blue-txt-courant lead">
-        L’abécédaire est un livre d’apprentissage de l’alphabet. Ici nous prenons
-        le thème du monde du skate.
-        Chaque lettre à travers un mélange
-        de photographie et typographie
-        raconte cette histoire en mettant
-        en avant les pionniers qui ont fait
-        vivre ce sport jusqu’aux tricks,
-        lieux mythiques et événements
-        géants d’aujourd’hui.
-      </p>
-    </div>
-  </div>
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    L’abécédaire est un livre d’apprentissage de l’alphabet. Ici, nous prenons
+    le thème du monde du skate. Chaque lettre, à travers un mélange de photographie
+    et de typographie, raconte cette histoire en mettant en avant les pionniers
+    qui ont fait vivre ce sport, jusqu’aux tricks, lieux mythiques et événements
+    géants d’aujourd’hui.
+  </p>
+<% end %>
 
-  <div class="cards my-5">
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'abc/livre.jpg' %>); background-size: cover; background-position: center;">
-    </div>
+<div class="projet-medias">
+  <%= render "projects/media_paire", medias: [
+        { image: "abc/livre.jpg",
+          alt: "Couverture de l’Abécédaire posée contre un mur : grandes lettres et photo de skate en noir et blanc" },
+        { image: "abc/mu-double2.jpg",
+          alt: "Double page de l’Abécédaire : la lettre P en photo-typographie noir et blanc" }
+      ] %>
 
-    <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'abc/mu-double2.jpg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-  </div>
+  <%= render "projects/media_paire", medias: [
+        { image: "abc/mu-double.jpg",
+          alt: "Double page de l’Abécédaire : la lettre M en noir et blanc" },
+        { image: "abc/abc.jpg",
+          alt: "Les 26 lettres de l’Abécédaire, chacune composée à partir de photos de skate" }
+      ] %>
 
-  <div class="cards my-5">
-     <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'abc/mu-double.jpg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'abc/abc.jpg' %>); background-size: cover; background-position: center;">
-    </div>
-  </div>
-
-
-  <div class="full-width-card my-5">
-    <div class="card-content">
-      <%= image_tag 'abc/mu-page.jpg',
-            alt: 'Urban Poster Mockup',
-            class: 'img-fluid' %>
-    </div>
-  </div>
-
+  <%= render "projects/media_pleine",
+        media: { image: "abc/mu-page.jpg", width: 3208, height: 2190,
+                 alt: "Pages de l’Abécédaire étalées : lettres composées de photos de skate en noir et blanc" } %>
 </div>
+
+<%= render "projects/navigation", projet: projet %>
