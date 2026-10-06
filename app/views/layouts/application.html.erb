@@ -24,9 +24,7 @@
 
   <!-- Attache le contrôleur de transition au body -->
   <body data-controller="transition">
-    <% unless controller_name == 'home' && action_name == 'index' %>
-      <%= render 'shared/navbar' %>
-    <% end %>
+    <%= render 'shared/navbar' %>
 
     <!-- Conteneur animé (fade/slide entre pages) -->
     <div id="page" class="transition-fade is-entering" data-transition-target="container">
