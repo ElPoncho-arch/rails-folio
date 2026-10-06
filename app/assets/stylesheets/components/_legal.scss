@@ -1,0 +1,85 @@
+// Mentions légales — mise en page de lecture simple, mobile first.
+
+.legal {
+  max-width: 48rem;
+  padding: 1.5rem 1rem 0;
+  font-family: $font-mono;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: $color-text;
+
+  @include respond-to(md) {
+    padding: 2rem 3rem 0;
+    font-size: 1rem;
+  }
+
+  p {
+    margin: 0 0 0.75em;
+  }
+
+  a {
+    color: $color-text;
+    text-decoration-color: $color-accent;
+    text-underline-offset: 0.2em;
+  }
+}
+
+.legal__titre {
+  margin: 0;
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 11vw, 6rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+}
+
+.legal__maj {
+  margin-top: 1rem;
+  opacity: 0.7;
+}
+
+.legal__section {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba($color-text, 0.12);
+}
+
+.legal__sous-titre {
+  margin: 0 0 1rem;
+  font-family: $font-display;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  line-height: 1.1;
+}
+
+// Libellé au-dessus en mobile, à gauche dès md
+.legal__infos {
+  display: grid;
+  gap: 0.25rem 1.5rem;
+  margin: 0;
+
+  @include respond-to(md) {
+    grid-template-columns: 14rem 1fr;
+  }
+
+  dt {
+    font-weight: 400;
+    opacity: 0.6;
+  }
+
+  dd {
+    margin: 0 0 0.75rem;
+
+    @include respond-to(md) {
+      margin: 0;
+    }
+  }
+}
+
+// Champ manquant : bien visible tant qu'il n'est pas renseigné
+.legal__manquant {
+  padding: 0.1rem 0.5rem;
+  border: 1px dashed $color-text;
+  border-radius: $radius-pill;
+  background-color: $color-secondary;
+}

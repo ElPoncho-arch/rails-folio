@@ -1,5 +1,66 @@
-<%# Contenu rédigé à l'étape 9 %>
-<section class="container-fluid px-4 px-md-5 py-5">
-  <h1 class="clash-font-bold">Mentions légales</h1>
-  <p class="text-dark mt-3">Page en cours de rédaction.</p>
-</section>
+<%# Mentions légales — version minimale. SIRET et adresse : à renseigner (affichés « à compléter » tant qu'ils sont vides). %>
+<% siret   = nil %>
+<% adresse = nil %>
+<% a_completer = tag.span("à compléter", class: "legal__manquant") %>
+
+<article class="legal">
+  <header class="legal__entete">
+    <h1 class="legal__titre">Mentions légales</h1>
+    <p class="legal__maj">Dernière mise à jour : 6 octobre 2026</p>
+  </header>
+
+  <section class="legal__section" aria-labelledby="legal-editeur">
+    <h2 id="legal-editeur" class="legal__sous-titre">Éditeur du site</h2>
+    <dl class="legal__infos">
+      <dt>Nom</dt>                         <dd>Fabien Hoarau, micro-entrepreneur</dd>
+      <dt>SIRET</dt>                       <dd><%= siret || a_completer %></dd>
+      <dt>Adresse</dt>                     <dd><%= adresse || a_completer %></dd>
+      <dt>E-mail</dt>                      <dd><a href="mailto:hoarauf4@gmail.com">hoarauf4@gmail.com</a></dd>
+      <dt>Directeur de la publication</dt> <dd>Fabien Hoarau</dd>
+    </dl>
+  </section>
+
+  <section class="legal__section" aria-labelledby="legal-hebergement">
+    <h2 id="legal-hebergement" class="legal__sous-titre">Hébergement</h2>
+    <p>
+      Heroku, Inc., 415 Mission Street, Suite 300, San Francisco, CA 94105, États-Unis,
+      société du groupe Salesforce, Inc. (Salesforce Tower, 415 Mission Street, 3rd Floor,
+      San Francisco, CA 94105). Téléphone (standard Salesforce) : +1 800 664 9073.
+    </p>
+    <p>Les images et vidéos du site sont hébergées et diffusées par Cloudinary.</p>
+  </section>
+
+  <section class="legal__section" aria-labelledby="legal-donnees">
+    <h2 id="legal-donnees" class="legal__sous-titre">Données personnelles</h2>
+    <p>
+      Le formulaire de contact recueille votre nom, votre adresse e-mail et votre message,
+      uniquement pour répondre à votre demande. Ces informations me sont transmises par e-mail
+      (Gmail) et ne sont pas enregistrées sur le site.
+    </p>
+    <p>Elles sont conservées 3 ans après notre dernier échange.</p>
+    <p>
+      Vous pouvez demander à accéder à vos données, à les corriger ou à les supprimer en écrivant à
+      <a href="mailto:hoarauf4@gmail.com">hoarauf4@gmail.com</a>.
+    </p>
+  </section>
+
+  <section class="legal__section" aria-labelledby="legal-cookies">
+    <h2 id="legal-cookies" class="legal__sous-titre">Cookies</h2>
+    <p>
+      Le site ne dépose qu'un cookie technique de session, nécessaire à son fonctionnement.
+      Aucun cookie de mesure d'audience ou de publicité n'est utilisé.
+    </p>
+  </section>
+
+  <section class="legal__section" aria-labelledby="legal-credits">
+    <h2 id="legal-credits" class="legal__sous-titre">Crédits</h2>
+    <p>
+      TF1 — E-learning : réalisé au sein de l'agence Tremplin Numérique, avec ses illustrateurs
+      et motion designers.
+    </p>
+    <p>
+      Les marques citées appartiennent à leurs propriétaires respectifs ; certaines identités
+      présentées sont des propositions non commandées.
+    </p>
+  </section>
+</article>
