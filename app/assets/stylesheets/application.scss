@@ -6,8 +6,9 @@
 @import "bootstrap";
 
 // 3) puis le reste de vos styles
-@import "components/index";
 @import "clash-display";
+@import "fragment-mono";
+@import "components/index";
 
 
 // @import "custom";
@@ -17,7 +18,6 @@ html, body {
 }
 
 body {
-  font-family: 'ClashDisplay-Medium', sans-serif;
   background-color: #171717;        // couleur unie
   // background-color: #e8e8e8;        // couleur unie
   opacity: 1;

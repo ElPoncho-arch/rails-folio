@@ -1,0 +1,20 @@
+/**
+* Font Family: Fragment Mono — auto-hébergée (pas de Google Fonts, RGPD)
+* Une seule graisse : Regular + Italique.
+* Usage : font-family: $font-mono;
+*/
+@font-face {
+  font-family: 'Fragment Mono';
+  src: url(asset-path('fragment-mono-v6-latin-regular.woff2')) format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fragment Mono';
+  src: url(asset-path('fragment-mono-v6-latin-italic.woff2')) format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}

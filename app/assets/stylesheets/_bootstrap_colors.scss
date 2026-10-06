@@ -23,5 +23,9 @@ $gray-900:  #212529 !default;
 $body-bg:    $color-bg !default;
 $body-color: $color-text !default;
 
+// Typos : texte en Fragment Mono, titres en ClashDisplay
+$font-family-base:     $font-mono !default;
+$headings-font-family: $font-display !default;
+
 // override du SVG du navbar-toggler pour utiliser $primary
 $navbar-light-toggler-icon-bg: url("data:image/svg+xml;charset=UTF-8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23#{str-slice('#{$primary}', 2)}' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");

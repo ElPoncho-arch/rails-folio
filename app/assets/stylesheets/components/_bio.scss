@@ -1,5 +1,5 @@
 .bio-section-number {
-  font-family: 'ClashDisplay-Extralight', sans-serif;
+  font-family: $font-mono;
   font-size: 7rem;
   color: rgba(255, 255, 0, 0.12);
   line-height: 1;
@@ -8,7 +8,7 @@
 }
 
 .bio-subtitle {
-  font-family: 'ClashDisplay-Light', sans-serif;
+  font-family: $font-mono;
   font-size: 1.1rem;
   letter-spacing: 0.03em;
   opacity: 0.7;
@@ -32,7 +32,7 @@
 .bio-dark   { background-color: #171717; }
 
 .bio-label {
-  font-family: 'ClashDisplay-Medium', sans-serif;
+  font-family: $font-mono;
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   text-transform: lowercase;
@@ -41,14 +41,16 @@
 }
 
 .bio-name {
-  font-family: 'ClashDisplay-Bold', sans-serif;
+  font-family: $font-display;
+  font-weight: 700;
   font-size: 10rem;
   line-height: 0.9;
   color: #171717;
 }
 
 .bio-accroche {
-  font-family: 'ClashDisplay-Bold', sans-serif;
+  font-family: $font-display;
+  font-weight: 700;
   font-size: 3rem;
   line-height: 0.9;
   color: #171717;
@@ -61,7 +63,7 @@
 }
 
 .bio-tag {
-  font-family: 'ClashDisplay-Medium', sans-serif;
+  font-family: $font-mono;
   font-size: 0.9rem;
   padding: 0.4rem 1rem;
   border: 1px solid #ffff00;
@@ -77,7 +79,8 @@
 }
 
 .bio-cta-title {
-  font-family: 'ClashDisplay-Bold', sans-serif;
+  font-family: $font-display;
+  font-weight: 700;
   font-size: clamp(3rem, 8vw, 7rem);
   line-height: 0.85;
 }

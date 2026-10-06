@@ -1,16 +1,11 @@
-@font-face {
-  font-family: 'clashDisplay-Variable';
-  src: url(asset-path('clashDisplay-Variable.woff2')) format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
 .clash-font {
-  font-family: 'ClashDisplay-Regular', sans-serif;
+  font-family: $font-display;
+  font-weight: 400;
   color: #ffff00;
 }
 .clash-font-bold {
-  font-family: 'ClashDisplay-Bold', sans-serif;
+  font-family: $font-display;
+  font-weight: 700;
   color: #ffff00;
 }
 
