@@ -1,32 +1,27 @@
-<div class="container-fluid px-4 px-md-5 my-4">
-  <h1 class="d-block text-start my-5 clash-font-bold font-title">/ Mango</h1>
+<% projet = projet_courant %>
 
-  <div class="row">
-    <div class="col-12 col-md-8 mb-5">
-      <p class="blue-txt-courant lead">
-        Le nouveau logo de Mango Edition a pour principal objectif de traduire le renouveau à travers le cycle.<br>
-        Le logo circulaire est impactant, reconnaissable et mémorisable pour tous.<br>
-        Le cercle symbolise l’unité et la régularité de la marque.
-        </p>
-    </div>
-  </div>
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    Le nouveau logo de Mango Édition a pour principal objectif de traduire le renouveau à travers le cycle.
+    Le logo circulaire est impactant, reconnaissable et mémorisable pour tous.
+    Le cercle symbolise l’unité et la régularité de la marque.
+  </p>
+<% end %>
 
-  <div class="cards my-5">
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'mango/logomango2.gif' %>); background-size: cover; background-position: center;">
-    </div>
+<div class="projet-medias">
+  <%= render "projects/media_paire", medias: [
+        { image: "mango/logomango2.gif",
+          alt: "Logo Mango Édition animé : le nom entouré d’un cercle orange" },
+        { image: "mango/carte.jpg",
+          alt: "Cartes de visite Mango Édition, recto et verso" }
+      ] %>
 
-    <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'mango/carte.jpg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-  </div>
-  <div class="cards my-5">
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'mango/livre-1.jpg' %>); background-size: cover; background-position: center;">
-    </div>
-
-    <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'mango/livre-2.jpg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-  </div>
+  <%= render "projects/media_paire", medias: [
+        { image: "mango/livre-1.jpg",
+          alt: "Couverture d’un livre Mango Édition, illustration végétale sur fond corail" },
+        { image: "mango/livre-2.jpg",
+          alt: "Deux livres de cuisine Mango Édition aux couvertures illustrées, sur fond turquoise" }
+      ] %>
 </div>
+
+<%= render "projects/navigation", projet: projet %>
