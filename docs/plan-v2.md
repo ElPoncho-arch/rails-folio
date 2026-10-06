@@ -6,7 +6,7 @@ Une étape = un commit.
 - [x] 1. Tokens SCSS
 - [x] 2. Typos (ClashDisplay + Fragment Mono auto-hébergées, pas de Google Fonts)
 - [x] 3. Purge des anciennes couleurs (#171717, #ffff00)
-- [ ] 4. Layout (nav pilule, footer, Lenis, transitions)
+- [x] 4. Layout (nav pilule, footer, Lenis, transitions)
 - [ ] 5. Home (la liste des projets y passe en #projets ; /work → 301 vers /#projets)
 - [ ] 6. Page projet (partial commun)
 - [ ] 7. About
