@@ -1,6 +1,7 @@
 // Page À propos — mobile first.
 // Mobile : petit portrait à gauche du titre, puis le texte (visible dès le premier écran).
-// Desktop (lg) : portrait collant dans la colonne de gauche, contenu à droite.
+// Tablette et desktop (md) : portrait collant dans la colonne de gauche, contenu à droite.
+// Portrait au ratio d'origine (485 × 670), jamais affiché plus large que la source.
 
 .apropos {
   display: grid;
@@ -12,14 +13,15 @@
   padding: 1.5rem 1rem 0;
 
   @include respond-to(md) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    grid-template-areas:
+      "portrait entete"
+      "portrait corps";
+    gap: 2rem 2.5rem;
     padding: 2rem 3rem 0;
   }
 
   @include respond-to(lg) {
-    grid-template-columns: 1fr 2fr;
-    grid-template-areas:
-      "portrait entete"
-      "portrait corps";
     gap: 2.5rem 4rem;
   }
 }
@@ -29,7 +31,7 @@
   grid-area: portrait;
   align-self: center;
 
-  @include respond-to(lg) {
+  @include respond-to(md) {
     align-self: start;
     position: sticky;
     top: 6rem; // sous la nav
@@ -39,9 +41,8 @@
 .apropos__portrait-img {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
+  max-width: 485px; // largeur native de la source (485 × 670) : jamais agrandie, donc jamais floue
+  height: auto; // ratio d'origine (attributs width et height) : le collage apparaît en entier
   border-radius: 1rem;
   background-color: $color-secondary;
 
