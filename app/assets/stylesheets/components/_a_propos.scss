@@ -61,7 +61,7 @@
   margin: 0;
   font-family: $font-display;
   font-weight: 600;
-  font-size: clamp(2.5rem, 11vw, 9rem);
+  font-size: $font-size-titre-page;
   line-height: 0.9;
   letter-spacing: -0.02em;
   color: $color-text;

@@ -11,6 +11,9 @@ $color-secondary: #FFD8C2; // pêche
 $font-display: 'ClashDisplay', sans-serif;  // titres
 $font-mono:    'Fragment Mono', monospace;  // texte, nav, tags, numéros
 
+// Tailles de titres (h1) : XXL pour les projets, intermédiaire pour les autres pages
+$font-size-titre-page: clamp(2.5rem, 11vw, 7.5rem); // à propos, contact, mentions légales
+
 // Rayons
 $radius-card: 1.5rem;
 $radius-pill: 999px;
