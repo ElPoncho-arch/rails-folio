@@ -76,8 +76,12 @@ module CloudinaryMigration
     MANIFESTE.write(entete + donnees.sort.to_h.to_yaml.delete_prefix("---\n"))
   end
 
+  # L'API config ne renvoie pas le mode pour ce compte : en mode « dynamic »,
+  # les ressources portent un champ asset_folder.
   def self.mode_dossiers
-    Cloudinary::Api.config(settings: true).dig("settings", "folder_mode")
+    ressource = Cloudinary::Api.resources(max_results: 1)["resources"].first
+    return nil unless ressource
+    ressource.key?("asset_folder") ? "dynamic" : "fixed"
   end
 end
 
