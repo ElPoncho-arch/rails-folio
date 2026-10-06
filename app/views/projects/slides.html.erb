@@ -1,59 +1,52 @@
-<div class="container-fluid px-4 px-md-5 my-4">
-  <h1 class="d-block text-start my-5 clash-font-bold font-title">/ Slides</h1>
+<% projet = projet_courant %>
 
-  <div class="row">
-    <div class="col-12 col-md-8 mb-5">
-      <p class="blue-txt-courant lead">
-        Slides est une exposition dédiée aux adeptes et aux curieux qui souhaitent découvrir ou redécouvrir l’histoire du skateboard. Cette pratique qui a émergé au début des années 60 en Californie. Cette exposition reflète la diversité et la richesse de ce mode de vie : par le biais d’œuvres modernes, vidéos, tirages numériques, installations interactives, art sonore, design, marques emblématiques. Le logo destiné à l’exposition Slides a été inspiré par les codes de la culture skate des années 80. Il intègre à la fois un aspect underground de par sa typographie, qui rassemble des influences punk, street et brut. Et par la couleur qui symbolise le dynamisme et la curiosité. L’encadrement autour de chaque caractère rappelle des lettres découpées qui évoquent le « do it yourself » largement inscrit dans cette culture.
-      </p>
-    </div>
-  </div>
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    Slides est une exposition dédiée aux adeptes et aux curieux qui souhaitent découvrir
+    ou redécouvrir l’histoire du skateboard, une pratique qui a émergé au début des
+    années 1960 en Californie. Cette exposition reflète la diversité et la richesse de
+    ce mode de vie par le biais d’œuvres modernes, vidéos, tirages numériques,
+    installations interactives, art sonore, design et marques emblématiques.
+  </p>
+  <p>
+    Le logo destiné à l’exposition Slides a été inspiré par les codes de la culture
+    skate des années 1980. Il intègre un aspect underground à la fois par sa typographie,
+    qui rassemble des influences punk, street et brut, et par la couleur, qui symbolise
+    le dynamisme et la curiosité. L’encadrement autour de chaque caractère rappelle des
+    lettres découpées qui évoquent le «&nbsp;do it yourself&nbsp;» largement inscrit
+    dans cette culture.
+  </p>
+<% end %>
 
-  <div class="full-width-card my-5">
-    <div class="card-content">
-      <%= image_tag 'slides/slide_branding_31.jpg',
-            alt: 'Slide Branding 31',
-            class: 'img-fluid' %>
-    </div>
-  </div>
+<div class="projet-medias">
+  <%= render "projects/media_pleine",
+        media: { image: "slides/slide_branding_31.jpg", width: 3500, height: 2380,
+                 alt: "Affiche Slides jaune et noire déroulée, avec billets et cartes" } %>
 
-  <div class="cards my-5">
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'slides/slide_branding_1.jpg' %>); background-size: cover; background-position: center;">
-    </div>
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'slides/slide_branding_2.jpg' %>); background-size: cover; background-position: center;">
-    </div>
-  </div>
+  <%= render "projects/media_paire", medias: [
+        { image: "slides/slide_branding_1.jpg",
+          alt: "Série d’affiches Slides jaunes et noires" },
+        { image: "slides/slide_branding_2.jpg",
+          alt: "Papeterie Slides : papier à en-tête, enveloppes et cartes jaunes et noires" }
+      ] %>
 
-  <!-- nouvelle rangée de cards avec GIFs -->
-  <div class="cards my-5">
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'slides/billet-evenement_134533-5.jpg' %>); background-size: cover; background-position: center;">
-    </div>
+  <%= render "projects/media_paire", medias: [
+        { image: "slides/billet-evenement_134533-5.jpg",
+          alt: "Billets d’entrée de l’exposition Slides, jaunes et noirs" },
+        { image: "slides/catalogue.gif",
+          alt: "Catalogue de l’exposition Slides feuilleté, en animation" }
+      ] %>
 
-    <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'slides/catalogue.gif', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-  </div>
+  <%= render "projects/media_pleine",
+        media: { image: "slides/urban_poster_mockup.jpg", width: 2500, height: 1667,
+                 alt: "Trois affiches Slides collées sur un mur extérieur, chaises bleues au premier plan" } %>
 
-  <div class="full-width-card my-5">
-    <div class="card-content">
-      <%= image_tag 'slides/urban_poster_mockup.jpg',
-            alt: 'Urban Poster Mockup',
-            class: 'img-fluid' %>
-    </div>
-  </div>
-
-  <div class="cards my-5">
-
-  <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'slides/sceno.gif', alt: 'Scéno animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'slides/totebag2.jpg' %>); background-size: cover; background-position: center;">
-    </div>
-  </div>
-
-
+  <%= render "projects/media_paire", medias: [
+        { image: "slides/sceno.gif",
+          alt: "Scénographie de l’exposition Slides dans le bâtiment, en animation" },
+        { image: "slides/totebag2.jpg",
+          alt: "Tote bag Slides blanc accroché à un mur" }
+      ] %>
 </div>
+
+<%= render "projects/navigation", projet: projet %>
