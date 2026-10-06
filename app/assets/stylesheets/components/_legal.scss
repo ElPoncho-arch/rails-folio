@@ -75,11 +75,3 @@
     }
   }
 }
-
-// Champ manquant : bien visible tant qu'il n'est pas renseigné
-.legal__manquant {
-  padding: 0.1rem 0.5rem;
-  border: 1px dashed $color-text;
-  border-radius: $radius-pill;
-  background-color: $color-secondary;
-}
