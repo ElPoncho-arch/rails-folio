@@ -103,11 +103,14 @@
   white-space: nowrap;
   font-family: $font-display;
   font-weight: 500;
-  font-size: clamp(2rem, 7vw, 5rem);
+  // Mobile : « graphisme → motion » (10,9 em) remplit pile la largeur entre les marges,
+  // la suite de la bande reste hors champ
+  font-size: calc((100vw - 2rem) / 10.9);
   line-height: 1;
 
   @include respond-to(md) {
     padding: 0 3rem;
+    font-size: clamp(2rem, 7vw, 5rem);
   }
 }
 
