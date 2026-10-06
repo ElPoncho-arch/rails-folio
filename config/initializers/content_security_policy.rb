@@ -16,7 +16,8 @@ Rails.application.configure do
     policy.connect_src :self, :https
   end
 
-  # Generate session nonces for permitted importmap and inline scripts.
-  config.content_security_policy_nonce_generator = ->(request) { request.session.id.to_s }
+  # Nonce aléatoire par requête pour l'importmap et les scripts inline
+  # (l'ancien nonce basé sur la session était vide à la première visite).
+  config.content_security_policy_nonce_generator = ->(_request) { SecureRandom.base64(16) }
   config.content_security_policy_nonce_directives = %w(script-src)
 end
