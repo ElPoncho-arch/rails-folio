@@ -129,7 +129,7 @@
   height: 0.6rem;
   border-radius: 50%;
   background-color: $color-accent;
-  animation: nav-dot-pulse 2.4s $ease-soft infinite;
+  animation: nav-dot-pulse 2.4s $ease-soft 3; // 3 pulsations (7,2 s) puis arrêt
 }
 
 @keyframes nav-dot-pulse {
