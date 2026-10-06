@@ -38,6 +38,8 @@ Ton : clair, chaleureux, accueillant. Les interactions et animations sont le cœ
 - Petites étapes, une étape = un commit.
 - Répondre en français, contenu du site en français sans anglicismes inutiles.
 - Toutes les réponses en français, y compris les messages intermédiaires.
+- Sass (sassc) : jamais min() ni max() avec des unités mixtes (rem et vw, px et %…), le compresseur de production les relit comme fonctions Sass et le build casse. Utiliser uniquement clamp() ou calc().
+- Après toute modification SCSS : lancer `RAILS_ENV=production SECRET_KEY_BASE=dummy bin/rails assets:precompile` (doit passer sans erreur), puis `bin/rails assets:clobber` pour ne pas commiter public/assets.
 
 ## Pages
 home, page projet (template unique), about (à adapter à la nouvelle DA), mentions légales (/mentions-legales).
