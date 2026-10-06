@@ -37,6 +37,7 @@ Ton : clair, chaleureux, accueillant. Les interactions et animations sont le cœ
 - AVANT toute suppression : lister l'arbo (`ls`, `git status`) et demander confirmation.
 - Petites étapes, une étape = un commit.
 - Répondre en français, contenu du site en français sans anglicismes inutiles.
+- Toutes les réponses en français, y compris les messages intermédiaires.
 
 ## Pages
 home, page projet (template unique), about (à adapter à la nouvelle DA), mentions légales (/mentions-legales).
@@ -52,7 +53,7 @@ Slides, MAC VAL, La Colline, Ford, Mango Edition, TF1 (à récupérer), Shelfie,
 5. Home (la liste des projets y passe en #projets ; /work → 301 vers /#projets)
 6. Page projet (partial commun)
 7. Migration des images locales vers Cloudinary
-8. About
+8. About + Contact (styles du formulaire extraits dans _contact.scss)
 9. Mentions légales
 10. Animations (controllers Stimulus)
 11. Recette mobile + accessibilité
