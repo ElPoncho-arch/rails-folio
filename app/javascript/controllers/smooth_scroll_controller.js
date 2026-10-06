@@ -13,6 +13,11 @@ export default class extends Controller {
     this.tick = (time) => this.lenis?.raf(time * 1000)
     this.stop = () => this.lenis?.stop()
     this.sync = this.sync.bind(this)
+    this.onVisit = (event) => (this.visitAction = event.detail.action)
+    this.onLoad = () => {
+      this.markAnchor()
+      this.sync()
+    }
 
     this.motion = window.matchMedia("(prefers-reduced-motion: reduce)")
     this.onMotionChange = () => (this.motion.matches ? this.destroyLenis() : this.createLenis())
@@ -20,7 +25,8 @@ export default class extends Controller {
 
     // Transitions de page (le controller transition reste inchangé)
     document.addEventListener("turbo:visit", this.stop)
-    document.addEventListener("turbo:load", this.sync)
+    document.addEventListener("turbo:visit", this.onVisit)
+    document.addEventListener("turbo:load", this.onLoad)
 
     // Menu mobile de la nav
     document.addEventListener("nav:open", this.stop)
@@ -38,19 +44,25 @@ export default class extends Controller {
     document.fonts.ready.then(() => this.queueRefresh())
 
     // Fondu d'entrée de page : #page est décalé de 14 px le temps de la transition,
-    // les déclencheurs mesurés pendant ce temps sont faux
+    // les déclencheurs et l'ancre placés pendant ce temps sont faux
     this.onPageTransitionEnd = (event) => {
-      if (event.target.id === "page" && event.propertyName === "transform") this.queueRefresh()
+      if (event.target.id !== "page" || event.propertyName !== "transform") return
+      this.alignAnchor()
+      this.queueRefresh()
     }
     document.addEventListener("transitionend", this.onPageTransitionEnd)
 
     if (!this.motion.matches) this.createLenis()
+
+    // Premier chargement : turbo:load part avant la connexion de ce controller
+    this.markAnchor()
   }
 
   disconnect() {
     this.motion.removeEventListener("change", this.onMotionChange)
     document.removeEventListener("turbo:visit", this.stop)
-    document.removeEventListener("turbo:load", this.sync)
+    document.removeEventListener("turbo:visit", this.onVisit)
+    document.removeEventListener("turbo:load", this.onLoad)
     document.removeEventListener("nav:open", this.stop)
     document.removeEventListener("nav:close", this.sync)
     document.removeEventListener("load", this.onMediaLoad, true)
@@ -81,6 +93,23 @@ export default class extends Controller {
   queueRefresh() {
     clearTimeout(this.refreshTimer)
     this.refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150)
+  }
+
+  // Ancre à réaligner après le fondu d'entrée, sauf au retour arrière (Turbo ou navigateur) :
+  // la position restaurée doit être gardée
+  markAnchor() {
+    const restore = this.visitAction
+      ? this.visitAction === "restore"
+      : performance.getEntriesByType("navigation")[0]?.type === "back_forward"
+    this.visitAction = null
+    const id = decodeURIComponent(location.hash.slice(1))
+    this.anchor = id && !restore ? document.getElementById(id) : null
+  }
+
+  // Lenis respecte le scroll-margin de la cible
+  alignAnchor() {
+    if (this.anchor?.isConnected) this.lenis?.scrollTo(this.anchor, { immediate: true, force: true })
+    this.anchor = null
   }
 
   // Après une visite Turbo : on repart de la position fixée par Turbo

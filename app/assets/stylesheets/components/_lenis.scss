@@ -5,6 +5,12 @@ html.lenis body {
   height: auto;
 }
 
+// Place de la barre de défilement toujours réservée : pas de saut de mise en page
+// quand elle disparaît (Lenis arrêté pendant une transition ou le menu mobile)
+html {
+  scrollbar-gutter: stable;
+}
+
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
