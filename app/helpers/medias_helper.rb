@@ -39,8 +39,9 @@ module MediasHelper
                         width: media["width"], height: media["height"], **html.except(:width, :height, :sizes)
   end
 
-  # GIF animé déjà sur Cloudinary (public_id) servi en vidéo muette en boucle
-  # (autoplay natif, sans bouton : choix éditorial, le GIF tourne toujours)
+  # GIF animé déjà sur Cloudinary (public_id) servi en vidéo muette en boucle,
+  # pilotée comme les autres boucles par video_boucle_controller.js
+  # (bouton lecture / pause, pause hors écran, arrêt en mouvement réduit — WCAG 2.2.2)
   def media_gif_video_tag(public_id, alt:, largeur:, **html)
     cadre = { width: largeur, crop: :limit }
     video = cloudinary_url public_id, secure: true,
@@ -49,7 +50,8 @@ module MediasHelper
                              transformation: [cadre, { page: 1 }, { fetch_format: :auto }, { quality: :auto }]
 
     tag.video tag.source(src: video), poster: attente, autoplay: true, muted: true, loop: true,
-              playsinline: true, preload: "metadata", "aria-label": alt, **html
+              playsinline: true, preload: "metadata", "aria-label": alt,
+              data: { controller: "video-boucle" }, **html
   end
 
   # Vidéo Cloudinary (public_id existant, inchangé) :
