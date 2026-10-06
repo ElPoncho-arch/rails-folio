@@ -1,32 +1,79 @@
-<div class="home-bg">
-  <div class="container-fluid px-4 px-md-5 my-2">
+<%# Home V2 — structure statique (animations à l'étape 9) %>
+<%
+  projets = [
+    { nom: "TF1 — E-learning", path: "/projects/tf1",        tags: %w[motion UI],               image: "tf1/lou.png" },
+    { nom: "Shelfie",          path: "/projects/shelfie",    tags: %w[UI dev],                  image: "shelfie/logoshelfie.jpg" },
+    { nom: "MAC VAL",          path: "/projects/macval",     tags: %w[identité motion],         image: "macval/Branding_Mockup_2.jpg" },
+    { nom: "Slides",           path: "/projects/slides",     tags: %w[identité motion],         image: "slides/slide_branding_31.jpg" },
+    { nom: "Mango Édition",    path: "/projects/mango",      tags: %w[identité motion],         image: "mango/livre-1.jpg" },
+    { nom: "La Colline",       path: "/projects/la_colline", tags: %w[packaging illustration],  image: "la_colline_couv2.jpg" },
+    { nom: "Ford",             path: "/projects/ford",       tags: %w[édition],                 image: "ford_couv.jpg" },
+    { nom: "Abécédaire",       path: "/projects/abskate",    tags: %w[édition],                 image: "abskate_couv.jpg" }
+  ]
+  disciplines = %w[graphisme motion UI front]
+%>
 
-    <!-- Ligne des prénoms -->
-    <div class="row align-items-center">
-      <div class="col-12 col-md-6">
-        <h1 class="clash-font-bold font-title m-0">Fabien</h1>
-      </div>
-      <div class="col-12 col-md-6 text-md-end">
-        <h1 class="clash-font-bold font-title m-0">Hoarau</h1>
-      </div>
-    </div>
+<%# Hero %>
+<section class="home-hero">
+  <h1 class="home-hero__name">
+    <span class="home-hero__line">
+      <span>Fabien</span>
+      <%= image_tag "bio_image.png", class: "home-hero__portrait", alt: "" %>
+    </span>
+    <span class="home-hero__line home-hero__line--end">Hoarau</span>
+  </h1>
 
-    <!-- Ligne de la description + liens -->
-    <div class="row align-items-center mt-2">
-      <div class="col-12 col-md-8">
-        <h5 class="text-dark fs-3 m-0">
-          Creative front end developer<br>
-          Graphic designer<br>
-          UI/UX designer
-        </h5>
-      </div>
-      <div class="col-12 col-md-4 text-md-end mt-3 mt-md-0 home-links">
-        <%= link_to '> projets', work_path,
-             class: 'font-link text-decoration-none mb-1 px-3' %>
-        <%= link_to '> bio',    bio_path,
-             class: 'font-link text-decoration-none px-3' %>
-      </div>
-    </div>
+  <p class="home-hero__accroche">
+    Graphiste et motion designer, je crée des identités qui bougent et je les code.
+  </p>
 
+  <div class="home-hero__meta">
+    <span class="home-hero__badge">
+      <span class="nav-pill__dot" aria-hidden="true"></span> disponible pour de nouveaux projets
+    </span>
+    <a class="home-hero__down" href="#projets">↓ projets</a>
   </div>
-</div>
+</section>
+
+<%# Bande des disciplines %>
+<section class="home-disciplines" aria-label="Disciplines">
+  <ul class="home-disciplines__list">
+    <% disciplines.each_with_index do |discipline, i| %>
+      <li><%= discipline %></li>
+      <% if i < disciplines.size - 1 %>
+        <li class="home-disciplines__arrow" aria-hidden="true">→</li>
+      <% end %>
+    <% end %>
+  </ul>
+</section>
+
+<%# Liste des projets %>
+<section id="projets" class="home-projects" aria-labelledby="projets-titre">
+  <h2 id="projets-titre" class="home-projects__titre">projets <span>(<%= format("%02d", projets.size) %>)</span></h2>
+
+  <ol class="home-projects__list">
+    <% projets.each_with_index do |projet, i| %>
+      <li>
+        <%= link_to projet[:path], class: "project-row" do %>
+          <span class="project-row__num"><%= format("%02d", i + 1) %></span>
+          <span class="project-row__nom"><%= projet[:nom] %></span>
+          <span class="project-row__tags">
+            <% projet[:tags].each do |tag| %>
+              <span class="tag-pill"><%= tag %></span>
+            <% end %>
+          </span>
+          <span class="project-row__fleche" aria-hidden="true">→</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+</section>
+
+<%# Défilement de vignettes (statique ; animé à l'étape 9) %>
+<section class="home-thumbs" aria-hidden="true">
+  <div class="home-thumbs__track">
+    <% projets.each do |projet| %>
+      <%= image_tag projet[:image], class: "home-thumbs__img", alt: "", loading: "lazy", decoding: "async" %>
+    <% end %>
+  </div>
+</section>

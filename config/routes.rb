@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'bio', to: 'pages#bio'
   get 'contact', to: 'pages#contact', as: :contact
   get 'mentions-legales', to: 'pages#mentions_legales', as: :mentions_legales
-  get 'work', to: 'home#work', as: 'work'
+  get 'work', to: redirect('/#projets', status: 301)
 
   resources :contacts, only: [:create]
 end
