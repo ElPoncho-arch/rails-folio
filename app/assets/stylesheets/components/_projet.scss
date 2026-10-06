@@ -35,6 +35,10 @@ $projet-gouttiere-md: 3rem;
     color: $color-text;
     background-size: 100% 2px;
   }
+
+  &:focus-visible {
+    @include contour-focus;
+  }
 }
 
 .projet-entete__numero {
@@ -172,6 +176,11 @@ $projet-gouttiere-md: 3rem;
     height: 100%;
     object-fit: cover;
   }
+}
+
+// Teaser avec lecteur natif : même contour que le reste du site
+video.projet-media__el:focus-visible {
+  @include contour-focus;
 }
 
 .projet-media__el {

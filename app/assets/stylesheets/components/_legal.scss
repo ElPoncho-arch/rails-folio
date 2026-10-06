@@ -28,6 +28,10 @@
       text-decoration-color: $color-accent;
       text-decoration-thickness: 2px;
     }
+
+    &:focus-visible {
+      @include contour-focus;
+    }
   }
 }
 

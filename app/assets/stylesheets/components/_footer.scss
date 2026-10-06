@@ -79,6 +79,10 @@
   &:focus-visible {
     background-size: 100% 2px;
   }
+
+  &:focus-visible {
+    @include contour-focus($color-bg);
+  }
 }
 
 // Colonnes : empilées en mobile, sur une ligne dès md
@@ -114,10 +118,8 @@
     }
   }
 
-  a:focus-visible,
-  .footer-main__email:focus-visible {
-    outline: 2px solid $color-bg;
-    outline-offset: 3px;
+  a:focus-visible {
+    @include contour-focus($color-bg);
   }
 }
 

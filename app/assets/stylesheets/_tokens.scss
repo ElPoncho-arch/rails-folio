@@ -23,3 +23,9 @@ $ease-soft:     cubic-bezier(0.25, 1, 0.5, 1);
 $ease-back-out: cubic-bezier(0.34, 1.56, 0.64, 1);
 $duration-fast: 0.3s;
 $duration-base: 0.6s;
+
+// Contour de focus commun : encre sur fond clair, crème sur le footer
+@mixin contour-focus($couleur: $color-text) {
+  outline: 2px solid $couleur;
+  outline-offset: 2px;
+}
