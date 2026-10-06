@@ -54,7 +54,8 @@
   color: $color-text;
   text-decoration: none;
   word-break: break-all;
-  background-image: linear-gradient($color-accent, $color-accent);
+  // Soulignement encre au repos (repère du lien), tomate au survol et au focus
+  background-image: linear-gradient($color-text, $color-text);
   background-size: 100% 2px;
   background-position: 0 85%;
   background-repeat: no-repeat;
@@ -62,6 +63,7 @@
   &:hover,
   &:focus-visible {
     color: $color-text;
+    background-image: linear-gradient($color-accent, $color-accent);
     background-size: 100% 0.5em;
   }
 
@@ -153,7 +155,7 @@ textarea.formulaire__saisie {
 
   &::before {
     content: "✕";
-    color: $color-accent; // pictogramme (forme), le texte reste en encre
+    color: $color-text; // en encre : le tomate (2,76:1) est trop pâle pour un pictogramme porteur de sens
   }
 
   &[hidden] {

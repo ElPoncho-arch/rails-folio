@@ -83,6 +83,12 @@
     background-color: $color-accent;
     color: $color-text;
   }
+
+  // Même contour que les autres pilules : le fond tomate seul ne suffit pas à signaler le focus
+  &:focus-visible {
+    outline: 2px solid $color-text;
+    outline-offset: 2px;
+  }
 }
 
 // --- Bande des disciplines ---

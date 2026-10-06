@@ -68,6 +68,15 @@
   }
 }
 
+// Page en cours : le fond tomate seul (2,76:1 sur crème) ne suffit pas,
+// un soulignement encre de 2 px sous le mot porte l'état (5,6:1 sur tomate)
+.nav-pill__link[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-color: $color-text;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
 .nav-pill__brand {
   margin-right: auto;
 }
@@ -214,6 +223,11 @@
   &[aria-current="page"] {
     color: $color-text;
     background-size: 100% 0.12em;
+  }
+
+  // Page en cours : soulignement encre (le tomate reste pour le survol et le focus)
+  &[aria-current="page"]:not(:hover):not(:focus-visible) {
+    background-image: linear-gradient($color-text, $color-text);
   }
 }
 

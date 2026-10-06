@@ -17,10 +17,17 @@
     margin: 0 0 0.75em;
   }
 
+  // Liens au fil du texte : soulignement encre au repos, tomate au survol et au focus
   a {
     color: $color-text;
-    text-decoration-color: $color-accent;
+    text-decoration-color: $color-text;
     text-underline-offset: 0.2em;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration-color: $color-accent;
+      text-decoration-thickness: 2px;
+    }
   }
 }
 
