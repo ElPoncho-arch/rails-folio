@@ -1,0 +1,245 @@
+// Page projet V2 — partials projects/_entete, _media_pleine, _media_paire, _navigation.
+// Mobile first ; mêmes marges que la home (1rem, 3rem dès md).
+
+$projet-gouttiere: 1rem;
+$projet-gouttiere-md: 3rem;
+
+// --- En-tête ---
+.projet-entete {
+  padding: 2rem $projet-gouttiere 3rem;
+
+  @include respond-to(md) {
+    padding: 3rem $projet-gouttiere-md 4rem;
+  }
+}
+
+.projet-entete__haut {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $font-mono;
+  font-size: 0.95rem;
+}
+
+.projet-entete__retour {
+  color: $color-text;
+  text-decoration: none;
+  background-image: linear-gradient($color-accent, $color-accent);
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size $duration-fast $ease-soft;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text;
+    background-size: 100% 2px;
+  }
+}
+
+.projet-entete__numero {
+  opacity: 0.6;
+}
+
+.projet-entete__titre {
+  margin: 2rem 0 1.25rem;
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: clamp(3.5rem, 14vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: $color-text;
+}
+
+.projet-entete__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Texte puis infos en mobile ; infos à gauche, texte à droite dès lg
+.projet-entete__corps {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba($color-text, 0.12);
+
+  @include respond-to(lg) {
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+}
+
+.projet-entete__texte {
+  max-width: 60ch;
+  font-family: $font-mono;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: $color-text;
+
+  @include respond-to(lg) {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 1.15rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.projet-entete__infos {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  @include respond-to(lg) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  dt {
+    font-weight: 400;
+    opacity: 0.6;
+  }
+
+  dd {
+    margin: 0.25rem 0 1.25rem;
+  }
+
+  dd:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// --- Médias ---
+.projet-medias {
+  display: grid;
+  gap: 1rem;
+  padding: 0 $projet-gouttiere;
+
+  @include respond-to(md) {
+    gap: 1.5rem;
+    padding: 0 $projet-gouttiere-md;
+  }
+}
+
+.projet-media {
+  margin: 0;
+}
+
+.projet-media__grille {
+  display: grid;
+  gap: 1rem;
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.projet-media__cadre {
+  overflow: hidden;
+  border-radius: $radius-card;
+  background-color: $color-secondary; // visible le temps du chargement
+}
+
+// Recadré : carré par défaut (paires), ou ratio passé en style (pleine largeur)
+.projet-media__cadre--recadre {
+  aspect-ratio: 1 / 1;
+
+  .projet-media__el {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.projet-media__el {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.projet-media__legende {
+  margin-top: 0.75rem;
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+// --- Navigation précédent / suivant ---
+.projet-nav {
+  display: grid;
+  margin-top: 6rem;
+  border-top: 1px solid rgba($color-text, 0.12);
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.projet-nav__lien {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem $projet-gouttiere;
+  color: $color-text;
+  text-decoration: none;
+  transition: background-color $duration-fast $ease-soft;
+
+  & + & {
+    border-top: 1px solid rgba($color-text, 0.12);
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: $color-secondary;
+    color: $color-text;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-text;
+    outline-offset: -2px;
+  }
+
+  @include respond-to(md) {
+    padding: 3rem $projet-gouttiere-md;
+
+    & + & {
+      border-top: 0;
+      border-left: 1px solid rgba($color-text, 0.12);
+    }
+  }
+}
+
+.projet-nav__lien--suivant {
+  @include respond-to(md) {
+    align-items: flex-end;
+    text-align: right;
+  }
+}
+
+.projet-nav__sens {
+  font-family: $font-mono;
+  font-size: 0.95rem;
+}
+
+.projet-nav__nom {
+  font-family: $font-display;
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projet-entete__retour,
+  .projet-nav__lien {
+    transition: none;
+  }
+}

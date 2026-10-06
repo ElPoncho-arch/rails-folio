@@ -1,0 +1,11 @@
+<%# Média pleine largeur — locals : media (voir projet_media), ratio (ex. "16 / 9", facultatif), legende (facultatif) %>
+<% ratio = local_assigns[:ratio] %>
+<figure class="projet-media projet-media--pleine">
+  <div class="projet-media__cadre <%= 'projet-media__cadre--recadre' if ratio %>"
+       <%= tag.attributes(style: "aspect-ratio: #{ratio}") if ratio %>>
+    <%= projet_media(media) %>
+  </div>
+  <% if local_assigns[:legende] %>
+    <figcaption class="projet-media__legende"><%= legende %></figcaption>
+  <% end %>
+</figure>

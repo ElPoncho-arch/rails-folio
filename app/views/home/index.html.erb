@@ -1,15 +1,5 @@
 <%# Home V2 — aperçu au survol : project_preview_controller.js ; autres animations à l'étape 10 %>
 <%
-  projets = [
-    { nom: "TF1 — E-learning", path: "/projects/tf1",        tags: %w[motion UI],               images: %w[tf1/lou.png] },
-    { nom: "Shelfie",          path: "/projects/shelfie",    tags: %w[UI dev],                  images: %w[shelfie/3840154.jpg] },
-    { nom: "MAC VAL",          path: "/projects/macval",     tags: %w[identité motion],         images: %w[macval/Branding_Mockup_2.jpg macval/magnet.jpg] },
-    { nom: "Slides",           path: "/projects/slides",     tags: %w[identité motion],         images: ["slides/slide_branding_31.jpg", "slides/MU 1.jpg"] },
-    { nom: "Mango Édition",    path: "/projects/mango",      tags: %w[identité motion],         images: %w[mango/livre-2.jpg mango/tote.jpg] },
-    { nom: "La Colline",       path: "/projects/la_colline", tags: %w[packaging illustration],  images: %w[lacolline/Glass_Oil_Bottle_2.jpg lacolline/mobile2.jpg] },
-    { nom: "Ford",             path: "/projects/ford",       tags: %w[édition],                 images: %w[ford/Mockup_Ford.jpg] },
-    { nom: "Abécédaire",       path: "/projects/abskate",    tags: %w[édition],                 images: %w[abc/livre.jpg abskate_couv.jpg] }
-  ]
   disciplines = %w[graphisme motion UI front]
 %>
 
@@ -52,7 +42,7 @@
       data-action="mousemove->project-preview#move mouseleave->project-preview#hide">
     <% projets.each_with_index do |projet, i| %>
       <li>
-        <%= link_to projet[:path], class: "project-row",
+        <%= link_to projet_path_for(projet), class: "project-row",
               data: { images: projet[:images].map { |img| asset_path(img) }.to_json,
                       action: "mouseenter->project-preview#select" } do %>
           <span class="project-row__num"><%= format("%02d", i + 1) %></span>

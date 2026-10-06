@@ -1,0 +1,34 @@
+<%# En-tête de page projet — usage : render layout: "projects/entete", locals: { projet: projet_courant } do … texte … end %>
+<header class="projet-entete">
+  <div class="projet-entete__haut">
+    <%= link_to "← tous les projets", "/#projets", class: "projet-entete__retour" %>
+    <span class="projet-entete__numero"><%= projet_numero(projet) %> / <%= format("%02d", projets.size) %></span>
+  </div>
+
+  <h1 class="projet-entete__titre"><%= projet[:nom] %></h1>
+
+  <ul class="projet-entete__tags" aria-label="Disciplines">
+    <% projet[:tags].each do |tag| %>
+      <li class="tag-pill"><%= tag %></li>
+    <% end %>
+  </ul>
+
+  <div class="projet-entete__corps">
+    <div class="projet-entete__texte">
+      <%= yield %>
+    </div>
+
+    <% if projet[:contexte] || projet[:role] %>
+      <dl class="projet-entete__infos">
+        <% if projet[:contexte] %>
+          <dt>contexte</dt>
+          <dd><%= projet[:contexte] %></dd>
+        <% end %>
+        <% if projet[:role] %>
+          <dt>rôle</dt>
+          <dd><%= projet[:role] %></dd>
+        <% end %>
+      </dl>
+    <% end %>
+  </div>
+</header>

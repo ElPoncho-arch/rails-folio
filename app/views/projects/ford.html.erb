@@ -1,27 +1,20 @@
-<div class="container-fluid px-4 px-md-5 my-4">
-  <h1 class="d-block text-start my-4 clash-font-bold font-title">/ Ford</h1>
+<% projet = projet_courant %>
 
-  <div class="row">
-    <div class="col-12 col-md-8 mb-5">
-      <p class="blue-txt-courant lead">
-        Brochure retraçant l’histoire de
-        la marque Ford de ses débuts en
-        1891 en passant par le fordisme,
-        la création du modèle T, la
-        célèbre Mustang, ses courses
-        du 24 heures du Mans, jusqu’à
-        nos jours.
-      </p>
-    </div>
-  </div>
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    Brochure retraçant l’histoire de la marque Ford de ses débuts en 1891
+    en passant par le fordisme, la création du modèle T, la célèbre Mustang,
+    ses courses du 24 heures du Mans, jusqu’à nos jours.
+  </p>
+<% end %>
 
-  <div class="cards my-5">
-    <div class="project-card d-block text-decoration-none h-100"
-         style="background-image: url(<%= asset_path 'ford/MU_Couv_Ford.jpg' %>); background-size: cover; background-position: center;">
-    </div>
-
-    <div class="project-card d-block text-decoration-none h-100 video-card">
-      <%= image_tag 'ford/Mockup_Ford.jpg', alt: 'Catalogue animation', class: 'img-fluid w-100 h-100 object-fit-cover' %>
-    </div>
-  </div>
+<div class="projet-medias">
+  <%= render "projects/media_paire", medias: [
+        { image: "ford/MU_Couv_Ford.jpg",
+          alt: "Couverture de la brochure Ford : grandes lettres découpées blanches et bleues sur fond noir" },
+        { image: "ford/Mockup_Ford.jpg",
+          alt: "Doubles pages de la brochure étalées : typographies colorées, photos d'archives, hommage à Paul Rand" }
+      ] %>
 </div>
+
+<%= render "projects/navigation", projet: projet %>
