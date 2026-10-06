@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'projects/abskate', to: 'projects#abskate'
   get 'projects/mango', to: 'projects#mango'
   get 'projects/la_colline', to: 'projects#la_colline'
+  get 'projects/metropole-grand-paris', to: 'projects#metropole_grand_paris'
 
   get "up" => "rails/health#show", as: :rails_health_check
 

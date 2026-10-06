@@ -44,9 +44,9 @@
     <%# reveal sur les <li> seulement : jamais sur un ancêtre de la carte d'aperçu (fixed) %>
     <% projets.each_with_index do |projet, i| %>
       <li data-reveal-target="item">
-        <%# Aperçu : la première image du projet seulement %>
+        <%# Aperçu : la première image disponible du projet (aucune → pas de carte) %>
         <%= link_to projet_path_for(projet), class: "project-row",
-              data: { image: media_image_url(projet[:images].first, largeur: 800),
+              data: { image: projet_apercu_url(projet),
                       action: "mouseenter->project-preview#select" } do %>
           <span class="project-row__num"><%= format("%02d", i + 1) %></span>
           <span class="project-row__nom"><%= projet[:nom] %></span>

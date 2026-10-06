@@ -33,7 +33,40 @@ module ProjectsHelper
     { slug: "abskate", nom: "Abécédaire", tags: %w[édition],
       images: %w[abc/livre.jpg abskate_couv.jpg],
       contexte: "Projet éditorial",
-      role: "Conception complète : direction artistique, mise en page" }
+      role: "Conception complète : direction artistique, mise en page" },
+    { slug: "metropole-grand-paris", nom: "Métropole du Grand Paris", tags: %w[identité],
+      etiquettes: ["PVV / Tremplin Numérique", "Identité visuelle", "2022 / 2025", "Équipe de 15 personnes"],
+      images: %w[metropole-grand-paris/ia-dans-la-ville.png],
+      role: "Responsable du pôle graphisme",
+      duree: "3 ans et demi",
+      outils: "Illustrator · InDesign · Photoshop · After Effects · Premiere Pro",
+      blocs: [
+        { titre: "Contexte", items: [
+          "Agence PVV, partenariat Bluenove",
+          "Client final : Métropole du Grand Paris",
+          "Cycle de 10 événements urbains sur 1 an",
+          "Thématique : enjeux et avenir de la ville",
+          "20 à 30 participants par journée, profils institutionnels"
+        ] },
+        { titre: "Direction artistique", items: [
+          "Proposition et application de la DA sur tous les supports",
+          "Direction artistique reconduite sur l’ensemble du cycle",
+          "Coordination créative entre 4 pôles de production",
+          "Cohérence visuelle maintenue sur tous les supports et formats"
+        ] },
+        { titre: "Production", items: [
+          "Habillage motion pour intégration vidéo",
+          "Kakémono et supports print grand format",
+          "Visuels de communication avant et après événement",
+          "Documentation Behance publiée en fin de conférence"
+        ] },
+        { titre: "Résultats", items: [
+          "Responsable d’une équipe de 15 personnes",
+          "Coordination des pôles photo, motion et vidéo",
+          "Supervision des livrables de chaque pôle",
+          "Garant de la cohérence DA sur l’ensemble des productions"
+        ] }
+      ] }
   ].freeze
 
   def projets
@@ -44,9 +77,35 @@ module ProjectsHelper
     "/projects/#{projet[:slug]}"
   end
 
-  # Projet de la page en cours (une action = un projet)
+  # Projet de la page en cours (une action = un projet ; slug « a-b » → action « a_b »)
   def projet_courant
-    @projet_courant ||= PROJETS.find { |p| p[:slug] == action_name }
+    @projet_courant ||= PROJETS.find { |p| p[:slug].tr("-", "_") == action_name }
+  end
+
+  # Un média s'affiche seulement s'il existe : une image locale (chemin) doit figurer dans
+  # config/cloudinary_assets.yml (les fichiers ne sont plus dans app/assets/images).
+  # Les autres sources (public_id Cloudinary, vidéo) sont toujours disponibles.
+  def media_disponible?(media)
+    chemin = media.is_a?(Hash) ? media[:image] : media
+    return true unless chemin.is_a?(String)
+
+    media_cloudinary(chemin).present?
+  end
+
+  # URL de l'aperçu au survol de la home : première image disponible, sinon rien
+  def projet_apercu_url(projet)
+    image = projet[:images].find { |i| media_disponible?(i) }
+    media_image_url(image, largeur: 800) if image
+  end
+
+  # Bloc de médias tolérant aux absents : 2 disponibles → paire, 1 → pleine largeur, 0 → rien
+  def projet_bloc_medias(*medias, ratio: nil)
+    presents = medias.select { |m| media_disponible?(m) }
+    case presents.size
+    when 0 then nil
+    when 1 then render("projects/media_pleine", media: presents.first, ratio: ratio)
+    else render("projects/media_paire", medias: presents.first(2))
+    end
   end
 
   def projet_numero(projet)

@@ -22,4 +22,7 @@ class ProjectsController < ApplicationController
 
   def la_colline
   end
+
+  def metropole_grand_paris
+  end
 end

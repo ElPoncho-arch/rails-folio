@@ -1,0 +1,40 @@
+<% projet = projet_courant %>
+<%# Images : tmp/import/mgp/ → bin/rails cloudinary:import_projets (une image absente du manifeste n'est pas affichée) %>
+
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    En poste chez PVV en tant que responsable du pôle graphisme, avec la charge de la production visuelle complète pour la Métropole du Grand Paris via notre partenaire Bluenove. Pilotage d’un cycle de 10 événements urbains sur un an, au sein d’une équipe de 15 personnes réparties sur 4 pôles : graphisme, photo, motion et vidéo. Direction artistique dans le respect d’une charte travaillée avec le client, coordination de l’ensemble des productions avant, pendant et après chaque journée. Direction artistique reconduite sur l’ensemble du cycle, signe de la satisfaction du client.
+  </p>
+<% end %>
+
+<%= render "projects/blocs", blocs: projet[:blocs] %>
+
+<div class="projet-medias">
+  <%= projet_bloc_medias(
+        { image: "metropole-grand-paris/agoras-salle.png",
+          alt: "Une Agora de la Métropole du Grand Paris : la salle pendant un événement" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "metropole-grand-paris/kakemono.png",
+          alt: "Kakémono de l’événement aux couleurs de la Métropole du Grand Paris" },
+        { image: "metropole-grand-paris/ia-dans-la-ville.png",
+          alt: "Visuel de communication « L’IA dans la ville »" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "metropole-grand-paris/explorateurs.png",
+          alt: "Visuel « Explorateurs » d’une journée du cycle" },
+        { image: "metropole-grand-paris/visite-terrain.png",
+          alt: "Visite de terrain avec les participants" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "metropole-grand-paris/atelier.png",
+          alt: "Atelier de travail entre participants" },
+        { image: "metropole-grand-paris/behance.png",
+          alt: "Documentation du projet publiée sur Behance" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "metropole-grand-paris/intervenant.png",
+          alt: "Intervenant pendant une conférence du cycle" }) %>
+</div>
+
+<%= render "projects/navigation", projet: projet %>

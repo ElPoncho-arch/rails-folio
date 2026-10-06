@@ -9,8 +9,9 @@
 
   <h1 class="projet-entete__titre" data-controller="split-title" data-split-title-type-value="words"><%= nom_insecable(projet[:nom]) %></h1>
 
-  <ul class="projet-entete__tags" aria-label="Disciplines" data-reveal-target="item">
-    <% projet[:tags].each do |tag| %>
+  <%# Étiquettes détaillées si le projet en a (nouveaux projets), sinon les tags de la home %>
+  <ul class="projet-entete__tags" aria-label="Étiquettes" data-reveal-target="item">
+    <% (projet[:etiquettes] || projet[:tags]).each do |tag| %>
       <li class="tag-pill"><%= tag %></li>
     <% end %>
   </ul>
@@ -20,15 +21,13 @@
       <%= yield %>
     </div>
 
-    <% if projet[:contexte] || projet[:role] %>
+    <% infos = { "contexte" => projet[:contexte], "rôle" => projet[:role],
+                 "durée" => projet[:duree], "outils" => projet[:outils] }.compact %>
+    <% if infos.any? %>
       <dl class="projet-entete__infos">
-        <% if projet[:contexte] %>
-          <dt>contexte</dt>
-          <dd><%= projet[:contexte] %></dd>
-        <% end %>
-        <% if projet[:role] %>
-          <dt>rôle</dt>
-          <dd><%= projet[:role] %></dd>
+        <% infos.each do |libelle, valeur| %>
+          <dt><%= libelle %></dt>
+          <dd><%= valeur %></dd>
         <% end %>
       </dl>
     <% end %>

@@ -26,7 +26,7 @@ export default class extends Controller {
   select(event) {
     if (!this.canHover.matches) return
     const url = event.currentTarget.dataset.image
-    if (!url) return
+    if (!url) return this.hide() // projet sans image : la carte précédente ne reste pas affichée
 
     this.imgTarget.src = url
     this.show(event)

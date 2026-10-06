@@ -1,0 +1,14 @@
+<%# Blocs de détail d'un projet (Contexte, Direction artistique…) — locals : blocs
+    ([{ titre:, items: [] }], voir ProjectsHelper). 4 colonnes en desktop, 1 en mobile. %>
+<section class="projet-blocs" aria-label="Détails du projet" data-reveal-target="item">
+  <% blocs.each do |bloc| %>
+    <div class="projet-bloc">
+      <h2 class="projet-bloc__titre"><%= bloc[:titre] %></h2>
+      <ul class="projet-bloc__liste">
+        <% bloc[:items].each do |item| %>
+          <li><%= item %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</section>

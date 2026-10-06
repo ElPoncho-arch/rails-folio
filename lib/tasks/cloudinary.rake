@@ -3,6 +3,8 @@
 #   bin/rails cloudinary:verifier          appels admin en lecture seule (mode de dossiers, ressources TF1)
 #   DRY_RUN=1 bin/rails cloudinary:upload  liste ce qui serait envoyé, sans rien envoyer
 #   bin/rails cloudinary:upload            envoie et remplit config/cloudinary_assets.yml
+#   DRY_RUN=1 bin/rails cloudinary:import_projets   nouveaux projets : liste les exports de tmp/import/
+#   bin/rails cloudinary:import_projets            les envoie et complète le manifeste
 #
 # Identifiants : CLOUDINARY_URL (.env), jamais affiché.
 # Aucune ressource existante n'est écrasée (overwrite: false).
@@ -106,6 +108,53 @@ namespace :cloudinary do
       false
     end
     puts "public_id cibles déjà pris sur le compte : #{deja_pris.empty? ? 'aucun' : deja_pris.join(', ')}"
+  end
+
+  # Nouveaux projets : même méthode que l'étape 7, à partir des exports de tmp/import/<dossier>/.
+  # Fichier « 04-ia-dans-la-ville.png » → clé « <slug>/ia-dans-la-ville.png » du manifeste,
+  # public_id « portfolio/<slug>/ia-dans-la-ville ». Un fichier absent est simplement ignoré.
+  desc "Envoie les images de tmp/import/ des nouveaux projets (DRY_RUN=1 pour lister sans envoyer)"
+  task import_projets: :environment do
+    dossiers = { "mgp" => "metropole-grand-paris", "beach-bikes" => "beach-bikes", "reli-art" => "atelier-reli-art" }
+    essai = ENV["DRY_RUN"].present?
+    manifeste = CloudinaryMigration.manifeste
+    dynamique = !essai && CloudinaryMigration.mode_dossiers == "dynamic"
+    racine = Rails.root.join("tmp/import")
+
+    puts essai ? "ESSAI : rien n'est envoyé.\n\n" : "Envoi vers Cloudinary\n\n"
+    dossiers.each do |dossier, slug|
+      fichiers = Dir.glob(racine.join(dossier, "*.{png,jpg,jpeg,PNG,JPG,JPEG}")).sort
+      puts "#{dossier}/ : #{fichiers.empty? ? 'aucun fichier' : "#{fichiers.size} fichier(s)"}"
+      fichiers.each do |fichier|
+        nom = File.basename(fichier, ".*").sub(/\A\d+[-_ ]*/, "").parameterize
+        chemin = "#{slug}/#{nom}#{File.extname(fichier).downcase}"
+        public_id = "#{CloudinaryMigration::RACINE}/#{slug}/#{nom}"
+        ligne = format("%6.2f Mo  %-40s → %s", File.size(fichier) / 1e6, File.basename(fichier), public_id)
+
+        if manifeste.key?(chemin)
+          puts "  déjà fait  #{ligne}"
+          next
+        end
+        if essai
+          puts "  à envoyer  #{ligne}"
+          next
+        end
+
+        options = { public_id: public_id, resource_type: :image, overwrite: false,
+                    use_filename: false, unique_filename: false }
+        options[:asset_folder] = File.dirname(public_id) if dynamique
+        r = Cloudinary::Uploader.upload(fichier, options)
+        if r["existing"]
+          puts "  EXISTANT   #{ligne} (non écrasé, non enregistré)"
+          next
+        end
+
+        manifeste[chemin] = { "public_id" => r["public_id"], "format" => r["format"],
+                              "width" => r["width"], "height" => r["height"] }
+        CloudinaryMigration.ecrire_manifeste(manifeste)
+        puts "  envoyé     #{ligne}"
+      end
+    end
   end
 
   desc "Envoie les images du plan (DRY_RUN=1 pour lister sans envoyer)"
