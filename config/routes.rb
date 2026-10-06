@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'projects/la_colline', to: 'projects#la_colline'
   get 'projects/metropole-grand-paris', to: 'projects#metropole_grand_paris'
   get 'projects/beach-bikes', to: 'projects#beach_bikes'
+  get 'projects/atelier-reli-art', to: 'projects#atelier_reli_art'
 
   get "up" => "rails/health#show", as: :rails_health_check
 

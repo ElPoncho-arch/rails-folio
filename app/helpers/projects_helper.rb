@@ -98,6 +98,33 @@ module ProjectsHelper
           "Code de production aligné avec les maquettes",
           "Passation complète avec spécifications et suivi client"
         ] }
+      ] },
+    { slug: "atelier-reli-art", nom: "Atelier Reli’Art", tags: %w[identité],
+      etiquettes: ["Freelance", "Identité visuelle", "2025"],
+      images: %w[atelier-reli-art/proposition-1.png],
+      role: "Directeur artistique",
+      duree: "5 mois",
+      outils: "Illustrator · Photoshop",
+      blocs: [
+        { titre: "Contexte", items: [
+          "Lancement d’une structure artisanale",
+          "Contrainte couleur imposée : rouge, noir, blanc",
+          "Besoin d’une identité polyvalente, print et réseaux sociaux"
+        ] },
+        { titre: "Identité visuelle", items: [
+          "3 propositions de logotype avec intentions rédigées",
+          "Logotype variable avec déclinaisons fond clair, fond sombre et version compacte"
+        ] },
+        { titre: "Résultats", items: [
+          "Identité immédiatement reconnaissable et mémorable",
+          "Système graphique déclinable sur Instagram et en print sans adaptation technique",
+          "Client autonome sur ses supports de communication"
+        ] },
+        { titre: "Livrables", items: [
+          "Charte graphique complète avec intention documentée",
+          "Fichiers sources du logotype, toutes déclinaisons",
+          "Prêt à déployer sur Instagram et supports imprimés"
+        ] }
       ] }
   ].freeze
 

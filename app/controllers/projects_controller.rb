@@ -28,4 +28,7 @@ class ProjectsController < ApplicationController
 
   def beach_bikes
   end
+
+  def atelier_reli_art
+  end
 end

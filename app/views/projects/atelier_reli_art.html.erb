@@ -1,0 +1,24 @@
+<% projet = projet_courant %>
+<%# Images : tmp/import/reli-art/ → bin/rails cloudinary:import_projets (une image absente du manifeste n'est pas affichée) %>
+
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    Mission freelance complète pour un artisan indépendant lançant sa structure, spécialisée en reliure d’art et restauration de livres anciens. Projet mené de zéro, de la recherche conceptuelle jusqu’à la livraison du système graphique final. Contrainte imposée : une palette rouge, noir et blanc, à décliner sur réseaux sociaux et supports imprimés. Trois propositions distinctes développées en parallèle, chacune avec logotype variable, intention graphique documentée, typographie et déclinaisons, pour permettre un choix éclairé.
+  </p>
+<% end %>
+
+<%= render "projects/blocs", blocs: projet[:blocs] %>
+
+<div class="projet-medias">
+  <%= projet_bloc_medias(
+        { image: "atelier-reli-art/proposition-1.png",
+          alt: "Atelier Reli’Art, proposition 1 : logotype et déclinaisons en rouge, noir et blanc" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "atelier-reli-art/proposition-2.png",
+          alt: "Atelier Reli’Art, proposition 2 : logotype et déclinaisons" },
+        { image: "atelier-reli-art/proposition-3.png",
+          alt: "Atelier Reli’Art, proposition 3 : logotype et déclinaisons" }) %>
+</div>
+
+<%= render "projects/navigation", projet: projet %>
