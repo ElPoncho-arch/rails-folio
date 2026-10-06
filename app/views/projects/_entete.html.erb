@@ -1,4 +1,6 @@
 <%# En-tête de page projet — usage : render layout: "projects/entete", locals: { projet: projet_courant } do … texte … end %>
+<%# Titre de page : nom court, sans sous-titre (« TF1 — E-learning » → « TF1 ») %>
+<% content_for :titre, projet[:nom].split(" — ").first %>
 <header class="projet-entete">
   <div class="projet-entete__haut" data-reveal-target="item">
     <%= link_to "← tous les projets", "/#projets", class: "projet-entete__retour" %>

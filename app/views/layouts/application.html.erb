@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr" data-controller="smooth-scroll">
   <head>
-    <title>Fabien Hoarau – Graphiste & Designer Web | Portfolio</title>
+    <%# Titre par page : content_for :titre dans la vue ; la home garde le titre de repli %>
+    <title><%= content_for?(:titre) ? "#{yield(:titre)} — Fabien Hoarau" : "Fabien Hoarau — graphiste, motion & UI" %></title>
     <meta name="description" content="Fabien Hoarau, graphiste et designer web. Branding, print, web et créations personnelles">
 
     <%= csrf_meta_tags %>

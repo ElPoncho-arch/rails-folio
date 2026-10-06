@@ -1,5 +1,6 @@
 <%# Contact — composition B : contact direct à gauche, formulaire à droite (empilés en mobile).
     Vérification à la sortie de chaque champ : formulaire_controller.js ; vérification serveur : Contact. %>
+<% content_for :titre, "Contact" %>
 <% champs = [
      { nom: :name,    etiquette: "Nom",     type: :text_field,  attrs: { autocomplete: "name", required: true } },
      { nom: :email,   etiquette: "E-mail",  type: :email_field, attrs: { autocomplete: "email", required: true } },
