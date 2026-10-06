@@ -37,6 +37,13 @@ export default class extends Controller {
     // Polices : tant qu'elles ne sont pas chargées, les titres n'ont pas leur hauteur finale
     document.fonts.ready.then(() => this.queueRefresh())
 
+    // Fondu d'entrée de page : #page est décalé de 14 px le temps de la transition,
+    // les déclencheurs mesurés pendant ce temps sont faux
+    this.onPageTransitionEnd = (event) => {
+      if (event.target.id === "page" && event.propertyName === "transform") this.queueRefresh()
+    }
+    document.addEventListener("transitionend", this.onPageTransitionEnd)
+
     if (!this.motion.matches) this.createLenis()
   }
 
@@ -48,6 +55,7 @@ export default class extends Controller {
     document.removeEventListener("nav:close", this.sync)
     document.removeEventListener("load", this.onMediaLoad, true)
     document.removeEventListener("loadedmetadata", this.onMediaLoad, true)
+    document.removeEventListener("transitionend", this.onPageTransitionEnd)
     clearTimeout(this.refreshTimer)
     this.destroyLenis()
   }
