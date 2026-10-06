@@ -130,10 +130,23 @@
 
 // Bouton menu : toujours visible en mobile, seulement pilule compactée en desktop
 .nav-pill__toggle {
+  position: relative;
   border: 0;
   background: transparent;
   font: inherit;
   cursor: pointer;
+
+  // Zone tactile d'au moins 44 px de haut, sans grossir la pilule
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    min-height: 2.75rem;
+    height: 100%;
+    transform: translateY(-50%);
+  }
 
   &[aria-expanded="true"] {
     background-color: $color-accent;
