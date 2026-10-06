@@ -5,10 +5,10 @@
 <nav class="projet-nav" aria-label="Autres projets">
   <%= link_to projet_path_for(precedent), class: "projet-nav__lien", rel: "prev" do %>
     <span class="projet-nav__sens">← précédent</span>
-    <span class="projet-nav__nom"><%= precedent[:nom] %></span>
+    <span class="projet-nav__nom"><%= nom_insecable(precedent[:nom]) %></span>
   <% end %>
   <%= link_to projet_path_for(suivant), class: "projet-nav__lien projet-nav__lien--suivant", rel: "next" do %>
     <span class="projet-nav__sens">suivant →</span>
-    <span class="projet-nav__nom"><%= suivant[:nom] %></span>
+    <span class="projet-nav__nom"><%= nom_insecable(suivant[:nom]) %></span>
   <% end %>
 </nav>

@@ -58,6 +58,11 @@ module ProjectsHelper
     PROJETS[(PROJETS.index(projet) + decalage) % PROJETS.size]
   end
 
+  # Affichage seulement : pas de coupure à « E-learning » ni avant le tiret
+  def nom_insecable(nom)
+    nom.gsub("-", "\u2011").gsub(" — ", "\u00A0— ")
+  end
+
   # Un média de page projet :
   #   { image: "ford/x.jpg", alt: "…" }            image locale
   #   { cl_image: "public_id", alt: "…" }          image Cloudinary
