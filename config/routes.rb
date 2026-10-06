@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'bio', to: 'pages#bio'
   get 'contact', to: 'pages#contact', as: :contact
+  get 'mentions-legales', to: 'pages#mentions_legales', as: :mentions_legales
   get 'work', to: 'home#work', as: 'work'
 
   resources :contacts, only: [:create]

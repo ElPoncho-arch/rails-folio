@@ -1,0 +1,137 @@
+// Footer V2 : bande tomate + bloc encre, texte crème.
+// Seul bloc sombre du site, il marque la fin de page.
+
+.site-footer {
+  margin-top: 6rem;
+  background-color: $color-text;
+  color: $color-bg;
+
+  a {
+    color: $color-bg;
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+// Bande tomate (statique ; défilement à l'étape 9)
+.footer-band {
+  overflow: hidden;
+  padding: 0.75rem 0;
+  background-color: $color-accent;
+  color: $color-text;
+  font-family: $font-mono;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.footer-band__text {
+  display: inline-flex;
+  gap: 1.5rem;
+  padding-left: 1rem;
+}
+
+// Bloc principal
+.footer-main {
+  padding: 4rem 1rem 2rem;
+
+  @include respond-to(md) {
+    padding: 6rem 3rem 2.5rem;
+  }
+}
+
+.footer-main__accroche {
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: clamp(2.75rem, 9vw, 7rem);
+  line-height: 0.95;
+}
+
+// E-mail : soulignement tomate qui se déploie au survol (une forme, pas du texte)
+.footer-main__email {
+  display: inline-block;
+  margin-top: 2rem;
+  font-family: $font-mono;
+  font-size: clamp(1.1rem, 3.5vw, 1.75rem);
+  word-break: break-all;
+  background-image: linear-gradient($color-accent, $color-accent);
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 0.25rem;
+  transition: background-size $duration-base $ease-back-out;
+
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 2px;
+  }
+}
+
+// Colonnes : empilées en mobile, sur une ligne dès md
+.footer-main__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 1.5rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba($color-bg, 0.2);
+  font-family: $font-mono;
+  font-size: 0.95rem;
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 6rem;
+  }
+
+  li + li {
+    margin-top: 0.4rem;
+  }
+
+  a {
+    transition: opacity $duration-fast $ease-soft;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 0.6;
+    }
+  }
+
+  a:focus-visible,
+  .footer-main__email:focus-visible {
+    outline: 2px solid $color-bg;
+    outline-offset: 3px;
+  }
+}
+
+.footer-col__titre {
+  margin-bottom: 0.75rem !important;
+  opacity: 0.6;
+}
+
+.footer-col--legal {
+  grid-column: 1 / -1;
+
+  @include respond-to(md) {
+    grid-column: auto;
+    text-align: right;
+  }
+
+  p {
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-main__email,
+  .footer-main__cols a {
+    transition: none;
+  }
+}
