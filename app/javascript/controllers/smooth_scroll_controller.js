@@ -26,6 +26,14 @@ export default class extends Controller {
     document.addEventListener("nav:open", this.stop)
     document.addEventListener("nav:close", this.sync)
 
+    // Images et vidéos (souvent Cloudinary, en lazy) : leur hauteur arrive après coup,
+    // on recalcule les déclencheurs ScrollTrigger une fois les chargements groupés
+    this.onMediaLoad = (event) => {
+      if (event.target instanceof HTMLImageElement || event.target instanceof HTMLVideoElement) this.queueRefresh()
+    }
+    document.addEventListener("load", this.onMediaLoad, true)
+    document.addEventListener("loadedmetadata", this.onMediaLoad, true)
+
     if (!this.motion.matches) this.createLenis()
   }
 
@@ -35,6 +43,9 @@ export default class extends Controller {
     document.removeEventListener("turbo:load", this.sync)
     document.removeEventListener("nav:open", this.stop)
     document.removeEventListener("nav:close", this.sync)
+    document.removeEventListener("load", this.onMediaLoad, true)
+    document.removeEventListener("loadedmetadata", this.onMediaLoad, true)
+    clearTimeout(this.refreshTimer)
     this.destroyLenis()
   }
 
@@ -54,6 +65,11 @@ export default class extends Controller {
     gsap.ticker.lagSmoothing(500, 33) // valeurs par défaut de GSAP
     this.lenis.destroy()
     this.lenis = null
+  }
+
+  queueRefresh() {
+    clearTimeout(this.refreshTimer)
+    this.refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150)
   }
 
   // Après une visite Turbo : on repart de la position fixée par Turbo

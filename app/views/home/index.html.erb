@@ -1,4 +1,4 @@
-<%# Home V2 — aperçu au survol : project_preview_controller.js ; autres animations à l'étape 10 %>
+<%# Home V2 — aperçu au survol : project_preview_controller.js ; apparitions : reveal_controller.js %>
 <%
   disciplines = %w[graphisme motion UI front]
 %>
@@ -10,11 +10,11 @@
     <span class="home-hero__line home-hero__line--end">Hoarau</span>
   </h1>
 
-  <p class="home-hero__accroche">
+  <p class="home-hero__accroche" data-reveal-target="item">
     Graphiste et motion designer, je crée des identités qui bougent et je les code.
   </p>
 
-  <div class="home-hero__meta">
+  <div class="home-hero__meta" data-reveal-target="item">
     <span class="home-hero__badge">
       <span class="nav-pill__dot" aria-hidden="true"></span> disponible pour de nouveaux projets
     </span>
@@ -36,12 +36,13 @@
 
 <%# Liste des projets %>
 <section id="projets" class="home-projects" aria-labelledby="projets-titre" data-controller="project-preview">
-  <h2 id="projets-titre" class="home-projects__titre">projets <span>(<%= format("%02d", projets.size) %>)</span></h2>
+  <h2 id="projets-titre" class="home-projects__titre" data-reveal-target="item">projets <span>(<%= format("%02d", projets.size) %>)</span></h2>
 
   <ol class="home-projects__list"
       data-action="mousemove->project-preview#move mouseleave->project-preview#hide">
+    <%# reveal sur les <li> seulement : jamais sur un ancêtre de la carte d'aperçu (fixed) %>
     <% projets.each_with_index do |projet, i| %>
-      <li>
+      <li data-reveal-target="item">
         <%= link_to projet_path_for(projet), class: "project-row",
               data: { images: projet[:images].map { |img| media_image_url(img, largeur: 800) }.to_json,
                       action: "mouseenter->project-preview#select" } do %>

@@ -26,7 +26,7 @@
     <%= render 'shared/navbar' %>
 
     <!-- Conteneur animé (fade/slide entre pages) -->
-    <div id="page" class="transition-fade is-entering" data-transition-target="container">
+    <div id="page" class="transition-fade is-entering" data-transition-target="container" data-controller="reveal">
       <%= yield %>
     </div>
 

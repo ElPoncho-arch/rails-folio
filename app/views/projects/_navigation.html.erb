@@ -2,7 +2,7 @@
 <% precedent = projet_voisin(projet, -1) %>
 <% suivant   = projet_voisin(projet, 1) %>
 
-<nav class="projet-nav" aria-label="Autres projets">
+<nav class="projet-nav" aria-label="Autres projets" data-reveal-target="item">
   <%= link_to projet_path_for(precedent), class: "projet-nav__lien", rel: "prev" do %>
     <span class="projet-nav__sens">← précédent</span>
     <span class="projet-nav__nom"><%= nom_insecable(precedent[:nom]) %></span>

@@ -12,7 +12,7 @@
                         loading: "eager", fetchpriority: "high" %>
   </div>
 
-  <header class="apropos__entete">
+  <header class="apropos__entete" data-reveal-target="item">
     <h1 class="apropos__titre">À propos</h1>
     <p class="apropos__dispo">
       <span class="nav-pill__dot" aria-hidden="true"></span> disponible pour de nouveaux projets
@@ -21,9 +21,9 @@
   </header>
 
   <div class="apropos__corps">
-    <p class="apropos__accroche">Créer. Animer. Coder.</p>
+    <p class="apropos__accroche" data-reveal-target="item">Créer. Animer. Coder.</p>
 
-    <div class="apropos__texte">
+    <div class="apropos__texte" data-reveal-target="item">
       <p>
         Je crée, j'anime et je code.<br>
         Graphiste et motion designer avec une vraie spécialisation UI et front.
@@ -42,7 +42,7 @@
       </p>
     </div>
 
-    <dl class="apropos__outils">
+    <dl class="apropos__outils" data-reveal-target="item">
       <% outils.each do |titre, liste| %>
         <div class="apropos__outils-ligne">
           <dt><%= titre %></dt>
@@ -57,7 +57,7 @@
       <% end %>
     </dl>
 
-    <ul class="apropos__liens" aria-label="Liens">
+    <ul class="apropos__liens" aria-label="Liens" data-reveal-target="item">
       <li>
         <%= link_to asset_path("FabienHoarau_UIDesigner.pdf"), class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
           CV (pdf) <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>

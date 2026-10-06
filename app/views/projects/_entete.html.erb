@@ -1,19 +1,19 @@
 <%# En-tête de page projet — usage : render layout: "projects/entete", locals: { projet: projet_courant } do … texte … end %>
 <header class="projet-entete">
-  <div class="projet-entete__haut">
+  <div class="projet-entete__haut" data-reveal-target="item">
     <%= link_to "← tous les projets", "/#projets", class: "projet-entete__retour" %>
     <span class="projet-entete__numero"><%= projet_numero(projet) %> / <%= format("%02d", projets.size) %></span>
   </div>
 
   <h1 class="projet-entete__titre"><%= nom_insecable(projet[:nom]) %></h1>
 
-  <ul class="projet-entete__tags" aria-label="Disciplines">
+  <ul class="projet-entete__tags" aria-label="Disciplines" data-reveal-target="item">
     <% projet[:tags].each do |tag| %>
       <li class="tag-pill"><%= tag %></li>
     <% end %>
   </ul>
 
-  <div class="projet-entete__corps">
+  <div class="projet-entete__corps" data-reveal-target="item">
     <div class="projet-entete__texte">
       <%= yield %>
     </div>
