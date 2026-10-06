@@ -57,6 +57,7 @@ export default class extends Controller {
     this.toggleTarget.setAttribute("aria-expanded", "true")
     this.toggleTarget.textContent = "fermer"
     document.documentElement.classList.add("nav-is-open")
+    this.setInert(true)
     this.dispatch("open")
     this.focusables()[1]?.focus()
   }
@@ -67,6 +68,7 @@ export default class extends Controller {
     this.toggleTarget.setAttribute("aria-expanded", "false")
     this.toggleTarget.textContent = "menu"
     document.documentElement.classList.remove("nav-is-open")
+    this.setInert(false)
     this.dispatch("close")
   }
 
@@ -97,6 +99,11 @@ export default class extends Controller {
       event.preventDefault()
       first.focus()
     }
+  }
+
+  // Panneau ouvert : la page derrière n'est plus atteignable (clavier, lecteurs d'écran)
+  setInert(inert) {
+    document.querySelectorAll("#contenu, .site-footer").forEach((el) => { el.inert = inert })
   }
 
   focusables() {
