@@ -7,7 +7,7 @@ Une étape = un commit.
 - [x] 2. Typos (ClashDisplay + Fragment Mono auto-hébergées, pas de Google Fonts)
 - [x] 3. Purge des anciennes couleurs (#171717, #ffff00)
 - [x] 4. Layout (nav pilule, footer, Lenis, transitions)
-- [ ] 5. Home (la liste des projets y passe en #projets ; /work → 301 vers /#projets)
+- [x] 5. Home (la liste des projets y passe en #projets ; /work → 301 vers /#projets)
 - [ ] 6. Page projet (partial commun)
 - [ ] 7. Migration des images locales vers Cloudinary
 - [ ] 8. About
