@@ -235,6 +235,8 @@
 // Tag pilule (réutilisable)
 .tag-pill {
   display: inline-block;
+  max-width: 100%; // texte agrandi : un tag long (« illustration ») se coupe au lieu de dépasser
+  overflow-wrap: anywhere;
   padding: 0.25rem 0.75rem;
   font-family: $font-mono;
   font-size: 0.8rem;

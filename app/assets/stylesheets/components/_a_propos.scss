@@ -71,6 +71,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  overflow-wrap: anywhere; // texte agrandi : le texte (élément flex anonyme) peut rétrécir sous « disponible »
   margin: 0.75rem 0 0;
   font-family: $font-mono;
   font-size: 0.85rem;
