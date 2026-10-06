@@ -39,7 +39,8 @@ module MediasHelper
                         width: media["width"], height: media["height"], **html.except(:width, :height, :sizes)
   end
 
-  # GIF animé déjà sur Cloudinary (public_id) servi en vidéo muette en boucle
+  # GIF animé déjà sur Cloudinary (public_id) servi en vidéo muette en boucle,
+  # pilotée par video_boucle_controller.js (bouton, pause hors écran)
   def media_gif_video_tag(public_id, alt:, largeur:, **html)
     cadre = { width: largeur, crop: :limit }
     video = cloudinary_url public_id, secure: true,
@@ -48,11 +49,13 @@ module MediasHelper
                              transformation: [cadre, { page: 1 }, { fetch_format: :auto }, { quality: :auto }]
 
     tag.video tag.source(src: video), poster: attente, autoplay: true, muted: true, loop: true,
-              playsinline: true, preload: "metadata", "aria-label": alt, **html
+              playsinline: true, preload: "metadata", "aria-label": alt,
+              data: { controller: "video-boucle" }, **html
   end
 
   # Vidéo Cloudinary (public_id existant, inchangé) :
-  #   boucle muette (par défaut) : autoplay, muted, loop, ac_none, preload metadata
+  #   boucle muette (par défaut) : autoplay, muted, loop, ac_none, preload metadata,
+  #                                pilotée par video_boucle_controller.js (bouton, pause hors écran)
   #   lecteur (lecteur: true)    : controls, preload none, ne se charge qu'au clic
   # L'image d'attente est tirée de la vidéo à la seconde « attente ».
   def media_video_tag(public_id, alt:, largeur:, lecteur: false, attente: 1, **html)
@@ -60,7 +63,11 @@ module MediasHelper
     son = lecteur ? [] : [{ audio_codec: "none" }]
     video = cloudinary_url public_id, secure: true, resource_type: :video,
                            transformation: [cadre, { fetch_format: "auto:video" }, { quality: :auto }, *son]
-    lecture = lecteur ? { controls: true, preload: "none" } : { autoplay: true, muted: true, loop: true, preload: "metadata" }
+    lecture = if lecteur
+                { controls: true, preload: "none" }
+              else
+                { autoplay: true, muted: true, loop: true, preload: "metadata", data: { controller: "video-boucle" } }
+              end
 
     tag.video tag.source(src: video), poster: media_video_image_url(public_id, seconde: attente, largeur: largeur),
               playsinline: true, "aria-label": alt, **lecture, **html
