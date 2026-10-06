@@ -13,7 +13,7 @@ class ContactsController < ApplicationController
   rescue StandardError => e
     Rails.logger.error "ContactMailer failed: #{e.message}"
     redirect_to contact_path, status: :see_other,
-                alert: "L'envoi a échoué. Réessayez, ou écrivez-moi directement à hoarauf4@gmail.com."
+                alert: "L’envoi a échoué. Réessayez, ou écrivez-moi directement à hoarauf4@gmail.com."
   end
 
   private

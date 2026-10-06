@@ -49,7 +49,7 @@ export default class extends Controller {
     if (event.detail.success) return
     this.reactiverBouton()
     if (!event.detail.fetchResponse) {
-      this.afficherStatut("L'envoi a échoué. Réessayez, ou écrivez-moi directement à hoarauf4@gmail.com.", true)
+      this.afficherStatut("L’envoi a échoué. Réessayez, ou écrivez-moi directement à hoarauf4@gmail.com.", true)
     } else {
       this.afficherStatut("Vérifiez les champs signalés.", true)
     }
