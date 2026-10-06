@@ -8,7 +8,7 @@ V2 en cours sur la branche `v2-front` (V1 taguée `v1.0`) : on refait le FRONT, 
 - Ruby on Rails 7.1, Bootstrap, Stimulus.js, importmap
 - Animations : GSAP (+ ScrollTrigger, SplitText) et Lenis, pinnés via importmap
 - Pas de base de données (site statique)
-- Médias sur Cloudinary (f_auto, q_auto)
+- Médias : aujourd'hui majoritairement locaux (app/assets/images, ~136 Mo). Seules quelques vidéos/images passent par Cloudinary (cl_video_tag / cl_image_tag, f_auto, q_auto). Migration prévue à l'étape 11.
 - Déploiement Heroku : `git push heroku master` (pas main)
 - Preview locale : `bin/rails server`
 
@@ -42,4 +42,17 @@ Ton : clair, chaleureux, accueillant. Les interactions et animations sont le cœ
 home, page projet (template unique), about (à adapter à la nouvelle DA), mentions légales (/mentions-legales).
 
 ## Projets
-Slides, MAC VAL, La Colline, Ford, Mango Edition, TF1 (à récupérer), projets indépendants & expérimentations.
+Slides, MAC VAL, La Colline, Ford, Mango Edition, TF1 (à récupérer), Shelfie, Abskate, projets indépendants & expérimentations.
+
+## Plan V2 (une étape = un commit)
+1. Tokens SCSS
+2. Typos (ClashDisplay + Fragment Mono auto-hébergées, pas de Google Fonts)
+3. Purge des anciennes couleurs (#171717, #ffff00)
+4. Layout (nav pilule, footer, Lenis, transitions)
+5. Home (la liste des projets y passe en #projets ; /work → 301 vers /#projets)
+6. Page projet (partial commun)
+7. About
+8. Mentions légales
+9. Animations (controllers Stimulus)
+10. Recette mobile + accessibilité
+11. Migration des images locales vers Cloudinary
