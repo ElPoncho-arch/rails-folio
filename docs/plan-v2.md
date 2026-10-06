@@ -13,7 +13,7 @@ Une étape = un commit.
   - à vérifier : public_id `PERSO_BALLON_y1jedw`, cité seulement dans l'ancien script de la page TF1 (supprimé à l'étape 6)
 - [x] 8. About + Contact (extraire les styles du formulaire dans _contact.scss)
 - [x] 9. Mentions légales
-- [ ] 10. Animations (controllers Stimulus)
+- [x] 10. Animations (controllers Stimulus)
   - note : le titre « projets » caché sur la home à 375 px est corrigé par eac9add (recalcul à la fin du fondu de page), pas par 4b68e1d malgré son message
 - [ ] 11. Recette mobile + accessibilité
   - revue complète du front avec Fabien, mobile first en priorité (375 px, puis tablette, puis desktop), avant tout déploiement
