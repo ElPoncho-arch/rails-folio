@@ -1,5 +1,7 @@
 # Généré par bin/rails cloudinary:upload — chemin local => ressource Cloudinary.
 # Lu par MediasHelper : un chemin absent est servi en local.
+# GIF : Cloudinary renvoie à l'envoi la taille de la 1re image ; macval/logo.gif et
+# mango/logomango2.gif corrigés à la main avec la taille du canevas (vérifiée en vidéo).
 abc/abc.jpg:
   public_id: portfolio/abecedaire/lettres
   format: jpg
@@ -103,8 +105,8 @@ macval/expo-affiche-2.jpg:
 macval/logo.gif:
   public_id: portfolio/macval/logo-anime
   format: gif
-  width: 548
-  height: 749
+  width: 1080
+  height: 1080
 macval/magnet.jpg:
   public_id: portfolio/macval/badges
   format: jpg
@@ -128,8 +130,8 @@ mango/livre-2.jpg:
 mango/logomango2.gif:
   public_id: portfolio/mango/logo-anime
   format: gif
-  width: 776
-  height: 404
+  width: 960
+  height: 960
 mango/tote.jpg:
   public_id: portfolio/mango/totebag
   format: jpg

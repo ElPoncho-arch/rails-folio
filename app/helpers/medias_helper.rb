@@ -26,6 +26,23 @@ module MediasHelper
             sizes: sizes, width: largeur, height: media["height"], **options.except(:width, :height)
   end
 
+  # GIF animé sur Cloudinary servi en vidéo muette en boucle (f_auto:video),
+  # avec la 1re image en attente (pg_1). Hors Cloudinary : le GIF tel quel.
+  def media_gif_tag(chemin, alt:, largeur: 1080, **html)
+    media = media_cloudinary(chemin)
+    return media_image_tag(chemin, alt: alt, sizes: "100vw", **html) unless media && media["format"] == "gif"
+
+    cadre = { width: largeur, crop: :limit }
+    video = cloudinary_url media["public_id"], secure: true,
+                           transformation: [cadre, { fetch_format: "auto:video" }, { quality: :auto }, { audio_codec: "none" }]
+    attente = cloudinary_url media["public_id"], secure: true,
+                             transformation: [cadre, { page: 1 }, { fetch_format: :auto }, { quality: :auto }]
+
+    tag.video tag.source(src: video), poster: attente, autoplay: true, muted: true, loop: true,
+              playsinline: true, preload: "metadata", "aria-label": alt,
+              width: media["width"], height: media["height"], **html.except(:width, :height, :sizes)
+  end
+
   def media_cloudinary(chemin)
     MediasHelper.manifeste[chemin]
   end

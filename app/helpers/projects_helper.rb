@@ -70,7 +70,9 @@ module ProjectsHelper
   #   { video: "public_id", controls: true }       … avec lecteur (autoplay: true pour la lancer aussi)
   # sizes : largeur affichée, pour le srcset des images Cloudinary (MediasHelper)
   def projet_media(media, sizes: "100vw")
-    if media[:image]
+    if media[:image]&.end_with?(".gif")
+      media_gif_tag media[:image], alt: media[:alt], class: "projet-media__el"
+    elsif media[:image]
       media_image_tag media[:image], alt: media[:alt], sizes: sizes,
                       width: media[:width], height: media[:height], class: "projet-media__el"
     elsif media[:cl_image]
