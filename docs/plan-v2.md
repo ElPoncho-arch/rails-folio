@@ -9,7 +9,7 @@ Une étape = un commit.
 - [x] 4. Layout (nav pilule, footer, Lenis, transitions)
 - [x] 5. Home (la liste des projets y passe en #projets ; /work → 301 vers /#projets)
 - [x] 6. Page projet (partial commun)
-- [ ] 7. Migration des images locales vers Cloudinary
+- [x] 7. Migration des images locales vers Cloudinary
   - à vérifier : public_id `PERSO_BALLON_y1jedw`, cité seulement dans l'ancien script de la page TF1 (supprimé à l'étape 6)
 - [ ] 8. About + Contact (extraire les styles du formulaire dans _contact.scss)
 - [ ] 9. Mentions légales
