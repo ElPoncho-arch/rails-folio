@@ -5,8 +5,7 @@
         data-action="scroll@window->nav#onScroll keydown@window->nav#onKeydown resize@window->nav#onResize">
   <nav class="nav-pill" aria-label="Navigation principale" data-nav-target="pill"
        data-action="mouseenter->nav#expand mouseleave->nav#onLeave">
-    <%= link_to "fabien hoarau", root_path, class: "nav-pill__brand",
-          aria: { current: ("page" if current_page?(root_path)) } %>
+    <%= link_to "fabien hoarau", root_path, class: "nav-pill__brand" %>
 
     <ul class="nav-pill__links">
       <% liens.each do |label, path| %>

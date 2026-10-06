@@ -28,27 +28,10 @@
 
 .home-hero__line {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.15em;
 }
 
 .home-hero__line--end {
   justify-content: flex-end;
-}
-
-// Portrait arrondi glissé entre les deux mots
-.home-hero__portrait {
-  height: 0.7em;
-  width: 1.1em;
-  object-fit: cover;
-  border-radius: $radius-pill;
-
-  // En mobile, il passe sous FABIEN, calé à droite
-  @media (max-width: 991.98px) {
-    margin-left: auto;
-    margin-top: 0.08em;
-  }
 }
 
 // Accroche : sous le nom en mobile, à gauche de HOARAU en desktop
@@ -240,35 +223,6 @@
   font-size: 0.8rem;
   border: 1px solid $color-text;
   border-radius: $radius-pill;
-}
-
-// --- Défilement de vignettes ---
-.home-thumbs {
-  overflow: hidden;
-  padding: 3rem 0 1rem;
-}
-
-.home-thumbs__track {
-  display: flex;
-  gap: 1rem;
-  padding: 0 1rem;
-  width: max-content;
-
-  @include respond-to(md) {
-    gap: 1.5rem;
-    padding: 0 3rem;
-  }
-}
-
-.home-thumbs__img {
-  width: 14rem;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: $radius-card;
-
-  @include respond-to(md) {
-    width: 22rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

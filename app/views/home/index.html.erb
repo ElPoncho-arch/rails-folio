@@ -1,14 +1,14 @@
 <%# Home V2 — structure statique (animations à l'étape 9) %>
 <%
   projets = [
-    { nom: "TF1 — E-learning", path: "/projects/tf1",        tags: %w[motion UI],               image: "tf1/lou.png" },
-    { nom: "Shelfie",          path: "/projects/shelfie",    tags: %w[UI dev],                  image: "shelfie/logoshelfie.jpg" },
-    { nom: "MAC VAL",          path: "/projects/macval",     tags: %w[identité motion],         image: "macval/Branding_Mockup_2.jpg" },
-    { nom: "Slides",           path: "/projects/slides",     tags: %w[identité motion],         image: "slides/slide_branding_31.jpg" },
-    { nom: "Mango Édition",    path: "/projects/mango",      tags: %w[identité motion],         image: "mango/livre-1.jpg" },
-    { nom: "La Colline",       path: "/projects/la_colline", tags: %w[packaging illustration],  image: "la_colline_couv2.jpg" },
-    { nom: "Ford",             path: "/projects/ford",       tags: %w[édition],                 image: "ford_couv.jpg" },
-    { nom: "Abécédaire",       path: "/projects/abskate",    tags: %w[édition],                 image: "abskate_couv.jpg" }
+    { nom: "TF1 — E-learning", path: "/projects/tf1",        tags: %w[motion UI] },
+    { nom: "Shelfie",          path: "/projects/shelfie",    tags: %w[UI dev] },
+    { nom: "MAC VAL",          path: "/projects/macval",     tags: %w[identité motion] },
+    { nom: "Slides",           path: "/projects/slides",     tags: %w[identité motion] },
+    { nom: "Mango Édition",    path: "/projects/mango",      tags: %w[identité motion] },
+    { nom: "La Colline",       path: "/projects/la_colline", tags: %w[packaging illustration] },
+    { nom: "Ford",             path: "/projects/ford",       tags: %w[édition] },
+    { nom: "Abécédaire",       path: "/projects/abskate",    tags: %w[édition] }
   ]
   disciplines = %w[graphisme motion UI front]
 %>
@@ -16,10 +16,7 @@
 <%# Hero %>
 <section class="home-hero">
   <h1 class="home-hero__name">
-    <span class="home-hero__line">
-      <span>Fabien</span>
-      <%= image_tag "bio_image.png", class: "home-hero__portrait", alt: "" %>
-    </span>
+    <span class="home-hero__line">Fabien</span>
     <span class="home-hero__line home-hero__line--end">Hoarau</span>
   </h1>
 
@@ -67,13 +64,4 @@
       </li>
     <% end %>
   </ol>
-</section>
-
-<%# Défilement de vignettes (statique ; animé à l'étape 9) %>
-<section class="home-thumbs" aria-hidden="true">
-  <div class="home-thumbs__track">
-    <% projets.each do |projet| %>
-      <%= image_tag projet[:image], class: "home-thumbs__img", alt: "", loading: "lazy", decoding: "async" %>
-    <% end %>
-  </div>
 </section>
