@@ -6,11 +6,10 @@
 /* Conteneur animé */
 .transition-fade {
   opacity: 1;
-  transform: translateY(0);
+  transform: none; // pas de transform au repos : les éléments fixed restent calés sur l'écran
   transition:
     opacity var(--page-duration) var(--page-ease),
     transform var(--page-duration) var(--page-ease);
-  will-change: opacity, transform;
 }
 
 /* État d'entrée (au premier paint, puis retiré par le contrôleur) */
