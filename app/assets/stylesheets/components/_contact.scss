@@ -1,0 +1,226 @@
+// Page Contact — composition B, mobile first.
+// Mobile : contact direct puis formulaire ; desktop (lg) : deux colonnes.
+// Zones tactiles ≥ 44 px ; erreurs en encre (jamais en tomate pour du texte).
+
+.contact {
+  display: grid;
+  gap: 2.5rem;
+  padding: 1.5rem 1rem 0;
+
+  @include respond-to(md) {
+    padding: 2rem 3rem 0;
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+}
+
+// --- Contact direct ---
+.contact__direct {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contact__titre {
+  margin: 0;
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: clamp(2.5rem, 11vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: $color-text;
+}
+
+.contact__dispo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 0.9rem;
+}
+
+.contact__email {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-family: $font-mono;
+  font-size: clamp(1.05rem, 4.6vw, 1.5rem);
+  color: $color-text;
+  text-decoration: none;
+  word-break: break-all;
+  background-image: linear-gradient($color-accent, $color-accent);
+  background-size: 100% 2px;
+  background-position: 0 85%;
+  background-repeat: no-repeat;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text;
+    background-size: 100% 0.5em;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-text;
+    outline-offset: 3px;
+  }
+}
+
+// Séparateur « ou » : en mobile seulement (en desktop, les colonnes suffisent)
+.contact__ou {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin: 1rem 0 0;
+  font-family: $font-mono;
+  font-size: 0.9rem;
+  opacity: 0.6;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid rgba($color-text, 0.25);
+  }
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+// --- Formulaire ---
+$bordure-champ: mix($color-text, $color-bg, 55%); // contraste ≥ 3:1 avec le fond
+
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formulaire__champ {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.formulaire__etiquette {
+  font-family: $font-mono;
+  font-size: 0.9rem;
+  color: $color-text;
+}
+
+.formulaire__saisie {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.9rem;
+  font-family: $font-mono;
+  font-size: 1rem; // ≥ 16 px : pas de zoom automatique sur iOS
+  color: $color-text;
+  background-color: $color-bg;
+  border: 1px solid $bordure-champ;
+  border-radius: 0.75rem;
+  transition: border-color $duration-fast $ease-soft;
+
+  &:focus {
+    outline: 2px solid $color-text;
+    outline-offset: 1px;
+    border-color: $color-text;
+  }
+
+  &[aria-invalid="true"] {
+    border: 2px solid $color-text;
+    background-color: rgba($color-secondary, 0.5);
+  }
+}
+
+textarea.formulaire__saisie {
+  resize: vertical;
+}
+
+.formulaire__erreur {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  color: $color-text;
+
+  &::before {
+    content: "✕";
+    color: $color-accent; // pictogramme (forme), le texte reste en encre
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.formulaire__bouton {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1.5rem;
+  font-family: $font-mono;
+  font-size: 1rem;
+  color: $color-bg;
+  background-color: $color-text;
+  border: 0;
+  border-radius: $radius-pill;
+  cursor: pointer;
+  transition: background-color $duration-fast $ease-soft, color $duration-fast $ease-soft;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text;
+    background-color: $color-accent;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-text;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: progress;
+    color: $color-bg;
+    background-color: $bordure-champ;
+  }
+
+  @media (max-width: 575.98px) {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+.formulaire__statut {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  font-family: $font-mono;
+  font-size: 0.95rem;
+  color: $color-text;
+  background-color: $color-secondary;
+  border-radius: 0.75rem;
+
+  &--erreur {
+    border: 2px solid $color-text;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .formulaire__saisie,
+  .formulaire__bouton {
+    transition: none;
+  }
+}

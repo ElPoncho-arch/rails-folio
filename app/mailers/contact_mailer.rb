@@ -4,7 +4,7 @@ class ContactMailer < ApplicationMailer
   def contact_email(name, email, message)
     @name         = name
     @message      = message
-    @sender_email = email
+    @email        = email
 
     mail(
       from:     email,

@@ -1,41 +1,47 @@
-<div class="contact-page-full">
-  <div class="contact-form-container">
-    <h1>Stay in touch</h1>
-    <p>I’d love to hear from you! Drop me a message, and I’ll connect with you soon.</p>
-    <%= form_with url: contacts_path,
-                  scope: :contact,
-                  local: true,
-                  html: { class: 'contact-form' } do |f| %>
-      <div class="form-group">
-        <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
-      </div>
+<%# Contact — composition B : contact direct à gauche, formulaire à droite (empilés en mobile).
+    Vérification à la sortie de chaque champ : formulaire_controller.js ; vérification serveur : Contact. %>
+<% champs = [
+     { nom: :name,    etiquette: "Nom",     type: :text_field,  attrs: { autocomplete: "name", required: true } },
+     { nom: :email,   etiquette: "E-mail",  type: :email_field, attrs: { autocomplete: "email", required: true } },
+     { nom: :message, etiquette: "Message", type: :text_area,   attrs: { rows: 6, required: true, minlength: 10 } }
+   ] %>
 
-      <div class="form-group">
-        <%= f.email_field :email, placeholder: 'Email', class: 'form-control' %>
-      </div>
+<section class="contact">
+  <div class="contact__direct">
+    <h1 class="contact__titre">Parlons de votre projet</h1>
+    <p class="contact__dispo">
+      <span class="nav-pill__dot" aria-hidden="true"></span> disponible pour de nouveaux projets
+    </p>
+    <a class="contact__email" href="mailto:hoarauf4@gmail.com">hoarauf4@gmail.com</a>
+    <%= link_to "https://www.linkedin.com/in/fabien-hoarau-7b896a172/", class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
+      LinkedIn <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+    <% end %>
+    <p class="contact__ou" aria-hidden="true">ou</p>
+  </div>
 
-      <div class="d-flex align-items-start gap-2">
-        <div class="form-group code-group" style="width:25%">
-          <%= f.select :country_code,
-                [], { prompt: 'Select country code' },
-                class: 'form-control', id: 'contact_country_code' %>
-        </div>
-
-        <div class="form-group phone-group flex-grow-1">
-          <%= f.telephone_field :phone,
-                id: 'contact_phone',
-                placeholder: 'Phone number',
-                class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.text_area :message, placeholder: 'Message…', rows: 5, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.submit 'Submit', class: 'btn btn-submit' %>
+  <%= form_with model: @contact, scope: :contact, url: contacts_path,
+                class: "formulaire", data: { controller: "formulaire",
+                                             action: "submit->formulaire#envoyer turbo:submit-end->formulaire#fin" } do |f| %>
+    <% champs.each do |champ| %>
+      <% erreur = @contact.errors[champ[:nom]].first %>
+      <% id_erreur = "erreur-#{champ[:nom]}" %>
+      <div class="formulaire__champ">
+        <%= f.label champ[:nom], champ[:etiquette], class: "formulaire__etiquette" %>
+        <%= f.public_send champ[:type], champ[:nom],
+              class: "formulaire__saisie",
+              aria: { describedby: id_erreur, invalid: (erreur ? "true" : nil) },
+              data: { formulaire_target: "champ", action: "blur->formulaire#verifier input->formulaire#corriger" },
+              **champ[:attrs] %>
+        <p class="formulaire__erreur" id="<%= id_erreur %>"<%= " hidden" unless erreur %>><%= erreur %></p>
       </div>
     <% end %>
-  </div>
-</div>
+
+    <button type="submit" class="formulaire__bouton" data-formulaire-target="bouton">
+      Envoyer <span aria-hidden="true">→</span>
+    </button>
+
+    <% statut = flash[:notice] || flash[:alert] %>
+    <p class="formulaire__statut <%= 'formulaire__statut--erreur' if flash[:alert] %>"
+       role="status" data-formulaire-target="statut"<%= " hidden" unless statut %>><%= statut %></p>
+  <% end %>
+</section>
