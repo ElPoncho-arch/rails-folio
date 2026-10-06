@@ -121,11 +121,13 @@
 
 // --- Liste des projets ---
 .home-projects {
-  padding: 4rem 0 2rem;
+  padding: 4rem 0 0;
+  margin-bottom: -2rem; // mobile : 4rem entre la liste et la marquee (marge du footer : 6rem)
   scroll-margin-top: 5rem; // l'ancre #projets passe sous la nav
 
   @include respond-to(md) {
-    padding-top: 6rem;
+    padding: 6rem 0 2rem;
+    margin-bottom: 0;
   }
 }
 

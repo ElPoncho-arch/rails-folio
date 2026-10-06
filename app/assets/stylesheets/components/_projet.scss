@@ -232,10 +232,12 @@ $projet-gouttiere-md: 3rem;
 .projet-nav {
   display: grid;
   margin-top: 6rem;
+  margin-bottom: -2rem; // mobile : 4rem sous le dernier lien avant la marquee (marge du footer : 6rem)
   border-top: 1px solid rgba($color-text, 0.12);
 
   @include respond-to(md) {
     grid-template-columns: 1fr 1fr;
+    margin-bottom: 0;
   }
 }
 
