@@ -34,6 +34,9 @@ export default class extends Controller {
     document.addEventListener("load", this.onMediaLoad, true)
     document.addEventListener("loadedmetadata", this.onMediaLoad, true)
 
+    // Polices : tant qu'elles ne sont pas chargées, les titres n'ont pas leur hauteur finale
+    document.fonts.ready.then(() => this.queueRefresh())
+
     if (!this.motion.matches) this.createLenis()
   }
 
