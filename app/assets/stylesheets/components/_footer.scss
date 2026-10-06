@@ -22,7 +22,7 @@
   }
 }
 
-// Bande tomate (statique ; défilement à l'étape 10)
+// Bande tomate qui défile (marquee_controller.js)
 .footer-band {
   overflow: hidden;
   padding: 0.75rem 0;
@@ -33,10 +33,16 @@
   white-space: nowrap;
 }
 
+// Piste = deux groupes identiques ; l'espace de fin de groupe vaut l'écart interne
 .footer-band__text {
   display: inline-flex;
+  will-change: transform;
+}
+
+.footer-band__groupe {
+  display: inline-flex;
   gap: 1.5rem;
-  padding-left: 1rem;
+  padding-right: 1.5rem;
 }
 
 // Bloc principal

@@ -1,12 +1,19 @@
-<%# Footer — bande tomate (défilement à l'étape 10) + bloc encre %>
+<%# Footer — bande tomate qui défile (marquee_controller.js) + bloc encre %>
 <footer class="site-footer">
-  <div class="footer-band" aria-hidden="true">
-    <p class="footer-band__text">
-      <% 4.times do %>
-        <span>disponible pour de nouveaux projets</span>
-        <span class="footer-band__sep">✶</span>
-        <span>graphisme · motion · UI · front</span>
-        <span class="footer-band__sep">✶</span>
+  <div class="footer-band" aria-hidden="true"
+       data-controller="marquee"
+       data-action="mouseenter->marquee#slow mouseleave->marquee#resume">
+    <p class="footer-band__text" data-marquee-target="track">
+      <%# Deux groupes identiques pour une boucle sans raccord visible %>
+      <% 2.times do %>
+        <span class="footer-band__groupe">
+          <% 3.times do %>
+            <span>disponible pour de nouveaux projets</span>
+            <span class="footer-band__sep">✶</span>
+            <span>graphisme · motion · UI · front</span>
+            <span class="footer-band__sep">✶</span>
+          <% end %>
+        </span>
       <% end %>
     </p>
   </div>
