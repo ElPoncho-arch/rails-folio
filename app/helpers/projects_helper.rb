@@ -68,10 +68,11 @@ module ProjectsHelper
   #   { cl_image: "public_id", alt: "…" }          image Cloudinary
   #   { video: "public_id", alt: "…" }             vidéo Cloudinary en boucle muette
   #   { video: "public_id", controls: true }       … avec lecteur (autoplay: true pour la lancer aussi)
-  def projet_media(media)
+  # sizes : largeur affichée, pour le srcset des images Cloudinary (MediasHelper)
+  def projet_media(media, sizes: "100vw")
     if media[:image]
-      image_tag media[:image], alt: media[:alt], loading: "lazy", decoding: "async",
-                width: media[:width], height: media[:height], class: "projet-media__el"
+      media_image_tag media[:image], alt: media[:alt], sizes: sizes,
+                      width: media[:width], height: media[:height], class: "projet-media__el"
     elsif media[:cl_image]
       cl_image_tag media[:cl_image], alt: media[:alt], loading: "lazy", class: "projet-media__el",
                    fetch_format: :auto, quality: :auto

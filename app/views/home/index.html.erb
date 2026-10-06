@@ -43,7 +43,7 @@
     <% projets.each_with_index do |projet, i| %>
       <li>
         <%= link_to projet_path_for(projet), class: "project-row",
-              data: { images: projet[:images].map { |img| asset_path(img) }.to_json,
+              data: { images: projet[:images].map { |img| media_image_url(img, largeur: 800) }.to_json,
                       action: "mouseenter->project-preview#select" } do %>
           <span class="project-row__num"><%= format("%02d", i + 1) %></span>
           <span class="project-row__nom"><%= projet[:nom] %></span>
