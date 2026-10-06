@@ -4,8 +4,11 @@ module MediasHelper
   LARGEURS = [640, 1024, 1600, 2400].freeze
   MANIFESTE = Rails.root.join("config/cloudinary_assets.yml")
 
-  # URL d'une image à une largeur maximale donnée (jamais agrandie)
+  # URL d'une image à une largeur maximale donnée (jamais agrandie).
+  # chemin : chemin local, ou { video: "public_id", seconde: 2 } pour une image fixe tirée d'une vidéo.
   def media_image_url(chemin, largeur:)
+    return media_video_image_url(chemin[:video], seconde: chemin[:seconde], largeur: largeur) if chemin.is_a?(Hash)
+
     media = media_cloudinary(chemin)
     return asset_path(chemin) unless media
 
@@ -41,6 +44,27 @@ module MediasHelper
     tag.video tag.source(src: video), poster: attente, autoplay: true, muted: true, loop: true,
               playsinline: true, preload: "metadata", "aria-label": alt,
               width: media["width"], height: media["height"], **html.except(:width, :height, :sizes)
+  end
+
+  # Vidéo Cloudinary (public_id existant, inchangé) :
+  #   boucle muette (par défaut) : autoplay, muted, loop, ac_none, preload metadata
+  #   lecteur (lecteur: true)    : controls, preload none, ne se charge qu'au clic
+  # L'image d'attente est tirée de la vidéo à la seconde « attente ».
+  def media_video_tag(public_id, alt:, largeur:, lecteur: false, attente: 1, **html)
+    cadre = { width: largeur, crop: :limit }
+    son = lecteur ? [] : [{ audio_codec: "none" }]
+    video = cloudinary_url public_id, secure: true, resource_type: :video,
+                           transformation: [cadre, { fetch_format: "auto:video" }, { quality: :auto }, *son]
+    lecture = lecteur ? { controls: true, preload: "none" } : { autoplay: true, muted: true, loop: true, preload: "metadata" }
+
+    tag.video tag.source(src: video), poster: media_video_image_url(public_id, seconde: attente, largeur: largeur),
+              playsinline: true, "aria-label": alt, **lecture, **html
+  end
+
+  def media_video_image_url(public_id, seconde:, largeur:)
+    cloudinary_url public_id, secure: true, resource_type: :video, format: "jpg",
+                   transformation: [{ start_offset: seconde }, { width: largeur, crop: :limit },
+                                    { fetch_format: :auto }, { quality: :auto }]
   end
 
   def media_cloudinary(chemin)

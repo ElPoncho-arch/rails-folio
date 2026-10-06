@@ -1,9 +1,9 @@
 module ProjectsHelper
   # Liste des projets, dans l'ordre de la home.
-  # images : aperçu au survol de la home (1 ou 2).
+  # images : aperçu au survol de la home (1 ou 2) ; { video:, seconde: } = image fixe tirée d'une vidéo.
   PROJETS = [
     { slug: "tf1", nom: "TF1 — E-learning", tags: %w[motion UI],
-      images: %w[tf1/lou.png],
+      images: ["tf1/lou.png", { video: "teaser_nfmktr", seconde: 2 }],
       contexte: "Agence Tremplin Numérique",
       role: "Motion design typographique sous After Effects, compositing et intégration des animations de personnages (réalisées par un collègue), mise en page de l'interface du module" },
     { slug: "shelfie", nom: "Shelfie", tags: %w[UI dev],
@@ -27,7 +27,7 @@ module ProjectsHelper
       contexte: "Client",
       role: "Conception complète : direction artistique, illustration, packaging" },
     { slug: "ford", nom: "Ford", tags: %w[édition],
-      images: %w[ford/Mockup_Ford.jpg],
+      images: %w[ford/Mockup_Ford.jpg ford_couv.jpg],
       contexte: "Projet éditorial",
       role: "Conception complète : direction artistique, mise en page" },
     { slug: "abskate", nom: "Abécédaire", tags: %w[édition],
@@ -66,8 +66,8 @@ module ProjectsHelper
   # Un média de page projet :
   #   { image: "ford/x.jpg", alt: "…" }            image locale
   #   { cl_image: "public_id", alt: "…" }          image Cloudinary
-  #   { video: "public_id", alt: "…" }             vidéo Cloudinary en boucle muette
-  #   { video: "public_id", controls: true }       … avec lecteur (autoplay: true pour la lancer aussi)
+  #   { video: "public_id", alt: "…" }             vidéo Cloudinary en boucle muette (voir media_video_tag)
+  #   { video: "public_id", lecteur: true }        … avec lecteur, chargée au clic (largeur:, attente: en option)
   # sizes : largeur affichée, pour le srcset des images Cloudinary (MediasHelper)
   def projet_media(media, sizes: "100vw")
     if media[:image]&.end_with?(".gif")
@@ -79,12 +79,9 @@ module ProjectsHelper
       cl_image_tag media[:cl_image], alt: media[:alt], loading: "lazy", class: "projet-media__el",
                    fetch_format: :auto, quality: :auto
     elsif media[:video]
-      # Seuls les attributs actifs sont posés (controls="false" afficherait quand même le lecteur)
-      autoplay = media.fetch(:autoplay, !media[:controls])
-      lecture = { controls: media[:controls], autoplay: autoplay, loop: autoplay }.select { |_, v| v }
-      cl_video_tag media[:video], muted: true, playsinline: true, preload: "metadata",
-                   class: "projet-media__el", "aria-label": media[:alt],
-                   quality: :auto, **lecture
+      media_video_tag media[:video], alt: media[:alt], largeur: media.fetch(:largeur, 1200),
+                      lecteur: media[:lecteur], attente: media.fetch(:attente, 1),
+                      class: "projet-media__el"
     end
   end
 end
