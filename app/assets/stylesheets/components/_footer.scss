@@ -135,6 +135,13 @@
   }
 }
 
+// Page contact : sans accroche ni e-mail, les colonnes ouvrent le bloc
+.footer-main--court .footer-main__cols {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .footer-main__email,
   .footer-main__cols a {

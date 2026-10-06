@@ -18,13 +18,17 @@
     </p>
   </div>
 
-  <div class="footer-main">
-    <p class="footer-main__accroche">Un projet en tête ?<br>Parlons-en.</p>
+  <%# Page contact (y compris réaffichée après une erreur du formulaire) : pas d'appel à écrire, déjà en tête de page %>
+  <% page_contact = current_page?(contact_path) || controller_name == "contacts" %>
+  <div class="footer-main<%= " footer-main--court" if page_contact %>">
+    <% unless page_contact %>
+      <p class="footer-main__accroche">Un projet en tête ?<br>Parlons-en.</p>
 
-    <a class="footer-main__email" href="mailto:hoarauf4@gmail.com"
-       data-controller="magnetic" data-magnetic-strength-value="0.2">
-      hoarauf4@gmail.com
-    </a>
+      <a class="footer-main__email" href="mailto:hoarauf4@gmail.com"
+         data-controller="magnetic" data-magnetic-strength-value="0.2">
+        hoarauf4@gmail.com
+      </a>
+    <% end %>
 
     <div class="footer-main__cols">
       <nav class="footer-col" aria-label="Pages">
