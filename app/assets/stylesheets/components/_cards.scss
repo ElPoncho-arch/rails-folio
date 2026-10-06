@@ -63,27 +63,6 @@
   aspect-ratio: 2 / 1;
 }
 
-
-.contact-page {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .contact-card {
-    /* largeur entre 300px et 600px, à 80% de la largeur écran sinon */
-    width: clamp(300px, 100vw, 600px);
-    /* hauteur entre 400px et 800px, à 60% de la hauteur écran sinon */
-    min-height: clamp(400px, 80vh, 400px);
-    border-radius: 2rem;
-    background-color: #0009B8;
-    color: #FFF4E9;
-
-    .card-body {
-      padding-bottom: 0.5rem;
-    }
-  }
-}
-
 .contact-page-full {
   background-color: $color-bg;
 
