@@ -1,5 +1,5 @@
 <%# Home V2 — aperçu au survol : project_preview_controller.js ; apparitions : reveal_controller.js ;
-    nom du hero : split_title_controller.js %>
+    nom du hero : split_title_controller.js ; bande des disciplines : disciplines_controller.js %>
 <%
   disciplines = %w[graphisme motion UI front]
 %>
@@ -24,12 +24,12 @@
 </section>
 
 <%# Bande des disciplines %>
-<section class="home-disciplines" aria-label="Disciplines">
+<section class="home-disciplines" aria-label="Disciplines" data-controller="disciplines">
   <ul class="home-disciplines__list">
     <% disciplines.each_with_index do |discipline, i| %>
-      <li><%= discipline %></li>
+      <li data-disciplines-target="item"><%= discipline %></li>
       <% if i < disciplines.size - 1 %>
-        <li class="home-disciplines__arrow" aria-hidden="true">→</li>
+        <li class="home-disciplines__arrow" aria-hidden="true" data-disciplines-target="item">→</li>
       <% end %>
     <% end %>
   </ul>
