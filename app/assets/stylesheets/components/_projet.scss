@@ -134,6 +134,14 @@ $projet-gouttiere-md: 3rem;
   margin: 0;
 }
 
+// Demi-largeur centrée dès md (ex. logo carré), pleine largeur en mobile
+.projet-media--etroit {
+  @include respond-to(md) {
+    width: calc(50% - 0.75rem);
+    margin-inline: auto;
+  }
+}
+
 .projet-media__grille {
   display: grid;
   gap: 1rem;

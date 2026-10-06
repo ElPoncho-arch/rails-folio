@@ -1,6 +1,7 @@
-<%# Média pleine largeur — locals : media (voir projet_media), ratio (ex. "16 / 9", facultatif), legende (facultatif) %>
+<%# Média pleine largeur — locals : media (voir projet_media), ratio (ex. "16 / 9", facultatif),
+    etroit (demi-largeur centrée dès md, facultatif), legende (facultatif) %>
 <% ratio = local_assigns[:ratio] %>
-<figure class="projet-media projet-media--pleine">
+<figure class="projet-media projet-media--pleine <%= 'projet-media--etroit' if local_assigns[:etroit] %>">
   <div class="projet-media__cadre <%= 'projet-media__cadre--recadre' if ratio %>"
        <%= tag.attributes(style: "aspect-ratio: #{ratio}") if ratio %>>
     <%= projet_media(media, sizes: "(min-width: 768px) calc(100vw - 6rem), calc(100vw - 2rem)") %>
