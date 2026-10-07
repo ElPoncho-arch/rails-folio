@@ -2,11 +2,11 @@
 
 <%= render layout: "projects/entete", locals: { projet: projet } do %>
   <p>
-    Le nouveau logo de Mango Édition a pour principal objectif de traduire le renouveau à travers le cycle.
-    Le logo circulaire est impactant, reconnaissable et mémorisable pour tous.
-    Le cercle symbolise l’unité et la régularité de la marque.
+    Proposition d’identité pour Mango, maison d’édition de livres pratiques et de cuisine. Le logo circulaire traduit l’idée de cycle et de renouvellement, et le cercle évoque l’unité de la marque. Une forme simple, facile à reconnaître et à retenir.
   </p>
 <% end %>
+
+<%= render "projects/blocs", blocs: projet[:blocs] %>
 
 <div class="projet-medias">
   <%= render "projects/media_paire", medias: [

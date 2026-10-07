@@ -182,8 +182,31 @@ module ProjectsHelper
       ] },
     { slug: "mango", nom: "Mango Édition", tags: %w[identité motion],
       images: %w[mango/livre-2.jpg mango/tote.jpg],
-      contexte: "Proposition d’identité",
-      role: "Conception complète : direction artistique, création et déclinaisons" },
+      etiquettes: ["Projet d’école", "Proposition d’identité", "2020"],
+      role: "Conception complète",
+      duree: "2 mois",
+      outils: "Illustrator · InDesign · Photoshop · After Effects",
+      blocs: [
+        { titre: "Contexte", items: [
+          "Refonte d’identité d’un éditeur existant",
+          "Un catalogue large : cuisine, loisirs, pratique",
+          "Un signe fort et lisible sur les couvertures"
+        ] },
+        { titre: "Identité", items: [
+          "Logo circulaire",
+          "Version animée",
+          "Couleurs vives"
+        ] },
+        { titre: "Déclinaisons", items: [
+          "Cartes de visite",
+          "Couvertures de livres",
+          "Sac en toile"
+        ] },
+        { titre: "Livrables", items: [
+          "Logo fixe et animé",
+          "Mises en situation édition et objets"
+        ] }
+      ] },
     { slug: "ford", nom: "Ford", tags: %w[édition],
       images: %w[ford/Mockup_Ford.jpg ford_couv.jpg],
       contexte: "Projet éditorial",
