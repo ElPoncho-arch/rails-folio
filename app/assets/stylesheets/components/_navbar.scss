@@ -1,5 +1,5 @@
 // Nav pilule flottante (réf. native.inc)
-// Mobile first : nom + point + « menu » ; desktop (lg) : nom + liens + badge,
+// Mobile first : nom + point + « menu » ; desktop (lg) : nom + liens + point,
 // compactée au scroll vers le bas (.is-compact posée par nav_controller).
 
 .site-nav {
@@ -100,26 +100,13 @@
   }
 }
 
-// Badge « on bosse ensemble ? »
+// Badge : pastille orange seule
 .nav-pill__badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
   white-space: nowrap;
-}
-
-.nav-pill__badge-label {
-  display: none;
-
-  @include respond-to(lg) {
-    display: inline-block;
-    max-width: 12rem; // « on bosse ensemble ? » en entier
-    overflow: hidden;
-    transition:
-      max-width $duration-base $ease-back-out,
-      opacity $duration-fast $ease-soft;
-  }
 }
 
 .nav-pill__dot {
@@ -169,8 +156,7 @@
 
 // État compact (desktop)
 .nav-pill.is-compact {
-  .nav-pill__links,
-  .nav-pill__badge-label {
+  .nav-pill__links {
     max-width: 0;
     opacity: 0;
   }
@@ -232,14 +218,6 @@
   }
 }
 
-.nav-panel__badge {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0;
-  font-family: $font-mono;
-}
-
 // Lien d'évitement « Aller au contenu » : hors écran, pilule encre sur crème au focus
 .lien-evitement {
   position: fixed;
@@ -281,7 +259,6 @@ html.nav-is-open {
 
 @media (prefers-reduced-motion: reduce) {
   .nav-pill__links,
-  .nav-pill__badge-label,
   .nav-pill__brand,
   .nav-pill__link,
   .nav-pill__toggle,
