@@ -2,12 +2,11 @@
 
 <%= render layout: "projects/entete", locals: { projet: projet } do %>
   <p>
-    Les formes modernes et épurées présentes sur l’étiquette évoquent la manière
-    de produire l’huile d’olive via des illustrations simples et linéaires.
-    Le cheval, quant à lui, symbolise la fertilité et la prospérité.
-    Le code couleur fait référence aux inspirations méditerranéennes.
+    Mission freelance en direct avec le client, pour une marque d’huile d’olive : identité, étiquettes et site. Les formes linéaires de l’étiquette racontent la fabrication de l’huile, le cheval symbolise la fertilité et la prospérité. La palette puise dans les inspirations méditerranéennes.
   </p>
 <% end %>
+
+<%= render "projects/blocs", blocs: projet[:blocs] %>
 
 <div class="projet-medias">
   <%= render "projects/media_pleine",

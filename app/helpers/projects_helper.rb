@@ -126,8 +126,30 @@ module ProjectsHelper
       ] },
     { slug: "la_colline", nom: "La Colline", tags: %w[packaging illustration],
       images: %w[lacolline/Glass_Oil_Bottle_2.jpg lacolline/mobile2.jpg],
-      contexte: "Client",
-      role: "Conception complète : direction artistique, illustration, packaging" },
+      etiquettes: ["Freelance", "Identité, packaging & web", "2022"],
+      role: "Directeur artistique · UI designer",
+      duree: "4 mois",
+      outils: "Illustrator · Figma · WordPress · Elementor",
+      blocs: [
+        { titre: "Contexte", items: [
+          "Lancement d’une marque d’huile d’olive",
+          "Collaboration directe avec le client",
+          "Une identité cohérente, de la bouteille au site"
+        ] },
+        { titre: "Identité & illustration", items: [
+          "Logotype et palette méditerranéenne",
+          "Illustrations linéaires sur la production",
+          "Le cheval, symbole de la marque"
+        ] },
+        { titre: "Packaging & print", items: [
+          "Étiquettes de la gamme",
+          "Déclinaisons imprimées"
+        ] },
+        { titre: "Web", items: [
+          "Maquettes et design system sous Figma",
+          "Intégration du site sous WordPress (Elementor)"
+        ] }
+      ] },
     { slug: "macval", nom: "MAC VAL", tags: %w[identité motion],
       images: %w[macval/Branding_Mockup_2.jpg macval/magnet.jpg],
       contexte: "Proposition d’identité",
