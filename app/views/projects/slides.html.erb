@@ -2,21 +2,11 @@
 
 <%= render layout: "projects/entete", locals: { projet: projet } do %>
   <p>
-    Slides est une exposition dédiée aux adeptes et aux curieux qui souhaitent découvrir
-    ou redécouvrir l’histoire du skateboard, une pratique qui a émergé au début des
-    années 1960 en Californie. Cette exposition reflète la diversité et la richesse de
-    ce mode de vie par le biais d’œuvres modernes, vidéos, tirages numériques,
-    installations interactives, art sonore, design et marques emblématiques.
-  </p>
-  <p>
-    Le logo destiné à l’exposition Slides a été inspiré par les codes de la culture
-    skate des années 1980. Il intègre un aspect underground à la fois par sa typographie,
-    qui rassemble des influences punk, street et brut, et par la couleur, qui symbolise
-    le dynamisme et la curiosité. L’encadrement autour de chaque caractère rappelle des
-    lettres découpées qui évoquent le «&nbsp;do it yourself&nbsp;» largement inscrit
-    dans cette culture.
+    Slides est une exposition imaginée pour les passionnés et les curieux qui veulent découvrir l’histoire du skateboard, né en Californie au début des années 1960. Le logo reprend les codes de la culture skate des années 1980 : une typographie aux influences punk, des lettres découpées qui évoquent le «&nbsp;fais-le toi-même&nbsp;», et un jaune qui dit le dynamisme et la curiosité.
   </p>
 <% end %>
+
+<%= render "projects/blocs", blocs: projet[:blocs] %>
 
 <div class="projet-medias">
   <%= render "projects/media_pleine", ratio: "1 / 1", etroit: true,
@@ -49,7 +39,7 @@
         { image: "slides/sceno.gif",
           alt: "Scénographie de l’exposition Slides dans le bâtiment, en animation" },
         { image: "slides/totebag2.jpg",
-          alt: "Tote bag Slides blanc accroché à un mur" }
+          alt: "Sac en toile Slides blanc accroché à un mur" }
       ] %>
 </div>
 

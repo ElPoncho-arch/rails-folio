@@ -289,8 +289,33 @@ module ProjectsHelper
       ] },
     { slug: "slides", nom: "Slides", tags: %w[identité motion],
       images: ["slides/slide_branding_31.jpg", "slides/MU 1.jpg"],
-      contexte: "Projet de diplôme",
-      role: "Conception complète : identité, affiches, scénographie" }
+      etiquettes: ["Projet de diplôme", "Identité & scénographie", "2021 / 2022"],
+      role: "Conception complète",
+      duree: "6 mois",
+      outils: "Illustrator · InDesign · Photoshop · After Effects",
+      blocs: [
+        { titre: "Contexte", items: [
+          "Projet de fin d’études",
+          "Une exposition sur l’histoire du skate",
+          "Public : pratiquants et curieux"
+        ] },
+        { titre: "Identité", items: [
+          "Logo en lettres découpées",
+          "Version animée",
+          "Jaune et noir"
+        ] },
+        { titre: "Supports", items: [
+          "Série d’affiches",
+          "Billets",
+          "Papeterie",
+          "Catalogue",
+          "Sac en toile"
+        ] },
+        { titre: "Scénographie", items: [
+          "Parcours d’exposition",
+          "Affichage urbain"
+        ] }
+      ] }
   ].freeze
 
   def projets
