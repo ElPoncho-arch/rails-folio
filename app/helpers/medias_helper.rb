@@ -42,7 +42,7 @@ module MediasHelper
 
   # GIF animé déjà sur Cloudinary (public_id) servi en vidéo muette en boucle,
   # pilotée comme les autres boucles par video_boucle_controller.js
-  # (pause hors écran, arrêt en mouvement réduit), sans bouton lecture / pause
+  # (pause hors écran, arrêt en mouvement réduit)
   def media_gif_video_tag(public_id, alt:, largeur:, **html)
     cadre = { width: largeur, crop: :limit }
     video = cloudinary_url public_id, secure: true,
@@ -52,12 +52,12 @@ module MediasHelper
 
     tag.video tag.source(src: video), poster: attente, autoplay: true, muted: true, loop: true,
               playsinline: true, preload: "metadata", "aria-label": alt,
-              data: { controller: "video-boucle", video_boucle_bouton_value: false }, **html
+              data: { controller: "video-boucle" }, **html
   end
 
   # Vidéo Cloudinary (public_id existant, inchangé) :
   #   boucle muette (par défaut) : autoplay, muted, loop, ac_none, preload metadata,
-  #                                pilotée par video_boucle_controller.js (bouton, pause hors écran)
+  #                                pilotée par video_boucle_controller.js (pause hors écran)
   #   lecteur (lecteur: true)    : controls, preload none, ne se charge qu'au clic
   #                                (muet: true si la vidéo n'a pas de piste son)
   # L'image d'attente est tirée de la vidéo à la seconde « attente ».

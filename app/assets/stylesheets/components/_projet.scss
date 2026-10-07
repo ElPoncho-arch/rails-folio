@@ -257,7 +257,7 @@ $projet-gouttiere-md: 3rem;
 }
 
 .projet-media__cadre {
-  position: relative; // bouton des vidéos en boucle
+  position: relative;
   overflow: hidden;
   border-radius: $radius-card;
   background-color: $color-chargement; // visible le temps du chargement
@@ -282,52 +282,6 @@ video.projet-media__el:focus-visible {
   display: block;
   width: 100%;
   height: auto;
-}
-
-// Bouton lecture / pause des vidéos en boucle (video_boucle_controller.js) :
-// discret au repos, plein au survol du cadre, au focus, sur écran tactile et en mouvement réduit
-.video-boucle__bouton {
-  position: absolute;
-  right: 0.75rem;
-  bottom: 0.75rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.8rem;
-  border: 1px solid $color-text;
-  border-radius: $radius-pill;
-  background-color: rgba($color-bg, 0.9);
-  color: $color-text;
-  font-family: $font-mono;
-  font-size: 0.8rem;
-  line-height: 1;
-  opacity: 0.7;
-  transition: opacity $duration-fast $ease-soft;
-
-  svg {
-    width: 0.65em;
-    height: 0.65em;
-    fill: currentColor;
-  }
-
-  .projet-media__cadre:hover &,
-  &:focus-visible {
-    opacity: 1;
-  }
-
-  &:focus-visible {
-    outline: 2px solid $color-text;
-    outline-offset: 2px;
-  }
-
-  @media (hover: none) {
-    opacity: 1;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    opacity: 1;
-    transition: none;
-  }
 }
 
 .projet-media__legende {

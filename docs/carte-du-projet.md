@@ -93,7 +93,7 @@ Chaque projet a sa page dans `app/views/projects/` (par exemple `app/views/proje
 | « ← tous les projets », numéro 07 / 08, grand titre, tags, texte, contexte et rôle | `app/views/projects/_entete.html.erb` (titre, tags, contexte, rôle viennent de `app/helpers/projects_helper.rb` ; le texte vient de la page du projet) | `app/assets/stylesheets/components/_projet.scss` (`.projet-entete`) | `app/javascript/controllers/split_title_controller.js` (mots du titre) |
 | Image ou vidéo pleine largeur | `app/views/projects/_media_pleine.html.erb` | `app/assets/stylesheets/components/_projet.scss` (`.projet-media--pleine`) | `app/javascript/controllers/video_boucle_controller.js` pour les vidéos |
 | Deux images côte à côte (carrées) | `app/views/projects/_media_paire.html.erb` | `app/assets/stylesheets/components/_projet.scss` (`.projet-media--paire`) | — |
-| Bouton « lecture / pause » sur les vidéos en boucle (pas sur les GIF animés) | ajouté par le JS | `app/assets/stylesheets/components/_projet.scss` (`.video-boucle__bouton`) | `app/javascript/controllers/video_boucle_controller.js` |
+| Lecture automatique des vidéos en boucle et GIF animés (pause hors écran, arrêt en mouvement réduit, sans bouton) | — | — | `app/javascript/controllers/video_boucle_controller.js` |
 | « ← précédent / suivant → » | `app/views/projects/_navigation.html.erb` | `app/assets/stylesheets/components/_projet.scss` (`.projet-nav`) | `app/javascript/controllers/magnetic_controller.js` |
 
 Le choix de la balise (image, image Cloudinary, vidéo, GIF) se fait dans `projet_media` de `app/helpers/projects_helper.rb` ; la fabrication des balises dans `app/helpers/medias_helper.rb`.
