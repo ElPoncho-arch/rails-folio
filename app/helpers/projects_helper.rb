@@ -209,8 +209,31 @@ module ProjectsHelper
       ] },
     { slug: "ford", nom: "Ford", tags: %w[édition],
       images: %w[ford/Mockup_Ford.jpg ford_couv.jpg],
-      contexte: "Projet éditorial",
-      role: "Conception complète : direction artistique, mise en page" },
+      etiquettes: ["Proposition éditoriale", "Brochure", "2021"],
+      role: "Conception complète",
+      duree: "3 mois",
+      outils: "Illustrator · InDesign · Photoshop",
+      blocs: [
+        { titre: "Contexte", items: [
+          "Proposition de livrable éditorial sur l’histoire d’une marque",
+          "Plus d’un siècle d’archives à hiérarchiser"
+        ] },
+        { titre: "Direction artistique", items: [
+          "Hommage graphique à Paul Rand",
+          "Lettres découpées en couverture",
+          "Typographies colorées"
+        ] },
+        { titre: "Mise en page", items: [
+          "Doubles pages chronologiques",
+          "Photos d’archives",
+          "Grille éditoriale"
+        ] },
+        { titre: "Livrables", items: [
+          "Couverture",
+          "Brochure complète",
+          "Mises en situation"
+        ] }
+      ] },
     { slug: "abskate", nom: "Abécédaire", tags: %w[édition],
       images: %w[abc/livre.jpg abskate_couv.jpg],
       contexte: "Projet éditorial",

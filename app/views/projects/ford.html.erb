@@ -2,11 +2,11 @@
 
 <%= render layout: "projects/entete", locals: { projet: projet } do %>
   <p>
-    Brochure retraçant l’histoire de la marque Ford de ses débuts en 1891
-    en passant par le fordisme, la création du modèle T, la célèbre Mustang,
-    ses courses des 24 Heures du Mans, jusqu’à nos jours.
+    Proposition de brochure retraçant l’histoire de Ford, de la création de l’entreprise en 1903 à aujourd’hui : le fordisme, la Ford T, la Mustang et les 24 Heures du Mans. La mise en page rend hommage à Paul Rand, avec des typographies colorées et des photos d’archives.
   </p>
 <% end %>
+
+<%= render "projects/blocs", blocs: projet[:blocs] %>
 
 <div class="projet-medias">
   <%= render "projects/media_paire", medias: [
