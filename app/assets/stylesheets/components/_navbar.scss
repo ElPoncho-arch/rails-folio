@@ -100,7 +100,7 @@
   }
 }
 
-// Badge « disponible »
+// Badge « on bosse ensemble ? »
 .nav-pill__badge {
   display: inline-flex;
   align-items: center;
@@ -114,7 +114,7 @@
 
   @include respond-to(lg) {
     display: inline-block;
-    max-width: 8rem;
+    max-width: 12rem; // « on bosse ensemble ? » en entier
     overflow: hidden;
     transition:
       max-width $duration-base $ease-back-out,
