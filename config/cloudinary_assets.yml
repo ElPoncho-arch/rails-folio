@@ -48,8 +48,8 @@ atelier-reli-art/proposition-3.png:
 beach-bikes/calendrier.png:
   public_id: portfolio/beach-bikes/calendrier
   format: png
-  width: 1195
-  height: 1195
+  width: 2400
+  height: 1350
 beach-bikes/design-system.png:
   public_id: portfolio/beach-bikes/design-system
   format: png
@@ -58,18 +58,18 @@ beach-bikes/design-system.png:
 beach-bikes/mobile.png:
   public_id: portfolio/beach-bikes/mobile
   format: png
-  width: 744
-  height: 744
+  width: 1600
+  height: 1600
 beach-bikes/reservations.png:
   public_id: portfolio/beach-bikes/reservations
   format: png
-  width: 2001
-  height: 1126
+  width: 2400
+  height: 1350
 beach-bikes/wireframe.png:
   public_id: portfolio/beach-bikes/wireframe
   format: png
-  width: 1940
-  height: 1091
+  width: 2400
+  height: 1350
 bio_image.png:
   public_id: portfolio/site/portrait-bio
   format: png
@@ -178,8 +178,8 @@ metropole-grand-paris/behance.png:
 metropole-grand-paris/intervenant.png:
   public_id: portfolio/metropole-grand-paris/intervenant
   format: png
-  width: 1586
-  height: 892
+  width: 2400
+  height: 1350
 metropole-grand-paris/kakemono.png:
   public_id: portfolio/metropole-grand-paris/kakemono
   format: png
