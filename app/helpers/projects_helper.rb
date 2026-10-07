@@ -5,7 +5,7 @@ module ProjectsHelper
   PROJETS = [
     { slug: "metropole-grand-paris", nom: "Métropole du Grand Paris", tags: %w[identité],
       etiquettes: ["PVV / Tremplin Numérique", "Identité visuelle", "2022 / 2025", "Équipe de 15 personnes"],
-      images: %w[metropole-grand-paris/ia-dans-la-ville.png],
+      images: %w[metropole-grand-paris/agoras-salle.png],
       role: "Responsable du pôle graphisme",
       duree: "3 ans et demi",
       outils: "Illustrator · InDesign · Photoshop · After Effects · Premiere Pro",
