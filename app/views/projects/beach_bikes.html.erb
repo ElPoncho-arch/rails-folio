@@ -12,22 +12,21 @@
 <div class="projet-medias">
   <%= projet_bloc_medias(
         { image: "beach-bikes/reservations.png",
-          alt: "Interface Beach Bikes : écran de gestion des réservations" }) %>
+          alt: "Interface Beach Bikes : écran de gestion des réservations" }, ratio: "16 / 9") %>
 
   <%= projet_bloc_medias(
         { image: "beach-bikes/calendrier.png",
-          alt: "Interface Beach Bikes : calendrier des réservations" },
+          alt: "Interface Beach Bikes : calendrier des réservations" }, ratio: "16 / 9") %>
+
+  <%= projet_bloc_medias(
         { image: "beach-bikes/mobile.png",
-          alt: "Interface Beach Bikes sur mobile" }) %>
+          alt: "Interface Beach Bikes sur mobile" },
+        { image: "beach-bikes/design-system.png",
+          alt: "Design system de l’interface Beach Bikes : couleurs, typographies et composants" }) %>
 
   <%= projet_bloc_medias(
         { image: "beach-bikes/wireframe.png",
-          alt: "Wireframe de l’interface de gestion Beach Bikes" }) %>
-
-  <%= projet_bloc_medias(
-        { image: "beach-bikes/design-system.png",
-          alt: "Design system de l’interface Beach Bikes : couleurs, typographies et composants" },
-        etroit: true) %>
+          alt: "Wireframe de l’interface de gestion Beach Bikes" }, ratio: "16 / 9") %>
 </div>
 
 <%= render "projects/navigation", projet: projet %>
