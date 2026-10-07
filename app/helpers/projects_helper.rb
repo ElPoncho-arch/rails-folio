@@ -158,12 +158,13 @@ module ProjectsHelper
     media_image_url(image, largeur: 800) if image
   end
 
-  # Bloc de médias tolérant aux absents : 2 disponibles → paire, 1 → pleine largeur, 0 → rien
-  def projet_bloc_medias(*medias, ratio: nil)
+  # Bloc de médias tolérant aux absents : 2 disponibles → paire, 1 → pleine largeur
+  # (etroit : demi-largeur centrée dès md), 0 → rien
+  def projet_bloc_medias(*medias, ratio: nil, etroit: false)
     presents = medias.select { |m| media_disponible?(m) }
     case presents.size
     when 0 then nil
-    when 1 then render("projects/media_pleine", media: presents.first, ratio: ratio)
+    when 1 then render("projects/media_pleine", media: presents.first, ratio: ratio, etroit: etroit)
     else render("projects/media_paire", medias: presents.first(2))
     end
   end

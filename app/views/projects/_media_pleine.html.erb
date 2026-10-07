@@ -4,7 +4,9 @@
 <figure class="projet-media projet-media--pleine <%= 'projet-media--etroit' if local_assigns[:etroit] %>" data-reveal-target="item">
   <div class="projet-media__cadre <%= 'projet-media__cadre--recadre' if ratio %>"
        <%= tag.attributes(style: "aspect-ratio: #{ratio}") if ratio %>>
-    <%= projet_media(media, sizes: "(min-width: 768px) calc(100vw - 6rem), calc(100vw - 2rem)") %>
+    <%# Demi-largeur dès md : même largeur affichée qu'une image de paire %>
+    <%= projet_media(media, sizes: local_assigns[:etroit] ? "(min-width: 768px) calc(50vw - 3.75rem), calc(100vw - 2rem)"
+                                                          : "(min-width: 768px) calc(100vw - 6rem), calc(100vw - 2rem)") %>
   </div>
   <% if local_assigns[:legende] %>
     <figcaption class="projet-media__legende"><%= legende %></figcaption>
