@@ -1,18 +1,22 @@
 import { Controller } from "@hotwired/stimulus"
+import { gsap } from "gsap"
 
 // Nav pilule : se compacte au scroll vers le bas (desktop),
-// ouvre un panneau plein écran (mobile).
+// ouvre un panneau plein écran (mobile) qui descend comme un rideau.
+// Mouvement réduit : ouverture et fermeture instantanées.
 export default class extends Controller {
-  static targets = ["pill", "toggle", "panel"]
+  static targets = ["pill", "toggle", "toggleTexte", "panel", "item", "bas"]
 
   connect() {
     this.desktop = window.matchMedia("(min-width: 992px)")
     this.lastY = window.scrollY
     this.ticking = false
+    this.opened = false
+    this.motion = window.matchMedia("(prefers-reduced-motion: reduce)")
   }
 
   disconnect() {
-    this.close()
+    this.closeNow()
   }
 
   // --- Compactage (desktop) ---
@@ -45,35 +49,78 @@ export default class extends Controller {
     this.pillTarget.classList.toggle("is-compact", compact && this.desktop.matches)
   }
 
-  // --- Menu (bouton « menu ») ---
+  // --- Menu (bouton « menu ») : rideau tomate ---
 
   toggle() {
     if (this.desktop.matches) return this.expand()
-    this.isOpen ? this.close() : this.open()
+    this.opened ? this.close() : this.open()
   }
 
   open() {
+    if (this.opened) return
+    this.opened = true
+    this.timeline?.kill()
+    this.panelTarget.style.setProperty("--nav-pill-bas", `${this.pillTarget.getBoundingClientRect().bottom}px`)
     this.panelTarget.hidden = false
-    this.toggleTarget.setAttribute("aria-expanded", "true")
-    this.toggleTarget.textContent = "fermer"
+    this.setToggle(true)
     document.documentElement.classList.add("nav-is-open")
     this.setInert(true)
     this.dispatch("open")
     this.focusables()[1]?.focus()
+
+    if (this.motion.matches) return this.resetStyles()
+
+    // Le rideau descend, puis les liens montent en cascade, puis le bas du panneau
+    this.timeline = gsap.timeline()
+      .fromTo(this.panelTarget, { clipPath: "inset(0 0 100% 0)" },
+        { clipPath: "inset(0 0 0% 0)", duration: 0.5, ease: "power3.out" })
+      .fromTo(this.itemTargets, { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.06, ease: "back.out(1.4)" }, "-=0.2")
+      .fromTo(this.basTarget, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, "-=0.3")
   }
 
+  // Aussi appelé au clic sur un lien du panneau : la page est rendue tout de suite
+  // (défilement, ancre), le rideau remonte par-dessus
   close() {
-    if (!this.isOpen) return
-    this.panelTarget.hidden = true
-    this.toggleTarget.setAttribute("aria-expanded", "false")
-    this.toggleTarget.textContent = "menu"
+    if (!this.opened) return
+    this.opened = false
+    this.timeline?.kill()
+    this.setToggle(false)
     document.documentElement.classList.remove("nav-is-open")
     this.setInert(false)
     this.dispatch("close")
+
+    if (this.motion.matches) return this.hidePanel()
+
+    this.timeline = gsap.timeline({ onComplete: () => this.hidePanel() })
+      .to(this.panelTarget, { clipPath: "inset(0 0 100% 0)", duration: 0.3, ease: "power2.in" })
+  }
+
+  // Sans animation : mise en cache Turbo, départ du controller
+  closeNow() {
+    this.close()
+    this.timeline?.kill()
+    this.timeline = null
+    this.hidePanel()
+  }
+
+  hidePanel() {
+    if (this.opened) return
+    this.panelTarget.hidden = true
+    this.resetStyles()
+  }
+
+  resetStyles() {
+    gsap.set([this.panelTarget, ...this.itemTargets, this.basTarget], { clearProps: "clipPath,transform,opacity" })
+  }
+
+  setToggle(open) {
+    this.toggleTarget.setAttribute("aria-expanded", String(open))
+    this.toggleTexteTarget.textContent = open ? "fermer" : "menu"
   }
 
   onKeydown(event) {
-    if (!this.isOpen) return
+    if (!this.opened) return
     if (event.key === "Escape") {
       this.close()
       this.toggleTarget.focus()
@@ -83,7 +130,7 @@ export default class extends Controller {
   }
 
   onResize() {
-    if (this.desktop.matches) this.close()
+    if (this.desktop.matches) this.closeNow()
     else this.pillTarget.classList.remove("is-compact")
   }
 
@@ -108,9 +155,5 @@ export default class extends Controller {
 
   focusables() {
     return [this.toggleTarget, ...this.panelTarget.querySelectorAll("a")]
-  }
-
-  get isOpen() {
-    return !this.panelTarget.hidden
   }
 }

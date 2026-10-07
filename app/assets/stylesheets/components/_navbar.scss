@@ -80,6 +80,12 @@
 
 .nav-pill__brand {
   margin-right: auto;
+
+  // Mobile, texte agrandi : le nom passe à la ligne au lieu de sortir de la pilule
+  @media (max-width: 991.98px) {
+    min-width: 0;
+    white-space: normal;
+  }
 }
 
 // Liens : cachés en mobile, repliables en desktop
@@ -100,13 +106,17 @@
   }
 }
 
-// Badge : pastille orange seule
+// Badge : pastille orange seule, en desktop
 .nav-pill__badge {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
   white-space: nowrap;
+
+  @include respond-to(lg) {
+    display: inline-flex;
+  }
 }
 
 .nav-pill__dot {
@@ -145,12 +155,70 @@
     transform: translateY(-50%);
   }
 
-  &[aria-expanded="true"] {
-    background-color: $color-accent;
-  }
-
   @include respond-to(lg) {
     display: none;
+  }
+}
+
+// Mobile : pilule encre pleine, icône à deux traits qui devient une croix
+@media (max-width: 991.98px) {
+  .nav-pill .nav-pill__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: $color-text;
+    color: $color-bg;
+    transition: opacity $duration-fast $ease-soft;
+
+    &:hover,
+    &:focus-visible,
+    &[aria-expanded="true"] {
+      background-color: $color-text;
+    }
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+
+.nav-pill__icone {
+  position: relative;
+  flex-shrink: 0;
+  width: 16px;
+  height: 8px; // 2 traits de 2 px espacés de 6 px
+
+  @include respond-to(lg) {
+    display: none; // desktop : « menu » seul, comme avant
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 2px;
+    background-color: currentColor;
+    transition: transform $duration-fast $ease-soft;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+
+  [aria-expanded="true"] > & {
+    &::before {
+      transform: translateY(3px) rotate(45deg);
+    }
+
+    &::after {
+      transform: translateY(-3px) rotate(-45deg);
+    }
   }
 }
 
@@ -166,7 +234,7 @@
   }
 }
 
-// Panneau plein écran (mobile)
+// Panneau plein écran (mobile) : rideau tomate, animé par nav_controller (GSAP)
 .nav-panel {
   pointer-events: auto;
   position: fixed;
@@ -174,10 +242,13 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-  padding: 6rem 1rem 2rem;
-  background-color: $color-bg;
+  overflow-y: auto; // texte agrandi : le panneau défile au lieu de couper
+  padding: 6rem 1.25rem;
+  // Sous la pilule, même quand elle passe sur 2 lignes (texte agrandi) : bas mesuré par nav_controller
+  padding-top: calc(var(--nav-pill-bas, 4.5rem) + 1.5rem);
+  padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+  background-color: $color-accent;
+  color: $color-text;
 
   &[hidden] {
     display: none;
@@ -190,31 +261,109 @@
   padding: 0;
 }
 
+.nav-panel__item {
+  padding: 0.75rem 0;
+  border-bottom: 1.5px solid $color-text;
+
+  &:first-child {
+    border-top: 1.5px solid $color-text;
+  }
+}
+
 .nav-panel__link {
-  display: inline-block;
-  font-family: $font-display;
-  font-weight: 600;
-  font-size: clamp(3rem, 14vw, 5rem);
-  line-height: 1.05;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
   color: $color-text;
   text-decoration: none;
-  // Soulignement tomate : une forme, pas du texte
-  background-image: linear-gradient($color-accent, $color-accent);
-  background-size: 0 0.12em;
-  background-position: 0 92%;
-  background-repeat: no-repeat;
-  transition: background-size $duration-base $ease-back-out;
 
   &:hover,
   &:focus-visible,
   &[aria-current="page"] {
     color: $color-text;
-    background-size: 100% 0.12em;
+
+    .nav-panel__libelle {
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 0.15em;
+    }
   }
 
-  // Page en cours : soulignement encre (le tomate reste pour le survol et le focus)
-  &[aria-current="page"]:not(:hover):not(:focus-visible) {
-    background-image: linear-gradient($color-text, $color-text);
+  &:focus-visible {
+    @include contour-focus;
+  }
+}
+
+.nav-panel__num {
+  flex-shrink: 0;
+  font-family: $font-mono;
+  font-size: 0.8rem;
+}
+
+.nav-panel__libelle {
+  min-width: 0;
+  font-family: $font-display;
+  font-weight: 600;
+  // Minimum bas : avec le texte agrandi à 200 %, les mots tiennent entiers sur 320 px
+  // (à taille normale, 12vw s'applique dès 320 px)
+  font-size: clamp(1.375rem, 12vw, 4rem);
+  line-height: 1;
+  overflow-wrap: anywhere; // dernier recours si un mot ne tient toujours pas
+}
+
+// Bas du panneau : e-mail et réseaux
+.nav-panel__bas {
+  margin-top: auto;
+  padding-top: 2rem;
+  font-family: $font-mono;
+  font-size: 0.95rem;
+}
+
+.nav-panel__reseaux {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.75rem;
+  margin: 0;
+}
+
+.nav-panel__contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em; // l'espace avant ↗ disparaît dans un inline-flex
+  min-height: 2.75rem;
+  color: $color-text;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+
+  &:hover {
+    color: $color-text;
+    text-decoration-thickness: 2px;
+  }
+
+  &:focus-visible {
+    @include contour-focus;
+  }
+}
+
+// Panneau ouvert : la pilule se fond dans le rideau
+html.nav-is-open .nav-pill {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: rgba($color-text, 0.25);
+
+  .nav-pill__brand {
+    &:hover,
+    &:focus-visible,
+    &[aria-current="page"] {
+      background-color: transparent;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.3em;
+    }
   }
 }
 
@@ -262,7 +411,9 @@ html.nav-is-open {
   .nav-pill__brand,
   .nav-pill__link,
   .nav-pill__toggle,
-  .nav-panel__link {
+  .nav-pill .nav-pill__toggle,
+  .nav-pill__icone::before,
+  .nav-pill__icone::after {
     transition: none;
   }
 

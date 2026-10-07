@@ -2,7 +2,7 @@
 <% liens = [["projets", "/#projets"], ["à propos", a_propos_path], ["contact", contact_path]] %>
 
 <header class="site-nav" data-controller="nav"
-        data-action="scroll@window->nav#onScroll keydown@window->nav#onKeydown resize@window->nav#onResize">
+        data-action="scroll@window->nav#onScroll keydown@window->nav#onKeydown resize@window->nav#onResize turbo:before-cache@document->nav#closeNow">
   <nav class="nav-pill" aria-label="Navigation principale" data-nav-target="pill"
        data-action="mouseenter->nav#expand mouseleave->nav#onLeave">
     <%= link_to "fabien hoarau", root_path, class: "nav-pill__brand" %>
@@ -22,18 +22,39 @@
 
     <button type="button" class="nav-pill__toggle"
             aria-expanded="false" aria-controls="nav-panel"
-            data-nav-target="toggle" data-action="nav#toggle">menu</button>
+            data-nav-target="toggle" data-action="nav#toggle">
+      <span class="nav-pill__icone" aria-hidden="true"></span>
+      <span class="nav-pill__toggle-texte" data-nav-target="toggleTexte">menu</span>
+    </button>
   </nav>
 
-  <%# Panneau plein écran (mobile) %>
+  <%# Panneau plein écran (mobile) : rideau tomate %>
   <div id="nav-panel" class="nav-panel" data-nav-target="panel" hidden>
-    <ul class="nav-panel__links">
-      <% liens.each do |label, path| %>
-        <li>
-          <%= link_to label, path, class: "nav-panel__link",
-                aria: { current: ("page" if current_page?(path)) } %>
+    <ol class="nav-panel__links">
+      <% liens.each_with_index do |(label, path), index| %>
+        <li class="nav-panel__item" data-nav-target="item">
+          <%= link_to path, class: "nav-panel__link", data: { action: "click->nav#close" },
+                aria: { current: ("page" if current_page?(path)) } do %>
+            <span class="nav-panel__num" aria-hidden="true"><%= format("%02d", index + 1) %></span>
+            <span class="nav-panel__libelle"><%= label %></span>
+          <% end %>
         </li>
       <% end %>
-    </ul>
+    </ol>
+
+    <div class="nav-panel__bas" data-nav-target="bas">
+      <a class="nav-panel__contact" href="mailto:hoarauf4@gmail.com" data-action="click->nav#close">hoarauf4@gmail.com</a>
+      <p class="nav-panel__reseaux">
+        <%= link_to "https://www.linkedin.com/in/fabien-hoarau-7b896a172/", class: "nav-panel__contact",
+              target: "_blank", rel: "noopener noreferrer", data: { action: "click->nav#close" } do %>
+          LinkedIn <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+        <% end %>
+        <span aria-hidden="true">·</span>
+        <%= link_to "https://github.com/ElPoncho-arch", class: "nav-panel__contact",
+              target: "_blank", rel: "noopener noreferrer", data: { action: "click->nav#close" } do %>
+          GitHub <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+        <% end %>
+      </p>
+    </div>
   </div>
 </header>
