@@ -97,8 +97,33 @@ module ProjectsHelper
       ] },
     { slug: "tf1", nom: "TF1 — E-learning", tags: %w[motion UI],
       images: ["tf1/lou.png", { video: "teaser_nfmktr", seconde: 2 }],
-      contexte: "Agence Tremplin Numérique",
-      role: "Motion design typographique sous After Effects, compositing et intégration des animations de personnages (réalisées par un collègue), mise en page de l’interface du module" },
+      etiquettes: ["Tremplin Numérique", "Module e-learning", "2024 / 2025"],
+      role: "Motion designer · UI designer",
+      duree: "6 mois",
+      outils: "After Effects · Illustrator · Figma",
+      blocs: [
+        { titre: "Contexte", items: [
+          "Commande du Groupe TF1 via l’agence",
+          "Public : professionnels de l’audiovisuel",
+          "Sujet : une production plus responsable",
+          "Équipe à plusieurs intervenants"
+        ] },
+        { titre: "Motion", items: [
+          "Motion design typographique",
+          "Composition des scènes animées",
+          "Intégration des animations de personnages (réalisées par un collègue)"
+        ] },
+        { titre: "Interface", items: [
+          "Mise en page des écrans du module",
+          "Hiérarchie claire pour un contenu dense",
+          "Cohérence entre animations et interface"
+        ] },
+        { titre: "Livrables", items: [
+          "Teaser du module",
+          "Quiz animés (échecs, mots croisés)",
+          "Écrans mis en page"
+        ] }
+      ] },
     { slug: "la_colline", nom: "La Colline", tags: %w[packaging illustration],
       images: %w[lacolline/Glass_Oil_Bottle_2.jpg lacolline/mobile2.jpg],
       contexte: "Client",

@@ -1,14 +1,12 @@
 <% projet = projet_courant %>
 
 <%= render layout: "projects/entete", locals: { projet: projet } do %>
-  <p><em>Transition environnementale dans l’audiovisuel</em></p>
   <p>
-    Conçu pour le Groupe TF1 et ses partenaires, ce module e-learning vise à sensibiliser l’ensemble des professionnels de l’audiovisuel aux enjeux de la transition environnementale. Pensé comme un outil pédagogique accessible et impactant pour encourager des pratiques plus responsables sur l’ensemble de la chaîne de production.
-  </p>
-  <p>
-    Ce projet a été réalisé au sein de l’agence Tremplin Numérique, en collaboration avec une équipe d’illustrateurs et de motion designers talentueux.
+    Module e-learning conçu pour le Groupe TF1 et ses partenaires, pour sensibiliser les professionnels de l’audiovisuel à la transition environnementale. Réalisé au sein de l’agence Tremplin Numérique, avec une équipe d’illustrateurs et de motion designers. Mon rôle : rythmer le contenu pédagogique par le motion typographique et mettre en page l’interface du module.
   </p>
 <% end %>
+
+<%= render "projects/blocs", blocs: projet[:blocs] %>
 
 <div class="projet-medias">
   <%= render "projects/media_pleine", ratio: "16 / 9",
