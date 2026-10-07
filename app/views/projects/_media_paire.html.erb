@@ -1,13 +1,14 @@
 <%# Paire de médias recadrés en carré, empilés en mobile — locals : medias (2 médias, voir projet_media), legende (facultatif) %>
-<figure class="projet-media projet-media--paire" data-reveal-target="item">
+<%# Chaque carte (cadre) grandit à l'arrivée : carte_controller.js ; la légende apparaît avec reveal %>
+<figure class="projet-media projet-media--paire">
   <div class="projet-media__grille">
     <% medias.each do |media| %>
-      <div class="projet-media__cadre projet-media__cadre--recadre">
+      <div class="projet-media__cadre projet-media__cadre--recadre" data-controller="carte">
         <%= projet_media(media, sizes: "(min-width: 768px) calc(50vw - 3.75rem), calc(100vw - 2rem)") %>
       </div>
     <% end %>
   </div>
   <% if local_assigns[:legende] %>
-    <figcaption class="projet-media__legende"><%= legende %></figcaption>
+    <figcaption class="projet-media__legende" data-reveal-target="item"><%= legende %></figcaption>
   <% end %>
 </figure>

@@ -1,14 +1,15 @@
 <%# Média pleine largeur — locals : media (voir projet_media), ratio (ex. "16 / 9", facultatif),
     etroit (demi-largeur centrée dès md, facultatif), legende (facultatif) %>
 <% ratio = local_assigns[:ratio] %>
-<figure class="projet-media projet-media--pleine <%= 'projet-media--etroit' if local_assigns[:etroit] %>" data-reveal-target="item">
-  <div class="projet-media__cadre <%= 'projet-media__cadre--recadre' if ratio %>"
+<%# La carte (cadre) grandit à l'arrivée : carte_controller.js ; la légende apparaît avec reveal %>
+<figure class="projet-media projet-media--pleine <%= 'projet-media--etroit' if local_assigns[:etroit] %>">
+  <div class="projet-media__cadre <%= 'projet-media__cadre--recadre' if ratio %>" data-controller="carte"
        <%= tag.attributes(style: "aspect-ratio: #{ratio}") if ratio %>>
     <%# Demi-largeur dès md : même largeur affichée qu'une image de paire %>
     <%= projet_media(media, sizes: local_assigns[:etroit] ? "(min-width: 768px) calc(50vw - 3.75rem), calc(100vw - 2rem)"
                                                           : "(min-width: 768px) calc(100vw - 6rem), calc(100vw - 2rem)") %>
   </div>
   <% if local_assigns[:legende] %>
-    <figcaption class="projet-media__legende"><%= legende %></figcaption>
+    <figcaption class="projet-media__legende" data-reveal-target="item"><%= legende %></figcaption>
   <% end %>
 </figure>
