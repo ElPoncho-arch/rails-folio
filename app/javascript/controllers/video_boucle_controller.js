@@ -1,9 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 // Vidéo muette en boucle (helpers media_video_tag et media_gif_video_tag).
-// - bouton lecture / pause toujours présent (WCAG 2.2.2), ajouté dans le cadre de la vidéo ;
+// - bouton lecture / pause ajouté dans le cadre de la vidéo (WCAG 2.2.2),
+//   sauf avec data-video-boucle-bouton-value="false" (GIF, sans bouton) ;
 // - pause hors de l'écran, reprise en revenant ;
-// - mouvement réduit : en pause sur l'image d'attente, lecture seulement au clic.
+// - mouvement réduit : en pause sur l'image d'attente, lecture seulement au clic sur le bouton
+//   (un GIF sans bouton reste sur son image d'attente).
 // La lecture est pilotée ici : l'attribut autoplay ne sert que sans JS.
 const ICONES = {
   lecture: '<svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path d="M2 1l7 4-7 4z"/></svg>',
@@ -11,6 +13,8 @@ const ICONES = {
 }
 
 export default class extends Controller {
+  static values = { bouton: { type: Boolean, default: true } }
+
   connect() {
     this.video = this.element
     this.video.autoplay = false
@@ -21,7 +25,7 @@ export default class extends Controller {
     this.onMotionChange = () => this.update()
     this.motion.addEventListener("change", this.onMotionChange)
 
-    this.addButton()
+    if (this.boutonValue) this.addButton()
     this.onStateChange = () => this.render()
     this.video.addEventListener("play", this.onStateChange)
     this.video.addEventListener("pause", this.onStateChange)
