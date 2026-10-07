@@ -262,8 +262,31 @@ module ProjectsHelper
       ] },
     { slug: "shelfie", nom: "Shelfie", tags: %w[UI dev],
       images: %w[shelfie/3840154.jpg],
-      contexte: "Projet d’équipe, Le Wagon",
-      role: "Direction artistique et développement front" },
+      etiquettes: ["Projet d’équipe Le Wagon", "Application mobile", "Équipe de 6 personnes"],
+      role: "Directeur artistique · Développeur front",
+      duree: "4 mois",
+      outils: "Figma · Ruby on Rails · Stimulus · JavaScript · HTML · CSS",
+      blocs: [
+        { titre: "Le problème", items: [
+          "Gaspillage alimentaire à la maison",
+          "Dates limites oubliées",
+          "Saisie manuelle fastidieuse"
+        ] },
+        { titre: "UI", items: [
+          "Charte : logo, couleurs, pictogrammes, typographies",
+          "Écrans clés : accueil, ingrédients, recettes, étagère"
+        ] },
+        { titre: "Développement", items: [
+          "Tout le front (Rails, Stimulus, JavaScript)",
+          "Scan des tickets de caisse",
+          "Alertes avant date limite",
+          "Recettes générées par un modèle de langage"
+        ] },
+        { titre: "Résultats", items: [
+          "Application fonctionnelle",
+          "Présentée au Demo Day de fin de formation"
+        ] }
+      ] },
     { slug: "slides", nom: "Slides", tags: %w[identité motion],
       images: ["slides/slide_branding_31.jpg", "slides/MU 1.jpg"],
       contexte: "Projet de diplôme",

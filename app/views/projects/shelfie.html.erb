@@ -2,9 +2,11 @@
 
 <%= render layout: "projects/entete", locals: { projet: projet } do %>
   <p>
-    Développée en équipe pendant la formation du Wagon, Shelfie est une application mobile qui aide les particuliers à mieux gérer leurs stocks alimentaires. En scannant les tickets de caisse, elle enregistre automatiquement les produits et alerte par notification lorsqu’ils approchent de leur date limite. Un LLM intégré propose ensuite des recettes adaptées aux aliments en fin de consommation, pour réduire le gaspillage et favoriser une cuisine créative et responsable.
+    Application mobile développée en équipe pendant la formation Le Wagon, pour aider les particuliers à mieux gérer leurs stocks alimentaires. En scannant les tickets de caisse, elle enregistre les produits et prévient avant leur date limite. Un modèle de langage propose ensuite des recettes avec les aliments à consommer en priorité, pour réduire le gaspillage.
   </p>
 <% end %>
+
+<%= render "projects/blocs", blocs: projet[:blocs] %>
 
 <div class="projet-medias">
   <%= render "projects/media_paire", medias: [
