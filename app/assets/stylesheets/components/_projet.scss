@@ -212,7 +212,7 @@ $projet-gouttiere-md: 3rem;
   position: relative; // bouton des vidéos en boucle
   overflow: hidden;
   border-radius: $radius-card;
-  background-color: $color-secondary; // visible le temps du chargement
+  background-color: $color-chargement; // visible le temps du chargement
 }
 
 // Recadré : carré par défaut (paires), ou ratio passé en style (pleine largeur)

@@ -255,7 +255,7 @@
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: $radius-card;
-  background-color: $color-secondary; // visible le temps du chargement
+  background-color: $color-chargement; // visible le temps du chargement
   pointer-events: none;
   visibility: hidden;
   opacity: 0;

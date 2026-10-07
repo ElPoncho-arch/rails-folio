@@ -44,7 +44,7 @@
   max-width: 485px; // largeur native de la source (485 × 670) : jamais agrandie, donc jamais floue
   height: auto; // ratio d'origine (attributs width et height) : le collage apparaît en entier
   border-radius: 1rem;
-  background-color: $color-secondary;
+  background-color: $color-chargement;
 
   @include respond-to(lg) {
     border-radius: $radius-card;
