@@ -44,12 +44,29 @@ export default class extends Controller {
     const items = this.itemTargets.filter((el) => !el.matches(SPLIT_TITLE) && !el.querySelector(SPLIT_TITLE))
     if (items.length === 0) return
 
+    gsap.set(items, { opacity: 0, y: 24 })
+    this.shown = new Set()
+    this.items = items
+
+    // Comme carte_controller : le déclencheur est créé une fois la visite Turbo terminée (turbo:load).
+    // Avant, la page garde la position de défilement de la page précédente (ex. bas de page),
+    // et les éléments plus bas se déclenchaient à l'arrivée, sans qu'on les voie apparaître.
+    this.arm = () => {
+      if (this.armed) return
+      this.armed = true
+      requestAnimationFrame(() => this.createTriggers())
+    }
+    document.addEventListener("turbo:load", this.arm, { once: true })
+    this.armTimer = setTimeout(this.arm, 400) // premier chargement : turbo:load est déjà passé
+  }
+
+  createTriggers() {
+    if (!this.items || !this.element.isConnected || this.motion.matches) return
+
     // Les premiers éléments visibles attendent la fin du fondu de page (transition)
     const startedAt = performance.now()
 
-    gsap.set(items, { opacity: 0, y: 24 })
-    this.shown = new Set()
-    this.triggers = ScrollTrigger.batch(items, {
+    this.triggers = ScrollTrigger.batch(this.items, {
       start: "top 90%",
       once: true,
       onEnter: (batch) => {
@@ -67,7 +84,6 @@ export default class extends Controller {
         })
       }
     })
-    this.items = items
   }
 
   // Focus clavier sur un élément pas encore apparu : affiché tout de suite, sans animation
@@ -81,6 +97,9 @@ export default class extends Controller {
 
   // Affiche tout sans animation (mouvement réduit, mise en cache Turbo, départ)
   showAll() {
+    document.removeEventListener("turbo:load", this.arm)
+    clearTimeout(this.armTimer)
+    this.armed = true
     this.triggers?.forEach((trigger) => trigger.kill())
     this.triggers = null
     if (this.items) {

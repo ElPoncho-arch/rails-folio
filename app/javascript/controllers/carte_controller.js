@@ -44,6 +44,20 @@ export default class extends Controller {
       }
     }
 
+    // Le déclencheur est créé une fois la visite Turbo terminée (turbo:load) : avant, la page
+    // garde la position de défilement de la page précédente (ex. bas de page après « suivant »),
+    // et toutes les cartes se déclenchaient pendant le fondu d'entrée, sans qu'on les voie grandir.
+    this.arm = () => {
+      if (this.armed) return
+      this.armed = true
+      requestAnimationFrame(() => this.createTrigger())
+    }
+    document.addEventListener("turbo:load", this.arm, { once: true })
+    this.armTimer = setTimeout(this.arm, 400) // premier chargement : turbo:load est déjà passé
+  }
+
+  createTrigger() {
+    if (!this.element.isConnected || this.motion.matches) return
     this.trigger = ScrollTrigger.create({
       trigger: this.element,
       start: "top 75%",
@@ -68,6 +82,9 @@ export default class extends Controller {
 
   // Carte à sa taille finale et image visible, sans animation (mouvement réduit, mise en cache Turbo, départ)
   showAll() {
+    document.removeEventListener("turbo:load", this.arm)
+    clearTimeout(this.armTimer)
+    this.armed = true
     this.trigger?.kill()
     this.trigger = null
     this.tween?.kill()
