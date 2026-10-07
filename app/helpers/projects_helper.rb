@@ -152,8 +152,34 @@ module ProjectsHelper
       ] },
     { slug: "macval", nom: "MAC VAL", tags: %w[identité motion],
       images: %w[macval/Branding_Mockup_2.jpg macval/magnet.jpg],
-      contexte: "Proposition d’identité",
-      role: "Conception complète : direction artistique, création et déclinaisons" },
+      etiquettes: ["Projet d’école", "Proposition d’identité", "2023"],
+      role: "Conception complète",
+      duree: "4 mois",
+      outils: "Illustrator · InDesign · Photoshop",
+      blocs: [
+        { titre: "Contexte", items: [
+          "Exercice de refonte d’identité d’un musée existant",
+          "Public large, de l’amateur au spécialiste",
+          "Un système à décliner du web à la signalétique"
+        ] },
+        { titre: "Identité", items: [
+          "Logo manuscrit tracé à la main",
+          "Le rectangle-porte comme fil conducteur",
+          "Version animée du logo"
+        ] },
+        { titre: "Déclinaisons", items: [
+          "Affiches d’exposition",
+          "Papeterie",
+          "Badges",
+          "Signalétique intérieure",
+          "Bandeau web"
+        ] },
+        { titre: "Livrables", items: [
+          "Logo fixe et animé",
+          "Supports imprimés et signalétique",
+          "Mises en situation"
+        ] }
+      ] },
     { slug: "mango", nom: "Mango Édition", tags: %w[identité motion],
       images: %w[mango/livre-2.jpg mango/tote.jpg],
       contexte: "Proposition d’identité",

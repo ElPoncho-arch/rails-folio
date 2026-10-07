@@ -2,16 +2,11 @@
 
 <%= render layout: "projects/entete", locals: { projet: projet } do %>
   <p>
-    Le logo du MAC VAL s’appuie sur ses fondamentaux&nbsp;: être le seul musée
-    exclusivement consacré à la scène artistique en France. Depuis les années 1950,
-    il réussit à mettre son imagination au service du public en proposant des actions
-    innovantes. La typographie manuscrite, de par sa réalisation fait main, rappelle
-    les bases de la création d’une œuvre.
-  </p>
-  <p>
-    Le rectangle a pour but de représenter une porte d’entrée sur le monde de l’art.
+    Proposition d’identité pour le MAC VAL, musée consacré à la scène artistique française depuis les années 1950. Le logo manuscrit, tracé à la main, rappelle le geste de création d’une œuvre. Le rectangle figure une porte d’entrée vers le monde de l’art.
   </p>
 <% end %>
+
+<%= render "projects/blocs", blocs: projet[:blocs] %>
 
 <div class="projet-medias">
   <%= render "projects/media_pleine",
