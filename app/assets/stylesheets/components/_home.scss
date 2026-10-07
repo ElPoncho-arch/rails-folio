@@ -98,25 +98,34 @@
   padding: 1.25rem 0;
 }
 
+.home-disciplines__piste {
+  display: flex;
+  width: max-content;
+  padding-left: 1rem; // départ aligné sur la marge de la page ; la boucle se décale ensuite (transform)
+  font-family: $font-display;
+  font-weight: 500;
+  // Mobile : « graphisme → motion » (10,9 em) remplit pile la largeur entre les marges
+  font-size: calc((100vw - 2rem) / 10.9);
+  line-height: 1;
+  white-space: nowrap;
+  will-change: transform;
+
+  @include respond-to(md) {
+    padding-left: 3rem;
+    font-size: clamp(2rem, 7vw, 5rem);
+  }
+}
+
+// Une copie : « graphisme → motion → UI → front → » ; l'espace de fin = l'écart entre mots,
+// pour que la copie suivante s'enchaîne sans raccord visible
 .home-disciplines__list {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 0.6em;
   margin: 0;
-  padding: 0 1rem;
+  padding: 0 0.6em 0 0;
   list-style: none;
-  white-space: nowrap;
-  font-family: $font-display;
-  font-weight: 500;
-  // Mobile : « graphisme → motion » (10,9 em) remplit pile la largeur entre les marges,
-  // la suite de la bande reste hors champ
-  font-size: calc((100vw - 2rem) / 10.9);
-  line-height: 1;
-
-  @include respond-to(md) {
-    padding: 0 3rem;
-    font-size: clamp(2rem, 7vw, 5rem);
-  }
 }
 
 // Flèche : une forme tomate, pas du texte courant

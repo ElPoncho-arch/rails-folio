@@ -23,16 +23,21 @@
   </div>
 </section>
 
-<%# Bande des disciplines %>
-<section class="home-disciplines" aria-label="Disciplines" data-controller="disciplines">
-  <ul class="home-disciplines__list">
-    <% disciplines.each_with_index do |discipline, i| %>
-      <li data-disciplines-target="item"><%= discipline %></li>
-      <% if i < disciplines.size - 1 %>
-        <li class="home-disciplines__arrow" aria-hidden="true" data-disciplines-target="item">→</li>
-      <% end %>
+<%# Bande des disciplines : boucle continue qui suit le défilement (disciplines_controller.js).
+    3 copies identiques pour un raccord invisible ; seule la première est lue par les lecteurs d'écran. %>
+<section class="home-disciplines" aria-label="Disciplines" data-controller="disciplines"
+         data-action="mouseenter->disciplines#pause mouseleave->disciplines#reprendre">
+  <div class="home-disciplines__piste" data-disciplines-target="piste">
+    <% 3.times do |copie| %>
+      <ul class="home-disciplines__list" <%= tag.attributes(aria: { hidden: true }) if copie.positive? %>
+          data-disciplines-target="copie">
+        <% disciplines.each do |discipline| %>
+          <li><%= discipline %></li>
+          <li class="home-disciplines__arrow" aria-hidden="true">→</li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
+  </div>
 </section>
 
 <%# Liste des projets %>
