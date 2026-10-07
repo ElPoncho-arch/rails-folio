@@ -1,6 +1,8 @@
 <%# En-tête de page projet — usage : render layout: "projects/entete", locals: { projet: projet_courant } do … texte … end %>
 <%# Titre de page : nom court, sans sous-titre (« TF1 — E-learning » → « TF1 ») %>
 <% content_for :titre, projet[:nom].split(" — ").first %>
+<%# Mobile (< 768 px) : intro, infos et blocs repliés derrière « à propos du projet » (depliable_controller.js) %>
+<div class="projet-intro" data-controller="depliable">
 <header class="projet-entete">
   <div class="projet-entete__haut" data-reveal-target="item">
     <%= link_to "← tous les projets", "/#projets", class: "projet-entete__retour" %>
@@ -16,6 +18,14 @@
     <% end %>
   </ul>
 
+  <%# Caché sans JS (contenu ouvert) et dès 768 px (CSS) %>
+  <button type="button" class="projet-depliable__bouton" hidden
+          aria-expanded="true" aria-controls="projet-details<%= ' projet-blocs' if projet[:blocs] %>"
+          data-depliable-target="bouton" data-action="depliable#basculer">
+    à propos du projet <span class="projet-depliable__signe" aria-hidden="true" data-depliable-target="signe">−</span>
+  </button>
+
+  <div class="projet-depliable" id="projet-details" data-depliable-target="panneau">
   <div class="projet-entete__corps" data-reveal-target="item">
     <div class="projet-entete__texte">
       <%= yield %>
@@ -32,4 +42,12 @@
       </dl>
     <% end %>
   </div>
+  </div>
 </header>
+
+<% if projet[:blocs] %>
+  <div class="projet-depliable" id="projet-blocs" data-depliable-target="panneau">
+    <%= render "projects/blocs", blocs: projet[:blocs] %>
+  </div>
+<% end %>
+</div>

@@ -65,6 +65,54 @@ $projet-gouttiere-md: 3rem;
   list-style: none;
 }
 
+// --- Texte repliable en mobile (depliable_controller.js) ---
+// Enveloppes sans marge, padding ni bordure : fermées (hidden="until-found"), elles tombent à 0 de haut.
+// flow-root : la marge des enfants reste dedans, la hauteur animée ne saute pas.
+.projet-depliable {
+  display: flow-root;
+}
+
+.projet-depliable__bouton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem; // zone tactile de 44 px
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid $color-text;
+  border-radius: $radius-pill;
+  background: transparent;
+  color: $color-text;
+  font-family: $font-mono;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color $duration-fast $ease-soft;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $color-accent; // fond tomate, texte encre (5,6:1) ; le contour porte le focus
+  }
+
+  &:focus-visible {
+    @include contour-focus;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  // Dès 768 px : tout est ouvert, le bouton disparaît
+  @include respond-to(md) {
+    display: none;
+  }
+}
+
+.projet-depliable__signe {
+  display: inline-block;
+  min-width: 1ch;
+  text-align: center;
+}
+
 // Texte puis infos en mobile ; infos à gauche, texte à droite dès lg
 .projet-entete__corps {
   display: grid;
@@ -358,6 +406,7 @@ video.projet-media__el:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .projet-entete__retour,
+  .projet-depliable__bouton,
   .projet-nav__lien {
     transition: none;
   }
