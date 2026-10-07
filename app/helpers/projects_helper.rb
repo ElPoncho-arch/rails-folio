@@ -236,8 +236,30 @@ module ProjectsHelper
       ] },
     { slug: "abskate", nom: "Abécédaire", tags: %w[édition],
       images: %w[abc/livre.jpg abskate_couv.jpg],
-      contexte: "Projet éditorial",
-      role: "Conception complète : direction artistique, mise en page" },
+      etiquettes: ["Collaboration", "Projet éditorial", "2020"],
+      role: "Conception complète",
+      outils: "Illustrator · InDesign · Photoshop",
+      blocs: [
+        { titre: "Contexte", items: [
+          "Collaboration autour d’un événement skate",
+          "Livre d’apprentissage de l’alphabet",
+          "Public : jeunes et passionnés"
+        ] },
+        { titre: "Typographie", items: [
+          "26 lettres composées de photos de skate",
+          "Noir et blanc",
+          "Photo-typographie"
+        ] },
+        { titre: "Mise en page", items: [
+          "Une lettre par double page",
+          "Rythme entre image et texte"
+        ] },
+        { titre: "Livrables", items: [
+          "Couverture",
+          "Livre complet",
+          "Mises en situation"
+        ] }
+      ] },
     { slug: "shelfie", nom: "Shelfie", tags: %w[UI dev],
       images: %w[shelfie/3840154.jpg],
       contexte: "Projet d’équipe, Le Wagon",
