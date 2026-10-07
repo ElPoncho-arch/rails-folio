@@ -30,6 +30,46 @@ abskate_couv.jpg:
   format: jpg
   width: 3386
   height: 3946
+atelier-reli-art/proposition-1.png:
+  public_id: portfolio/atelier-reli-art/proposition-1
+  format: png
+  width: 2400
+  height: 1350
+atelier-reli-art/proposition-2.png:
+  public_id: portfolio/atelier-reli-art/proposition-2
+  format: png
+  width: 1600
+  height: 1600
+atelier-reli-art/proposition-3.png:
+  public_id: portfolio/atelier-reli-art/proposition-3
+  format: png
+  width: 1600
+  height: 1600
+beach-bikes/calendrier.png:
+  public_id: portfolio/beach-bikes/calendrier
+  format: png
+  width: 1195
+  height: 1195
+beach-bikes/design-system.png:
+  public_id: portfolio/beach-bikes/design-system
+  format: png
+  width: 1600
+  height: 1600
+beach-bikes/mobile.png:
+  public_id: portfolio/beach-bikes/mobile
+  format: png
+  width: 744
+  height: 744
+beach-bikes/reservations.png:
+  public_id: portfolio/beach-bikes/reservations
+  format: png
+  width: 2001
+  height: 1126
+beach-bikes/wireframe.png:
+  public_id: portfolio/beach-bikes/wireframe
+  format: png
+  width: 1940
+  height: 1091
 bio_image.png:
   public_id: portfolio/site/portrait-bio
   format: png
@@ -125,6 +165,31 @@ mango/tote.jpg:
   format: jpg
   width: 903
   height: 1500
+metropole-grand-paris/agoras-salle.png:
+  public_id: portfolio/metropole-grand-paris/agoras-salle
+  format: png
+  width: 1624
+  height: 914
+metropole-grand-paris/behance.png:
+  public_id: portfolio/metropole-grand-paris/behance
+  format: png
+  width: 2400
+  height: 1350
+metropole-grand-paris/intervenant.png:
+  public_id: portfolio/metropole-grand-paris/intervenant
+  format: png
+  width: 1586
+  height: 892
+metropole-grand-paris/kakemono.png:
+  public_id: portfolio/metropole-grand-paris/kakemono
+  format: png
+  width: 1600
+  height: 1600
+metropole-grand-paris/visuels.png:
+  public_id: portfolio/metropole-grand-paris/visuels
+  format: png
+  width: 1600
+  height: 1600
 shelfie/3840154-2.jpg:
   public_id: portfolio/shelfie/charte-2
   format: jpg

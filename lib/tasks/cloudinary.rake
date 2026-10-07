@@ -5,9 +5,10 @@
 #   bin/rails cloudinary:upload            envoie et remplit config/cloudinary_assets.yml
 #   DRY_RUN=1 bin/rails cloudinary:import_projets   nouveaux projets : liste les exports de tmp/import/
 #   bin/rails cloudinary:import_projets            les envoie et complète le manifeste
+#   ECRASER=1 bin/rails cloudinary:import_projets  remplace les images déjà envoyées (overwrite + invalidation du cache CDN)
 #
 # Identifiants : CLOUDINARY_URL (.env), jamais affiché.
-# Aucune ressource existante n'est écrasée (overwrite: false).
+# Aucune ressource existante n'est écrasée (overwrite: false), sauf avec ECRASER=1 sur import_projets.
 
 module CloudinaryMigration
   RACINE = "portfolio"
@@ -117,6 +118,7 @@ namespace :cloudinary do
   task import_projets: :environment do
     dossiers = { "mgp" => "metropole-grand-paris", "beach-bikes" => "beach-bikes", "reli-art" => "atelier-reli-art" }
     essai = ENV["DRY_RUN"].present?
+    ecraser = ENV["ECRASER"].present? # ECRASER=1 : remplace les images déjà envoyées
     manifeste = CloudinaryMigration.manifeste
     dynamique = !essai && CloudinaryMigration.mode_dossiers == "dynamic"
     racine = Rails.root.join("tmp/import")
@@ -131,16 +133,16 @@ namespace :cloudinary do
         public_id = "#{CloudinaryMigration::RACINE}/#{slug}/#{nom}"
         ligne = format("%6.2f Mo  %-40s → %s", File.size(fichier) / 1e6, File.basename(fichier), public_id)
 
-        if manifeste.key?(chemin)
+        if manifeste.key?(chemin) && !ecraser
           puts "  déjà fait  #{ligne}"
           next
         end
         if essai
-          puts "  à envoyer  #{ligne}"
+          puts "  #{ecraser ? 'à remplacer' : 'à envoyer'}  #{ligne}"
           next
         end
 
-        options = { public_id: public_id, resource_type: :image, overwrite: false,
+        options = { public_id: public_id, resource_type: :image, overwrite: ecraser, invalidate: ecraser,
                     use_filename: false, unique_filename: false }
         options[:asset_folder] = File.dirname(public_id) if dynamique
         r = Cloudinary::Uploader.upload(fichier, options)
