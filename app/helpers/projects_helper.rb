@@ -73,7 +73,7 @@ module ProjectsHelper
       ] },
     { slug: "atelier-reli-art", nom: "Atelier Reli’Art", tags: %w[identité],
       etiquettes: ["Freelance", "Identité visuelle", "2025"],
-      images: [{ image: "atelier-reli-art/logo.png", logo: true }, "atelier-reli-art/proposition-1.png"],
+      images: [{ image: "atelier-reli-art/logo.png", logo: true, marge: 8 }, "atelier-reli-art/proposition-1.png"],
       role: "Directeur artistique",
       duree: "5 mois",
       outils: "Illustrator · Photoshop",
