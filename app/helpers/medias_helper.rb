@@ -7,17 +7,17 @@ module MediasHelper
   # URL d'une image à une largeur maximale donnée (jamais agrandie).
   # chemin : chemin local, ou { video: "public_id", seconde: 2 } pour une image fixe tirée d'une vidéo.
   # cadre : proportions imposées (ex. "4:3") ; l'image y tient en entier, complétée par une marge
-  # de la couleur de son bord (pour les logos).
-  def media_image_url(chemin, largeur:, cadre: nil)
+  # de la couleur de son bord (pour les logos) ; marge : retrait en % de chaque côté dans ce cadre.
+  def media_image_url(chemin, largeur:, cadre: nil, marge: 0)
     if chemin.is_a?(Hash)
-      return media_video_image_url(chemin[:video], seconde: chemin[:seconde], largeur: largeur, cadre: cadre)
+      return media_video_image_url(chemin[:video], seconde: chemin[:seconde], largeur: largeur, cadre: cadre, marge: marge)
     end
 
     media = media_cloudinary(chemin)
     return asset_path(chemin) unless media
 
     cloudinary_url media["public_id"], secure: true,
-                   transformation: [media_dimensions(largeur, cadre), { fetch_format: :auto }, { quality: :auto }]
+                   transformation: [*media_dimensions(largeur, cadre, marge), { fetch_format: :auto }, { quality: :auto }]
   end
 
   # <img> avec srcset si l'image est sur Cloudinary ; sizes décrit la largeur affichée.
@@ -80,17 +80,21 @@ module MediasHelper
               playsinline: true, "aria-label": alt, **lecture, **html
   end
 
-  def media_video_image_url(public_id, seconde:, largeur:, cadre: nil)
+  def media_video_image_url(public_id, seconde:, largeur:, cadre: nil, marge: 0)
     cloudinary_url public_id, secure: true, resource_type: :video, format: "jpg",
-                   transformation: [{ start_offset: seconde }, media_dimensions(largeur, cadre),
+                   transformation: [{ start_offset: seconde }, *media_dimensions(largeur, cadre, marge),
                                     { fetch_format: :auto }, { quality: :auto }]
   end
 
-  # Largeur maximale ; avec un cadre, l'image y tient en entier (marge couleur du bord)
-  def media_dimensions(largeur, cadre)
-    return { width: largeur, crop: :limit } unless cadre
+  # Largeur maximale ; avec un cadre, l'image y tient en entier (marge couleur du bord).
+  # Avec une marge, l'image est d'abord réduite, puis complétée sans être réagrandie (lpad).
+  def media_dimensions(largeur, cadre, marge = 0)
+    return [{ width: largeur, crop: :limit }] unless cadre
 
-    { width: largeur, aspect_ratio: cadre, crop: :pad, background: "auto" }
+    plein = { width: largeur, aspect_ratio: cadre, crop: :pad, background: "auto" }
+    return [plein] unless marge.positive?
+
+    [plein.merge(width: (largeur * (100 - 2 * marge) / 100.0).round), plein.merge(crop: :lpad)]
   end
 
   def media_cloudinary(chemin)

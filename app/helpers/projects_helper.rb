@@ -3,11 +3,12 @@ module ProjectsHelper
   # projets récents d'abord, projets d'école (Shelfie, Slides) en dernier.
   # images : aperçu au survol de la home (la première disponible) ; { video:, seconde: } = image fixe
   # tirée d'une vidéo ; logo: true = logo sur fond uni affiché en entier dans le cadre 4:3 de l'aperçu
-  # (marge de la couleur du bord ; à éviter sur un fond texturé, la marge s'y verrait).
+  # (marge de la couleur du bord ; à éviter sur un fond texturé, la marge s'y verrait) ;
+  # marge: 10 = logo en retrait de 10 % de chaque côté.
   PROJETS = [
     { slug: "metropole-grand-paris", nom: "Métropole du Grand Paris", tags: %w[identité],
       etiquettes: ["PVV / Tremplin Numérique", "Identité visuelle", "2022 / 2025", "Équipe de 15 personnes"],
-      images: [{ image: "metropole-grand-paris/logo.webp", logo: true }, "metropole-grand-paris/agoras-salle.png"],
+      images: [{ image: "metropole-grand-paris/logo.webp", logo: true, marge: 10 }, "metropole-grand-paris/agoras-salle.png"],
       role: "Responsable du pôle graphisme",
       duree: "3 ans et demi",
       outils: "Illustrator · InDesign · Photoshop · After Effects · Premiere Pro",
@@ -351,8 +352,9 @@ module ProjectsHelper
     return unless image
 
     cadre = "4:3" if image.is_a?(Hash) && image[:logo]
+    marge = image.is_a?(Hash) ? image[:marge].to_i : 0
     image = image[:image] if image.is_a?(Hash) && image[:image]
-    media_image_url(image, largeur: 800, cadre: cadre)
+    media_image_url(image, largeur: 800, cadre: cadre, marge: marge)
   end
 
   # Bloc de médias tolérant aux absents : 2 disponibles → paire, 1 → pleine largeur
