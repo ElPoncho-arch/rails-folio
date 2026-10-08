@@ -103,6 +103,7 @@ Le choix de la balise (image, image Cloudinary, vidéo, GIF) se fait dans `proje
 | À l’écran | Structure | Style | Comportement |
 |---|---|---|---|
 | À propos (portrait, texte, outils, liens) | `app/views/pages/a_propos.html.erb` | `app/assets/stylesheets/components/_a_propos.scss` | `app/javascript/controllers/reveal_controller.js` |
+| À propos : bloc « Mon CV » (jeu du panier, bouton « télécharger le CV ») | `app/views/pages/a_propos.html.erb` (`.apropos-cv`) ; poids du PDF calculé par `app/helpers/application_helper.rb` | `app/assets/stylesheets/components/_panier_cv.scss` | `app/javascript/controllers/panier_cv_controller.js` |
 | Contact : colonne de gauche et formulaire | `app/views/pages/contact.html.erb` | `app/assets/stylesheets/components/_contact.scss` | `app/javascript/controllers/formulaire_controller.js` (vérification des champs, messages) |
 | Contact : envoi du message | `app/controllers/contacts_controller.rb` → `app/mailers/contact_mailer.rb` → `app/views/contact_mailer/contact_email.html.erb` | — | règles des champs : `app/models/contact.rb` ; réglages Gmail : `config/environments/production.rb` |
 | Mentions légales | `app/views/pages/mentions_legales.html.erb` | `app/assets/stylesheets/components/_legal.scss` | — |
@@ -122,6 +123,7 @@ Toutes respectent le réglage « réduire les animations » du système (`prefer
 | Défilement doux | `app/javascript/controllers/smooth_scroll_controller.js` | `data-controller="smooth-scroll"` sur `<html>` |
 | Fondu entre les pages | `app/javascript/controllers/transition_controller.js` | `data-controller="transition"` sur `<body>` |
 | Vidéos en boucle | `app/javascript/controllers/video_boucle_controller.js` | ajouté automatiquement par `app/helpers/medias_helper.rb` |
+| Panier CV (jeu sur canvas, page À propos) | `app/javascript/controllers/panier_cv_controller.js` | `data-controller="panier-cv"` |
 | Nav qui se replie, menu mobile | `app/javascript/controllers/nav_controller.js` | `data-controller="nav"` |
 | Point « disponible » qui pulse 2 fois | `app/assets/stylesheets/components/_navbar.scss` (`nav-dot-pulse`) | classe `nav-pill__dot` |
 

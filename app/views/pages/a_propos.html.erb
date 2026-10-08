@@ -1,7 +1,9 @@
 <%# À propos — mobile : petit portrait + titre, texte visible dès le premier écran ;
     tablette et desktop (md) : portrait collant à gauche, contenu à droite. Textes à retravailler en fin de projet.
     Portrait : source de 485 × 670 sur Cloudinary ; sizes suit la largeur de la colonne (voir _a_propos.scss),
-    paliers du srcset choisis pour 88 px (mobile), ~210 px (tablette) et ~375 px (desktop), en ×1 et ×2. %>
+    paliers du srcset choisis pour 88 px (mobile), ~210 px (tablette) et ~375 px (desktop), en ×1 et ×2.
+    Bloc « Mon CV » : petit jeu de panier (panier_cv_controller.js, _panier_cv.scss) ; un panier marqué
+    télécharge le PDF via le lien « télécharger le CV », qui reste le raccourci direct (seul visible en mouvement réduit). %>
 <% content_for :titre, "À propos" %>
 <% outils = {
      "outils design" => ["Illustrator", "Photoshop", "InDesign", "After Effects", "Premiere Pro", "Figma"],
@@ -59,22 +61,47 @@
       <% end %>
     </dl>
 
-    <ul class="apropos__liens" aria-label="Liens" data-reveal-target="item">
-      <li>
-        <%= link_to asset_path("FabienHoarau_UIDesigner.pdf"), class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
-          CV (pdf) <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to "https://www.linkedin.com/in/fabien-hoarau-7b896a172/", class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
-          LinkedIn <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to "https://github.com/ElPoncho-arch", class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
-          GitHub <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
-        <% end %>
-      </li>
-    </ul>
+    <section class="apropos-cv" aria-labelledby="cv-titre" data-controller="panier-cv" data-reveal-target="item">
+      <h2 class="apropos-cv__titre" id="cv-titre">Mon CV</h2>
+      <p class="apropos-cv__aide">Attrape le fichier, tire vers le bas, vise le panier. Ou prends le raccourci juste en dessous.</p>
+
+      <div class="panier" data-panier-cv-target="terrain">
+        <div class="panier__tete">
+          <span class="panier__score">paniers <strong data-panier-cv-target="score">0</strong></span>
+        </div>
+
+        <div class="panier__carte" data-panier-cv-target="carte">
+          <div class="panier__infos">
+            <div class="panier__nom">CV_Fabien-Hoarau.pdf</div>
+            <div class="panier__poids">PDF · <%= poids_fichier(Rails.root.join("app/assets/images/FabienHoarau_UIDesigner.pdf")) %></div>
+          </div>
+          <div class="panier__etat">
+            <span data-panier-cv-target="etat" role="status" aria-live="polite">prêt à tirer</span>
+            <div class="panier__jauge"><span class="panier__jauge-barre" data-panier-cv-target="jauge"></span></div>
+          </div>
+          <div class="panier__coche" aria-hidden="true">✓</div>
+        </div>
+
+        <canvas aria-hidden="true" data-panier-cv-target="canvas"></canvas>
+        <div class="panier__poignee" aria-hidden="true" data-panier-cv-target="poignee"></div>
+      </div>
+
+      <ul class="apropos__liens" aria-label="Liens">
+        <li>
+          <%= link_to asset_path("FabienHoarau_UIDesigner.pdf"), class: "lien-pill lien-pill--plein", download: "CV_Fabien-Hoarau.pdf",
+                      data: { panier_cv_target: "lien", action: "panier-cv#telecharger" } do %>télécharger le CV <span aria-hidden="true">↓</span><% end %>
+        </li>
+        <li>
+          <%= link_to "https://www.linkedin.com/in/fabien-hoarau-7b896a172/", class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
+            LinkedIn <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "https://github.com/ElPoncho-arch", class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
+            GitHub <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+          <% end %>
+        </li>
+      </ul>
+    </section>
   </div>
 </article>
