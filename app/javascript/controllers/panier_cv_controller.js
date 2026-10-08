@@ -26,6 +26,12 @@ const DEP = { x: DEP_ECRAN.x - CX, y: CAM_Y - (DEP_ECRAN.y - CY), z: 0 }
 
 const MAX_TIRE = 200, KA = 1636, KB = 1023, KX = 2.6
 
+// Course du tirage à l'écran (px CSS) pour atteindre MAX_TIRE : l'icône est en bas du terrain,
+// il reste peu de place avant le bord de la fenêtre. Le tirage est ramené au plan logique,
+// les trajectoires ne changent pas, seule la distance à parcourir raccourcit.
+const COURSE_SOURIS = 80
+const COURSE_TACTILE = 70
+
 const POLICE = '"Fragment Mono", monospace'
 
 const proj = (x, y, z) => {
@@ -163,16 +169,12 @@ export default class extends Controller {
   }
 
   // ---------- Saisie (poignée seulement) ----------
-  pos(e) {
-    const r = this.canvas.getBoundingClientRect()
-    return { x: (e.clientX - r.left) / this.echelle, y: (e.clientY - r.top) / this.echelle }
-  }
-
   saisir(e) {
     if (this.etat !== "repos") return
     e.preventDefault()
     this.etat = "vise"
-    this.prise = this.pos(e)
+    this.prise = { x: e.clientX, y: e.clientY }
+    this.course = e.pointerType === "touch" ? COURSE_TACTILE : COURSE_SOURIS
     this.tire = { dx: 0, dy: 0 }
     this.poignee.setPointerCapture(e.pointerId)
     this.poignee.classList.add("is-prise")
@@ -181,8 +183,8 @@ export default class extends Controller {
 
   viser(e) {
     if (this.etat !== "vise") return
-    const p = this.pos(e)
-    let dx = p.x - this.prise.x, dy = p.y - this.prise.y
+    const k = MAX_TIRE / this.course // px d'écran → plan logique
+    let dx = (e.clientX - this.prise.x) * k, dy = (e.clientY - this.prise.y) * k
     const d = Math.hypot(dx, dy)
     if (d > MAX_TIRE) { dx *= MAX_TIRE / d; dy *= MAX_TIRE / d }
     this.tire = { dx, dy }
