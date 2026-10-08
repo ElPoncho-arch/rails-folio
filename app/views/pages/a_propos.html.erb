@@ -2,7 +2,7 @@
     tablette et desktop (md) : portrait collant à gauche, contenu à droite. Textes à retravailler en fin de projet.
     Portrait : source de 485 × 670 sur Cloudinary ; sizes suit la largeur de la colonne (voir _a_propos.scss),
     paliers du srcset choisis pour 88 px (mobile), ~210 px (tablette) et ~375 px (desktop), en ×1 et ×2.
-    Bloc « Mon CV » : petit jeu de panier (panier_cv_controller.js, _panier_cv.scss) ; un panier marqué
+    Bloc « Télécharge mon CV » : petit jeu de panier (panier_cv_controller.js, _panier_cv.scss) ; un panier marqué
     télécharge le PDF via le lien « télécharger le CV », qui reste le raccourci direct (seul visible en mouvement réduit). %>
 <% content_for :titre, "À propos" %>
 <% outils = {
@@ -62,7 +62,7 @@
     </dl>
 
     <section class="apropos-cv" aria-labelledby="cv-titre" data-controller="panier-cv" data-reveal-target="item">
-      <h2 class="apropos-cv__titre" id="cv-titre">Mon CV</h2>
+      <h2 class="apropos-cv__titre" id="cv-titre">Télécharge mon CV</h2>
       <p class="apropos-cv__aide">Attrape le fichier, tire vers le bas, vise le panier. Ou prends le raccourci juste en dessous.</p>
 
       <div class="panier" data-panier-cv-target="terrain">

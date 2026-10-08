@@ -5,6 +5,8 @@ import { Controller } from "@hotwired/stimulus"
 // - Dessin sur canvas dans un plan logique 640 × 700, monde 3D projeté (caméra au-dessus de l'arceau).
 // - Saisie uniquement par la poignée posée sur l'icône : le reste du terrain laisse défiler la page au doigt.
 // - Coup de pouce : après deux ratés, la trajectoire de visée s'allonge.
+// - Démo : à chaque arrivée sur la page, quand le terrain est bien visible, un doigt fantôme
+//   fait un lancer réussi (sans téléchargement ni point). Attraper l'icône l'interrompt.
 // - Boucle active seulement si le terrain est à l'écran et l'onglet affiché.
 // - Mouvement réduit : rien ne démarre (terrain masqué en CSS), le lien suffit.
 
@@ -31,6 +33,9 @@ const MAX_TIRE = 200, KA = 1636, KB = 1023, KX = 2.6
 // les trajectoires ne changent pas, seule la distance à parcourir raccourcit.
 const COURSE_SOURIS = 80
 const COURSE_TACTILE = 70
+
+// Démo : tir au centre de la zone qui marque (réussi à 30, 60 et 120 images/s, voisins compris)
+const DEMO = { tire: { dx: -84, dy: 142 }, attente: 600, pose: 0.45, tirage: 1, tenue: 0.35 }
 
 const POLICE = '"Fragment Mono", monospace'
 
@@ -102,10 +107,13 @@ export default class extends Controller {
 
     this.resizeObserver = new ResizeObserver(() => this.redim())
     this.resizeObserver.observe(this.terrainTarget)
+    this.demo = null
+    this.demoJouee = false
     this.intersectionObserver = new IntersectionObserver(([entree]) => {
       this.visible = entree.isIntersecting
+      if (entree.intersectionRatio >= 0.6) this.planifierDemo()
       this.majBoucle()
-    })
+    }, { threshold: [0, 0.6] })
     this.intersectionObserver.observe(this.terrainTarget)
 
     this.redim()
@@ -117,6 +125,8 @@ export default class extends Controller {
 
     if (this.raf) cancelAnimationFrame(this.raf)
     this.raf = null
+    clearTimeout(this.minuterieDemo)
+    this.demo = null
     this.resizeObserver.disconnect()
     this.intersectionObserver.disconnect()
     document.removeEventListener("visibilitychange", this.onVisibilite)
@@ -168,8 +178,45 @@ export default class extends Controller {
     this.dire("téléchargé ✓")
   }
 
+  // ---------- Démo ----------
+  // Une fois par affichage de la page, peu après que le terrain est visible aux deux tiers
+  planifierDemo() {
+    if (this.demoJouee) return
+    this.demoJouee = true
+    this.minuterieDemo = setTimeout(() => {
+      if (!this.actif || this.etat !== "repos") return // le visiteur joue déjà
+      this.demo = { t: 0, lancee: false }
+      this.etat = "vise"
+      this.tire = { dx: 0, dy: 0 }
+      this.dire("regarde…")
+    }, DEMO.attente)
+  }
+
+  // Le doigt se pose, tire doucement vers le bas, marque un temps, puis lâche
+  avancerDemo(dt) {
+    const d = this.demo
+    d.t += dt
+    if (d.lancee) return
+    const k = Math.min(1, Math.max(0, (d.t - DEMO.pose) / DEMO.tirage))
+    const doux = 1 - Math.pow(1 - k, 3)
+    this.tire = { dx: DEMO.tire.dx * doux, dy: DEMO.tire.dy * doux }
+    if (d.t >= DEMO.pose + DEMO.tirage + DEMO.tenue) {
+      d.lancee = true
+      this.lancer()
+    }
+  }
+
+  finirDemo() {
+    this.demo = null
+    this.dire("à toi !")
+  }
+
   // ---------- Saisie (poignée seulement) ----------
   saisir(e) {
+    if (this.demo) { // le visiteur prend la main : la démo s'arrête net
+      this.demo = null
+      this.replacer()
+    }
     if (this.etat !== "repos") return
     e.preventDefault()
     this.etat = "vise"
@@ -199,9 +246,14 @@ export default class extends Controller {
       this.dire("tire vers le bas pour lancer")
       return
     }
+    this.lancer()
+    this.dire("en vol…")
+  }
+
+  lancer() {
+    const v = this.vitesse()
     Object.assign(this.b, { x: DEP.x, y: DEP.y, z: 0, ...v, va: v.vx / 60 + 4 })
     this.etat = "vol"
-    this.dire("en vol…")
   }
 
   // Tirer vers le bas = puissance ; tirer à gauche = partir à droite (lance-pierre)
@@ -254,10 +306,12 @@ export default class extends Controller {
   }
 
   marquer() {
-    this.paniers++
     this.filet = 1
-    this.rates = 0
-    this.scoreTarget.textContent = this.paniers
+    if (!this.demo) {
+      this.paniers++
+      this.rates = 0
+      this.scoreTarget.textContent = this.paniers
+    }
 
     const c = proj(0, HOOP.y, HOOP.z)
     for (let i = 0; i < 40; i++) {
@@ -270,7 +324,7 @@ export default class extends Controller {
     }
 
     // Même origine : l'attribut download du lien s'applique. Le clic passe aussi par telecharger().
-    this.lienTarget.click()
+    if (!this.demo) this.lienTarget.click()
   }
 
   // ---------- Boucle ----------
@@ -280,12 +334,16 @@ export default class extends Controller {
     this.dernier = now
     const b = this.b
 
+    if (this.demo) this.avancerDemo(dt)
+
     if (this.etat === "vol") {
       for (let i = 0; i < 5; i++) this.pas(dt / 5)
       this.tVol += dt
       const q = proj(b.x, b.y, b.z)
       if (q.y > H + 60 || b.y < -400 || this.tVol > 4) {
-        if (!this.aMarque) {
+        if (this.demo) {
+          this.finirDemo()
+        } else if (!this.aMarque) {
           this.rates++
           this.dire(this.rates >= 2 ? "raté · aide activée" : "raté, encore !")
         }
@@ -317,6 +375,7 @@ export default class extends Controller {
     if (this.etat === "vol") this.dessinerEmplacement()
     if (vise) this.dessinerTrajectoire()
     if (!derriere && !dedans) this.dessinerFichier(q.x, q.y, vise ? this.tire.dx * 0.002 : b.a, q.s)
+    if (this.demo && !this.demo.lancee) this.dessinerDoigt()
 
     this.dessinerConfettis(dt)
   }
@@ -338,6 +397,21 @@ export default class extends Controller {
     ctx.fillText("PDF", -6, 12)
     ctx.fillRect(-14, -14, 20, 3); ctx.fillRect(-14, -7, 14, 3)
     ctx.restore()
+  }
+
+  // Doigt fantôme de la démo : pastille qui se pose (léger rebond) puis suit le tirage
+  dessinerDoigt() {
+    const ctx = this.ctx
+    const k = Math.min(1, this.demo.t / DEMO.pose)
+    const rebond = 1 + 2.7 * Math.pow(k - 1, 3) + 1.7 * Math.pow(k - 1, 2) // back.out
+    const x = DEP_ECRAN.x + this.tire.dx * 0.55, y = DEP_ECRAN.y + this.tire.dy * 0.55
+    ctx.save(); ctx.translate(x, y); ctx.scale(rebond, rebond)
+    ctx.globalAlpha = k
+    ctx.beginPath(); ctx.arc(0, 0, 24, 0, Math.PI * 2)
+    ctx.fillStyle = "rgba(28,26,23,.18)"; ctx.fill()
+    ctx.lineWidth = 2.5; ctx.strokeStyle = C.encre; ctx.stroke()
+    ctx.restore()
+    ctx.globalAlpha = 1
   }
 
   // Cadre pointillé « zone de tir » autour du panneau
