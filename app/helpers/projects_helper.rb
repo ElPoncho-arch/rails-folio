@@ -1,11 +1,13 @@
 module ProjectsHelper
   # Liste des projets, dans l'ordre de la home (et de la navigation précédent / suivant) :
   # projets récents d'abord, projets d'école (Shelfie, Slides) en dernier.
-  # images : aperçu au survol de la home (1 ou 2) ; { video:, seconde: } = image fixe tirée d'une vidéo.
+  # images : aperçu au survol de la home (la première disponible) ; { video:, seconde: } = image fixe
+  # tirée d'une vidéo ; logo: true = logo sur fond uni affiché en entier dans le cadre 4:3 de l'aperçu
+  # (marge de la couleur du bord ; à éviter sur un fond texturé, la marge s'y verrait).
   PROJETS = [
     { slug: "metropole-grand-paris", nom: "Métropole du Grand Paris", tags: %w[identité],
       etiquettes: ["PVV / Tremplin Numérique", "Identité visuelle", "2022 / 2025", "Équipe de 15 personnes"],
-      images: %w[metropole-grand-paris/agoras-salle.png],
+      images: [{ image: "metropole-grand-paris/logo.webp", logo: true }, "metropole-grand-paris/agoras-salle.png"],
       role: "Responsable du pôle graphisme",
       duree: "3 ans et demi",
       outils: "Illustrator · InDesign · Photoshop · After Effects · Premiere Pro",
@@ -38,7 +40,7 @@ module ProjectsHelper
       ] },
     { slug: "beach-bikes", nom: "Beach Bikes Arcachon", tags: %w[UI dev],
       etiquettes: ["Freelance", "Interface B2B", "Mission en cours", "Équipe de 6 personnes"],
-      images: %w[beach-bikes/reservations.png],
+      images: %w[beach-bikes/logo.jpg beach-bikes/reservations.png],
       role: "UI designer · Développeur front & back",
       duree: "Production en cours",
       outils: "Figma · Ruby on Rails · Stimulus · SQL",
@@ -70,7 +72,7 @@ module ProjectsHelper
       ] },
     { slug: "atelier-reli-art", nom: "Atelier Reli’Art", tags: %w[identité],
       etiquettes: ["Freelance", "Identité visuelle", "2025"],
-      images: %w[atelier-reli-art/proposition-1.png],
+      images: [{ image: "atelier-reli-art/logo.png", logo: true }, "atelier-reli-art/proposition-1.png"],
       role: "Directeur artistique",
       duree: "5 mois",
       outils: "Illustrator · Photoshop",
@@ -261,7 +263,7 @@ module ProjectsHelper
         ] }
       ] },
     { slug: "shelfie", nom: "Shelfie", tags: %w[UI dev],
-      images: %w[shelfie/3840154.jpg],
+      images: %w[shelfie/logoshelfie.jpg shelfie/3840154.jpg],
       etiquettes: ["Projet d’équipe Le Wagon", "Application mobile", "Équipe de 6 personnes"],
       role: "Directeur artistique · Développeur front",
       duree: "4 mois",
@@ -288,7 +290,8 @@ module ProjectsHelper
         ] }
       ] },
     { slug: "slides", nom: "Slides", tags: %w[identité motion],
-      images: ["slides/slide_branding_31.jpg", "slides/MU 1.jpg"],
+      images: [{ video: "slides_logo_anim_meykfx", seconde: 1.35 }, # dernière image du logo animé (1,4 s)
+               "slides/slide_branding_31.jpg", "slides/MU 1.jpg"],
       etiquettes: ["Projet de diplôme", "Identité & scénographie", "2021 / 2022"],
       role: "Conception complète",
       duree: "6 mois",
@@ -341,10 +344,15 @@ module ProjectsHelper
     media_cloudinary(chemin).present?
   end
 
-  # URL de l'aperçu au survol de la home : première image disponible, sinon rien
+  # URL de l'aperçu au survol de la home : première image disponible, sinon rien.
+  # Un logo tient en entier dans le cadre 4:3 de l'aperçu (voir .project-preview dans _home.scss).
   def projet_apercu_url(projet)
     image = projet[:images].find { |i| media_disponible?(i) }
-    media_image_url(image, largeur: 800) if image
+    return unless image
+
+    cadre = "4:3" if image.is_a?(Hash) && image[:logo]
+    image = image[:image] if image.is_a?(Hash) && image[:image]
+    media_image_url(image, largeur: 800, cadre: cadre)
   end
 
   # Bloc de médias tolérant aux absents : 2 disponibles → paire, 1 → pleine largeur

@@ -260,3 +260,18 @@ tf1/lou.png:
   format: png
   width: 1543
   height: 1076
+beach-bikes/logo.jpg:
+  public_id: portfolio/beach-bikes/logo
+  format: jpg
+  width: 900
+  height: 900
+metropole-grand-paris/logo.webp:
+  public_id: portfolio/metropole-grand-paris/logo
+  format: webp
+  width: 3840
+  height: 1551
+atelier-reli-art/logo.png:
+  public_id: portfolio/atelier-reli-art/logo
+  format: png
+  width: 1326
+  height: 1324
