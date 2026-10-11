@@ -144,6 +144,7 @@ export default class extends Controller {
   onResize() {
     if (this.desktop.matches) this.closeNow()
     else this.pillTarget.classList.remove("is-compact")
+    this.majMarque() // rotation, fenêtre redimensionnée : la hauteur du hero (100svh) change
   }
 
   // Le focus tourne entre le bouton et les liens du panneau
