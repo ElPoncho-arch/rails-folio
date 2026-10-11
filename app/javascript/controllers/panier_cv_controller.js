@@ -12,7 +12,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // ---------- Plan écran logique et monde 3D ----------
 const W = 640, H = 700
-const C = { creme: "#F6F1E7", encre: "#1C1A17", tomate: "#EF8862", peche: "#FFD8C2", carte: "#FBF8F2" }
+const C = { creme: "#F6F1E7", encre: "#1C1A17", tomate: "#EF8862", peche: "#FFD8C2", carte: "#FBF8F2", terrain: "#EFE8DA" }
 const F = 600                // focale
 const CX = W / 2, CY = 100   // horizon
 const CAM_Y = 600            // caméra au-dessus de l'arceau : on voit dans le panier
@@ -353,7 +353,9 @@ export default class extends Controller {
 
     const ctx = this.ctx
     ctx.setTransform(this.dpr * this.echelle, 0, 0, this.dpr * this.echelle, 0, 0)
-    ctx.clearRect(0, 0, W, H)
+    // Fond peint dans le canevas (pas transparent) : si un navigateur assombrit la page de force,
+    // le panier et le filet, dessinés en encre, restent sur leur fond clair
+    ctx.fillStyle = C.terrain; ctx.fillRect(0, 0, W, H)
 
     this.dessinerCadre()
     this.dessinerPanneau()
