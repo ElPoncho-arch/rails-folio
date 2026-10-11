@@ -289,9 +289,9 @@
   color: $color-text;
   text-decoration: none;
 
+  // Page en cours : pas de soulignement (seulement au survol et au focus)
   &:hover,
-  &:focus-visible,
-  &[aria-current="page"] {
+  &:focus-visible {
     color: $color-text;
 
     .nav-panel__libelle {
@@ -368,9 +368,12 @@ html.nav-is-open .nav-pill {
   border-color: rgba($color-text, 0.25);
 
   .nav-pill__brand {
-    &:hover,
-    &:focus-visible,
     &[aria-current="page"] {
+      background-color: transparent;
+    }
+
+    &:hover,
+    &:focus-visible {
       background-color: transparent;
       text-decoration: underline;
       text-decoration-thickness: 2px;
