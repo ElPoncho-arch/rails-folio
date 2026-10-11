@@ -31,7 +31,8 @@
             <img class="projet-card__image" src="<%= image %>" alt="" loading="lazy" decoding="async">
           <% end %>
           <span class="projet-card__nom"><span class="projet-card__nom-texte"><%= projet[:nom] %></span></span>
-          <span class="capsules">
+          <%# Catégories visuelles seulement : le lien est annoncé par le nom du projet %>
+          <span class="capsules" aria-hidden="true">
             <% projet[:tags].each do |tag| %>
               <span class="capsule"><%= tag %></span>
             <% end %>

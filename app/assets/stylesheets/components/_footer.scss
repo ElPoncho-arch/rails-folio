@@ -120,11 +120,10 @@
     min-width: 0; // texte agrandi : les colonnes rétrécissent, les liens passent à la ligne
   }
 
-  li + li {
-    margin-top: 0.4rem;
-  }
-
+  // Liens : zone cliquable d'au moins 32 px de haut (padding), sans changer l'espacement visible
   a {
+    display: inline-block;
+    padding-block: 0.4rem;
     transition: opacity $duration-fast $ease-soft;
 
     &:hover,

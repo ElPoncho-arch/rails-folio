@@ -124,7 +124,7 @@
 .panier__poids {
   margin-top: 0.25rem;
   font-size: clamp(0.625rem, 1.8vw, 0.75rem);
-  opacity: 0.6;
+  opacity: 0.7; // 0,6 donnait 4,4:1, sous le minimum de 4,5:1
 }
 
 .panier__etat {
