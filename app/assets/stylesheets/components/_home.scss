@@ -16,17 +16,20 @@
   background-color: $color-hero;
 }
 
-// Débord de 6 % de chaque côté : marge pour la dérive (hero_motif_controller.js).
-// Mobile : la trame paysage est recadrée sur le visage ; dès md, elle est centrée.
+// Débord de 3 % de chaque côté : marge pour la dérive (hero_motif_controller.js).
+// Trame en retrait pour la voir presque entière, fond tomate autour :
+// écran en hauteur, calée sur 78 % de la hauteur et recadrée sur le visage ;
+// écran en largeur, 92 % de la largeur, centrée.
 .home-hero__motif {
   position: absolute;
   z-index: 0;
-  inset: -6%;
-  background: url(asset-path("motifs/trame.svg")) 58% center / cover no-repeat;
+  inset: -3%;
+  background: url(asset-path("motifs/trame.svg")) 58% 60% / auto 78% no-repeat;
   will-change: transform;
 
-  @include respond-to(md) {
+  @media (orientation: landscape) {
     background-position: center;
+    background-size: 92% auto;
   }
 }
 

@@ -47,6 +47,7 @@
 
 // Bloc principal
 // Trame du hero (motifs/trame.svg) en gris très foncé sur le fond encre, sous le texte ; fixe.
+// Zoom sur le visage : la trame fait 2,2 fois la largeur du bloc (1,6 fois dès md).
 // Le SVG sert de masque : même fichier que le hero, couleur donnée par background-color.
 .footer-main {
   position: relative;
@@ -59,9 +60,14 @@
     inset: 0;
     z-index: -1;
     background-color: $color-trame-footer;
-    -webkit-mask: url(asset-path("motifs/trame.svg")) center / cover no-repeat;
-    mask: url(asset-path("motifs/trame.svg")) center / cover no-repeat;
+    -webkit-mask: url(asset-path("motifs/trame.svg")) 60% 45% / 220% auto no-repeat;
+    mask: url(asset-path("motifs/trame.svg")) 60% 45% / 220% auto no-repeat;
     pointer-events: none;
+
+    @include respond-to(md) {
+      -webkit-mask-size: 160% auto;
+      mask-size: 160% auto;
+    }
   }
 
   @include respond-to(md) {

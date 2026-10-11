@@ -10,8 +10,8 @@ import { gsap } from "gsap"
 // L'état caché de l'entrée est posé ici (jamais en CSS) : si le JS échoue, les textes restent visibles.
 
 // Positions extrêmes de la dérive (yoyo de l'une à l'autre)
-const DERIVE_A = { xPercent: -3, yPercent: -2, rotation: -0.6, scale: 1.02 }
-const DERIVE_B = { xPercent: 3, yPercent: 2.5, rotation: 0.6, scale: 1.06 }
+const DERIVE_A = { xPercent: -1.5, yPercent: -1, rotation: -0.4, scale: 1.01 }
+const DERIVE_B = { xPercent: 1.5, yPercent: 1.2, rotation: 0.4, scale: 1.03 }
 
 export default class extends Controller {
   static targets = ["motif", "texte"]
