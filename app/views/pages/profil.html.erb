@@ -1,7 +1,5 @@
-<%# Profil et contact — en haut, la présentation : mobile : petit portrait + titre, texte visible dès le premier écran ;
-    tablette et desktop (md) : portrait collant à gauche, contenu à droite. Textes à retravailler en fin de projet.
-    Portrait : source de 485 × 670 sur Cloudinary ; sizes suit la largeur de la colonne (voir _a_propos.scss),
-    paliers du srcset choisis pour 88 px (mobile), ~210 px (tablette) et ~375 px (desktop), en ×1 et ×2.
+<%# Profil et contact — en haut, la présentation : mobile : titre puis texte ;
+    tablette et desktop (md) : titre sur toute la largeur, texte dans les deux tiers de droite.
     Bloc « Téléchargez mon CV » : petit jeu de panier (panier_cv_controller.js, _panier_cv.scss) ; un panier marqué
     télécharge le PDF via le lien « télécharger le CV », qui reste le raccourci direct (seul visible en mouvement réduit).
     En bas, #contact « Me contacter » : contact direct à gauche, formulaire à droite (empilés en mobile).
@@ -21,41 +19,22 @@
    } %>
 
 <article class="apropos">
-  <div class="apropos__portrait">
-    <%= media_image_tag "bio_image.png", alt: "Portrait de Fabien Hoarau en collage",
-                        sizes: "(min-width: 992px) min(485px, calc((100vw - 10rem) / 3)), " \
-                               "(min-width: 768px) calc((100vw - 8.5rem) / 3), min(30vw, 5.5rem)",
-                        largeurs: [180, 240, 360, 485], class: "apropos__portrait-img",
-                        loading: "eager", fetchpriority: "high" %>
-  </div>
-
   <header class="apropos__entete" data-reveal-target="item">
     <h1 class="apropos__titre">Profil et contact</h1>
-    <p class="apropos__roles">Graphiste — Motion designer — Développeur front-end</p>
+    <p class="apropos__roles">Graphiste, motion, UI et front</p>
     <%# Raccourci vers le formulaire, loin en bas de page (surtout en mobile) %>
     <a class="apropos__ecrire" href="#contact">écrire <span aria-hidden="true">↓</span></a>
   </header>
 
   <div class="apropos__corps">
-    <p class="apropos__accroche" data-reveal-target="item">Créer. Animer. Coder.</p>
+    <p class="apropos__accroche" data-reveal-target="item">Designer, coder.</p>
 
     <div class="apropos__texte" data-reveal-target="item">
-      <p>
-        Je crée, j’anime et je code.<br>
-        Graphiste et motion designer avec une vraie spécialisation UI et front.
-      </p>
-      <p>
-        Certifié par le bootcamp Le Wagon, je maîtrise Ruby on Rails, SQL et Bootstrap.
-        J’aime travailler en équipe, organiser un projet sur GitHub et déployer efficacement.
-      </p>
-      <p>
-        J’ai appris à tirer avantage de l’IA dans le code et dans le design.
-        Mes projets couvrent la restauration, la culture, le spectacle et le transport aérien.
-      </p>
-      <p>
-        Ce mélange de créativité et de technique me permet de prototyper vite et de livrer
-        des expériences soignées, avec des interfaces propres et responsives.
-      </p>
+      <p>Je suis graphiste. Je conçois des identités visuelles, je les anime et je les développe pour le web.</p>
+      <p>J’ai fait mes armes en agence de communication. J’y ai dirigé un pôle graphisme, piloté une équipe de 15 personnes et travaillé pour la Métropole du Grand Paris et le Groupe TF1.</p>
+      <p>Chez un imprimeur, j’ai appris la rigueur de la fabrication : couleurs, formats, finitions. Du fichier à l’objet imprimé, rien n’est laissé au hasard.</p>
+      <p>Formé au développement web au Wagon, je code moi-même mes interfaces. La maquette et le code avancent ensemble, sans rien perdre en route.</p>
+      <p>Aujourd’hui, je travaille en indépendant avec des agences, des studios et des marques : une identité, une animation, une interface, ou les trois à la fois.</p>
     </div>
 
     <dl class="apropos__outils" data-reveal-target="item">
