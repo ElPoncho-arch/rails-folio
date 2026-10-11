@@ -80,9 +80,7 @@ rails-folio/
 | À l’écran | Structure | Style | Comportement |
 |---|---|---|---|
 | Hero : « FABIEN HOARAU », accroche, bouton « ↓ projets » | `app/views/home/index.html.erb` | `app/assets/stylesheets/components/_home.scss` (`.home-hero`) | `app/javascript/controllers/split_title_controller.js` (lettres qui montent), `app/javascript/controllers/magnetic_controller.js` (bouton) |
-| Bande « graphisme → motion → UI → front » | `app/views/home/index.html.erb` (liste `disciplines` en haut du fichier) | `app/assets/stylesheets/components/_home.scss` (`.home-disciplines`) | `app/javascript/controllers/disciplines_controller.js` |
-| Liste des projets (numéro, nom, tags, flèche) | `app/views/home/index.html.erb`, données dans `app/helpers/projects_helper.rb` | `app/assets/stylesheets/components/_home.scss` (`.project-row`, `.tag-pill`) | `app/javascript/controllers/reveal_controller.js` (apparition) |
-| Aperçu d’image au survol d’un projet | `app/views/home/index.html.erb` (`.project-preview`), images dans `app/helpers/projects_helper.rb` (`images:`) | `app/assets/stylesheets/components/_home.scss` | `app/javascript/controllers/project_preview_controller.js` |
+| Grille des projets (cards carrées : image, nom, capsules des catégories au survol) | `app/views/home/index.html.erb`, données et image (`images:`, `projet_apercu_url`) dans `app/helpers/projects_helper.rb` | `app/assets/stylesheets/components/_home.scss` (`.projet-card`, `.capsule`) | `app/javascript/controllers/reveal_controller.js` (apparition) |
 
 ### Pages projet
 
@@ -116,10 +114,8 @@ Toutes respectent le réglage « réduire les animations » du système (`prefer
 |---|---|---|
 | Lettres ou mots des grands titres qui montent | `app/javascript/controllers/split_title_controller.js` | `data-controller="split-title"` |
 | Blocs qui apparaissent au défilement | `app/javascript/controllers/reveal_controller.js` | `data-reveal-target="item"` (le controller est sur `<main>`) |
-| Bande des disciplines | `app/javascript/controllers/disciplines_controller.js` | `data-controller="disciplines"` |
 | Bande tomate du footer | `app/javascript/controllers/marquee_controller.js` | `data-controller="marquee"` |
 | Éléments aimantés par la souris | `app/javascript/controllers/magnetic_controller.js` | `data-controller="magnetic"` |
-| Aperçu d’image qui suit la souris | `app/javascript/controllers/project_preview_controller.js` | `data-controller="project-preview"` |
 | Défilement doux | `app/javascript/controllers/smooth_scroll_controller.js` | `data-controller="smooth-scroll"` sur `<html>` |
 | Fondu entre les pages | `app/javascript/controllers/transition_controller.js` | `data-controller="transition"` sur `<body>` |
 | Vidéos en boucle | `app/javascript/controllers/video_boucle_controller.js` | ajouté automatiquement par `app/helpers/medias_helper.rb` |
@@ -134,8 +130,8 @@ Toutes respectent le réglage « réduire les animations » du système (`prefer
 1. Dans le navigateur, clic droit sur l’élément → **Inspecter**.
 2. Dans le code qui s’affiche, repérer :
    - un `data-controller="…"` (par exemple `marquee`) → le fichier JS s’appelle `marquee_controller.js` (les tirets deviennent des `_`) ;
-   - ou une classe CSS (par exemple `class="project-row"`).
-3. Dans VS Code, **Cmd + Maj + F** (recherche dans tout le projet) et taper ce nom (`project-row`). On tombe sur la vue (`.html.erb`) et sur le style (`.scss`).
+   - ou une classe CSS (par exemple `class="projet-card"`).
+3. Dans VS Code, **Cmd + Maj + F** (recherche dans tout le projet) et taper ce nom (`projet-card`). On tombe sur la vue (`.html.erb`) et sur le style (`.scss`).
 
 Astuce : les noms de classes suivent la forme `bloc__element--variante` (par exemple `projet-media__cadre--recadre`). Le bloc (`projet-media`) indique en général le fichier SCSS (`_projet.scss`).
 

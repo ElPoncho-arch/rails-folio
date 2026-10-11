@@ -1,70 +1,42 @@
-<%# Home V2 — aperçu au survol : project_preview_controller.js ; apparitions : reveal_controller.js ;
-    nom du hero : split_title_controller.js ; bande des disciplines : disciplines_controller.js %>
-<%
-  disciplines = %w[graphisme motion UI front]
-%>
+<%# Home V2 — hero : motif « 02 italique » sur fond tomate, grain d'impression et étiquette crème
+    (hero_motif_controller.js : entrée puis dérive lente du motif ; motifs dans app/assets/images/motifs) ;
+    cards des projets avec image (projet_apercu_url) ; apparitions : reveal_controller.js.
+    Le hero démarre tout en haut, sous la nav flottante (classe « contenu--plein » sur <main>). %>
+<% content_for :main_classe, "contenu--plein" %>
 
 <%# Hero %>
-<section class="home-hero">
-  <h1 class="home-hero__name" data-controller="split-title" data-split-title-type-value="chars">
-    <span class="home-hero__line">Fabien</span>
-    <span class="home-hero__line home-hero__line--end">Hoarau</span>
+<section class="home-hero" data-controller="hero-motif">
+  <div class="home-hero__motif" data-hero-motif-target="motif" aria-hidden="true"></div>
+  <div class="home-hero__grain" aria-hidden="true"></div>
+  <h1 class="home-hero__etiquette" data-hero-motif-target="etiquette">
+    <span class="home-hero__nom">Fabien</span> <span class="home-hero__nom">Hoarau</span>
+    <span class="home-hero__role">graphiste · motion · UI · front</span>
   </h1>
-
-  <p class="home-hero__accroche" data-reveal-target="item">
-    Graphiste et motion designer, je crée des identités qui bougent et je les code.
-  </p>
-
-  <div class="home-hero__meta" data-reveal-target="item">
-    <a class="home-hero__down" href="#projets" data-controller="magnetic">↓ projets</a>
-  </div>
-</section>
-
-<%# Bande des disciplines : boucle continue qui suit le défilement (disciplines_controller.js).
-    3 copies identiques pour un raccord invisible ; seule la première est lue par les lecteurs d'écran. %>
-<section class="home-disciplines" aria-label="Disciplines" data-controller="disciplines"
-         data-action="mouseenter->disciplines#pause mouseleave->disciplines#reprendre">
-  <div class="home-disciplines__piste" data-disciplines-target="piste">
-    <% 3.times do |copie| %>
-      <ul class="home-disciplines__list" <%= tag.attributes(aria: { hidden: true }) if copie.positive? %>
-          data-disciplines-target="copie">
-        <% disciplines.each do |discipline| %>
-          <li><%= discipline %></li>
-          <li class="home-disciplines__arrow" aria-hidden="true">→</li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
 </section>
 
 <%# Liste des projets %>
-<section id="projets" class="home-projects" aria-labelledby="projets-titre" data-controller="project-preview">
+<section id="projets" class="home-projects" aria-labelledby="projets-titre">
   <h2 id="projets-titre" class="home-projects__titre" data-reveal-target="item">projets <span>(<%= format("%02d", projets.size) %>)</span></h2>
 
-  <ol class="home-projects__list"
-      data-action="mousemove->project-preview#move mouseleave->project-preview#hide">
-    <%# reveal sur les <li> seulement : jamais sur un ancêtre de la carte d'aperçu (fixed) %>
-    <% projets.each_with_index do |projet, i| %>
+  <%# Grille de cards carrées : 1 colonne en mobile, 2 dès 640 px, 3 dès 900 px %>
+  <ol class="home-projects__list">
+    <% projets.each do |projet| %>
+      <% image = projet_apercu_url(projet) %>
       <li data-reveal-target="item">
-        <%# Aperçu : la première image disponible du projet (aucune → pas de carte) %>
-        <%= link_to projet_path_for(projet), class: "project-row",
-              data: { image: projet_apercu_url(projet),
-                      action: "mouseenter->project-preview#select" } do %>
-          <span class="project-row__num"><%= format("%02d", i + 1) %></span>
-          <span class="project-row__nom"><%= projet[:nom] %></span>
-          <span class="project-row__tags">
+        <%# Toute la card est le lien. Image : la première disponible du projet (aucune → fond tomate).
+            alt vide : le nom du projet, dans le lien, suffit. %>
+        <%= link_to projet_path_for(projet), class: ["projet-card", ("projet-card--image" if image)] do %>
+          <% if image %>
+            <img class="projet-card__image" src="<%= image %>" alt="" loading="lazy" decoding="async">
+          <% end %>
+          <span class="projet-card__nom"><span class="projet-card__nom-texte"><%= projet[:nom] %></span></span>
+          <span class="capsules">
             <% projet[:tags].each do |tag| %>
-              <span class="tag-pill"><%= tag %></span>
+              <span class="capsule"><%= tag %></span>
             <% end %>
           </span>
-          <span class="project-row__fleche" aria-hidden="true">→</span>
         <% end %>
       </li>
     <% end %>
   </ol>
-
-  <%# Carte d'aperçu (partagée par toutes les lignes) %>
-  <div class="project-preview" data-project-preview-target="card" aria-hidden="true">
-    <img class="project-preview__img" alt="" decoding="async" data-project-preview-target="img">
-  </div>
 </section>

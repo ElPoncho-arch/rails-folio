@@ -46,8 +46,10 @@
 }
 
 // Bloc principal
+// Motif « 02 italique » (lettres #2A2826) posé sur le fond encre du footer, sous le texte ; fixe, sans grain
 .footer-main {
   padding: 4rem 1rem 2rem;
+  background: url(asset-path("motifs/motif-02-italique-footer.svg")) center / cover no-repeat;
 
   @include respond-to(md) {
     padding: 6rem 3rem 2.5rem;

@@ -1,8 +1,8 @@
 module ProjectsHelper
   # Liste des projets, dans l'ordre de la home (et de la navigation précédent / suivant) :
   # projets récents d'abord, projets d'école (Shelfie, Slides) en dernier.
-  # images : aperçu au survol de la home (la première disponible) ; { video:, seconde: } = image fixe
-  # tirée d'une vidéo ; logo: true = logo sur fond uni affiché en entier dans le cadre 4:3 de l'aperçu
+  # images : image de la card sur la home (la première disponible) ; { video:, seconde: } = image fixe
+  # tirée d'une vidéo ; logo: true = logo sur fond uni affiché en entier dans le cadre carré de la card
   # (marge de la couleur du bord ; à éviter sur un fond texturé, la marge s'y verrait) ;
   # marge: 10 = logo en retrait de 10 % de chaque côté.
   PROJETS = [
@@ -98,13 +98,13 @@ module ProjectsHelper
     media_cloudinary(chemin).present?
   end
 
-  # URL de l'aperçu au survol de la home : première image disponible, sinon rien.
-  # Un logo tient en entier dans le cadre 4:3 de l'aperçu (voir .project-preview dans _home.scss).
+  # URL de l'image de la card du projet sur la home : première image disponible, sinon rien.
+  # Un logo tient en entier dans le cadre carré de la card (voir .projet-card__image dans _home.scss).
   def projet_apercu_url(projet)
     image = projet[:images].find { |i| media_disponible?(i) }
     return unless image
 
-    cadre = "4:3" if image.is_a?(Hash) && image[:logo]
+    cadre = "1:1" if image.is_a?(Hash) && image[:logo]
     marge = image.is_a?(Hash) ? image[:marge].to_i : 0
     image = image[:image] if image.is_a?(Hash) && image[:image]
     media_image_url(image, largeur: 800, cadre: cadre, marge: marge)

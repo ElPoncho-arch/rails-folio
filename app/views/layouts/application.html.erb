@@ -32,7 +32,7 @@
     <%= render 'shared/navbar' %>
 
     <!-- Contenu principal, conteneur animé (fade/slide entre pages) ; cible du lien d'évitement -->
-    <main id="contenu" class="transition-fade is-entering" tabindex="-1" data-transition-target="container" data-controller="reveal">
+    <main id="contenu" class="transition-fade is-entering <%= yield(:main_classe) %>" tabindex="-1" data-transition-target="container" data-controller="reveal">
       <%= yield %>
     </main>
 
