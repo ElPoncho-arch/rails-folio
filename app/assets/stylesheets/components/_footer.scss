@@ -48,7 +48,7 @@
 // Bloc principal
 // Trame du footer (motifs/trame-footer.webp, gros plan déjà recadré) en gris très foncé sur le fond
 // encre, sous le texte ; fixe. L'image sert de masque (sa transparence) : couleur donnée par background-color.
-// WebP 1200 px tiré de trame-footer.svg : 39 Ko au lieu de 106 Ko (SVG compressé).
+// WebP 1200 px tiré de trame-footer.svg (retiré du dépôt, voir l'historique git) : 39 Ko au lieu de 106 Ko.
 .footer-main {
   position: relative;
   isolation: isolate;
