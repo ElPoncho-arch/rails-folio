@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import { gsap } from "gsap"
 
-// Hero de la home : portrait tramé sur fond tomate, nom et métier en crème.
+// Hero de la home : portrait tramé sur fond orange, nom et métier en encre.
 // - Entrée au chargement : la trame monte comme un rideau, puis le nom et le métier arrivent ligne par ligne,
 //   avec un léger rebond.
 // - Dérive ensuite : la trame flotte lentement en boucle ; les textes restent fixes.

@@ -6,7 +6,7 @@
   padding-top: 0;
 }
 
-// Plein écran : fond tomate soutenu, portrait tramé (points et hachures noirs, fond transparent)
+// Plein écran : fond orange doux, portrait tramé brique (ton sur ton), texte encre par-dessus
 .home-hero {
   position: relative;
   isolation: isolate;
@@ -24,17 +24,22 @@
   position: absolute;
   z-index: 0;
   inset: -3%;
-  background: url(asset-path("motifs/trame.svg")) 58% 60% / auto 78% no-repeat;
+  // Le SVG sert de masque (comme dans le footer) : couleur donnée par background-color
+  background-color: $color-trame-hero;
+  -webkit-mask: url(asset-path("motifs/trame.svg")) 58% 60% / auto 78% no-repeat;
+  mask: url(asset-path("motifs/trame.svg")) 58% 60% / auto 78% no-repeat;
   will-change: transform;
 
   @media (orientation: landscape) {
-    background-position: center;
-    background-size: 92% auto;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: 92% auto;
+    mask-size: 92% auto;
   }
 }
 
-// Nom et métier en crème (ClashDisplay) : nom en haut à gauche sous la nav, métier en bas à droite.
-// Crème sur $color-hero : 3,48:1, réservé aux grands corps (≥ 24 px).
+// Nom et métier en encre (ClashDisplay) : nom en haut à gauche sous la nav, métier en bas à droite.
+// Encre sur $color-hero : 6,9:1.
 .home-hero__nom,
 .home-hero__metier {
   position: absolute;
@@ -42,7 +47,7 @@
   margin: 0;
   font-family: $font-display;
   font-weight: 500;
-  color: $color-bg;
+  color: $color-text;
 }
 
 .home-hero__nom {
