@@ -4,12 +4,12 @@
 // Couleurs
 $color-bg:        #F6F1E7; // fond crème
 $color-text:      #1C1A17; // texte
-$color-accent:    #FF5A36; // tomate : bandes, badges, survols, formes — jamais pour du texte courant
+$color-accent:    #EF8862; // orange : bandes, badges, survols, formes — jamais pour du texte courant (encre dessus : 6,9:1)
 $color-secondary: #FFD8C2; // pêche
-$color-hero:      #EF8862; // orange doux : fond du hero de la home (texte encre : 6,9:1)
+$color-hero:      $color-accent; // fond du hero de la home
 $color-trame-hero: #B4502F; // brique : trame du hero, ton sur ton, sous le texte encre
 $color-trame-footer: #2A2826; // gris très foncé : trame posée sur le fond encre du footer
-$color-accent-survol: #EC7A53; // tomate adouci : fond des cards projets au survol et au focus
+$color-accent-survol: $color-accent; // fond des cards projets au survol et au focus
 $color-chargement: #F4F4F2; // gris très clair, presque blanc : fond des cartes et images le temps du chargement
 $color-terrain:   #EFE8DA; // crème plus soutenu : fond du panier CV (page À propos)
 $color-carte:     #FBF8F2; // crème presque blanc : carte et pastilles posées sur le terrain

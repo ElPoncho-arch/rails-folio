@@ -12,7 +12,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // ---------- Plan écran logique et monde 3D ----------
 const W = 640, H = 700
-const C = { creme: "#F6F1E7", encre: "#1C1A17", tomate: "#FF5A36", peche: "#FFD8C2", carte: "#FBF8F2" }
+const C = { creme: "#F6F1E7", encre: "#1C1A17", tomate: "#EF8862", peche: "#FFD8C2", carte: "#FBF8F2" }
 const F = 600                // focale
 const CX = W / 2, CY = 100   // horizon
 const CAM_Y = 600            // caméra au-dessus de l'arceau : on voit dans le panier

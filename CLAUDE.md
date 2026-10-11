@@ -19,7 +19,7 @@ Ton : clair, chaleureux, accueillant. Les interactions et animations sont le cœ
 - Couleurs (variables SCSS) :
   - fond `#F6F1E7`
   - texte `#1C1A17`
-  - accent `#FF5A36` (bandes, badges, survols, formes — jamais pour du texte courant)
+  - accent `#EF8862` (bandes, badges, survols, formes — jamais pour du texte courant)
   - secondaire `#FFD8C2`
 - Refs détaillées : docs/refs/refs.md
 
