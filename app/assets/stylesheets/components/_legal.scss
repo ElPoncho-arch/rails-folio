@@ -4,13 +4,12 @@
   max-width: 48rem;
   padding: 1.5rem 1rem 0;
   font-family: $font-mono;
-  font-size: 0.95rem;
+  font-size: $font-size-texte;
   line-height: 1.6;
   color: $color-text;
 
   @include respond-to(md) {
     padding: 2rem 3rem 0;
-    font-size: 1rem;
   }
 
   p {

@@ -133,14 +133,13 @@ $projet-gouttiere-md: 3rem;
   max-width: 60ch;
   overflow-wrap: anywhere;
   font-family: $font-mono;
-  font-size: 1.05rem;
+  font-size: $font-size-texte;
   line-height: 1.6;
   color: $color-text;
 
   @include respond-to(lg) {
     grid-column: 2;
     grid-row: 1;
-    font-size: 1.15rem;
   }
 
   p:last-child {

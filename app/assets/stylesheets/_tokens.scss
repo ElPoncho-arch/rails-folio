@@ -15,7 +15,10 @@ $font-display: 'ClashDisplay', sans-serif;  // titres
 $font-mono:    'Fragment Mono', monospace;  // texte, nav, tags, numéros
 
 // Tailles de titres (h1) : XXL pour les projets, intermédiaire pour les autres pages
-$font-size-titre-page: clamp(2.5rem, 11vw, 7.5rem); // à propos, contact, mentions légales
+$font-size-titre-page: clamp(2.5rem, 11vw, 7.5rem); // profil et contact, mentions légales
+
+// Texte courant (pages projet, profil, mentions légales) : 16 px en mobile, 17 px dès ~900 px de large
+$font-size-texte: clamp(1rem, calc(0.95rem + 0.2vw), 1.0625rem);
 
 // Rayons
 $radius-card: 1.5rem;
