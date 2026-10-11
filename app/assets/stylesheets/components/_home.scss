@@ -6,38 +6,28 @@
   padding-top: 0;
 }
 
-// Fond tomate, motif « 02 italique » (lettres #303030, trous transparents), grain d'impression
-// et étiquette crème. isolation : le grain se fond dans le hero sans passer au-dessus de la nav.
+// Plein écran : fond tomate soutenu, portrait tramé (points et hachures noirs, fond transparent)
 .home-hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   height: 100svh;
   min-height: 26rem;
-  background-color: $color-accent;
+  background-color: $color-hero;
 }
 
-// Débord de 6 % de chaque côté : marge pour la dérive (hero_motif_controller.js)
+// Débord de 6 % de chaque côté : marge pour la dérive (hero_motif_controller.js).
+// Mobile : la trame paysage est recadrée sur le visage ; dès md, elle est centrée.
 .home-hero__motif {
   position: absolute;
   z-index: 0;
   inset: -6%;
-  background: url(asset-path("motifs/motif-02-italique.svg")) center / cover no-repeat;
+  background: url(asset-path("motifs/trame.svg")) 58% center / cover no-repeat;
   will-change: transform;
 
-  // Mobile : pas encore de version portrait, le motif paysage est recadré au centre.
-  // À venir : @include respond-to(…) avec motif-02-italique-portrait.svg
-}
-
-// Texture d'impression sur tout le hero (motif et étiquette compris), immobile
-.home-hero__grain {
-  position: absolute;
-  z-index: 2;
-  inset: -50%;
-  pointer-events: none;
-  background: url(asset-path("motifs/grain.svg")) 0 0 / 220px 220px repeat;
-  mix-blend-mode: overlay;
-  opacity: 0.71;
+  @include respond-to(md) {
+    background-position: center;
+  }
 }
 
 // Étiquette crème façon sticker, en bas à gauche, légèrement inclinée
