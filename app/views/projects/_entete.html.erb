@@ -1,7 +1,7 @@
 <%# En-tête de page projet — usage : render layout: "projects/entete", locals: { projet: projet_courant } do … texte … end %>
 <%# Titre de page : nom court, sans sous-titre (« TF1 — E-learning » → « TF1 ») %>
 <% content_for :titre, projet[:nom].split(" — ").first %>
-<%# Mobile (< 768 px) : intro, infos et blocs repliés derrière « à propos du projet » (depliable_controller.js) %>
+<%# Mobile (< 768 px) : intro et infos repliées derrière « à propos du projet » (depliable_controller.js) %>
 <div class="projet-intro" data-controller="depliable">
 <header class="projet-entete">
   <div class="projet-entete__haut" data-reveal-target="item">
@@ -20,7 +20,7 @@
 
   <%# Caché sans JS (contenu ouvert) et dès 768 px (CSS) %>
   <button type="button" class="projet-depliable__bouton" hidden
-          aria-expanded="true" aria-controls="projet-details<%= ' projet-blocs' if projet[:blocs] %>"
+          aria-expanded="true" aria-controls="projet-details"
           data-depliable-target="bouton" data-action="depliable#basculer">
     à propos du projet <span class="projet-depliable__signe" aria-hidden="true" data-depliable-target="signe">−</span>
   </button>
@@ -31,8 +31,7 @@
       <%= yield %>
     </div>
 
-    <% infos = { "contexte" => projet[:contexte], "rôle" => projet[:role],
-                 "durée" => projet[:duree], "outils" => projet[:outils] }.compact %>
+    <% infos = { "client" => projet[:client], "rôle" => projet[:role], "outils" => projet[:outils] }.compact %>
     <% if infos.any? %>
       <dl class="projet-entete__infos">
         <% infos.each do |libelle, valeur| %>
@@ -44,10 +43,4 @@
   </div>
   </div>
 </header>
-
-<% if projet[:blocs] %>
-  <div class="projet-depliable" id="projet-blocs" data-depliable-target="panneau">
-    <%= render "projects/blocs", blocs: projet[:blocs] %>
-  </div>
-<% end %>
 </div>

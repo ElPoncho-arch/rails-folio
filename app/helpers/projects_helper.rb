@@ -7,319 +7,72 @@ module ProjectsHelper
   # marge: 10 = logo en retrait de 10 % de chaque côté.
   PROJETS = [
     { slug: "metropole-grand-paris", nom: "Métropole du Grand Paris", tags: %w[identité],
-      etiquettes: ["PVV / Tremplin Numérique", "Identité visuelle", "2022 / 2025", "Équipe de 15 personnes"],
+      etiquettes: ["PVV / Tremplin Numérique", "Identité visuelle"],
       images: [{ image: "metropole-grand-paris/logo.webp", logo: true, marge: 10 }, "metropole-grand-paris/agoras-salle.png"],
+      client: "Métropole du Grand Paris, via PVV et Bluenove",
       role: "Responsable du pôle graphisme",
-      duree: "3 ans et demi",
-      outils: "Illustrator · InDesign · Photoshop · After Effects · Premiere Pro",
-      blocs: [
-        { titre: "Contexte", items: [
-          "Agence PVV, partenariat Bluenove",
-          "Client final : Métropole du Grand Paris",
-          "Cycle de 10 événements urbains sur 1 an",
-          "Thématique : enjeux et avenir de la ville",
-          "20 à 30 participants par journée, profils institutionnels"
-        ] },
-        { titre: "Direction artistique", items: [
-          "Proposition et application de la DA sur tous les supports",
-          "Direction artistique reconduite sur l’ensemble du cycle",
-          "Coordination créative entre 4 pôles de production",
-          "Cohérence visuelle maintenue sur tous les supports et formats"
-        ] },
-        { titre: "Production", items: [
-          "Habillage motion pour intégration vidéo",
-          "Kakémono et supports print grand format",
-          "Visuels de communication avant et après événement",
-          "Documentation Behance publiée en fin de conférence"
-        ] },
-        { titre: "Résultats", items: [
-          "Responsable d’une équipe de 15 personnes",
-          "Coordination des pôles photo, motion et vidéo",
-          "Supervision des livrables de chaque pôle",
-          "Garant de la cohérence DA sur l’ensemble des productions"
-        ] }
-      ] },
+      outils: "Illustrator · InDesign · Photoshop · After Effects · Premiere Pro" },
     { slug: "beach-bikes", nom: "Beach Bikes Arcachon", tags: %w[UI dev],
-      etiquettes: ["Freelance", "Interface B2B", "Mission en cours", "Équipe de 6 personnes"],
+      etiquettes: ["Freelance", "Interface B2B", "Mission en cours"],
       images: %w[beach-bikes/logo.jpg beach-bikes/reservations.png],
-      role: "UI designer · Développeur front & back",
-      duree: "Production en cours",
-      outils: "Figma · Ruby on Rails · Stimulus · SQL",
-      blocs: [
-        { titre: "Contexte", items: [
-          "Process métier initialement géré sur tableur",
-          "Forte volumétrie (500+ assets)",
-          "Besoin de centralisation multi-canaux",
-          "Environnement évolutif avec contraintes opérationnelles"
-        ] },
-        { titre: "UI / Design system", items: [
-          "Conception de wireframes et maquettes haute fidélité orientées usage métier",
-          "Création d’un design system adapté aux interfaces riches en données",
-          "Itérations continues avec le client, en logique agile",
-          "Collaboration avec le développement pour une intégration cohérente"
-        ] },
-        { titre: "Fonctionnalités clés", items: [
-          "Gestion en temps réel des stocks",
-          "Synchronisation des réservations multi-sources",
-          "Système d’alertes (maintenance, disponibilité)",
-          "Interface de gestion multi-points"
-        ] },
-        { titre: "Livrables", items: [
-          "Design system exploitable et documenté",
-          "Interfaces UI prêtes à intégrer",
-          "Code de production aligné avec les maquettes",
-          "Passation complète avec spécifications et suivi client"
-        ] }
-      ] },
+      client: "Beach Bikes Arcachon",
+      role: "UI et développement",
+      outils: "Figma · Ruby on Rails · Stimulus · SQL" },
     { slug: "atelier-reli-art", nom: "Atelier Reli’Art", tags: %w[identité],
-      etiquettes: ["Freelance", "Identité visuelle", "2025"],
+      etiquettes: ["Freelance", "Identité visuelle"],
       images: [{ image: "atelier-reli-art/logo.png", logo: true, marge: 8 }, "atelier-reli-art/proposition-1.png"],
-      role: "Directeur artistique",
-      duree: "5 mois",
-      outils: "Illustrator · Photoshop",
-      blocs: [
-        { titre: "Contexte", items: [
-          "Lancement d’une structure artisanale",
-          "Contrainte couleur imposée : rouge, noir, blanc",
-          "Besoin d’une identité polyvalente, print et réseaux sociaux"
-        ] },
-        { titre: "Identité visuelle", items: [
-          "3 propositions de logotype avec intentions rédigées",
-          "Logotype variable avec déclinaisons fond clair, fond sombre et version compacte"
-        ] },
-        { titre: "Résultats", items: [
-          "Identité immédiatement reconnaissable et mémorable",
-          "Système graphique déclinable sur Instagram et en print sans adaptation technique",
-          "Client autonome sur ses supports de communication"
-        ] },
-        { titre: "Livrables", items: [
-          "Charte graphique complète avec intention documentée",
-          "Fichiers sources du logotype, toutes déclinaisons",
-          "Prêt à déployer sur Instagram et supports imprimés"
-        ] }
-      ] },
+      client: "Atelier Reli’Art",
+      role: "Direction artistique",
+      outils: "Illustrator · Photoshop" },
     { slug: "tf1", nom: "TF1 — E-learning", tags: %w[motion UI],
       images: ["tf1/lou.png", { video: "teaser_nfmktr", seconde: 2 }],
-      etiquettes: ["Tremplin Numérique", "Module e-learning", "2024 / 2025"],
-      role: "Motion designer · UI designer",
-      duree: "6 mois",
-      outils: "After Effects · Illustrator · Figma",
-      blocs: [
-        { titre: "Contexte", items: [
-          "Commande du Groupe TF1 via l’agence",
-          "Public : professionnels de l’audiovisuel",
-          "Sujet : une production plus responsable",
-          "Équipe à plusieurs intervenants"
-        ] },
-        { titre: "Motion", items: [
-          "Motion design typographique",
-          "Composition des scènes animées",
-          "Intégration des animations de personnages (réalisées par un collègue)"
-        ] },
-        { titre: "Interface", items: [
-          "Mise en page des écrans du module",
-          "Hiérarchie claire pour un contenu dense",
-          "Cohérence entre animations et interface"
-        ] },
-        { titre: "Livrables", items: [
-          "Teaser du module",
-          "Quiz animés (échecs, mots croisés)",
-          "Écrans mis en page"
-        ] }
-      ] },
+      etiquettes: ["Tremplin Numérique", "Module e-learning"],
+      client: "Groupe TF1, via Tremplin Numérique",
+      role: "Motion et UI",
+      outils: "After Effects · Illustrator · Figma" },
     { slug: "la_colline", nom: "La Colline", tags: %w[packaging illustration],
       images: %w[lacolline/Glass_Oil_Bottle_2.jpg lacolline/mobile2.jpg],
-      etiquettes: ["Freelance", "Identité, packaging & web", "2022"],
-      role: "Directeur artistique · UI designer",
-      duree: "4 mois",
-      outils: "Illustrator · Figma · WordPress · Elementor",
-      blocs: [
-        { titre: "Contexte", items: [
-          "Lancement d’une marque d’huile d’olive",
-          "Collaboration directe avec le client",
-          "Une identité cohérente, de la bouteille au site"
-        ] },
-        { titre: "Identité & illustration", items: [
-          "Logotype et palette méditerranéenne",
-          "Illustrations linéaires sur la production",
-          "Le cheval, symbole de la marque"
-        ] },
-        { titre: "Packaging & print", items: [
-          "Étiquettes de la gamme",
-          "Déclinaisons imprimées"
-        ] },
-        { titre: "Web", items: [
-          "Maquettes et design system sous Figma",
-          "Intégration du site sous WordPress (Elementor)"
-        ] }
-      ] },
+      etiquettes: ["Freelance", "Identité, packaging & web"],
+      client: "La Colline",
+      role: "Direction artistique et UI",
+      outils: "Illustrator · Figma · WordPress · Elementor" },
     { slug: "macval", nom: "MAC VAL", tags: %w[identité motion],
       images: %w[macval/Branding_Mockup_2.jpg macval/magnet.jpg],
-      etiquettes: ["Projet d’école", "Proposition d’identité", "2023"],
-      role: "Conception complète",
-      duree: "4 mois",
-      outils: "Illustrator · InDesign · Photoshop",
-      blocs: [
-        { titre: "Contexte", items: [
-          "Exercice de refonte d’identité d’un musée existant",
-          "Public large, de l’amateur au spécialiste",
-          "Un système à décliner du web à la signalétique"
-        ] },
-        { titre: "Identité", items: [
-          "Logo manuscrit tracé à la main",
-          "Le rectangle-porte comme fil conducteur",
-          "Version animée du logo"
-        ] },
-        { titre: "Déclinaisons", items: [
-          "Affiches d’exposition",
-          "Papeterie",
-          "Badges",
-          "Signalétique intérieure",
-          "Bandeau web"
-        ] },
-        { titre: "Livrables", items: [
-          "Logo fixe et animé",
-          "Supports imprimés et signalétique",
-          "Mises en situation"
-        ] }
-      ] },
+      etiquettes: ["Proposition d’identité"],
+      client: "Projet d’école",
+      role: "Direction artistique et motion",
+      outils: "Illustrator · InDesign · Photoshop" },
     { slug: "mango", nom: "Mango Édition", tags: %w[identité motion],
       images: %w[mango/livre-2.jpg mango/tote.jpg],
-      etiquettes: ["Projet d’école", "Proposition d’identité", "2020"],
-      role: "Conception complète",
-      duree: "2 mois",
-      outils: "Illustrator · InDesign · Photoshop · After Effects",
-      blocs: [
-        { titre: "Contexte", items: [
-          "Refonte d’identité d’un éditeur existant",
-          "Un catalogue large : cuisine, loisirs, pratique",
-          "Un signe fort et lisible sur les couvertures"
-        ] },
-        { titre: "Identité", items: [
-          "Logo circulaire",
-          "Version animée",
-          "Couleurs vives"
-        ] },
-        { titre: "Déclinaisons", items: [
-          "Cartes de visite",
-          "Couvertures de livres",
-          "Sac en toile"
-        ] },
-        { titre: "Livrables", items: [
-          "Logo fixe et animé",
-          "Mises en situation édition et objets"
-        ] }
-      ] },
+      etiquettes: ["Proposition d’identité"],
+      client: "Projet d’école",
+      role: "Direction artistique et motion",
+      outils: "Illustrator · InDesign · Photoshop · After Effects" },
     { slug: "ford", nom: "Ford", tags: %w[édition],
       images: %w[ford/Mockup_Ford.jpg ford_couv.jpg],
-      etiquettes: ["Proposition éditoriale", "Brochure", "2021"],
-      role: "Conception complète",
-      duree: "3 mois",
-      outils: "Illustrator · InDesign · Photoshop",
-      blocs: [
-        { titre: "Contexte", items: [
-          "Proposition de livrable éditorial sur l’histoire d’une marque",
-          "Plus d’un siècle d’archives à hiérarchiser"
-        ] },
-        { titre: "Direction artistique", items: [
-          "Hommage graphique à Paul Rand",
-          "Lettres découpées en couverture",
-          "Typographies colorées"
-        ] },
-        { titre: "Mise en page", items: [
-          "Doubles pages chronologiques",
-          "Photos d’archives",
-          "Grille éditoriale"
-        ] },
-        { titre: "Livrables", items: [
-          "Couverture",
-          "Brochure complète",
-          "Mises en situation"
-        ] }
-      ] },
+      etiquettes: ["Proposition éditoriale", "Brochure"],
+      client: "Proposition non commandée",
+      role: "Graphisme et mise en page",
+      outils: "Illustrator · InDesign · Photoshop" },
     { slug: "abskate", nom: "Abécédaire", tags: %w[édition],
       images: %w[abc/livre.jpg abskate_couv.jpg],
-      etiquettes: ["Collaboration", "Projet éditorial", "2020"],
-      role: "Conception complète",
-      outils: "Illustrator · InDesign · Photoshop",
-      blocs: [
-        { titre: "Contexte", items: [
-          "Collaboration autour d’un événement skate",
-          "Livre d’apprentissage de l’alphabet",
-          "Public : jeunes et passionnés"
-        ] },
-        { titre: "Typographie", items: [
-          "26 lettres composées de photos de skate",
-          "Noir et blanc",
-          "Photo-typographie"
-        ] },
-        { titre: "Mise en page", items: [
-          "Une lettre par double page",
-          "Rythme entre image et texte"
-        ] },
-        { titre: "Livrables", items: [
-          "Couverture",
-          "Livre complet",
-          "Mises en situation"
-        ] }
-      ] },
+      etiquettes: ["Collaboration", "Projet éditorial"],
+      client: "Collaboration pour un événement skate",
+      role: "Graphisme et mise en page",
+      outils: "Illustrator · InDesign · Photoshop" },
     { slug: "shelfie", nom: "Shelfie", tags: %w[UI dev],
       images: %w[shelfie/logoshelfie.jpg shelfie/3840154.jpg],
-      etiquettes: ["Projet d’équipe Le Wagon", "Application mobile", "Équipe de 6 personnes"],
-      role: "Directeur artistique · Développeur front",
-      duree: "4 mois",
-      outils: "Figma · Ruby on Rails · Stimulus · JavaScript · HTML · CSS",
-      blocs: [
-        { titre: "Le problème", items: [
-          "Gaspillage alimentaire à la maison",
-          "Dates limites oubliées",
-          "Saisie manuelle fastidieuse"
-        ] },
-        { titre: "UI", items: [
-          "Charte : logo, couleurs, pictogrammes, typographies",
-          "Écrans clés : accueil, ingrédients, recettes, étagère"
-        ] },
-        { titre: "Développement", items: [
-          "Tout le front (Rails, Stimulus, JavaScript)",
-          "Scan des tickets de caisse",
-          "Alertes avant date limite",
-          "Recettes générées par un modèle de langage"
-        ] },
-        { titre: "Résultats", items: [
-          "Application fonctionnelle",
-          "Présentée au Demo Day de fin de formation"
-        ] }
-      ] },
+      etiquettes: ["Application mobile"],
+      client: "Projet d’école · Le Wagon",
+      role: "Direction artistique et front",
+      outils: "Figma · Ruby on Rails · Stimulus · JavaScript · HTML · CSS" },
     { slug: "slides", nom: "Slides", tags: %w[identité motion],
       images: [{ video: "slides_logo_anim_meykfx", seconde: 1.35 }, # dernière image du logo animé (1,4 s)
                "slides/slide_branding_31.jpg", "slides/MU 1.jpg"],
-      etiquettes: ["Projet de diplôme", "Identité & scénographie", "2021 / 2022"],
-      role: "Conception complète",
-      duree: "6 mois",
-      outils: "Illustrator · InDesign · Photoshop · After Effects",
-      blocs: [
-        { titre: "Contexte", items: [
-          "Projet de fin d’études",
-          "Une exposition sur l’histoire du skate",
-          "Public : pratiquants et curieux"
-        ] },
-        { titre: "Identité", items: [
-          "Logo en lettres découpées",
-          "Version animée",
-          "Jaune et noir"
-        ] },
-        { titre: "Supports", items: [
-          "Série d’affiches",
-          "Billets",
-          "Papeterie",
-          "Catalogue",
-          "Sac en toile"
-        ] },
-        { titre: "Scénographie", items: [
-          "Parcours d’exposition",
-          "Affichage urbain"
-        ] }
-      ] }
+      etiquettes: ["Identité & scénographie"],
+      client: "Projet de diplôme",
+      role: "Direction artistique et motion",
+      outils: "Illustrator · InDesign · Photoshop · After Effects" }
   ].freeze
 
   def projets
