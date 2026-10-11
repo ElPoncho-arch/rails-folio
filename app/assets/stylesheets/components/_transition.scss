@@ -1,16 +1,15 @@
 :root {
   --page-duration: 520ms;
-  --page-ease: cubic-bezier(.2,.8,.2,1);
+  --page-ease: #{$ease-soft};
 }
 
 /* Conteneur animé */
 .transition-fade {
   opacity: 1;
-  transform: translateY(0);
+  transform: none; // pas de transform au repos : les éléments fixed restent calés sur l'écran
   transition:
     opacity var(--page-duration) var(--page-ease),
     transform var(--page-duration) var(--page-ease);
-  will-change: opacity, transform;
 }
 
 /* État d'entrée (au premier paint, puis retiré par le contrôleur) */
@@ -29,7 +28,7 @@
 #page-overlay {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: $color-text;
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--page-duration) var(--page-ease);
@@ -40,9 +39,13 @@
   opacity: .12; /* ajuste l’intensité si tu veux */
 }
 
-/* Accessibilité : réduit/annule les anims si l'utilisateur préfère peu de mouvement */
+/* Accessibilité : simple fondu court, sans déplacement */
 @media (prefers-reduced-motion: reduce) {
-  .transition-fade,
+  .transition-fade {
+    transition: opacity 150ms linear !important;
+    transform: none !important;
+  }
+
   #page-overlay {
     transition: none !important;
   }

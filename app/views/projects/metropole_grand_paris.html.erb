@@ -1,0 +1,36 @@
+<% projet = projet_courant %>
+<%# Images : tmp/import/mgp/ → bin/rails cloudinary:import_projets (une image absente du manifeste n'est pas affichée) %>
+
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    Direction artistique d’un cycle de 10 événements urbains pour la Métropole du Grand Paris. Le thème : l’avenir de la ville, devant 20 à 30 invités institutionnels par journée.
+  </p>
+  <p>
+    Chez PVV, je dirigeais le pôle graphisme. J’ai créé la direction artistique et je l’ai tenue sur tous les supports : visuels avant et après chaque journée, kakémonos, grands formats, habillage animé des vidéos, bilan publié sur Behance.
+  </p>
+  <p>
+    J’ai coordonné 15 personnes, en 4 pôles : graphisme, photo, motion, vidéo. Le client a gardé la direction artistique sur tout le cycle.
+  </p>
+<% end %>
+
+<div class="projet-medias">
+  <%= projet_bloc_medias(
+        { image: "metropole-grand-paris/agoras-salle.png",
+          alt: "Une Agora de la Métropole du Grand Paris : la salle pendant un événement" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "metropole-grand-paris/visuels.png",
+          alt: "Planche de 4 visuels de communication du cycle des Agoras" },
+        { image: "metropole-grand-paris/kakemono.png",
+          alt: "Kakémono de l’événement aux couleurs de la Métropole du Grand Paris" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "metropole-grand-paris/behance.png",
+          alt: "Page Behance de la Métropole du Grand Paris présentant les journées du cycle" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "metropole-grand-paris/intervenant.png",
+          alt: "Intervenant pendant une conférence du cycle" }) %>
+</div>
+
+<%= render "projects/navigation", projet: projet %>

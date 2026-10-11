@@ -1,0 +1,61 @@
+# rails-folio — Portfolio Fabien Hoarau
+
+## Contexte
+Portfolio freelance (graphiste / motion / UI / front). Cible : agences et studios.
+V2 en cours sur la branche `v2-front` (V1 taguée `v1.0`) : on refait le FRONT, on garde les PROJETS.
+
+## Stack
+- Ruby on Rails 7.1, Bootstrap, Stimulus.js, importmap
+- Animations : GSAP (+ ScrollTrigger, SplitText) et Lenis, pinnés via importmap
+- Pas de base de données (site statique)
+- Médias : aujourd'hui majoritairement locaux (app/assets/images, ~136 Mo). Seules quelques vidéos/images passent par Cloudinary (cl_video_tag / cl_image_tag, f_auto, q_auto). Migration prévue à l'étape 7.
+- Déploiement Heroku : `git push heroku master` (pas main)
+- Preview locale : `bin/rails server`
+
+## Direction artistique V2
+Ton : clair, chaleureux, accueillant. Les interactions et animations sont le cœur du site.
+- Titres : ClashDisplay
+- Texte, nav, tags, numéros : Fragment Mono (une seule graisse : Regular + Italique)
+- Couleurs (variables SCSS) :
+  - fond `#F6F1E7`
+  - texte `#1C1A17`
+  - accent `#EF8862` (bandes, badges, survols, formes — jamais pour du texte courant)
+  - secondaire `#FFD8C2`
+- Refs détaillées : docs/refs/refs.md
+
+## Animations
+- Une animation = un controller Stimulus (ex : reveal, marquee, magnetic)
+- Courbes douces, léger rebond (`back.out`), pas d'effet nerveux
+- Toujours respecter `prefers-reduced-motion`
+
+## Règles
+- Toujours résumer la demande et proposer un plan AVANT de coder, puis attendre validation.
+- Simplicité avant optimisation. Pas de refacto du stockage des projets.
+- Ne pas toucher aux données projets ni aux public_id Cloudinary.
+- Pas d'autre police que ClashDisplay et Fragment Mono.
+- Responsive obligatoire (mobile first).
+- AVANT toute suppression : lister l'arbo (`ls`, `git status`) et demander confirmation.
+- Petites étapes, une étape = un commit.
+- Répondre en français, contenu du site en français sans anglicismes inutiles.
+- Toutes les réponses en français, y compris les messages intermédiaires.
+- Sass (sassc) : jamais min() ni max() avec des unités mixtes (rem et vw, px et %…), le compresseur de production les relit comme fonctions Sass et le build casse. Utiliser uniquement clamp() ou calc().
+- Après toute modification SCSS : lancer `RAILS_ENV=production SECRET_KEY_BASE=dummy bin/rails assets:precompile` (doit passer sans erreur), puis `bin/rails assets:clobber` pour ne pas commiter public/assets.
+
+## Pages
+home, page projet (template unique), about (à adapter à la nouvelle DA), mentions légales (/mentions-legales).
+
+## Projets
+Slides, MAC VAL, La Colline, Ford, Mango Edition, TF1 (à récupérer), Shelfie, Abskate, projets indépendants & expérimentations.
+
+## Plan V2 (une étape = un commit)
+1. Tokens SCSS
+2. Typos (ClashDisplay + Fragment Mono auto-hébergées, pas de Google Fonts)
+3. Purge des anciennes couleurs (#171717, #ffff00)
+4. Layout (nav pilule, footer, Lenis, transitions)
+5. Home (la liste des projets y passe en #projets ; /work → 301 vers /#projets)
+6. Page projet (partial commun)
+7. Migration des images locales vers Cloudinary
+8. About + Contact (styles du formulaire extraits dans _contact.scss)
+9. Mentions légales
+10. Animations (controllers Stimulus)
+11. Recette mobile + accessibilité

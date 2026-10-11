@@ -1,0 +1,41 @@
+// Tokens V2 — source unique des couleurs, typos, rayons et courbes.
+// Importé avant Bootstrap : ne doit produire aucun CSS.
+
+// Couleurs
+$color-bg:        #F6F1E7; // fond crème
+$color-text:      #1C1A17; // texte
+$color-accent:    #EF8862; // orange : bandes, badges, survols, formes — jamais pour du texte courant (encre dessus : 6,9:1)
+$color-secondary: #FFD8C2; // pêche
+$color-hero:      $color-accent; // fond du hero de la home
+$color-trame-hero: #B4502F; // brique : trame du hero, ton sur ton, sous le texte encre
+$color-trame-footer: #2A2826; // gris très foncé : trame posée sur le fond encre du footer
+$color-accent-survol: $color-accent; // fond des cards projets au survol et au focus
+$color-chargement: #F4F4F2; // gris très clair, presque blanc : fond des cartes et images le temps du chargement
+$color-terrain:   #EFE8DA; // crème plus soutenu : fond du panier CV (page À propos)
+$color-carte:     #FBF8F2; // crème presque blanc : carte et pastilles posées sur le terrain
+
+// Typos (familles déclarées à l'étape 2)
+$font-display: 'ClashDisplay', sans-serif;  // titres
+$font-mono:    'Fragment Mono', monospace;  // texte, nav, tags, numéros
+
+// Tailles de titres (h1) : XXL pour les projets, intermédiaire pour les autres pages
+$font-size-titre-page: clamp(2.5rem, 11vw, 7.5rem); // profil et contact, mentions légales
+
+// Texte courant (pages projet, profil, mentions légales) : 16 px en mobile, 17 px dès ~900 px de large
+$font-size-texte: clamp(1rem, calc(0.95rem + 0.2vw), 1.0625rem);
+
+// Rayons
+$radius-card: 1.5rem;
+$radius-pill: 999px;
+
+// Animations (équivalent CSS de back.out GSAP)
+$ease-soft:     cubic-bezier(0.25, 1, 0.5, 1);
+$ease-back-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+$duration-fast: 0.3s;
+$duration-base: 0.6s;
+
+// Contour de focus commun : encre sur fond clair, crème sur le footer
+@mixin contour-focus($couleur: $color-text) {
+  outline: 2px solid $couleur;
+  outline-offset: 2px;
+}

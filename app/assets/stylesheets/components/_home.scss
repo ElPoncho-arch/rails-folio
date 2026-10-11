@@ -1,55 +1,272 @@
-.home-section {
-  // height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+// Home V2 — composition A (index éditorial), mobile first.
 
-  // // remplacez les 4 valeurs ci-dessous selon vos besoins
-  // @include gap-responsive(
-  //   2rem,    // mobile ‹576px
-  //   4rem,    // sm ≥576px
-  //   6rem,    // md ≥768px
-  //   8rem     // lg ≥992px
-  // );
+// --- Hero ---
+// Sur la home, le contenu démarre tout en haut : la nav fixe flotte sur le hero
+#contenu.contenu--plein {
+  padding-top: 0;
 }
 
-.home-links {
-  // On cible directement la classe `font-link` pour réutiliser l’animation
-  .font-link {
-    position: relative;
-    display: inline-block !important;   // override Bootstrap block
-    padding: 0.25rem 1.8rem !important;  // même padding que navbar
-    margin: 0 0.5rem;
-    border-radius: 5rem;
-    text-decoration: none !important;
-    overflow: hidden;
-    transition: color .3s ease, background-color .3s ease;  // ajouté background-color pour l’effet complet
+// Plein écran : fond orange doux, portrait tramé brique (ton sur ton), texte encre par-dessus
+.home-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  height: 100svh;
+  min-height: 26rem;
+  background-color: $color-hero;
+}
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%;                              // calqué sur navbar
-      width: 0; height: 100%;
-      background-color: #ffff00;
-      z-index: -1;                // toujours derrière le texte
-      transition: width .3s ease, left .3s ease;      // ajout de la transition sur left
-    }
+// Débord de 3 % de chaque côté : marge pour la dérive (hero_motif_controller.js).
+// Trame en retrait pour la voir presque entière, fond tomate autour :
+// écran en hauteur, calée sur 78 % de la hauteur et recadrée sur le visage ;
+// écran en largeur, plein cadre (cover) : jamais de bande vide, quel que soit le format.
+.home-hero__motif {
+  position: absolute;
+  z-index: 0;
+  inset: -3%;
+  // Le SVG sert de masque (comme dans le footer) : couleur donnée par background-color
+  background-color: $color-trame-hero;
+  -webkit-mask: url(asset-path("motifs/trame.svg")) 58% 60% / auto 78% no-repeat;
+  mask: url(asset-path("motifs/trame.svg")) 58% 60% / auto 78% no-repeat;
+  will-change: transform;
 
-    &:hover {
-      background-color: #ffff00 !important;
-      color: #171717 !important;
-    }
-
-    &:hover::after {
-      width: 120%; left: -10%;                        // mêmes valeurs que navbar
-    }
+  @media (orientation: landscape) {
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: cover;
+    mask-size: cover;
   }
 }
 
-.home-bg {
-  background-image: image-url('home-back.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  min-height: 100vh;
+// Nom et métier en encre (ClashDisplay) : nom en haut à gauche sous la nav, métier en bas à droite.
+// Encre sur $color-hero : 6,9:1.
+.home-hero__nom,
+.home-hero__metier {
+  position: absolute;
+  z-index: 1;
+  margin: 0;
+  font-family: $font-display;
+  font-weight: 500;
+  color: $color-text;
+}
+
+.home-hero__nom {
+  top: clamp(6rem, 16svh, 9rem);
+  left: clamp(1rem, 3vw, 2.75rem);
+  font-size: clamp(3.5rem, 26vw, 7rem); // mobile : « hoarau » occupe presque toute la largeur
+  line-height: 0.82;
+  letter-spacing: -0.03em;
+
+  @include respond-to(md) {
+    font-size: clamp(4rem, 11vw, 10rem);
+  }
+}
+
+.home-hero__metier {
+  right: clamp(1rem, 3vw, 2.75rem);
+  bottom: clamp(1.5rem, 4svh, 2.75rem);
+  font-size: clamp(1.4rem, 7.5vw, 2rem); // mobile : « UI et front-end designer » sur une ligne, même à 320 px
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-align: right;
+
+  @include respond-to(md) {
+    font-size: clamp(1.6rem, 3.6vw, 3.5rem);
+  }
+}
+
+// Une ligne par span : coupure voulue, sans <br>
+.home-hero__ligne {
+  display: block;
+}
+
+// --- Liste des projets ---
+.home-projects {
+  padding: 4rem 0 0;
+  margin-bottom: -2rem; // mobile : 4rem entre la liste et la marquee (marge du footer : 6rem)
+  scroll-margin-top: 5rem; // l'ancre #projets passe sous la nav
+
+  @include respond-to(md) {
+    padding: 6rem 0 2rem;
+    margin-bottom: 0;
+  }
+}
+
+.home-projects__titre {
+  margin: 0 1rem 1.5rem;
+  font-family: $font-mono;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: $color-text;
+
+  span {
+    opacity: 0.7;
+  }
+
+  @include respond-to(md) {
+    margin: 0 3rem 2rem;
+  }
+}
+
+// Grille de cards — mobile first : 1 colonne, 2 dès 640 px, 3 dès 900 px
+.home-projects__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0 1rem;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(md) {
+    margin-inline: 3rem; // même marge que le titre de la liste
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Card projet : tout le carré est le lien (cible tactile complète).
+// Mobile : bande d'au moins 240 px de haut ; carré dès 640 px.
+.projet-card {
+  position: relative;
+  display: block;
+  min-height: 240px;
+  height: 100%;
+  padding: 20px;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: $color-accent;
+  color: $color-text;
+  text-decoration: none;
+  transition: background-color $duration-fast $ease-soft;
+
+  @media (min-width: 640px) {
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+  }
+
+  // Le fond change, et les capsules apparaissent : l'état ne repose pas que sur la couleur
+  &:hover,
+  &:focus-visible {
+    background-color: $color-accent-survol;
+    color: $color-text;
+
+    .projet-card__nom,
+    .capsules {
+      opacity: 1;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-text;
+    outline-offset: 3px;
+  }
+}
+
+// Image du projet : remplit toute la card, sous le nom et les capsules
+.projet-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: $color-chargement; // visible le temps du chargement
+  transition: transform $duration-base $ease-soft, filter $duration-base $ease-soft;
+}
+
+// Survol et focus sur une card avec image : flou marqué qui efface l'image derrière le nom et les capsules.
+// Le zoom repousse hors de la card les bords flous (sinon liseré clair) ; overflow: hidden les coupe.
+.projet-card--image:hover .projet-card__image,
+.projet-card--image:focus-visible .projet-card__image {
+  filter: blur(10px);
+  transform: scale(1.08);
+}
+
+// Nom en haut à gauche, caché jusqu'au survol ou au focus (opacity : il reste lu par les lecteurs d'écran)
+.projet-card__nom {
+  position: relative; // au-dessus de l'image
+  display: block;
+  opacity: 0;
+  transition: opacity $duration-fast $ease-soft;
+  max-width: 70%;
+  overflow-wrap: anywhere;
+  font-family: $font-display;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  line-height: 1.05;
+
+  // Sur une image : interligne ouvert pour loger une pastille par ligne
+  .projet-card--image & {
+    line-height: 1.4;
+  }
+
+  // Écrans tactiles : pas de survol, le nom reste affiché
+  @media (hover: none) {
+    opacity: 1;
+  }
+}
+
+// Sur une image : pastille crème qui épouse chaque ligne du nom, lisible quel que soit le visuel
+.projet-card--image .projet-card__nom-texte {
+  padding: 3px 10px 1px;
+  background-color: $color-bg;
+  border-radius: 8px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+// Catégories en bas à droite, empilées ; cachées jusqu'au survol ou au focus
+.capsules {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity $duration-fast $ease-soft;
+
+  // Écrans tactiles : pas de survol, les capsules restent affichées
+  @media (hover: none) {
+    opacity: 1;
+  }
+}
+
+.capsule {
+  padding: 4px 14px;
+  background-color: $color-bg; // lisible sur l'image comme sur le tomate
+  font-family: $font-mono;
+  font-size: 13px;
+  white-space: nowrap;
+  border: 1px solid $color-text;
+  border-radius: $radius-pill;
+}
+
+// Tag pilule (réutilisable)
+.tag-pill {
+  display: inline-block;
+  max-width: 100%; // texte agrandi : un tag long (« illustration ») se coupe au lieu de dépasser
+  overflow-wrap: anywhere;
+  padding: 0.25rem 0.75rem;
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  border: 1px solid $color-text;
+  border-radius: $radius-pill;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projet-card,
+  .projet-card__image,
+  .projet-card__nom,
+  .capsules {
+    transition: none;
+  }
+
+  // Au survol : flou sans fondu (transitions coupées ci-dessus) ; zoom gardé, sans mouvement, pour cacher les bords flous
 }

@@ -1,0 +1,39 @@
+<% projet = projet_courant %>
+<%# Images : tmp/import/beach-bikes/ → bin/rails cloudinary:import_projets (une image absente du manifeste n'est pas affichée) %>
+
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    Un outil de gestion pour suivre plus de 500 vélos en temps réel, sur plusieurs sites. Avant, tout tenait dans un tableur.
+  </p>
+  <p>
+    L’outil gère les stocks et réunit les réservations de toutes les sources. Il prévient quand un vélo doit passer en maintenance ou n’est plus disponible.
+  </p>
+  <p>
+    Je conçois les écrans, des premiers croquis aux maquettes finales, avec un système de design documenté, pensé pour beaucoup de données. Puis je code, fidèle aux maquettes.
+  </p>
+  <p>
+    Mission en indépendant, avec des allers-retours réguliers avec le client et l’équipe de développement.
+  </p>
+<% end %>
+
+<div class="projet-medias">
+  <%= projet_bloc_medias(
+        { image: "beach-bikes/reservations.png",
+          alt: "Interface Beach Bikes : écran de gestion des réservations" }, ratio: "16 / 9") %>
+
+  <%= projet_bloc_medias(
+        { image: "beach-bikes/calendrier.png",
+          alt: "Interface Beach Bikes : calendrier des réservations" }, ratio: "16 / 9") %>
+
+  <%= projet_bloc_medias(
+        { image: "beach-bikes/mobile.png",
+          alt: "Interface Beach Bikes sur mobile" },
+        { image: "beach-bikes/design-system.png",
+          alt: "Design system de l’interface Beach Bikes : couleurs, typographies et composants" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "beach-bikes/wireframe.png",
+          alt: "Wireframe de l’interface de gestion Beach Bikes" }, ratio: "16 / 9") %>
+</div>
+
+<%= render "projects/navigation", projet: projet %>

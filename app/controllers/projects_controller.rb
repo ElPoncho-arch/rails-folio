@@ -23,6 +23,12 @@ class ProjectsController < ApplicationController
   def la_colline
   end
 
-  def experimentation
+  def metropole_grand_paris
+  end
+
+  def beach_bikes
+  end
+
+  def atelier_reli_art
   end
 end

@@ -1,3 +1,72 @@
-<footer class="footer text-center pb-4 mt-0 text-footer">
-  <small class="fs-7">&copy; <%= Time.current.year %> Fabien Hoarau. Tous droits réservés.</small>
+<%# Footer — bande tomate qui défile (marquee_controller.js) + bloc encre %>
+<footer class="site-footer">
+  <div class="footer-band" aria-hidden="true"
+       data-controller="marquee"
+       data-action="mouseenter->marquee#pause mouseleave->marquee#resume">
+    <p class="footer-band__text" data-marquee-target="track">
+      <%# Deux groupes identiques pour une boucle sans raccord visible %>
+      <% 2.times do %>
+        <span class="footer-band__groupe">
+          <% 3.times do %>
+            <span>on bosse ensemble ?</span>
+            <span class="footer-band__sep">✶</span>
+            <span>graphique, motion, UI et front-end designer</span>
+            <span class="footer-band__sep">✶</span>
+          <% end %>
+        </span>
+      <% end %>
+    </p>
+  </div>
+
+  <%# Page profil (y compris réaffichée après une erreur du formulaire) : pas d'appel à écrire, le formulaire est juste au-dessus %>
+  <% page_contact = current_page?(profil_path) || controller_name == "contacts" %>
+  <div class="footer-main<%= " footer-main--court" if page_contact %>">
+    <% unless page_contact %>
+      <p class="footer-main__accroche">Un projet en tête ?<br>Parlons-en.</p>
+
+      <a class="footer-main__email" href="mailto:hoarauf4@gmail.com"
+         data-controller="magnetic" data-magnetic-strength-value="0.2">
+        hoarauf4@gmail.com
+      </a>
+    <% end %>
+
+    <div class="footer-main__cols">
+      <nav class="footer-col" aria-label="Pages">
+        <p class="footer-col__titre">pages</p>
+        <ul>
+          <li><%= link_to "projets", "/#projets" %></li>
+          <li><%= link_to "profil et contact", profil_path %></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Ailleurs">
+        <p class="footer-col__titre">ailleurs</p>
+        <ul>
+          <li>
+            <%= link_to "https://www.linkedin.com/in/fabien-hoarau-7b896a172/", target: "_blank", rel: "noopener noreferrer" do %>
+              LinkedIn <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "https://github.com/ElPoncho-arch", target: "_blank", rel: "noopener noreferrer" do %>
+              GitHub <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "/Fabien_Hoarau_CV_UI_Designer.pdf", target: "_blank", rel: "noopener noreferrer" do %>
+              CV (pdf) <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="footer-col footer-col--legal">
+        <p>&copy; <%= Time.current.year %> Fabien Hoarau</p>
+        <ul>
+          <li><%= link_to "mentions légales", mentions_legales_path %></li>
+          <li><a href="#contenu">↑ haut de page</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </footer>

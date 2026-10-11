@@ -1,0 +1,31 @@
+<% projet = projet_courant %>
+<%# Images : tmp/import/reli-art/ → bin/rails cloudinary:import_projets (une image absente du manifeste n'est pas affichée) %>
+
+<%= render layout: "projects/entete", locals: { projet: projet } do %>
+  <p>
+    L’identité d’un atelier de reliure d’art et de restauration de livres anciens, qui se lance.
+  </p>
+  <p>
+    Une contrainte : rouge, noir et blanc, pour Instagram comme pour l’imprimé. J’ai proposé trois pistes complètes, chacune avec son intention écrite.
+  </p>
+  <p>
+    Le logo retenu s’adapte à chaque usage : fond clair, fond sombre, version compacte. Avec la charte et les fichiers sources, le client crée ses supports seul.
+  </p>
+  <p>
+    Mission en indépendant, de la recherche à la charte finale.
+  </p>
+<% end %>
+
+<div class="projet-medias">
+  <%= projet_bloc_medias(
+        { image: "atelier-reli-art/proposition-1.png",
+          alt: "Atelier Reli’Art, proposition 1 : logotype et déclinaisons en rouge, noir et blanc" }) %>
+
+  <%= projet_bloc_medias(
+        { image: "atelier-reli-art/proposition-2.png",
+          alt: "Atelier Reli’Art, proposition 2 : logotype et déclinaisons" },
+        { image: "atelier-reli-art/proposition-3.png",
+          alt: "Atelier Reli’Art, proposition 3 : logotype et déclinaisons" }) %>
+</div>
+
+<%= render "projects/navigation", projet: projet %>

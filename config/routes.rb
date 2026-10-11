@@ -7,14 +7,19 @@ Rails.application.routes.draw do
   get 'projects/abskate', to: 'projects#abskate'
   get 'projects/mango', to: 'projects#mango'
   get 'projects/la_colline', to: 'projects#la_colline'
-  get 'projects/experimentation', to: 'projects#experimentation'
+  get 'projects/metropole-grand-paris', to: 'projects#metropole_grand_paris'
+  get 'projects/beach-bikes', to: 'projects#beach_bikes'
+  get 'projects/atelier-reli-art', to: 'projects#atelier_reli_art'
 
   get "up" => "rails/health#show", as: :rails_health_check
 
   root to: 'home#index'
-  get 'bio', to: 'pages#bio'
-  get 'contact', to: 'pages#contact', as: :contact
-  get 'work', to: 'home#work', as: 'work'
+  get 'profil', to: 'pages#profil', as: :profil
+  get 'a-propos', to: redirect('/profil', status: 301)
+  get 'bio', to: redirect('/profil', status: 301)
+  get 'contact', to: redirect('/profil#contact', status: 301)
+  get 'mentions-legales', to: 'pages#mentions_legales', as: :mentions_legales
+  get 'work', to: redirect('/#projets', status: 301)
 
   resources :contacts, only: [:create]
 end

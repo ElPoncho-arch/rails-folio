@@ -1,0 +1,46 @@
+<%# En-tête de page projet — usage : render layout: "projects/entete", locals: { projet: projet_courant } do … texte … end %>
+<%# Titre de page : nom court, sans sous-titre (« TF1 — E-learning » → « TF1 ») %>
+<% content_for :titre, projet[:nom].split(" — ").first %>
+<%# Mobile (< 768 px) : intro et infos repliées derrière « à propos du projet » (depliable_controller.js) %>
+<div class="projet-intro" data-controller="depliable">
+<header class="projet-entete">
+  <div class="projet-entete__haut" data-reveal-target="item">
+    <%= link_to "← tous les projets", "/#projets", class: "projet-entete__retour" %>
+    <span class="projet-entete__numero"><%= projet_numero(projet) %> / <%= format("%02d", projets.size) %></span>
+  </div>
+
+  <h1 class="projet-entete__titre" data-controller="split-title" data-split-title-type-value="words"><%= nom_insecable(projet[:nom]) %></h1>
+
+  <%# Étiquettes détaillées si le projet en a (nouveaux projets), sinon les tags de la home %>
+  <ul class="projet-entete__tags" aria-label="Étiquettes" data-reveal-target="item">
+    <% (projet[:etiquettes] || projet[:tags]).each do |tag| %>
+      <li class="tag-pill"><%= tag %></li>
+    <% end %>
+  </ul>
+
+  <%# Caché sans JS (contenu ouvert) et dès 768 px (CSS) %>
+  <button type="button" class="projet-depliable__bouton" hidden
+          aria-expanded="true" aria-controls="projet-details"
+          data-depliable-target="bouton" data-action="depliable#basculer">
+    à propos du projet <span class="projet-depliable__signe" aria-hidden="true" data-depliable-target="signe">−</span>
+  </button>
+
+  <div class="projet-depliable" id="projet-details" data-depliable-target="panneau">
+  <div class="projet-entete__corps" data-reveal-target="item">
+    <div class="projet-entete__texte">
+      <%= yield %>
+    </div>
+
+    <% infos = { "client" => projet[:client], "rôle" => projet[:role], "outils" => projet[:outils] }.compact %>
+    <% if infos.any? %>
+      <dl class="projet-entete__infos">
+        <% infos.each do |libelle, valeur| %>
+          <dt><%= libelle %></dt>
+          <dd><%= valeur %></dd>
+        <% end %>
+      </dl>
+    <% end %>
+  </div>
+  </div>
+</header>
+</div>

@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" data-controller="smooth-scroll">
   <head>
-    <title>Fabien Hoarau – Graphiste & Designer Web | Portfolio</title>
-    <meta name="description" content="Fabien Hoarau, graphiste et designer web. Branding, print, web et créations personnelles">
+    <%# Titre par page : content_for :titre dans la vue ; la home garde le titre de repli %>
+    <title><%= content_for?(:titre) ? "#{yield(:titre)} — Fabien Hoarau" : "Fabien Hoarau — graphique, motion, UI et front-end designer" %></title>
+    <meta name="description" content="Fabien Hoarau, graphique, motion, UI et front-end designer. Identités visuelles, animation et interfaces web.">
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%# Favicon : pastille « fh » tramée, en PNG seulement (le SVG source, docs/sources/favicon-trame.svg,
+        pèse 629 Ko à cause de la trame : trop lourd pour une icône) %>
     <%= favicon_link_tag "/favicon-32x32.png", rel: "icon", type: "image/png", sizes: "32x32" %>
+    <%= favicon_link_tag "/apple-touch-icon.png", rel: "apple-touch-icon", type: "image/png", sizes: "180x180" %>
     <%= tag.meta name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" %>
 
     <!-- Tes styles (Bootstrap inclus via gem + overrides) -->
@@ -15,28 +19,25 @@
     <!-- Importmap (charge application.js + pins) -->
     <%= javascript_importmap_tags %>
 
-    <div id="app-loader" aria-hidden="true" data-transition-target="overlay">
-      <div class="loader-spinner"></div>
-    </div>
-
-
   </head>
 
   <!-- Attache le contrôleur de transition au body -->
   <body data-controller="transition">
-    <% unless controller_name == 'home' && action_name == 'index' %>
-      <%= render 'shared/navbar' %>
-    <% end %>
+    <a class="lien-evitement" href="#contenu" data-action="smooth-scroll#evitement">Aller au contenu</a>
 
-    <!-- Conteneur animé (fade/slide entre pages) -->
-    <div id="page" class="transition-fade is-entering" data-transition-target="container">
-      <%= yield %>
+    <div id="app-loader" aria-hidden="true">
+      <div class="loader-spinner"></div>
     </div>
 
+    <%= render 'shared/navbar' %>
 
-<% if controller_name == "projects" %>
-      <%= render "shared/footer" %>
-    <% end %>
+    <!-- Contenu principal, conteneur animé (fade/slide entre pages) ; cible du lien d'évitement -->
+    <main id="contenu" class="transition-fade is-entering <%= yield(:main_classe) %>" tabindex="-1" data-transition-target="container" data-controller="reveal">
+      <%= yield %>
+    </main>
+
+
+    <%= render "shared/footer" %>
 
 
     <!-- Overlay léger pendant la sortie (optionnel) -->

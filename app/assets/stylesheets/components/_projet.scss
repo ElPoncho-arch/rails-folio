@@ -1,0 +1,319 @@
+// Page projet V2 — partials projects/_entete, _media_pleine, _media_paire, _navigation.
+// Mobile first ; mêmes marges que la home (1rem, 3rem dès md).
+
+$projet-gouttiere: 1rem;
+$projet-gouttiere-md: 3rem;
+
+// --- En-tête ---
+.projet-entete {
+  padding: 2rem $projet-gouttiere 3rem;
+
+  @include respond-to(md) {
+    padding: 3rem $projet-gouttiere-md 4rem;
+  }
+}
+
+.projet-entete__haut {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $font-mono;
+  font-size: 0.95rem;
+}
+
+.projet-entete__retour {
+  color: $color-text;
+  text-decoration: none;
+  background-image: linear-gradient($color-accent, $color-accent);
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size $duration-fast $ease-soft;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text;
+    background-size: 100% 2px;
+  }
+
+  &:focus-visible {
+    @include contour-focus;
+  }
+}
+
+.projet-entete__numero {
+  opacity: 0.7;
+}
+
+.projet-entete__titre {
+  margin: 2rem 0 1.25rem;
+  font-family: $font-display;
+  font-weight: 600;
+  font-size: clamp(3.5rem, 14vw, 11rem);
+  line-height: 0.9;
+  overflow-wrap: anywhere; // texte agrandi : « E‑learning » (trait d'union insécable) ne déborde pas
+  letter-spacing: -0.02em;
+  color: $color-text;
+}
+
+.projet-entete__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// --- Texte repliable en mobile (depliable_controller.js) ---
+// Enveloppes sans marge, padding ni bordure : fermées (hidden="until-found"), elles tombent à 0 de haut.
+// flow-root : la marge des enfants reste dedans, la hauteur animée ne saute pas.
+.projet-depliable {
+  display: flow-root;
+}
+
+.projet-depliable__bouton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem; // zone tactile de 44 px
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid $color-text;
+  border-radius: $radius-pill;
+  background: transparent;
+  color: $color-text;
+  font-family: $font-mono;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color $duration-fast $ease-soft;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $color-accent; // fond orange, texte encre (6,9:1) ; le contour porte le focus
+  }
+
+  &:focus-visible {
+    @include contour-focus;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  // Dès 768 px : tout est ouvert, le bouton disparaît
+  @include respond-to(md) {
+    display: none;
+  }
+}
+
+.projet-depliable__signe {
+  display: inline-block;
+  min-width: 1ch;
+  text-align: center;
+}
+
+// Texte puis infos en mobile ; infos à gauche, texte à droite dès lg
+.projet-entete__corps {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba($color-text, 0.12);
+
+  @include respond-to(lg) {
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+}
+
+.projet-entete__texte {
+  min-width: 0; // élément de grille : peut rétrécir sous la largeur de son plus long mot
+  max-width: 60ch;
+  overflow-wrap: anywhere;
+  font-family: $font-mono;
+  font-size: $font-size-texte;
+  line-height: 1.6;
+  color: $color-text;
+
+  @include respond-to(lg) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.projet-entete__infos {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: $font-mono;
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  @include respond-to(lg) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  dt {
+    font-weight: 400;
+    opacity: 0.7;
+  }
+
+  dd {
+    margin: 0.25rem 0 1.25rem;
+  }
+
+  dd:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// --- Médias ---
+.projet-medias {
+  display: grid;
+  gap: 1rem;
+  padding: 0 $projet-gouttiere;
+
+  @include respond-to(md) {
+    gap: 1.5rem;
+    padding: 0 $projet-gouttiere-md;
+  }
+}
+
+.projet-media {
+  margin: 0;
+}
+
+// Demi-largeur centrée dès md (ex. logo carré), pleine largeur en mobile
+.projet-media--etroit {
+  @include respond-to(md) {
+    width: calc(50% - 0.75rem);
+    margin-inline: auto;
+  }
+}
+
+.projet-media__grille {
+  display: grid;
+  gap: 1rem;
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.projet-media__cadre {
+  position: relative;
+  overflow: hidden;
+  border-radius: $radius-card;
+  background-color: $color-chargement; // visible le temps du chargement
+}
+
+// Recadré : carré par défaut (paires), ou ratio passé en style (pleine largeur)
+.projet-media__cadre--recadre {
+  aspect-ratio: 1 / 1;
+
+  .projet-media__el {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Teaser avec lecteur natif : même contour que le reste du site
+video.projet-media__el:focus-visible {
+  @include contour-focus;
+}
+
+.projet-media__el {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.projet-media__legende {
+  margin-top: 0.75rem;
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+// --- Navigation précédent / suivant ---
+.projet-nav {
+  display: grid;
+  margin-top: 6rem;
+  margin-bottom: -2rem; // mobile : 4rem sous le dernier lien avant la marquee (marge du footer : 6rem)
+  border-top: 1px solid rgba($color-text, 0.12);
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 0;
+  }
+}
+
+.projet-nav__lien {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem $projet-gouttiere;
+  color: $color-text;
+  text-decoration: none;
+  transition: background-color $duration-fast $ease-soft;
+
+  & + & {
+    border-top: 1px solid rgba($color-text, 0.12);
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: $color-secondary;
+    color: $color-text;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-text;
+    outline-offset: -2px;
+  }
+
+  @include respond-to(md) {
+    padding: 3rem $projet-gouttiere-md;
+
+    & + & {
+      border-top: 0;
+      border-left: 1px solid rgba($color-text, 0.12);
+    }
+  }
+}
+
+.projet-nav__lien--suivant {
+  @include respond-to(md) {
+    align-items: flex-end;
+    text-align: right;
+  }
+}
+
+.projet-nav__sens {
+  font-family: $font-mono;
+  font-size: 0.95rem;
+}
+
+.projet-nav__nom {
+  overflow-wrap: anywhere;
+  font-family: $font-display;
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projet-entete__retour,
+  .projet-depliable__bouton,
+  .projet-nav__lien {
+    transition: none;
+  }
+}

@@ -1,0 +1,26 @@
+// Règles recommandées par Lenis (équivalent de lenis.css)
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+// Place de la barre de défilement toujours réservée : pas de saut de mise en page
+// quand elle disparaît (Lenis arrêté pendant une transition ou le menu mobile)
+html {
+  scrollbar-gutter: stable;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+// hidden et non clip : clip interdit aussi le défilement programmé,
+// Turbo ne pouvait plus remonter en haut de la nouvelle page
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}

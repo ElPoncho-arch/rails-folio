@@ -1,32 +1,44 @@
-<div class="home-bg">
-  <div class="container-fluid px-4 px-md-5 my-2">
+<%# Home V2 — hero : portrait tramé brique (motifs/trame.svg) sur fond orange, nom en haut à gauche, métier en bas à droite
+    (hero_motif_controller.js : entrée puis dérive lente du motif ; motifs dans app/assets/images/motifs) ;
+    cards des projets avec image (projet_apercu_url) ; apparitions : reveal_controller.js.
+    Le hero démarre tout en haut, sous la nav flottante (classe « contenu--plein » sur <main>). %>
+<% content_for :main_classe, "contenu--plein" %>
 
-    <!-- Ligne des prénoms -->
-    <div class="row align-items-center">
-      <div class="col-12 col-md-6">
-        <h1 class="clash-font-bold font-title m-0">Fabien</h1>
-      </div>
-      <div class="col-12 col-md-6 text-md-end">
-        <h1 class="clash-font-bold font-title m-0">Hoarau</h1>
-      </div>
-    </div>
+<%# Hero %>
+<section class="home-hero" data-controller="hero-motif">
+  <div class="home-hero__motif" data-hero-motif-target="motif" aria-hidden="true"></div>
+  <h1 class="home-hero__nom" data-hero-motif-target="texte">
+    <span class="home-hero__ligne">fabien</span> <span class="home-hero__ligne">hoarau</span>
+  </h1>
+  <p class="home-hero__metier" data-hero-motif-target="texte">
+    <span class="home-hero__ligne">Graphique, motion,</span> <span class="home-hero__ligne">UI et front-end designer</span>
+  </p>
+</section>
 
-    <!-- Ligne de la description + liens -->
-    <div class="row align-items-center mt-2">
-      <div class="col-12 col-md-8">
-        <h5 class="text-primary fs-3 m-0">
-          Creative front end developer<br>
-          Graphic designer<br>
-          UI/UX designer
-        </h5>
-      </div>
-      <div class="col-12 col-md-4 text-md-end mt-3 mt-md-0 home-links">
-        <%= link_to '> projets', work_path,
-             class: 'font-link text-decoration-none mb-1 px-3' %>
-        <%= link_to '> bio',    bio_path,
-             class: 'font-link text-decoration-none px-3' %>
-      </div>
-    </div>
+<%# Liste des projets %>
+<section id="projets" class="home-projects" aria-labelledby="projets-titre">
+  <h2 id="projets-titre" class="home-projects__titre" data-reveal-target="item">projets <span>(<%= format("%02d", projets.size) %>)</span></h2>
 
-  </div>
-</div>
+  <%# Grille de cards carrées : 1 colonne en mobile, 2 dès 640 px, 3 dès 900 px %>
+  <ol class="home-projects__list">
+    <% projets.each do |projet| %>
+      <% image = projet_apercu_url(projet) %>
+      <li data-reveal-target="item">
+        <%# Toute la card est le lien. Image : la première disponible du projet (aucune → fond tomate).
+            alt vide : le nom du projet, dans le lien, suffit. %>
+        <%= link_to projet_path_for(projet), class: ["projet-card", ("projet-card--image" if image)] do %>
+          <% if image %>
+            <img class="projet-card__image" src="<%= image %>" alt="" loading="lazy" decoding="async">
+          <% end %>
+          <span class="projet-card__nom"><span class="projet-card__nom-texte"><%= projet[:nom] %></span></span>
+          <%# Catégories visuelles seulement : le lien est annoncé par le nom du projet %>
+          <span class="capsules" aria-hidden="true">
+            <% projet[:tags].each do |tag| %>
+              <span class="capsule"><%= tag %></span>
+            <% end %>
+          </span>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+</section>
