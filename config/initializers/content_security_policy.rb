@@ -11,7 +11,7 @@ Rails.application.configure do
     policy.img_src     :self, :https, :data, :blob
     policy.media_src   :self, :https
     policy.object_src  :none
-    policy.script_src  :self, :https
+    policy.script_src  :self # tous les scripts sont servis par le site (importmap, vendor/javascript)
     policy.style_src   :self, :https, :unsafe_inline
     policy.connect_src :self, :https
   end
