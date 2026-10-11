@@ -53,18 +53,26 @@
 .home-hero__nom {
   top: clamp(6rem, 16svh, 9rem);
   left: clamp(1rem, 3vw, 2.75rem);
-  font-size: clamp(4rem, 11vw, 10rem);
+  font-size: clamp(3.5rem, 26vw, 7rem); // mobile : « hoarau » occupe presque toute la largeur
   line-height: 0.82;
   letter-spacing: -0.03em;
+
+  @include respond-to(md) {
+    font-size: clamp(4rem, 11vw, 10rem);
+  }
 }
 
 .home-hero__metier {
   right: clamp(1rem, 3vw, 2.75rem);
   bottom: clamp(1.5rem, 4svh, 2.75rem);
-  font-size: clamp(1.6rem, 3.6vw, 3.5rem); // 1,6rem : « UI et front-end designer » tient sur une ligne à 375 px
+  font-size: clamp(1.4rem, 7.5vw, 2rem); // mobile : « UI et front-end designer » sur une ligne, même à 320 px
   line-height: 1.05;
   letter-spacing: -0.02em;
   text-align: right;
+
+  @include respond-to(md) {
+    font-size: clamp(1.6rem, 3.6vw, 3.5rem);
+  }
 }
 
 // Une ligne par span : coupure voulue, sans <br>
