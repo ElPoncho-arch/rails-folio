@@ -1,7 +1,7 @@
 <%# Profil et contact — en haut, la présentation : mobile : titre puis texte ;
     tablette et desktop (md) : titre sur toute la largeur, texte dans les deux tiers de droite.
     Bloc « Téléchargez mon CV » : petit jeu de panier (panier_cv_controller.js, _panier_cv.scss) ; un panier marqué
-    télécharge le PDF via le lien « télécharger le CV », qui reste le raccourci direct (seul visible en mouvement réduit).
+    télécharge le PDF via le lien « télécharger un CV », qui reste le raccourci direct (seul visible en mouvement réduit).
     En bas, #contact « Me contacter » : contact direct à gauche, formulaire à droite (empilés en mobile).
     Champs avec texte d'exemple (placeholder), libellés gardés pour les lecteurs d'écran ;
     piège anti-robots : champ « site_web » invisible, que seuls les robots remplissent.
@@ -21,7 +21,7 @@
 <article class="apropos">
   <header class="apropos__entete" data-reveal-target="item">
     <h1 class="apropos__titre">Profil et contact</h1>
-    <p class="apropos__roles">Graphiste, motion, UI et front</p>
+    <p class="apropos__roles">Designer graphique, motion, UI et front-end</p>
     <%# Téléchargement direct du CV, dès le premier écran %>
     <%= link_to asset_path("FabienHoarau_UIDesigner.pdf"), class: "apropos__cv", download: "CV_Fabien-Hoarau.pdf" do %>télécharger un CV <span aria-hidden="true">↓</span><% end %>
   </header>
@@ -80,7 +80,7 @@
       <ul class="apropos__liens" aria-label="Liens">
         <li>
           <%= link_to asset_path("FabienHoarau_UIDesigner.pdf"), class: "lien-pill lien-pill--plein", download: "CV_Fabien-Hoarau.pdf",
-                      data: { panier_cv_target: "lien", action: "panier-cv#telecharger" } do %>télécharger le CV <span aria-hidden="true">↓</span><% end %>
+                      data: { panier_cv_target: "lien", action: "panier-cv#telecharger" } do %>télécharger un CV <span aria-hidden="true">↓</span><% end %>
         </li>
         <li>
           <%= link_to "https://github.com/ElPoncho-arch", class: "lien-pill", target: "_blank", rel: "noopener noreferrer" do %>
