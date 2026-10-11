@@ -2,7 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 import { gsap } from "gsap"
 
 // Hero de la home : portrait tramé sur fond tomate, nom et métier en crème.
-// - Entrée au chargement : la trame monte comme un rideau, puis le nom et le métier arrivent avec un léger rebond.
+// - Entrée au chargement : la trame monte comme un rideau, puis le nom et le métier arrivent ligne par ligne,
+//   avec un léger rebond.
 // - Dérive ensuite : la trame flotte lentement en boucle ; les textes restent fixes.
 // - La dérive se met en pause quand le hero sort de l'écran.
 // - Mouvement réduit : ni entrée ni dérive, tout est visible et fixe.
@@ -20,7 +21,8 @@ export default class extends Controller {
     this.mm = gsap.matchMedia()
     this.mm.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.set(this.motifTarget, { clipPath: "inset(100% 0% 0% 0%)", yPercent: 8 })
-      gsap.set(this.texteTargets, { autoAlpha: 0, y: 40 })
+      const lignes = this.texteTargets.flatMap((t) => [...t.querySelectorAll(".home-hero__ligne")])
+      gsap.set(lignes, { autoAlpha: 0, y: 40 })
 
       // Dérive préparée en pause : raccord en douceur depuis la fin de l'entrée, puis aller-retour sans fin
       this.derive = gsap.timeline({ paused: true })
@@ -29,7 +31,7 @@ export default class extends Controller {
 
       this.entree = gsap.timeline({ onComplete: () => { this.deriveLancee = true; this.majDerive() } })
         .to(this.motifTarget, { clipPath: "inset(0% 0% 0% 0%)", yPercent: 0, duration: 1.1, ease: "power3.inOut" })
-        .to(this.texteTargets, { autoAlpha: 1, y: 0, duration: 0.8, ease: "back.out(1.7)", stagger: 0.15 }, 0.75)
+        .to(lignes, { autoAlpha: 1, y: 0, duration: 0.8, ease: "back.out(1.7)", stagger: 0.12 }, 0.75)
 
       // Au revert (préférence changée ou disconnect), GSAP tue les deux timelines et retire les styles
       return () => { this.derive = null; this.entree = null; this.deriveLancee = false }
