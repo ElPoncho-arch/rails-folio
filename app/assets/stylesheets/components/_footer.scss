@@ -46,10 +46,23 @@
 }
 
 // Bloc principal
-// Motif « 02 italique » (lettres #2A2826) posé sur le fond encre du footer, sous le texte ; fixe, sans grain
+// Trame du hero (motifs/trame.svg) en gris très foncé sur le fond encre, sous le texte ; fixe.
+// Le SVG sert de masque : même fichier que le hero, couleur donnée par background-color.
 .footer-main {
+  position: relative;
+  isolation: isolate;
   padding: 4rem 1rem 2rem;
-  background: url(asset-path("motifs/motif-02-italique-footer.svg")) center / cover no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: $color-trame-footer;
+    -webkit-mask: url(asset-path("motifs/trame.svg")) center / cover no-repeat;
+    mask: url(asset-path("motifs/trame.svg")) center / cover no-repeat;
+    pointer-events: none;
+  }
 
   @include respond-to(md) {
     padding: 6rem 3rem 2.5rem;
