@@ -188,7 +188,7 @@ export default class extends Controller {
       this.demo = { t: 0, lancee: false }
       this.etat = "vise"
       this.tire = { dx: 0, dy: 0 }
-      this.dire("regarde…")
+      this.dire("regardez…")
     }, DEMO.attente)
   }
 
@@ -208,7 +208,7 @@ export default class extends Controller {
 
   finirDemo() {
     this.demo = null
-    this.dire("à toi !")
+    this.dire("à vous !")
   }
 
   // ---------- Saisie (poignée seulement) ----------
@@ -225,7 +225,7 @@ export default class extends Controller {
     this.tire = { dx: 0, dy: 0 }
     this.poignee.setPointerCapture(e.pointerId)
     this.poignee.classList.add("is-prise")
-    this.dire("vise… et lâche")
+    this.dire("visez… et lâchez")
   }
 
   viser(e) {
@@ -243,7 +243,7 @@ export default class extends Controller {
     const v = this.vitesse()
     if (!v) {
       this.replacer()
-      this.dire("tire vers le bas pour lancer")
+      this.dire("tirez vers le bas pour lancer")
       return
     }
     this.lancer()

@@ -2,13 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 // Formulaire de contact : vérification à la sortie de chaque champ (blur),
 // message d'erreur sous le champ, bouton « Envoi… » pendant l'envoi.
+// Champ vide : aucun texte, le champ est seulement signalé (contour, aria-invalid).
 // Sans JS, les attributs required / minlength et la vérification serveur prennent le relais.
+// Mêmes textes que app/models/contact.rb
 const MESSAGES = {
-  name:    { valueMissing: "Indiquez votre nom." },
-  email:   { valueMissing: "Indiquez votre adresse e-mail.",
-             typeMismatch: "Adresse e-mail invalide (exemple : nom@domaine.fr)." },
-  message: { valueMissing: "Écrivez votre message.",
-             tooShort: "Votre message est un peu court (10 caractères minimum)." }
+  email:   { typeMismatch: "Adresse e-mail invalide (exemple : nom@domaine.fr)." },
+  message: { tooShort: "Votre message est un peu court (10 caractères minimum)." }
 }
 
 export default class extends Controller {
@@ -71,9 +70,10 @@ export default class extends Controller {
     const erreur = document.getElementById(`erreur-${nom}`)
 
     if (cle) {
+      const texte = cle === "valueMissing" ? "" : (MESSAGES[nom]?.[cle] || champ.validationMessage)
       champ.setAttribute("aria-invalid", "true")
-      erreur.textContent = MESSAGES[nom]?.[cle] || champ.validationMessage
-      erreur.hidden = false
+      erreur.textContent = texte
+      erreur.hidden = texte === ""
       return false
     }
     champ.removeAttribute("aria-invalid")

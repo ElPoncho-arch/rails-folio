@@ -15,16 +15,11 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Pages bio + contact -->
+  <!-- Page profil et contact -->
   <url>
-    <loc>https://www.fabienhoarau.ink/bio</loc>
+    <loc>https://www.fabienhoarau.ink/profil</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.fabienhoarau.ink/contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 
   <!-- Projets -->

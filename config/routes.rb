@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   root to: 'home#index'
-  get 'a-propos', to: 'pages#a_propos', as: :a_propos
-  get 'bio', to: redirect('/a-propos', status: 301)
-  get 'contact', to: 'pages#contact', as: :contact
+  get 'profil', to: 'pages#profil', as: :profil
+  get 'a-propos', to: redirect('/profil', status: 301)
+  get 'bio', to: redirect('/profil', status: 301)
+  get 'contact', to: redirect('/profil#contact', status: 301)
   get 'mentions-legales', to: 'pages#mentions_legales', as: :mentions_legales
   get 'work', to: redirect('/#projets', status: 301)
 

@@ -1,13 +1,17 @@
-// Page Contact — composition B, mobile first.
+// Section « Me contacter » (#contact) de la page Profil et contact — composition B, mobile first.
 // Mobile : contact direct puis formulaire ; desktop (lg) : deux colonnes.
 // Zones tactiles ≥ 44 px ; erreurs en encre (jamais en tomate pour du texte).
 
 .contact {
   display: grid;
   gap: 2.5rem;
+  margin-top: 4rem; // sépare la section de la présentation au-dessus
   padding: 1.5rem 1rem 0;
+  border-top: 1px solid rgba($color-text, 0.12);
+  scroll-margin-top: 5rem; // l'ancre #contact passe sous la nav
 
   @include respond-to(md) {
+    margin-top: 6rem;
     padding: 2rem 3rem 0;
   }
 
@@ -26,14 +30,21 @@
   gap: 1rem;
 }
 
+// Titre de sous-section : plus petit que le titre de la page
 .contact__titre {
   margin: 0;
   font-family: $font-display;
   font-weight: 600;
-  font-size: $font-size-titre-page;
+  font-size: clamp(2.25rem, 8vw, 4.5rem);
   line-height: 0.92;
   letter-spacing: -0.02em;
   color: $color-text;
+}
+
+.contact__accroche {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 1.1rem;
 }
 
 .contact__email {
@@ -126,18 +137,32 @@ $bordure-champ: mix($color-text, $color-bg, 55%); // contraste ≥ 3:1 avec le f
     border-color: $color-text;
   }
 
+  // Texte d'exemple à la place du libellé : encre adoucie, contraste ≥ 4,5:1 sur le crème
+  &::placeholder {
+    color: rgba($color-text, 0.65);
+    opacity: 1;
+  }
+
   &[aria-invalid="true"] {
     border: 2px solid $color-text;
     background-color: rgba($color-secondary, 0.5);
   }
 }
 
+// Piège anti-robots : hors de l'écran (pas display: none, que certains robots repèrent)
+.formulaire__piege {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 textarea.formulaire__saisie {
   resize: vertical;
 }
 
-// Consigne en tête du formulaire et aide sous un champ (reliée par aria-describedby)
-.formulaire__consigne,
+// Aide sous un champ (reliée par aria-describedby)
 .formulaire__aide {
   margin: 0;
   font-family: $font-mono;

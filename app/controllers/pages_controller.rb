@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-  def contact
+  # Profil et contact : présentation, puis formulaire (#contact)
+  def profil
     @contact = Contact.new
   end
 end

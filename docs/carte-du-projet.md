@@ -30,7 +30,7 @@ rails-folio/
 │   │   ├── shared/               nav (_navbar) et footer (_footer), inclus dans le squelette
 │   │   ├── home/index.html.erb   la page d’accueil
 │   │   ├── projects/             une page par projet + 4 morceaux communs (fichiers qui commencent par _)
-│   │   ├── pages/                À propos, contact, mentions légales
+│   │   ├── pages/                Profil et contact, mentions légales
 │   │   └── contact_mailer/       le contenu du mail reçu quand quelqu’un remplit le formulaire
 │   ├── assets/
 │   │   ├── stylesheets/          ← les styles (SCSS)
@@ -49,7 +49,7 @@ rails-folio/
 │   ├── models/contact.rb         les règles du formulaire (champs obligatoires, 10 caractères minimum)
 │   └── mailers/contact_mailer.rb qui envoie le mail, à qui, avec quel sujet
 ├── config/
-│   ├── routes.rb                 les adresses du site (/a-propos, /projects/ford…)
+│   ├── routes.rb                 les adresses du site (/profil, /projects/ford…)
 │   ├── importmap.rb              la liste des bibliothèques JS (GSAP, Lenis, Turbo, Stimulus) : pas de npm
 │   ├── cloudinary_assets.yml     correspondance « chemin d’image » → image Cloudinary (avec largeur et hauteur)
 │   ├── environments/production.rb   réglages du site en ligne (dont l’envoi des mails par Gmail)
@@ -102,9 +102,9 @@ Le choix de la balise (image, image Cloudinary, vidéo, GIF) se fait dans `proje
 
 | À l’écran | Structure | Style | Comportement |
 |---|---|---|---|
-| À propos (portrait, texte, outils, liens) | `app/views/pages/a_propos.html.erb` | `app/assets/stylesheets/components/_a_propos.scss` | `app/javascript/controllers/reveal_controller.js` |
-| À propos : bloc « Télécharge mon CV » (jeu du panier avec démo automatique, bouton « télécharger le CV ») | `app/views/pages/a_propos.html.erb` (`.apropos-cv`) ; poids du PDF calculé par `app/helpers/application_helper.rb` | `app/assets/stylesheets/components/_panier_cv.scss` | `app/javascript/controllers/panier_cv_controller.js` |
-| Contact : colonne de gauche et formulaire | `app/views/pages/contact.html.erb` | `app/assets/stylesheets/components/_contact.scss` | `app/javascript/controllers/formulaire_controller.js` (vérification des champs, messages) |
+| Profil et contact (/profil) : portrait, texte, outils, liens | `app/views/pages/profil.html.erb` | `app/assets/stylesheets/components/_a_propos.scss` | `app/javascript/controllers/reveal_controller.js` |
+| Profil : bloc « Téléchargez mon CV » (jeu du panier avec démo automatique, bouton « télécharger le CV ») | `app/views/pages/profil.html.erb` (`.apropos-cv`) ; poids du PDF calculé par `app/helpers/application_helper.rb` | `app/assets/stylesheets/components/_panier_cv.scss` | `app/javascript/controllers/panier_cv_controller.js` |
+| Profil : section « Me contacter » (#contact), contact direct, formulaire et piège anti-robots invisible (champ `site_web`) | `app/views/pages/profil.html.erb` (`#contact`) | `app/assets/stylesheets/components/_contact.scss` | `app/javascript/controllers/formulaire_controller.js` (vérification des champs, messages) |
 | Contact : envoi du message | `app/controllers/contacts_controller.rb` → `app/mailers/contact_mailer.rb` → `app/views/contact_mailer/contact_email.html.erb` | — | règles des champs : `app/models/contact.rb` ; réglages Gmail : `config/environments/production.rb` |
 | Mentions légales | `app/views/pages/mentions_legales.html.erb` | `app/assets/stylesheets/components/_legal.scss` | — |
 
