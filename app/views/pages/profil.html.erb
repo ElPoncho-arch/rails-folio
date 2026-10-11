@@ -23,7 +23,7 @@
     <h1 class="apropos__titre">Profil et contact</h1>
     <p class="apropos__roles">Graphique, motion, UI et front-end designer</p>
     <%# Téléchargement direct du CV, dès le premier écran %>
-    <%= link_to asset_path("FabienHoarau_UIDesigner.pdf"), class: "apropos__cv", download: "CV_Fabien-Hoarau.pdf" do %>télécharger un CV <span aria-hidden="true">↓</span><% end %>
+    <%= link_to "/Fabien_Hoarau_CV_UI_Designer.pdf", class: "apropos__cv", download: "CV_Fabien-Hoarau.pdf" do %>télécharger un CV <span aria-hidden="true">↓</span><% end %>
   </header>
 
   <div class="apropos__corps">
@@ -64,7 +64,7 @@
         <div class="panier__carte" data-panier-cv-target="carte">
           <div class="panier__infos">
             <div class="panier__nom">CV_Fabien-Hoarau.pdf</div>
-            <div class="panier__poids">PDF · <%= poids_fichier(Rails.root.join("app/assets/images/FabienHoarau_UIDesigner.pdf")) %></div>
+            <div class="panier__poids">PDF · <%= poids_fichier(Rails.root.join("public/Fabien_Hoarau_CV_UI_Designer.pdf")) %></div>
           </div>
           <div class="panier__etat">
             <span data-panier-cv-target="etat" role="status" aria-live="polite">prêt à tirer</span>
@@ -79,7 +79,7 @@
 
       <ul class="apropos__liens" aria-label="Liens">
         <li>
-          <%= link_to asset_path("FabienHoarau_UIDesigner.pdf"), class: "lien-pill lien-pill--plein", download: "CV_Fabien-Hoarau.pdf",
+          <%= link_to "/Fabien_Hoarau_CV_UI_Designer.pdf", class: "lien-pill lien-pill--plein", download: "CV_Fabien-Hoarau.pdf",
                       data: { panier_cv_target: "lien", action: "panier-cv#telecharger" } do %>télécharger un CV <span aria-hidden="true">↓</span><% end %>
         </li>
         <li>
