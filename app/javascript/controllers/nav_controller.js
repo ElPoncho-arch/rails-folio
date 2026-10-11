@@ -3,9 +3,11 @@ import { gsap } from "gsap"
 
 // Nav pilule : se compacte au scroll vers le bas (desktop),
 // ouvre un panneau plein écran (mobile) qui descend comme un rideau.
+// Home : le nom (déjà en grand dans le hero) est caché dans la pilule tant que le hero est à l'écran.
 // Mouvement réduit : ouverture et fermeture instantanées.
 export default class extends Controller {
   static targets = ["pill", "toggle", "toggleTexte", "panel", "item", "bas"]
+  static values = { accueil: Boolean }
 
   connect() {
     this.desktop = window.matchMedia("(min-width: 992px)")
@@ -13,6 +15,7 @@ export default class extends Controller {
     this.ticking = false
     this.opened = false
     this.motion = window.matchMedia("(prefers-reduced-motion: reduce)")
+    this.majMarque()
   }
 
   disconnect() {
@@ -31,6 +34,7 @@ export default class extends Controller {
       else if (delta > 4) this.setCompact(true)
       else if (delta < -4) this.setCompact(false)
       this.lastY = y
+      this.majMarque()
       this.ticking = false
     })
   }
@@ -47,6 +51,14 @@ export default class extends Controller {
     // Si la souris est sur la pilule, on la garde dépliée
     if (compact && this.pillTarget.matches(":hover")) return
     this.pillTarget.classList.toggle("is-compact", compact && this.desktop.matches)
+  }
+
+  // Nom caché tant que le bas du hero n'est pas passé sous la pilule
+  majMarque() {
+    if (!this.accueilValue) return
+    const hero = document.querySelector(".home-hero")
+    const surHero = hero && hero.getBoundingClientRect().bottom > this.pillTarget.getBoundingClientRect().bottom
+    this.pillTarget.classList.toggle("is-marque-cachee", Boolean(surHero))
   }
 
   // --- Menu (bouton « menu ») : rideau tomate ---

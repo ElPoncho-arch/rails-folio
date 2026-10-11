@@ -1,9 +1,10 @@
 <%# Nav pilule flottante — comportement dans nav_controller.js %>
 <% liens = [["projets", "/#projets"], ["profil et contact", profil_path]] %>
 
-<header class="site-nav" data-controller="nav"
+<%# Home : le nom est déjà en grand dans le hero ; il n'apparaît dans la pilule qu'une fois le hero dépassé %>
+<header class="site-nav" data-controller="nav" data-nav-accueil-value="<%= current_page?(root_path) %>"
         data-action="scroll@window->nav#onScroll keydown@window->nav#onKeydown resize@window->nav#onResize turbo:before-cache@document->nav#closeNow">
-  <nav class="nav-pill" aria-label="Navigation principale" data-nav-target="pill"
+  <nav class="nav-pill<%= " is-marque-cachee" if current_page?(root_path) %>" aria-label="Navigation principale" data-nav-target="pill"
        data-action="mouseenter->nav#expand mouseleave->nav#onLeave">
     <%= link_to "fabien hoarau", root_path, class: "nav-pill__brand" %>
 

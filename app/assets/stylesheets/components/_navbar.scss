@@ -71,6 +71,10 @@
 
 .nav-pill__brand {
   margin-right: auto;
+  max-width: 20rem;
+  overflow: hidden;
+  transition: background-color $duration-fast $ease-soft, max-width 0.4s $ease-soft,
+              padding 0.4s $ease-soft, opacity 0.3s $ease-soft, visibility 0.4s;
 
   // Mobile, texte agrandi : le nom passe à la ligne au lieu de sortir de la pilule
   @media (max-width: 991.98px) {
@@ -214,6 +218,23 @@
 }
 
 // État compact (desktop)
+// Home : nom replié tant que le hero est à l'écran (nav_controller) ; visibility le retire du clavier.
+// Mobile : la pilule se réduit au bouton « menu », calée à droite (sinon barre vide).
+.nav-pill.is-marque-cachee {
+  @media (max-width: 991.98px) {
+    width: auto;
+    margin-left: auto;
+  }
+}
+
+.nav-pill.is-marque-cachee .nav-pill__brand {
+  max-width: 0;
+  padding-inline: 0;
+  white-space: nowrap; // sinon, en mobile, le nom se replie lettre par lettre et étire la pilule
+  opacity: 0;
+  visibility: hidden;
+}
+
 .nav-pill.is-compact {
   .nav-pill__links {
     max-width: 0;
