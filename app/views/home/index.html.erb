@@ -1,4 +1,4 @@
-<%# Home V2 — hero : portrait tramé (motifs/trame.svg) sur fond tomate et étiquette crème
+<%# Home V2 — hero : portrait tramé (motifs/trame.svg) sur fond tomate, nom en haut à gauche, métier en bas à droite
     (hero_motif_controller.js : entrée puis dérive lente du motif ; motifs dans app/assets/images/motifs) ;
     cards des projets avec image (projet_apercu_url) ; apparitions : reveal_controller.js.
     Le hero démarre tout en haut, sous la nav flottante (classe « contenu--plein » sur <main>). %>
@@ -7,10 +7,12 @@
 <%# Hero %>
 <section class="home-hero" data-controller="hero-motif">
   <div class="home-hero__motif" data-hero-motif-target="motif" aria-hidden="true"></div>
-  <h1 class="home-hero__etiquette" data-hero-motif-target="etiquette">
-    <span class="home-hero__nom">Fabien</span> <span class="home-hero__nom">Hoarau</span>
-    <span class="home-hero__role">graphiste · motion · UI · front</span>
+  <h1 class="home-hero__nom" data-hero-motif-target="texte">
+    <span class="home-hero__ligne">fabien</span> <span class="home-hero__ligne">hoarau</span>
   </h1>
+  <p class="home-hero__metier" data-hero-motif-target="texte">
+    <span class="home-hero__ligne">Graphiste, motion,</span> <span class="home-hero__ligne">UI et front</span>
+  </p>
 </section>
 
 <%# Liste des projets %>

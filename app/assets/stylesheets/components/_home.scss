@@ -30,36 +30,38 @@
   }
 }
 
-// Étiquette crème façon sticker, en bas à gauche, légèrement inclinée
-// (GSAP lit cette inclinaison et la garde pendant l'entrée)
-.home-hero__etiquette {
+// Nom et métier en crème (ClashDisplay) : nom en haut à gauche sous la nav, métier en bas à droite.
+// Crème sur $color-hero : 3,48:1, réservé aux grands corps (≥ 24 px).
+.home-hero__nom,
+.home-hero__metier {
   position: absolute;
   z-index: 1;
-  left: clamp(16px, 3vw, 44px);
-  bottom: clamp(16px, 3vw, 44px);
   margin: 0;
-  padding: 16px 22px 14px;
-  color: $color-text;
-  background-color: $color-bg;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba($color-text, 0.2);
-  transform: rotate(-3deg);
+  font-family: $font-display;
+  font-weight: 500;
+  color: $color-bg;
 }
 
 .home-hero__nom {
-  display: block;
-  font-family: $font-display;
-  font-weight: 600;
-  font-size: clamp(30px, 4.2vw, 64px);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
+  top: clamp(6rem, 16svh, 9rem);
+  left: clamp(1rem, 3vw, 2.75rem);
+  font-size: clamp(4rem, 11vw, 10rem);
+  line-height: 0.82;
+  letter-spacing: -0.03em;
 }
 
-.home-hero__role {
+.home-hero__metier {
+  right: clamp(1rem, 3vw, 2.75rem);
+  bottom: clamp(1.5rem, 4svh, 2.75rem);
+  font-size: clamp(1.75rem, 3.6vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-align: right;
+}
+
+// Une ligne par span : coupure voulue, sans <br>
+.home-hero__ligne {
   display: block;
-  margin-top: 0.9em;
-  font-family: $font-mono;
-  font-size: clamp(11px, 1.1vw, 14px);
 }
 
 // --- Liste des projets ---
