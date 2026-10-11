@@ -46,8 +46,9 @@
 }
 
 // Bloc principal
-// Trame du footer (motifs/trame-footer.svg, gros plan déjà recadré) en gris très foncé sur le fond
-// encre, sous le texte ; fixe. Le SVG sert de masque : couleur donnée par background-color.
+// Trame du footer (motifs/trame-footer.webp, gros plan déjà recadré) en gris très foncé sur le fond
+// encre, sous le texte ; fixe. L'image sert de masque (sa transparence) : couleur donnée par background-color.
+// WebP 1200 px tiré de trame-footer.svg : 39 Ko au lieu de 106 Ko (SVG compressé).
 .footer-main {
   position: relative;
   isolation: isolate;
@@ -59,8 +60,8 @@
     inset: 0;
     z-index: -1;
     background-color: $color-trame-footer;
-    -webkit-mask: url(asset-path("motifs/trame-footer.svg")) center / cover no-repeat;
-    mask: url(asset-path("motifs/trame-footer.svg")) center / cover no-repeat;
+    -webkit-mask: url(asset-path("motifs/trame-footer.webp")) center / cover no-repeat;
+    mask: url(asset-path("motifs/trame-footer.webp")) center / cover no-repeat;
     pointer-events: none;
   }
 

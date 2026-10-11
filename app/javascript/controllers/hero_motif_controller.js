@@ -2,12 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 import { gsap } from "gsap"
 
 // Hero de la home : portrait tramé sur fond orange, nom et métier en encre.
-// - Entrée au chargement : la trame monte comme un rideau, puis le nom et le métier arrivent ligne par ligne,
-//   avec un léger rebond.
-// - Dérive ensuite : la trame flotte lentement en boucle ; les textes restent fixes.
+// - Entrée au chargement : la trame monte comme un rideau ; le nom et le métier, visibles dès le premier
+//   affichage (élément LCP), glissent en place ligne par ligne avec un léger rebond.
+// - Dérive ensuite (dès 768 px seulement : épargne les téléphones) : la trame flotte lentement en boucle.
 // - La dérive se met en pause quand le hero sort de l'écran.
 // - Mouvement réduit : ni entrée ni dérive, tout est visible et fixe.
-// L'état caché de l'entrée est posé ici (jamais en CSS) : si le JS échoue, les textes restent visibles.
+// Les textes ne sont jamais masqués : seul leur décalage est posé ici (jamais en CSS).
 
 // Positions extrêmes de la dérive (yoyo de l'une à l'autre)
 const DERIVE_A = { xPercent: -1.5, yPercent: -1, rotation: -0.4, scale: 1.01 }
@@ -19,19 +19,23 @@ export default class extends Controller {
   connect() {
     this.visible = true
     this.mm = gsap.matchMedia()
-    this.mm.add("(prefers-reduced-motion: no-preference)", () => {
+    const conditions = { anim: "(prefers-reduced-motion: no-preference)", large: "(min-width: 768px)" }
+    this.mm.add(conditions, ({ conditions: { anim, large } }) => {
+      if (!anim) return
       gsap.set(this.motifTarget, { clipPath: "inset(100% 0% 0% 0%)", yPercent: 8 })
       const lignes = this.texteTargets.flatMap((t) => [...t.querySelectorAll(".home-hero__ligne")])
-      gsap.set(lignes, { autoAlpha: 0, y: 40 })
+      gsap.set(lignes, { y: 40 })
 
       // Dérive préparée en pause : raccord en douceur depuis la fin de l'entrée, puis aller-retour sans fin
-      this.derive = gsap.timeline({ paused: true })
-        .to(this.motifTarget, { ...DERIVE_A, duration: 4, ease: "sine.inOut" })
-        .to(this.motifTarget, { ...DERIVE_B, duration: 22, ease: "sine.inOut", yoyo: true, repeat: -1 })
+      if (large) {
+        this.derive = gsap.timeline({ paused: true })
+          .to(this.motifTarget, { ...DERIVE_A, duration: 4, ease: "sine.inOut" })
+          .to(this.motifTarget, { ...DERIVE_B, duration: 22, ease: "sine.inOut", yoyo: true, repeat: -1 })
+      }
 
       this.entree = gsap.timeline({ onComplete: () => { this.deriveLancee = true; this.majDerive() } })
         .to(this.motifTarget, { clipPath: "inset(0% 0% 0% 0%)", yPercent: 0, duration: 1.1, ease: "power3.inOut" })
-        .to(lignes, { autoAlpha: 1, y: 0, duration: 0.8, ease: "back.out(1.7)", stagger: 0.12 }, 0.75)
+        .to(lignes, { y: 0, duration: 0.9, ease: "back.out(1.7)", stagger: 0.1 }, 0.1)
 
       // Au revert (préférence changée ou disconnect), GSAP tue les deux timelines et retire les styles
       return () => { this.derive = null; this.entree = null; this.deriveLancee = false }
