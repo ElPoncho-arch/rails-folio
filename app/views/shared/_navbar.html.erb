@@ -32,8 +32,8 @@
   <%# Panneau plein écran (mobile) : rideau tomate %>
   <div id="nav-panel" class="nav-panel" data-nav-target="panel" hidden>
     <ol class="nav-panel__links">
-      <%# Panneau : le nom (accueil) en 01, puis les liens de la pilule %>
-      <% [["fabien hoarau", root_path], *liens].each_with_index do |(label, path), index| %>
+      <%# Panneau : l'accueil en 01, puis les liens de la pilule %>
+      <% [["accueil", root_path], *liens].each_with_index do |(label, path), index| %>
         <li class="nav-panel__item" data-nav-target="item">
           <%= link_to path, class: "nav-panel__link", data: { action: "click->nav#close" },
                 aria: { current: ("page" if current_page?(path)) } do %>
