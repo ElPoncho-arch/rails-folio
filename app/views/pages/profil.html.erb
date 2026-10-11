@@ -8,9 +8,9 @@
     Vérification à la sortie de chaque champ : formulaire_controller.js ; vérification serveur : Contact. %>
 <% content_for :titre, "Profil et contact" %>
 <% champs = [
-     { nom: :name,    etiquette: "Nom",     type: :text_field,  attrs: { autocomplete: "name", required: true, placeholder: "Nom" } },
-     { nom: :email,   etiquette: "E-mail",  type: :email_field, attrs: { autocomplete: "email", required: true, placeholder: "E-mail" } },
-     { nom: :message, etiquette: "Message", type: :text_area,   attrs: { rows: 6, required: true, minlength: 10, placeholder: "Message" },
+     { nom: :name,    etiquette: "Nom",     type: :text_field,  attrs: { autocomplete: "name", required: true, maxlength: Contact::NOM_MAX, placeholder: "Nom" } },
+     { nom: :email,   etiquette: "E-mail",  type: :email_field, attrs: { autocomplete: "email", required: true, maxlength: Contact::EMAIL_MAX, placeholder: "E-mail" } },
+     { nom: :message, etiquette: "Message", type: :text_area,   attrs: { rows: 6, required: true, minlength: 10, maxlength: Contact::MESSAGE_MAX, placeholder: "Message" },
        aide: "10 caractères minimum" }
    ] %>
 <% outils = {
