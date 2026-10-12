@@ -27,10 +27,10 @@
   z-index: 0;
   inset: -3%;
   // Le SVG sert de masque (comme dans le footer) : couleur donnée par background-color.
-  // trame-perso.svg porte son propre <mask> : formes noires = trame, formes blanches = creux.
+  // trame-perso2.svg porte son propre <mask> (luminosité inversée) : noir = trame pleine, blanc = transparent.
   background-color: $color-trame-hero;
-  -webkit-mask: url(asset-path("motifs/trame-perso.svg")) 50% 100% / auto 70% no-repeat;
-  mask: url(asset-path("motifs/trame-perso.svg")) 50% 100% / auto 70% no-repeat;
+  -webkit-mask: url(asset-path("motifs/trame-perso2.svg")) 50% 100% / auto 70% no-repeat;
+  mask: url(asset-path("motifs/trame-perso2.svg")) 50% 100% / auto 70% no-repeat;
   will-change: transform;
 
   // Écran en largeur : 85 % de la hauteur (de l'air autour du nom), décalée à droite vers le métier
