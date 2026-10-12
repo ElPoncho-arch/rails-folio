@@ -15,6 +15,11 @@
     <%= favicon_link_tag "/apple-touch-icon.png", rel: "apple-touch-icon", type: "image/png", sizes: "180x180" %>
     <%= tag.meta name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" %>
 
+    <%# Polices des premiers mots affichés (nom, métier, nav) : chargées dès le début, en même temps que
+        la feuille de style, au lieu d'être découvertes après elle (évite la typo de secours puis le saut) %>
+    <%= preload_link_tag "ClashDisplay-Variable.woff2" %>
+    <%= preload_link_tag "fragment-mono-v6-latin-regular.woff2" %>
+
     <!-- Tes styles (Bootstrap inclus via gem + overrides) -->
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
 
