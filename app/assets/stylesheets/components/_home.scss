@@ -6,12 +6,15 @@
   padding-top: 0;
 }
 
-// Plein écran : fond orange doux, portrait tramé brique (ton sur ton), texte encre par-dessus
+// Plein écran : fond orange doux, portrait tramé brique (ton sur ton), texte encre par-dessus.
+// Hauteur 100lvh (écran barre d'adresse rétractée) : l'orange couvre toujours tout l'écran, sans bande
+// de la section suivante quand la barre mobile se replie. Le métier remonte d'autant (voir plus bas).
 .home-hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  height: 100svh;
+  height: 100vh; // navigateurs sans lvh
+  height: 100lvh;
   min-height: 26rem;
   background-color: $color-hero;
 }
@@ -68,7 +71,9 @@
 
 .home-hero__metier {
   right: clamp(1rem, 3vw, 2.75rem);
-  bottom: clamp(1.5rem, 4svh, 2.75rem);
+  bottom: clamp(1.5rem, 4svh, 2.75rem); // navigateurs sans lvh
+  // Au-dessus de la barre d'adresse mobile quand elle est affichée (100lvh − 100svh = sa hauteur ; 0 sur ordinateur)
+  bottom: calc(clamp(1.5rem, 4svh, 2.75rem) + 100lvh - 100svh);
   font-size: clamp(1.4rem, 7.5vw, 2rem); // mobile : « UI et front-end designer » sur une ligne, même à 320 px
   line-height: 1.05;
   letter-spacing: -0.02em;
