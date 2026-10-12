@@ -19,7 +19,7 @@ module ProjectsHelper
       role: "UI et développement",
       outils: "Figma · Ruby on Rails · Stimulus · SQL" },
     { slug: "shelfie", nom: "Shelfie", tags: %w[UI dev],
-      images: %w[shelfie/carre.png shelfie/logoshelfie.jpg shelfie/3840154.jpg],
+      images: %w[shelfie/logoshelfie.jpg shelfie/carre.png shelfie/3840154.jpg],
       etiquettes: ["Application mobile"],
       client: "Bootcamp Le Wagon · Projet d’équipe",
       role: "Direction artistique et front",
