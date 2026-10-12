@@ -17,24 +17,28 @@
 }
 
 // Débord de 3 % de chaque côté : marge pour la dérive (hero_motif_controller.js).
-// Trame en retrait pour la voir presque entière, fond tomate autour :
-// écran en hauteur, calée sur 78 % de la hauteur et recadrée sur le visage ;
-// écran en largeur, plein cadre (cover) : jamais de bande vide, quel que soit le format.
+// La silhouette est coupée net en bas : la trame est toujours posée en bas du cadre
+// (le débord cache la coupe), centrée en largeur, et calée sur la hauteur (jamais cover :
+// la tête passerait sous la nav). Ses bords gauche et droit s'estompent dans le SVG.
+// Écran en hauteur : 70 % de la hauteur, la silhouette tient dans la largeur ;
+// écran en largeur : 85 % de la hauteur, décalée à droite, fond orange uni de part et d'autre.
 .home-hero__motif {
   position: absolute;
   z-index: 0;
   inset: -3%;
-  // Le SVG sert de masque (comme dans le footer) : couleur donnée par background-color
+  // Le SVG sert de masque (comme dans le footer) : couleur donnée par background-color.
+  // trame-perso.svg porte son propre <mask> : formes noires = trame, formes blanches = creux.
   background-color: $color-trame-hero;
-  -webkit-mask: url(asset-path("motifs/trame.svg")) 58% 60% / auto 78% no-repeat;
-  mask: url(asset-path("motifs/trame.svg")) 58% 60% / auto 78% no-repeat;
+  -webkit-mask: url(asset-path("motifs/trame-perso.svg")) 50% 100% / auto 70% no-repeat;
+  mask: url(asset-path("motifs/trame-perso.svg")) 50% 100% / auto 70% no-repeat;
   will-change: transform;
 
+  // Écran en largeur : 85 % de la hauteur (de l'air autour du nom), décalée à droite vers le métier
   @media (orientation: landscape) {
-    -webkit-mask-position: center;
-    mask-position: center;
-    -webkit-mask-size: cover;
-    mask-size: cover;
+    -webkit-mask-position: 64% 100%;
+    mask-position: 64% 100%;
+    -webkit-mask-size: auto 85%;
+    mask-size: auto 85%;
   }
 }
 
