@@ -92,8 +92,23 @@
   }
 }
 
-.home-projects__titre {
+// Titre à gauche, filtre à droite ; repère du panneau flottant du filtre (au-dessus de la grille)
+.home-projects__entete {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   margin: 0 1rem 1.5rem;
+
+  @include respond-to(md) {
+    margin: 0 3rem 2rem;
+  }
+}
+
+.home-projects__titre {
+  margin: 0;
   font-family: $font-mono;
   font-size: 0.95rem;
   font-weight: 400;
@@ -102,10 +117,98 @@
   span {
     opacity: 0.7;
   }
+}
+
+// Filtre par tag (filtre_controller.js) : bouton « filtrer » (+ croix quand un tag est actif)
+// qui ouvre un panneau flottant de pilules. Mobile : panneau sur toute la largeur ; dès md, calé à droite.
+// Tag actif : fond accent ; l'état est aussi porté par aria-pressed / aria-expanded (lecteurs d'écran)
+.filtre__commandes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filtre__ouvrir,
+.filtre__effacer,
+.filtre__bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px; // cible tactile
+  padding: 0.5rem 1rem;
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  color: $color-text;
+  background-color: $color-bg;
+  border: 1px solid $color-text;
+  border-radius: $radius-pill;
+  cursor: pointer;
+  transition: background-color $duration-fast $ease-soft;
+
+  &:hover {
+    background-color: $color-secondary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-text;
+    outline-offset: 3px;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.filtre__ouvrir--actif,
+.filtre__bouton[aria-pressed="true"] {
+  background-color: $color-accent;
+
+  &:hover {
+    background-color: $color-accent;
+  }
+}
+
+.filtre__signe {
+  display: inline-block;
+  width: 1ch; // « + » et « − » de même largeur : le bouton ne bouge pas
+  text-align: center;
+}
+
+.filtre__effacer {
+  width: 44px;
+  padding: 0;
+  font-size: 1.1rem;
+}
+
+.filtre__panneau {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: $color-bg;
+  border: 1px solid $color-text;
+  border-radius: 1.5rem;
+  box-shadow: 0 12px 32px rgba($color-text, 0.12);
+  transform-origin: 100% 0; // s'ouvre depuis le bouton
+
+  &[hidden] {
+    display: none;
+  }
 
   @include respond-to(md) {
-    margin: 0 3rem 2rem;
+    left: auto;
+    width: 26rem;
   }
+}
+
+.filtre__nombre {
+  font-size: 0.75em;
+  opacity: 0.7;
 }
 
 // Grille de cards — mobile first : 1 colonne, 2 dès 640 px, 3 dès 900 px
@@ -261,6 +364,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .filtre__ouvrir,
+  .filtre__effacer,
+  .filtre__bouton,
   .projet-card,
   .projet-card__image,
   .projet-card__nom,

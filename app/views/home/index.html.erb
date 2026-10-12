@@ -16,14 +16,45 @@
 </section>
 
 <%# Liste des projets %>
-<section id="projets" class="home-projects" aria-labelledby="projets-titre">
-  <h2 id="projets-titre" class="home-projects__titre" data-reveal-target="item">projets <span>(<%= format("%02d", projets.size) %>)</span></h2>
+<section id="projets" class="home-projects" aria-labelledby="projets-titre"
+         data-controller="filtre" data-action="click@document->filtre#clicDehors keydown.esc->filtre#echap">
+  <%# Titre à gauche, filtre à droite. Filtre par tag (filtre_controller.js) : menu déroulant flottant,
+      un seul tag actif à la fois. Bouton masqué sans JavaScript (la grille reste complète). %>
+  <div class="home-projects__entete">
+    <h2 id="projets-titre" class="home-projects__titre" data-reveal-target="item">projets <span>(<span data-filtre-target="compteur"><%= format("%02d", projets.size) %></span>)</span></h2>
+
+    <div class="filtre" data-reveal-target="item" data-filtre-target="filtre" data-action="focusout->filtre#focusDehors">
+      <div class="filtre__commandes">
+        <button type="button" class="filtre__ouvrir" hidden aria-expanded="false" aria-controls="filtre-panneau"
+                data-filtre-target="ouvrir" data-action="filtre#basculer">
+          <span data-filtre-target="libelle">filtrer</span>
+          <span class="filtre__signe" aria-hidden="true" data-filtre-target="signe">+</span>
+        </button>
+        <button type="button" class="filtre__effacer" hidden aria-label="Retirer le filtre"
+                data-filtre-target="effacer" data-action="filtre#effacer">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      <div id="filtre-panneau" class="filtre__panneau" role="group" aria-label="Filtrer les projets" hidden data-filtre-target="panneau">
+        <button type="button" class="filtre__bouton" aria-pressed="true" data-filtre-target="bouton" data-action="filtre#choisir">
+          tous <span class="filtre__nombre"><%= projets.size %></span>
+        </button>
+        <% projets_tags.each do |tag, nombre| %>
+          <button type="button" class="filtre__bouton" aria-pressed="false" data-filtre-target="bouton" data-tag="<%= tag %>" data-action="filtre#choisir">
+            <%= tag %> <span class="filtre__nombre"><%= nombre %></span>
+          </button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <p class="visually-hidden" aria-live="polite" data-filtre-target="annonce"></p>
 
   <%# Grille de cards carrées : 1 colonne en mobile, 2 dès 640 px, 3 dès 900 px %>
   <ol class="home-projects__list">
     <% projets.each do |projet| %>
       <% image = projet_apercu_url(projet) %>
-      <li data-reveal-target="item">
+      <li data-reveal-target="item" data-filtre-target="carte" data-tags="<%= projet[:tags].join(" ") %>">
         <%# Toute la card est le lien. Image : la première disponible du projet (aucune → fond tomate).
             alt vide : le nom du projet, dans le lien, suffit. %>
         <%= link_to projet_path_for(projet), class: ["projet-card", ("projet-card--image" if image)] do %>

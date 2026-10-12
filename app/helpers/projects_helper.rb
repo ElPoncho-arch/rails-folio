@@ -79,6 +79,13 @@ module ProjectsHelper
     PROJETS
   end
 
+  # Tags du filtre de la home : [[tag, nombre de projets], …], du plus fréquent au plus rare
+  # (à égalité, dans l'ordre d'apparition)
+  def projets_tags
+    PROJETS.flat_map { |p| p[:tags] }.tally.each_with_index
+           .sort_by { |(_, nombre), index| [-nombre, index] }.map(&:first)
+  end
+
   def projet_path_for(projet)
     "/projects/#{projet[:slug]}"
   end
