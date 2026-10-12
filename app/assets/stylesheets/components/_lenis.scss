@@ -9,6 +9,10 @@ html.lenis body {
 // quand elle disparaît (Lenis arrêté pendant une transition ou le menu mobile)
 html {
   scrollbar-gutter: stable;
+  // Pas d'ancrage de défilement du navigateur : au chargement, le fondu d'entrée décale <main> de 14 px
+  // (_transition.scss) ; en le retirant, Chrome et Safari « compensaient » en défilant de 14 px,
+  // d'où une bande de la section suivante sous le hero après un rafraîchissement. Lenis gère le défilement.
+  overflow-anchor: none;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
