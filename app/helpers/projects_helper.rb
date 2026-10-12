@@ -1,6 +1,6 @@
 module ProjectsHelper
   # Liste des projets, dans l'ordre de la home (et de la navigation précédent / suivant) :
-  # projets récents d'abord, projets d'école (Shelfie, Slides) en dernier.
+  # projets récents d'abord (Shelfie en 3e), projet de diplôme (Slides) en dernier.
   # images : image de la card sur la home (la première disponible) ; { video:, seconde: } = image fixe
   # tirée d'une vidéo ; logo: true = logo sur fond uni affiché en entier dans le cadre carré de la card
   # (marge de la couleur du bord ; à éviter sur un fond texturé, la marge s'y verrait) ;
@@ -18,6 +18,12 @@ module ProjectsHelper
       client: "Beach Bikes Arcachon",
       role: "UI et développement",
       outils: "Figma · Ruby on Rails · Stimulus · SQL" },
+    { slug: "shelfie", nom: "Shelfie", tags: %w[UI dev],
+      images: %w[shelfie/carre.png shelfie/logoshelfie.jpg shelfie/3840154.jpg],
+      etiquettes: ["Application mobile"],
+      client: "Bootcamp Le Wagon · Projet d’équipe",
+      role: "Direction artistique et front",
+      outils: "Figma · Ruby on Rails · Stimulus · JavaScript · HTML · CSS" },
     { slug: "atelier-reli-art", nom: "Atelier Reli’Art", tags: %w[identité],
       etiquettes: ["Freelance", "Identité visuelle"],
       images: [{ image: "atelier-reli-art/logo.png", logo: true, marge: 8 }, "atelier-reli-art/proposition-1.png"],
@@ -60,12 +66,6 @@ module ProjectsHelper
       client: "Collaboration pour un événement skate",
       role: "Graphisme et mise en page",
       outils: "Illustrator · InDesign · Photoshop" },
-    { slug: "shelfie", nom: "Shelfie", tags: %w[UI dev],
-      images: %w[shelfie/carre.png shelfie/logoshelfie.jpg shelfie/3840154.jpg],
-      etiquettes: ["Application mobile"],
-      client: "Bootcamp Le Wagon · Projet d’équipe",
-      role: "Direction artistique et front",
-      outils: "Figma · Ruby on Rails · Stimulus · JavaScript · HTML · CSS" },
     { slug: "slides", nom: "Slides", tags: %w[identité motion],
       images: [{ video: "slides_logo_anim_meykfx", seconde: 1.35 }, # dernière image du logo animé (1,4 s)
                "slides/slide_branding_31.jpg", "slides/MU 1.jpg"],
