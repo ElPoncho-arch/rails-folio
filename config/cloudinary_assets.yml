@@ -30,6 +30,11 @@ abskate_couv.jpg:
   format: jpg
   width: 3386
   height: 3946
+atelier-reli-art/logo.png:
+  public_id: portfolio/atelier-reli-art/logo
+  format: png
+  width: 1326
+  height: 1324
 atelier-reli-art/proposition-1.png:
   public_id: portfolio/atelier-reli-art/proposition-1
   format: png
@@ -55,6 +60,11 @@ beach-bikes/design-system.png:
   format: png
   width: 1600
   height: 1600
+beach-bikes/logo.jpg:
+  public_id: portfolio/beach-bikes/logo
+  format: jpg
+  width: 900
+  height: 900
 beach-bikes/mobile.png:
   public_id: portfolio/beach-bikes/mobile
   format: png
@@ -185,6 +195,11 @@ metropole-grand-paris/kakemono.png:
   format: png
   width: 1600
   height: 1600
+metropole-grand-paris/logo.webp:
+  public_id: portfolio/metropole-grand-paris/logo
+  format: webp
+  width: 3840
+  height: 1551
 metropole-grand-paris/visuels.png:
   public_id: portfolio/metropole-grand-paris/visuels
   format: png
@@ -205,11 +220,26 @@ shelfie/3981779.jpg:
   format: jpg
   width: 8000
   height: 4000
+shelfie/banniere.png:
+  public_id: portfolio/shelfie/banniere
+  format: png
+  width: 1600
+  height: 900
+shelfie/carre.png:
+  public_id: portfolio/shelfie/carre
+  format: png
+  width: 1200
+  height: 1200
 shelfie/logoshelfie.jpg:
   public_id: portfolio/shelfie/logo
   format: jpg
   width: 2000
   height: 2000
+shelfie/planche-complete.png:
+  public_id: portfolio/shelfie/planche-complete
+  format: png
+  width: 2560
+  height: 2892
 slides/MU 1.jpg:
   public_id: portfolio/slides/totebag-noir
   format: jpg
@@ -260,18 +290,3 @@ tf1/lou.png:
   format: png
   width: 1543
   height: 1076
-beach-bikes/logo.jpg:
-  public_id: portfolio/beach-bikes/logo
-  format: jpg
-  width: 900
-  height: 900
-metropole-grand-paris/logo.webp:
-  public_id: portfolio/metropole-grand-paris/logo
-  format: webp
-  width: 3840
-  height: 1551
-atelier-reli-art/logo.png:
-  public_id: portfolio/atelier-reli-art/logo
-  format: png
-  width: 1326
-  height: 1324

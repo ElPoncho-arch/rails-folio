@@ -116,7 +116,8 @@ namespace :cloudinary do
   # public_id « portfolio/<slug>/ia-dans-la-ville ». Un fichier absent est simplement ignoré.
   desc "Envoie les images de tmp/import/ des nouveaux projets (DRY_RUN=1 pour lister sans envoyer)"
   task import_projets: :environment do
-    dossiers = { "mgp" => "metropole-grand-paris", "beach-bikes" => "beach-bikes", "reli-art" => "atelier-reli-art" }
+    dossiers = { "mgp" => "metropole-grand-paris", "beach-bikes" => "beach-bikes", "reli-art" => "atelier-reli-art",
+                 "shelfie" => "shelfie" }
     essai = ENV["DRY_RUN"].present?
     ecraser = ENV["ECRASER"].present? # ECRASER=1 : remplace les images déjà envoyées
     manifeste = CloudinaryMigration.manifeste

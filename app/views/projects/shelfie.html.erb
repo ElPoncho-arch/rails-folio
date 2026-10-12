@@ -19,13 +19,31 @@
   <%= render "projects/media_paire", medias: [
         { image: "shelfie/logoshelfie.jpg",
           alt: "Logo Shelfie, lettrage vert clair sur fond vert sombre" },
-        { image: "shelfie/3840154-2.jpg",
-          alt: "Écran de l’application Shelfie présentant la charte : logo, couleurs, pictogrammes et typographies" }
+        { image: "shelfie/carre.png", width: 1200, height: 1200,
+          alt: "Visuel carré Shelfie : « Scanne. Range. Cuisine. », avec les écrans accueil, scan et recettes IA" }
       ] %>
 
   <%= render "projects/media_pleine",
         media: { image: "shelfie/3981779.jpg", width: 8000, height: 4000,
                  alt: "Écrans de l’application Shelfie : accueil, connexion, ingrédients, recettes et étagère de produits" } %>
+
+  <%# Bannière : tmp/import/shelfie/ → bin/rails cloudinary:import_projets (absente du manifeste = non affichée) %>
+  <%= projet_bloc_medias(
+        { image: "shelfie/banniere.png", width: 1600, height: 900,
+          alt: "Bannière Shelfie : « Ton frigo, sous contrôle. », avec les écrans scan du ticket, validation, détail, recettes IA et alerte DLC" }) %>
+
+  <%# Planche : tmp/import/shelfie/ → bin/rails cloudinary:import_projets (absente du manifeste = non affichée) %>
+  <% planche = { image: "shelfie/planche-complete.png", width: 2560, height: 2892,
+                 alt: "Planche de conception Shelfie sur fond vert forêt : parcours principal, arborescence, composants (logo, couleurs, boutons), wireframes de chaque étape, états de l’étagère et hypothèses du test utilisateur" } %>
+  <% if media_disponible?(planche) %>
+    <%= render "projects/media_pleine", media: planche,
+          legende: "Parcours, arborescence, composants, wireframes et protocole de test." %>
+  <% end %>
+
+  <%# Protocole de test : fichier statique (public/projets/), ouvert dans un nouvel onglet %>
+  <p>
+    <%= link_to "/projets/protocole-test-shelfie.pdf", class: "lien-pill", target: "_blank", rel: "noopener" do %>Protocole de test (PDF) <span aria-hidden="true">↗</span><span class="visually-hidden">(nouvel onglet)</span><% end %>
+  </p>
 </div>
 
 <%= render "projects/navigation", projet: projet %>

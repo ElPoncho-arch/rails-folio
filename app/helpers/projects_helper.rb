@@ -61,7 +61,7 @@ module ProjectsHelper
       role: "Graphisme et mise en page",
       outils: "Illustrator · InDesign · Photoshop" },
     { slug: "shelfie", nom: "Shelfie", tags: %w[UI dev],
-      images: %w[shelfie/logoshelfie.jpg shelfie/3840154.jpg],
+      images: %w[shelfie/carre.png shelfie/logoshelfie.jpg shelfie/3840154.jpg],
       etiquettes: ["Application mobile"],
       client: "Bootcamp Le Wagon · Projet d’équipe",
       role: "Direction artistique et front",
