@@ -16,8 +16,8 @@
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%# Favicon : pastille « fh » tramée, en PNG seulement (le SVG source, docs/sources/favicon-trame.svg,
-        pèse 629 Ko à cause de la trame : trop lourd pour une icône) %>
+    <%# Favicon : disque orange « fh » penché, d'après la favicon ronde de la V1 (même motif que le loader),
+        en PNG : 32 px pour l'onglet, 180 px sur fond crème pour l'écran d'accueil iPhone %>
     <%= favicon_link_tag "/favicon-32x32.png", rel: "icon", type: "image/png", sizes: "32x32" %>
     <%= favicon_link_tag "/apple-touch-icon.png", rel: "apple-touch-icon", type: "image/png", sizes: "180x180" %>
     <%= tag.meta name: "viewport", content: "width=device-width, initial-scale=1, shrink-to-fit=no" %>
