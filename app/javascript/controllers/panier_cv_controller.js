@@ -353,6 +353,8 @@ export default class extends Controller {
 
     const ctx = this.ctx
     ctx.setTransform(this.dpr * this.echelle, 0, 0, this.dpr * this.echelle, 0, 0)
+    // Canevas transparent : la carte du fichier et le score (HTML, sous le canevas) doivent rester visibles.
+    // L'assombrissement forcé des navigateurs est évité par color-scheme: only light (layout + :root).
     ctx.clearRect(0, 0, W, H)
 
     this.dessinerCadre()

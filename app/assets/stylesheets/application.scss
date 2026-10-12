@@ -19,6 +19,12 @@ html, body {
   background-color: $color-bg !important;
 }
 
+// Thème clair uniquement (voir aussi la balise meta color-scheme du layout) :
+// pas d'assombrissement forcé par le navigateur, qui rendrait le jeu du CV illisible
+:root {
+  color-scheme: only light;
+}
+
 body {
   background-color: $color-bg;
   overflow-wrap: break-word; // texte agrandi : un mot trop long passe à la ligne au lieu de déborder

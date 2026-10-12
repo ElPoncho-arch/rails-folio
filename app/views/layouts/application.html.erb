@@ -3,6 +3,8 @@
   <head>
     <%# Titre par page : content_for :titre dans la vue ; la home garde le titre de repli %>
     <title><%= content_for?(:titre) ? "#{yield(:titre)} — Fabien Hoarau" : "Fabien Hoarau — graphique, motion, UI et front-end designer" %></title>
+    <%# Thème clair uniquement : empêche Chrome (Android) et Samsung Internet d'assombrir la page de force %>
+    <meta name="color-scheme" content="only light">
     <meta name="description" content="Fabien Hoarau, graphique, motion, UI et front-end designer. Identités visuelles, animation et interfaces web.">
 
     <%= csrf_meta_tags %>
