@@ -63,7 +63,7 @@ module ProjectsHelper
     { slug: "shelfie", nom: "Shelfie", tags: %w[UI dev],
       images: %w[shelfie/logoshelfie.jpg shelfie/3840154.jpg],
       etiquettes: ["Application mobile"],
-      client: "Projet d’école · Le Wagon",
+      client: "Bootcamp Le Wagon · Projet d’équipe",
       role: "Direction artistique et front",
       outils: "Figma · Ruby on Rails · Stimulus · JavaScript · HTML · CSS" },
     { slug: "slides", nom: "Slides", tags: %w[identité motion],
