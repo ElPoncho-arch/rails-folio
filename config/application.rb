@@ -38,5 +38,10 @@ module RailsFolio
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Compression gzip des réponses (pages HTML et fichiers statiques non compressés à l'avance,
+    # dont la trame SVG du hero : 1,1 Mo → ~250 Ko). Placé avant ActionDispatch::Static pour
+    # couvrir aussi /assets ; les fichiers déjà servis en .gz ne sont pas recompressés.
+    config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
   end
 end
