@@ -5,8 +5,10 @@ import { Controller } from "@hotwired/stimulus"
 // - Dessin sur canvas dans un plan logique 640 × 700, monde 3D projeté (caméra au-dessus de l'arceau).
 // - Saisie uniquement par la poignée posée sur l'icône : le reste du terrain laisse défiler la page au doigt.
 // - Coup de pouce : après deux ratés, la trajectoire de visée s'allonge.
-// - Démo : à chaque arrivée sur la page, quand le terrain est bien visible, un doigt fantôme
-//   fait un lancer réussi (sans téléchargement ni point). Attraper l'icône l'interrompt.
+// - Démo en boucle (tutoriel) : quand le terrain est bien visible, un doigt fantôme fait un lancer
+//   réussi (sans téléchargement ni point), puis recommence après une pause, tant que le visiteur
+//   n'a pas attrapé l'icône lui-même. Attraper l'icône l'interrompt et arrête la boucle pour la page.
+//   En pause hors écran ; seul le premier passage est annoncé (pas de répétition aux lecteurs d'écran).
 // - Boucle active seulement si le terrain est à l'écran et l'onglet affiché.
 // - Mouvement réduit : rien ne démarre (terrain masqué en CSS), le lien suffit.
 
@@ -35,7 +37,7 @@ const COURSE_SOURIS = 80
 const COURSE_TACTILE = 70
 
 // Démo : tir au centre de la zone qui marque (réussi à 30, 60 et 120 images/s, voisins compris)
-const DEMO = { tire: { dx: -84, dy: 142 }, attente: 600, pose: 0.45, tirage: 1, tenue: 0.35 }
+const DEMO = { tire: { dx: -84, dy: 142 }, attente: 600, pause: 2600, pose: 0.45, tirage: 1, tenue: 0.35 }
 
 const POLICE = '"Fragment Mono", monospace'
 
@@ -108,10 +110,14 @@ export default class extends Controller {
     this.resizeObserver = new ResizeObserver(() => this.redim())
     this.resizeObserver.observe(this.terrainTarget)
     this.demo = null
-    this.demoJouee = false
+    this.aJoue = false        // le visiteur a attrapé l'icône : plus de démo
+    this.demos = 0            // passages de la démo (seul le premier est annoncé)
+    this.minuterieDemo = null
     this.intersectionObserver = new IntersectionObserver(([entree]) => {
       this.visible = entree.isIntersecting
-      if (entree.intersectionRatio >= 0.6) this.planifierDemo()
+      this.bienVisible = entree.intersectionRatio >= 0.6
+      if (this.bienVisible) this.planifierDemo()
+      else this.annulerDemo()   // hors écran : la boucle attend le retour du terrain
       this.majBoucle()
     }, { threshold: [0, 0.6] })
     this.intersectionObserver.observe(this.terrainTarget)
@@ -125,7 +131,7 @@ export default class extends Controller {
 
     if (this.raf) cancelAnimationFrame(this.raf)
     this.raf = null
-    clearTimeout(this.minuterieDemo)
+    this.annulerDemo()
     this.demo = null
     this.resizeObserver.disconnect()
     this.intersectionObserver.disconnect()
@@ -179,17 +185,23 @@ export default class extends Controller {
   }
 
   // ---------- Démo ----------
-  // Une fois par affichage de la page, peu après que le terrain est visible aux deux tiers
-  planifierDemo() {
-    if (this.demoJouee) return
-    this.demoJouee = true
+  // Peu après que le terrain est visible aux deux tiers, puis en boucle après chaque démo,
+  // tant que le visiteur n'a pas joué lui-même
+  planifierDemo(delai = DEMO.attente) {
+    if (this.aJoue || this.demo || this.minuterieDemo) return
     this.minuterieDemo = setTimeout(() => {
-      if (!this.actif || this.etat !== "repos") return // le visiteur joue déjà
+      this.minuterieDemo = null
+      if (!this.actif || this.aJoue || !this.bienVisible || this.etat !== "repos") return
       this.demo = { t: 0, lancee: false }
       this.etat = "vise"
       this.tire = { dx: 0, dy: 0 }
-      this.dire("regardez…")
-    }, DEMO.attente)
+      if (this.demos++ === 0) this.dire("regardez…")
+    }, delai)
+  }
+
+  annulerDemo() {
+    clearTimeout(this.minuterieDemo)
+    this.minuterieDemo = null
   }
 
   // Le doigt se pose, tire doucement vers le bas, marque un temps, puis lâche
@@ -208,12 +220,15 @@ export default class extends Controller {
 
   finirDemo() {
     this.demo = null
-    this.dire("à vous !")
+    if (this.demos === 1) this.dire("à vous !")
+    this.planifierDemo(DEMO.pause) // le tutoriel recommence tant que le visiteur n'a pas essayé
   }
 
   // ---------- Saisie (poignée seulement) ----------
   saisir(e) {
-    if (this.demo) { // le visiteur prend la main : la démo s'arrête net
+    this.aJoue = true // le visiteur prend la main : la démo s'arrête net, la boucle aussi
+    this.annulerDemo()
+    if (this.demo) {
       this.demo = null
       this.replacer()
     }
