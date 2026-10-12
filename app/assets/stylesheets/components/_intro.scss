@@ -1,0 +1,39 @@
+// Loader de première arrivée (intro_controller.js) : voile orange plein écran, au-dessus de tout.
+// Le fond CSS couvre la page dès le premier affichage ; le canvas prend le relais avec la pastille « fh ».
+// Décoratif : aria-hidden et sans capter les clics (le contenu reste accessible pendant l'attente).
+.intro {
+  // Couleurs lues par intro_controller.js (une seule source : _tokens.scss)
+  --intro-fond: #{$color-hero};
+  --intro-trame: #{$color-trame-hero};
+  --intro-encre: #{$color-text};
+  position: fixed;
+  inset: 0;
+  z-index: 10000; // au-dessus du loader des transitions (#app-loader, 9999)
+  background-color: $color-hero;
+  pointer-events: none;
+  // Secours sans JavaScript : le voile se retire seul au bout de 4 s
+  animation: intro-secours 0s linear 4s forwards;
+}
+
+// Déjà vu dans la session (script du <head>) : jamais affiché, pas de flash
+.intro-vue .intro {
+  display: none;
+}
+
+// Pris en charge par le JavaScript : le canvas dessine le fond, plus de retrait automatique
+.intro--js {
+  background-color: transparent;
+  animation: none;
+}
+
+.intro__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes intro-secours {
+  to {
+    visibility: hidden;
+  }
+}

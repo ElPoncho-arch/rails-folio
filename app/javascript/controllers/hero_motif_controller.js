@@ -6,6 +6,7 @@ import { gsap } from "gsap"
 //   affichage (élément LCP), glissent en place ligne par ligne avec un léger rebond.
 // - Dérive ensuite (dès 768 px seulement : épargne les téléphones) : la trame flotte lentement en boucle.
 // - La dérive se met en pause quand le hero sort de l'écran.
+// - Première arrivée : l'entrée attend la fin du loader (événement « intro:revele », intro_controller.js).
 // - Mouvement réduit : ni entrée ni dérive, tout est visible et fixe.
 // Les textes ne sont jamais masqués : seul leur décalage est posé ici (jamais en CSS).
 
@@ -37,8 +38,20 @@ export default class extends Controller {
         .to(this.motifTarget, { clipPath: "inset(0% 0% 0% 0%)", yPercent: 0, duration: 1.1, ease: "power3.inOut" })
         .to(lignes, { y: 0, duration: 0.9, ease: "back.out(1.7)", stagger: 0.1 }, 0.1)
 
+      // Loader de première arrivée en cours (intro_controller.js) : la trame est déjà en place,
+      // c'est la dissolution du loader qui la dévoile ; seuls le nom et le métier glissent ensuite
+      if (document.documentElement.classList.contains("intro-en-cours")) {
+        this.entree.pause()
+        gsap.set(this.motifTarget, { clipPath: "inset(0% 0% 0% 0%)", yPercent: 0 })
+        this.surIntro = () => this.entree?.play()
+        window.addEventListener("intro:revele", this.surIntro, { once: true })
+      }
+
       // Au revert (préférence changée ou disconnect), GSAP tue les deux timelines et retire les styles
-      return () => { this.derive = null; this.entree = null; this.deriveLancee = false }
+      return () => {
+        window.removeEventListener("intro:revele", this.surIntro)
+        this.derive = null; this.entree = null; this.deriveLancee = false
+      }
     })
 
     this.observer = new IntersectionObserver(([entree]) => {

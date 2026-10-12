@@ -7,6 +7,13 @@
     <meta name="color-scheme" content="only light">
     <meta name="description" content="Fabien Hoarau, graphique, motion, UI et front-end designer. Identités visuelles, animation et interfaces web.">
 
+    <%# Loader de première arrivée (intro_controller.js) : décidé avant le premier affichage, une fois par session.
+        « intro-en-cours » = à montrer ; « intro-vue » = déjà vu, le voile n'est jamais affiché %>
+    <%= javascript_tag nonce: true, data: { turbo_eval: false } do %>
+      try { document.documentElement.classList.add(sessionStorage.getItem("intro-vue") ? "intro-vue" : "intro-en-cours") }
+      catch (e) { document.documentElement.classList.add("intro-vue") }
+    <% end %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%# Favicon : pastille « fh » tramée, en PNG seulement (le SVG source, docs/sources/favicon-trame.svg,
@@ -30,6 +37,10 @@
 
   <!-- Attache le contrôleur de transition au body -->
   <body data-controller="transition">
+    <%# Voile du loader (intro_controller.js, _intro.scss) : décoratif, ne bloque ni la lecture ni les clics %>
+    <div class="intro" data-controller="intro" aria-hidden="true">
+      <canvas class="intro__canvas" data-intro-target="canvas"></canvas>
+    </div>
     <a class="lien-evitement" href="#contenu" data-action="smooth-scroll#evitement">Aller au contenu</a>
 
     <div id="app-loader" aria-hidden="true">
